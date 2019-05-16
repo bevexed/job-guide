@@ -1,0 +1,19 @@
+<div class="vd-carsouel">
+  <div class="vd-carsouellist">
+    <div *ngFor="let item of data" class="vd-carsouelitem" [ngStyle]="{'background-image': 'url('+item.imageUrl+'})'}">
+      <button nz-button nzType="primary" [nzSize]="size" nzShape="round">立即观看</button>
+      <h1>{{item.title}}</h1>
+      <p>{{item.intro}}</p>
+    </div>
+  </div>
+  <ul class="vd-bestlist">
+    <li class="vd-hot">重磅推荐</li>
+    <li>新手喜欢看</li>
+    <li>老司机喜欢看</li>
+    <li>白领喜欢看</li>
+    <li>公务员喜欢看</li>
+    <li>0基础同学必看</li>
+    <li>大家都在找</li>
+    <li>冷门职业</li>
+  </ul>
+</div>

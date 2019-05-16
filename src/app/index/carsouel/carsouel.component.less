@@ -1,0 +1,97 @@
+.vd-carsouel {
+  position: relative;
+  height: 430px;
+  background: #6A6A69;
+  padding: 30px 130px;
+  overflow: hidden;
+}
+.vd-bestlist {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 345px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .4);
+  font-family: PingFangSC-Medium;
+  padding: 26px;
+  color: #fff;
+}
+.vd-hot {
+  font-size: 20px;
+  font-weight: bold;
+  background-image: url('../../../assets/recommend.png');
+  background-repeat: no-repeat;
+  background-size: 20px 22px;
+  background-position-y: center;
+  padding-left: 30px;
+  line-height: 46px;
+}
+.vd-bestlist li {
+  padding-left: 30px;
+  transition: font-size 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.vd-bestlist li:not(:first-child) {
+  line-height: 40px;
+}
+.vd-bestlist li:not(:first-child):hover {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.vd-carsouellist {
+  white-space: nowrap;
+  width: 100%;
+}
+
+.vd-carsouelitem {
+  vertical-align: top;
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: 260px;
+  height: 370px;
+  align-items: flex-end;
+  align-content: flex-end;
+  background-size: contain;
+  border-radius: 4px;
+  padding: 25px 10px;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.vd-carsouelitem button,
+.vd-carsouelitem h1,
+.vd-carsouelitem p {
+  position: relative;
+  z-index: 1;
+}
+.vd-carsouelitem:hover {
+  transform: scale(1.05);
+  align-items: center;
+  text-align: center;
+  padding-bottom: 40px;
+}
+.vd-carsouelitem:hover  .ant-btn-primary {
+  display: block;
+  margin-bottom: 50px;
+}
+.vd-carsouelitem:hover:after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, .4);
+  width: 100%;
+  height: 100%;
+}
+.vd-carsouelitem h1,
+.vd-carsouelitem p {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+.vd-carsouelitem h1 {
+  font-size: 24px;
+}
+.vd-carsouellist>div:not(:first-child),
+.vd-carsouellist>div:not(:last-child) {
+  margin-left: 20px;
+}

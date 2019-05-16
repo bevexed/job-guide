@@ -1,0 +1,130 @@
+<nz-carousel [nzEffect]="effect" [nzDots]="bannerlist.length>1" [nzAutoPlay]="true" [nzAutoPlaySpeed]="7000"
+  *ngIf="bannerlist.length">
+  <div nz-carousel-content *ngFor="let index of bannerlist"
+    style="cursor: pointer;">
+    <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
+      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+    </div>
+    <a *ngIf="!index.courseId && index.link" [href]="index.link" style="display: block;">
+      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+    </a>
+    <div *ngIf="!index.courseId && !index.link">
+      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+    </div>
+  </div>
+</nz-carousel>
+<ng-container *ngIf="httpService.devType">
+  <div class="vd-wrapper">
+    <div class="vd-box">
+      <div class="vd-box-header">
+        <h1 class="vd-box-title" style="background-image: url('../../assets/hot.png')">热门视频</h1>
+        <div class="vd-pagination" *ngIf="hots?.data.length > hots?.size">
+          <nz-pagination [(nzPageIndex)]="hots.current" [nzPageSize]="hots.size" [nzTotal]="hots.data.length"
+            (nzPageIndexChange)="listFilter(blockType.hots)" nzSimple></nz-pagination>
+        </div>
+      </div>
+      <nz-list [nzDataSource]="hots?.currentData" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
+        <ng-template #item let-item>
+          <nz-list-item [nzContent]="nzContent">
+            <ng-template #nzContent>
+              <app-vditem [data]="item"></app-vditem>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </div>
+    <div class="vd-box">
+      <div class="vd-box-header">
+        <h1 class="vd-box-title" style="background-image: url('../../assets/development.png')">发展之路</h1>
+        <div class="vd-pagination">
+          <a routerLink="../development">更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+        </div>
+      </div>
+      <nz-list [nzDataSource]="developList" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
+        <ng-template #item let-item>
+          <nz-list-item [nzContent]="nzContent">
+            <ng-template #nzContent>
+              <app-vditem [data]="item"></app-vditem>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </div>
+    <div class="vd-divilier">
+      <img src="../../assets/banner5.png">
+      <img src="../../assets/banner6.png">
+    </div>
+    <div class="vd-box">
+      <div class="vd-box-header">
+        <h1 class="vd-box-title" style="background-image: url('../../assets/profession.png')">职业菜单</h1>
+        <div class="vd-pagination">
+          <a routerLink="../profession">更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+        </div>
+      </div>
+      <nz-list [nzDataSource]="professionList" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
+        <ng-template #item let-item>
+          <nz-list-item [nzContent]="nzContent">
+            <ng-template #nzContent>
+              <app-vditem [data]="item"></app-vditem>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="!httpService.devType">
+  <div class="mb-box-wrapper" style="margin-top: 30px;">
+    <div class="mb-box-header">
+      <h1 class="vd-box-title" style="background-image: url('../../assets/hot.png')">热门课程</h1>
+    </div>
+    <div class="mb-box-body">
+      <nz-list [nzDataSource]="hots?.currentData?hots?.currentData:[]" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
+        <ng-template #item let-item>
+          <nz-list-item [nzContent]="nzContent">
+            <ng-template #nzContent>
+              <app-vditem [data]="item" [devType]="httpService.devType"></app-vditem>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+      <button nz-button (click)="mbPagination()" nzType="default" *ngIf="hots?.currentData.length < hots.data.length" nzBlock style="margin-top: 20px;">查看更多</button>
+    </div>
+  </div>
+  <div class="mb-box-wrapper" style="margin-top: 30px;">
+    <div class="mb-box-header">
+      <h1 class="vd-box-title" style="background-image: url('../../assets/development.png')">发展之路</h1>
+    </div>
+    <div class="mb-box-body">
+      <nz-list [nzDataSource]="developList" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
+        <ng-template #item let-item>
+          <nz-list-item [nzContent]="nzContent">
+            <ng-template #nzContent>
+              <app-vditem [data]="item" [devType]="httpService.devType"></app-vditem>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+      <button routerLink="../development" nz-button nzType="default" nzBlock style="margin-top: 20px;">查看更多</button>
+    </div>
+  </div>
+  <div class="mb-box-wrapper" style="margin-top: 30px;">
+    <div class="mb-box-header">
+      <h1 class="vd-box-title"
+        style="background-image: url('../../assets/profession.png');background-size: 12px auto;background-position-x: 8px;">
+        职业菜单</h1>
+    </div>
+    <div class="mb-box-body">
+      <nz-list [nzDataSource]="professionList" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12}">
+        <ng-template #item let-item>
+          <nz-list-item [nzContent]="nzContent">
+            <ng-template #nzContent>
+              <app-vditem [data]="item" [devType]="httpService.devType"></app-vditem>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+      <button routerLink="../profession" nz-button nzType="default" nzBlock style="margin-top: 20px;">查看更多</button>
+    </div>
+  </div>
+</ng-container>

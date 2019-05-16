@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>职场司南--专注于高考志愿填报|专业选择|大学生就业方向选择问题</title>
+  <base href="/">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+  <meta name="keywords" content="职场司南,2019高考志愿填报,大学志愿填报,高考志愿填报,志愿填报指南,高考志愿规划,大学生职业规划,高考专业选择,职业菜单" />
+  <meta name="description" content="职场司南专注于高考志愿填报服务,提供高考志愿填报指南,志愿填报技巧,大学选择,专业选择,大学生就业方向选择,职业菜单等服务.全方位解析高考志愿填报到大学生活、到求职择业再到职场发展的各种注意事项,潜规则及背后的逻辑关系,帮助考生填出好志愿,进入好大学,找到好工作." />
+  <link rel="icon" type="image/x-icon" href="./assets/logo-icon.png">
+  <!-- <script src="node_modules/core-js/client/shim.min.js"></script> -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/classlist/2014.01.31/classList.min.js"></script>
+  <style>
+    #warning-ie8 {
+      position: fixed;
+      z-index: 100;
+      background-color: rgba(0, 0, 0, .5);
+    }
+
+    .warning-dialog {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      margin-left: -194px;
+      margin-top: -250px;
+      width: 500px;
+      height: 230px;
+      background: url('./assets/no-support.png');
+      z-index: 1000;
+    }
+
+    .download-chrome {
+      position: absolute;
+      left: 220px;
+      display: block;
+      width: 161px;
+      height: 36px;
+    }
+
+    .download-chrome {
+      bottom: 60px;
+      background: url(https://a.msstatic.com/huya/main/img/warning-ie8/icon-download-chrome_8e8ed4b.png);
+    }
+
+    .download-chrome:hover {
+      cursor: pointer;
+    }
+
+    #warning-ie8 .dialog-close {
+      position: absolute;
+      top: 12px;
+      right: 9px;
+      display: block;
+      width: 35px;
+      height: 33px;
+      background: url(https://a.msstatic.com/huya/main/img/warning-ie8/icon-close_ac781f3.png);
+    }
+  </style>
+</head>
+
+<body style="overflow: scroll;">
+  <div id="warning-ie8" style="display: none;">
+    <div class=warning-dialog><span class=dialog-close
+        onclick="document.getElementsByTagName('body')[0].removeChild(getElementById('warning-ie8'));"></span><a
+        class=download-chrome href="https://www.google.cn/chrome" target=_blank></a>
+    </div>
+  </div>
+  <app-root></app-root>
+  <script>
+    if (navigator.appName == "Microsoft Internet Explorer" && parseInt(navigator.appVersion.split(";")[1].replace(/[ ]/g, "").replace("MSIE", "")) <= 9) {
+      document.getElementById('warning-ie8').style.display = 'block';
+    }
+  </script>
+</body>
+
+</html>
