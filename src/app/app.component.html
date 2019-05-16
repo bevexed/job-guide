@@ -206,7 +206,7 @@
 </ng-template>
 
 <!-- 充值弹窗 -->
-<nz-modal [(nzVisible)]="!httpService.vipModal" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320"
+<nz-modal [(nzVisible)]="httpService.vipModal" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320"
           [nzBodyStyle]="{padding: 0}" (nzOnCancel)="closeVipModal()">
   <div class="vd-login">
     <h1>加入职场司南</h1>
