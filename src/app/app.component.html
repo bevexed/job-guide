@@ -202,19 +202,35 @@
         routerLink="/passport">注册</a></p>
   </ng-container>
 </ng-template>
+
+
 <!-- 充值弹窗 -->
-<nz-modal [(nzVisible)]="httpService.vipModal" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320"
+<nz-modal [(nzVisible)]="!httpService.vipModal" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320"
   [nzBodyStyle]="{padding: 0}" (nzOnCancel)="closeVipModal()">
-  <div class="vd-login">
+  <div class="vd-login li-login">
     <h1>加入职场司南</h1>
     <br />
     <p style="border: 1px solid #e9c285;background: #fffaf2;border-radius: 4px;padding: 10px 0;text-align: center;width: 100%;margin: 0 auto 10px;"><span
         style="font-size: 24px;color: #666;font-weight: bold;">{{httpService.price}}</span>元/24个月</p>
+
+<!--    <div class="pay-ways">-->
+<!--      <div class="selected">-->
+<!--        <img src="../assets/alipay.png" height="32">-->
+<!--      </div>-->
+<!--    </div>-->
+
     <div class="pay-ways">
-      <div class="selected">
-        <img src="../assets/alipay.png" height="32">
+      <div class="pay-way" [ngClass]="{'selected':payType === '支付宝'}" (click)="changePayType('支付宝')">
+        <img src="../assets/支付宝.svg" alt="">
+        <span>支付宝</span>
+      </div>
+
+      <div class="pay-way" [ngClass]="{'selected':payType === '微信'}" (click)="changePayType('微信')">
+        <img src="../assets/微信.svg"  alt="">
+        <span>微信</span>
       </div>
     </div>
+
     <div class="aui-flex clearfix selected" *ngIf="httpService.coupon">
       <div class="aui-price-nub">
         <div class="aui-digit">

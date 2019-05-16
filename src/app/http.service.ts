@@ -255,7 +255,7 @@ export class HttpService {
       const wrapper = document.getElementById('pay-wrapper');
        wrapper.innerHTML = '';
        wrapper.innerHTML = res.data;
-      document.forms['punchout_form'].submit();
+       document.forms['punchout_form'].submit();
     } else {
       this.message.error(res.message);
     }

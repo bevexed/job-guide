@@ -1,12 +1,12 @@
-import { Component, OnInit, ChangeDetectorRef, AfterViewInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { PlatformLocation } from '@angular/common';
-import { HttpService } from './http.service';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { NzMessageService, NzModalService } from 'ng-zorro-antd';
+import {Component, OnInit, ChangeDetectorRef, AfterViewInit, OnDestroy} from '@angular/core';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {PlatformLocation} from '@angular/common';
+import {HttpService} from './http.service';
+import {Router, NavigationEnd, ActivatedRoute} from '@angular/router';
+import {filter} from 'rxjs/operators';
+import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import NativeShare from 'nativeshare';
-import { fromEvent } from 'rxjs';
+import {fromEvent} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -21,13 +21,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   public _store: any;
   public nativeShare: any;
   public bannerlist: any[] = [];
-  public popoverVisible: boolean = false;
-  public shareModal: boolean = false;
+  public popoverVisible = false;
+  public shareModal = false;
   public qrcode: any;
   private observer: any;
-  public promoCode: string = '';
-  public promoCodePrice: number = 0;
-  public paybtn: boolean = true;
+  public promoCode = '';
+  public promoCodePrice = 0;
+  public paybtn = true;
+
+  public payType = '微信';
 
   constructor(
     private fb: FormBuilder,
@@ -56,10 +58,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       this.activeUrl = data.url;
       this.ref.detectChanges();
     });
-    let cookie = localStorage.getItem('userInfo');
+    const cookie = localStorage.getItem('userInfo');
     console.log(cookie);
     if (cookie) {
-      let localData = JSON.parse(cookie);
+      const localData = JSON.parse(cookie);
       this.httpService.token = localData.token;
       console.error(this.httpService.token);
       // this.httpService.user = localData.user;
@@ -80,17 +82,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     // 监听页面切换
     this.observer = fromEvent(window, 'popstate').subscribe((e: any) => {
       this.httpService.ishistoryback.next();
-    })
+    });
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+  }
 
   ngOnDestroy() {
     this.observer.unsubscribe();
   }
 
   public async getBannerList() {
-    let res = await this.httpService.getIndex();
+    const res = await this.httpService.getIndex();
     if (res.code === 200) {
       this.bannerlist = res.data.bannerList;
     }
@@ -126,13 +129,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public async login() {
     if (this.validateForm.valid) {
-      let res = await this.httpService.login(this.validateForm.value);
+      const res = await this.httpService.login(this.validateForm.value);
       if (res.code === 200) {
         localStorage.setItem('userInfo', JSON.stringify(res.data));
         this.httpService.token = res.data.token;
         this.httpService.user = res.data.user;
         this.httpService.init();
-        let pathname = this.location.pathname;
+        const pathname = this.location.pathname;
         if (pathname === '/register') {
           this.router.navigate(['../index']);
         }
@@ -160,14 +163,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       });
       return;
     }
-    var u = navigator.appVersion;
-    var uc = u.split('UCBrowser/').length > 1  ? 1 : 0;
-    var qq = u.split('MQQBrowser/').length > 1 ? 2 : 0;
-    var wx = ((u.match(/MicroMessenger/i)) && (u.match(/MicroMessenger/i).toString().toLowerCase() == 'micromessenger'));
-    let url = this.httpService.user ? window.location.origin + '/#/index/' + this.httpService.user.id : window.location.origin + '/#/index';
+    const u = navigator.appVersion;
+    const uc = u.split('UCBrowser/').length > 1 ? 1 : 0;
+    const qq = u.split('MQQBrowser/').length > 1 ? 2 : 0;
+    const wx = ((u.match(/MicroMessenger/i)) && (u.match(/MicroMessenger/i).toString().toLowerCase() == 'micromessenger'));
+    const url = this.httpService.user ? window.location.origin + '/#/index/' + this.httpService.user.id : window.location.origin + '/#/index';
     if (uc || (qq && !wx)) {
       try {
-        var shareData = {
+        const shareData = {
           title: '职场司南',
           desc: '快来和我一起驰骋职场吧！',
           // 如果是微信该link的域名必须要在微信后台配置的安全域名之内的。
@@ -179,28 +182,28 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
           fail: function () {
           }
         };
-        this.nativeShare.setShareData(shareData)
+        this.nativeShare.setShareData(shareData);
         this.nativeShare.call();
       } catch (err) {
         this.qrcode = this.httpService.user.qrCodeImageUrl;
         this.shareModal = true;
       }
     } else {
-      this.qrcode = this.httpService.user.qrCodeImageUrl;;
+      this.qrcode = this.httpService.user.qrCodeImageUrl;
       this.shareModal = true;
     }
-    let res = await this.httpService.getCouponByShare();
+    const res = await this.httpService.getCouponByShare();
     if (res.code === 200) {
       this.message.success('您收到一张优惠券，可到个人中心->我的优惠券中查看！');
     }
   }
 
   public loadSharePic() {
-      let img2: any = document.getElementById('qrcode');
-      let a = document.createElement('a');
-      a.setAttribute('download', 'share.png');
-      a.setAttribute('href', img2.src)
-      a.click();
+    const img2: any = document.getElementById('qrcode');
+    const a = document.createElement('a');
+    a.setAttribute('download', 'share.png');
+    a.setAttribute('href', img2.src);
+    a.click();
     // }
   }
 
@@ -222,7 +225,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public async checkPromoCode() {
     if (this.promoCode.length !== 0) {
-      let res = await this.httpService.getPriceByPromoCode(this.promoCode);
+      const res = await this.httpService.getPriceByPromoCode(this.promoCode);
       if (res.code === 200 && res.data.promoCode && res.data.promoPrice) {
         this.promoCodePrice = res.data.promoPrice;
         this.paybtn = true;
@@ -240,9 +243,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!this.httpService.vipModal) {
       return 0;
     }
-    let totalprice = this.httpService.price;
-    let couponPrice = this.httpService.coupon ? this.httpService.coupon.price : 0;
-    let price = totalprice - couponPrice - this.promoCodePrice;
+    const totalprice = this.httpService.price;
+    const couponPrice = this.httpService.coupon ? this.httpService.coupon.price : 0;
+    const price = totalprice - couponPrice - this.promoCodePrice;
     return price <= 0 ? 0.01 : price;
+  }
+
+  public changePayType(type: string): void {
+    this.payType = type;
   }
 }
