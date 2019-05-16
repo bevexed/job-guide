@@ -63,7 +63,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       this.httpService.token = localData.token;
       console.error(this.httpService.token);
       // this.httpService.user = localData.user;
-      this.httpService.init();     
+      this.httpService.init();
     }
     // 初始化页面以后默认加在一次账号信息，用来校验token是否过期
     this.httpService.tokenValidate();
@@ -71,7 +71,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     //   if (res.code !== 200) { /** 获取账号信息失败都默认为未登陆 */
     //     this.logout();
     //   } else {
-        
+
     //   }
     // });
 
@@ -235,7 +235,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       this.paybtn = true;
     }
   }
-  
+
   public getPrice(): number {
     if (!this.httpService.vipModal) {
       return 0;
