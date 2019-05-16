@@ -10,6 +10,7 @@ import { VideoDetialComponent } from './video-detial/video-detial.component';
 import { AuthService } from './auth.service';
 import { ResultsComponent } from './results/results.component';
 import { RewardComponent } from './reward/reward.component';
+import { LoginComponent } from "./login/login.component";
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: 'passport',

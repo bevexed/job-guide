@@ -97,10 +97,12 @@
   <nz-layout class="layout">
     <nz-header class="vd-header mb-header" style="position:fixed; width:100%;z-index: 100;">
       <div class="logo mb-logo"></div>
-      <ul class="vd-userarea mb-headerCollapse" nz-popover nzTitle="" style="padding: 16px 0;" [nzContent]="contentTemplate"
-          [(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">
-        <i nz-icon nzType="bars" nzTheme="outline"></i>
-      </ul>
+      <!--<ul class="vd-userarea mb-headerCollapse" nz-popover nzTitle="" style="padding: 16px 0;" [nzContent]="contentTemplate"-->
+        <!--[(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">-->
+        <!--<i nz-icon nzType="bars" nzTheme="outline"></i>-->
+      <!--</ul>-->
+      <img class="daohangIcon" src="../assets/daohang.png" alt="图标"  nz-popover [nzContent]="contentTemplate"
+           [(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">
     </nz-header>
     <nz-content style="margin-top:64px;">
       <!-- <nz-carousel [nzEffect]="effect" [nzAutoPlay]="true">
@@ -198,8 +200,10 @@
       (click)="logout()">退出登录</a></p>
   </ng-container>
   <ng-container *ngIf="!httpService.devType && !httpService.user">
-    <p class="vd-popoveritem mb-navlist" style="border-bottom: 1px solid #eee;"
-       (click)="popoverHiding();showModal($event)">登录</p>
+    <!--<p class="vd-popoveritem mb-navlist" style="border-bottom: 1px solid #eee;"-->
+      <!--(click)="popoverHiding();showModal($event)">登录</p>-->
+    <p class="vd-popoveritem mb-navlist" style="border-bottom: 1px solid #eee;" routerLink="/login" (click)="popoverHiding()"><a
+      routerLink="/login">登录</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/register" (click)="popoverHiding()"><a
       routerLink="/passport">注册</a></p>
   </ng-container>
@@ -266,23 +270,28 @@
       </div>
 
     </div>
-
-
+    <div class="price-detail">
+      <p *ngIf="httpService.price && (httpService.coupon || promoCode)">原价： <font>￥ <span id="price">{{httpService.price}}</span></font></p>
+      <p *ngIf="httpService.coupon">优惠券：<font>- ￥ <span id="price">{{httpService.coupon.price}}</span></font></p>
+      <p *ngIf="paybtn && promoCode">优惠码：<font>- ￥ <span id="price">{{promoCodePrice}}</span></font></p>
+      <p>合计：<font>￥ <span id="price">{{getPrice()}}</span></font></p>
+    </div>
+    <button nz-button nzType="primary" [disabled]="!paybtn" (click)="httpService.pay(promoCode, httpService.coupon)" nzBlock>去支付</button>
   </div>
 </nz-modal>
 <!-- <nz-modal [(nzVisible)]="shareModal" [nzStyle]="{ top: '50%', 'left': '50%', 'margin': '0', 'transform': 'translate(-50% -50%)', 'padding': '0' }" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320" -->
 
 <nz-modal [(nzVisible)]="shareModal" [nzStyle]="{'margin': '0 auto'}" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="305"
-          [nzBodyStyle]="{padding: '30px'}" (nzOnCancel)="closeShareModal()">
+  [nzBodyStyle]="{padding: '30px'}" (nzOnCancel)="closeShareModal()">
   <!-- <div class="bg-share"> -->
-  <!--
-  <a class="load_btn" (click)="loadSharePic()">
-    <div class="download_btn"></div>
-    保存到相册
-  </a> -->
-  <img id="qrcode" [src]="qrcode" alt="">
-  <p style="text-align: center;">邀请好友成功，即可获得现金奖励</p>
-  <button id="load_btn" (click)="loadSharePic()" nz-button nzType="default" nzShape="round">保存二维码</button>
+    <!--
+    <a class="load_btn" (click)="loadSharePic()">
+      <div class="download_btn"></div>
+      保存到相册
+    </a> -->
+    <img id="qrcode" [src]="qrcode" alt="">
+    <p style="text-align: center;">邀请好友成功，即可获得现金奖励</p>
+    <button id="load_btn" (click)="loadSharePic()" nz-button nzType="default" nzShape="round">保存二维码</button>
   <!-- </div> -->
 </nz-modal>
 <div style="display: none;">

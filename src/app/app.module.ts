@@ -28,6 +28,7 @@ import { counterReducer } from './store';
 import { AuthService } from './auth.service';
 import { ResultsComponent } from './results/results.component';
 import { RewardComponent } from './reward/reward.component';
+import { LoginComponent } from './login/login.component';
 
 registerLocaleData(zh);
 
@@ -44,7 +45,8 @@ registerLocaleData(zh);
     PassEditComponent,
     VideoDetialComponent,
     ResultsComponent,
-    RewardComponent
+    RewardComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

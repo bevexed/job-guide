@@ -41,7 +41,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     public ref: ChangeDetectorRef,
     private route: ActivatedRoute
   ) {
-    
+
   }
 
   ngOnInit() {
@@ -63,7 +63,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   public async indexInit() {
     let res: any;
     if (this.httpService.devType) {
-      res = await this.httpService.getIndex(); 
+      res = await this.httpService.getIndex();
     } else {
       res = await this.httpService.getMobileIndex();
     }

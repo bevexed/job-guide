@@ -8,7 +8,7 @@
 }
 
 .vd-header {
-  background-color: @nav-color;
+  background-color: #fff;
   display: block;
   position: relative;
 }
@@ -448,13 +448,23 @@
 
 /** 移动端样式 */
 .mb-header {
-  padding: 0 10px;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .mb-header .mb-logo {
-  width: 150px;
-  height: 64px;
-  background-image: url('../assets/logo-text.png');
+  width: 221px;
+  height: 36px;
+  background-image: url('../assets/registerLogo.png');
+}
+.mb-header::after{
+  content: none;
+}
+.daohangIcon {
+  width: 25px;
+  height: 18px;
 }
 
 .mb-headerCollapse i {
@@ -557,6 +567,38 @@
   border-top: 1px solid #eee;
   text-align: center;
 }
+.mb-footer {
+  background: #333;
+  color: #fff;
+  font-size: 13px;
+  padding: 0 29px;
+  >p {
+    text-align: center;
+  }
+}
+.mb-menu {
+  display: flex;
+  align-items: center;
+  margin: 41px 0 11px;
+  justify-content: space-between;
+}
+.telBox {
+  text-align: center;
+  >img {
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+  }
+}
+.qrCode {
+  padding: 26px 0 11px;
+  text-align: center;
+  >img {
+    width: 100px;
+    height: 100px;
+  }
+}
+
 
 .mb-footer-info {
   width: 80%;

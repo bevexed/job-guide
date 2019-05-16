@@ -1,5 +1,5 @@
 <nz-carousel [nzEffect]="effect" [nzDots]="bannerlist.length>1" [nzAutoPlay]="true" [nzAutoPlaySpeed]="7000"
-  *ngIf="bannerlist.length">
+  *ngIf="bannerlist.length" [nzEnableSwipe]="true">
   <div nz-carousel-content *ngFor="let index of bannerlist"
     style="cursor: pointer;">
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
