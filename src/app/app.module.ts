@@ -30,6 +30,9 @@ import { ResultsComponent } from './results/results.component';
 import { RewardComponent } from './reward/reward.component';
 import { LoginComponent } from './login/login.component';
 
+// li
+import {HotComponent} from './hot/hot.component';
+
 registerLocaleData(zh);
 
 @NgModule({
@@ -46,7 +49,8 @@ registerLocaleData(zh);
     VideoDetialComponent,
     ResultsComponent,
     RewardComponent,
-    LoginComponent
+    LoginComponent,
+    HotComponent
   ],
   imports: [
     BrowserModule,

@@ -17,10 +17,10 @@
   <div class="vd-wrapper">
     <div class="vd-box">
       <div class="vd-box-header">
-        <h1 class="vd-box-title" style="background-image: url('../../assets/hot.png')">热门视频</h1>
+        <h1 class="vd-box-title">热门视频</h1>
         <div class="vd-pagination">
           <!-- todo：查看更多-->
-          <a routerLink="../development">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+          <a routerLink="../hot">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
       </div>
       <nz-list [nzDataSource]="hots?.currentData" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
@@ -35,7 +35,7 @@
     </div>
     <div class="vd-box">
       <div class="vd-box-header">
-        <h1 class="vd-box-title" style="background-image: url('../../assets/development.png')">发展之路</h1>
+        <h1 class="vd-box-title">发展之路</h1>
         <div class="vd-pagination">
           <a routerLink="../development">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
@@ -56,7 +56,7 @@
     </div>
     <div class="vd-box">
       <div class="vd-box-header">
-        <h1 class="vd-box-title" style="background-image: url('../../assets/profession.png')">职业菜单</h1>
+        <h1 class="vd-box-title" >职业菜单</h1>
         <div class="vd-pagination">
           <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
@@ -76,7 +76,7 @@
 <ng-container *ngIf="!httpService.devType">
   <div class="mb-box-wrapper" style="margin-top: 30px;">
     <div class="mb-box-header">
-      <h1 class="vd-box-title" style="background-image: url('../../assets/hot.png')">热门课程</h1>
+      <h1 class="vd-box-title">热门课程</h1>
     </div>
     <div class="mb-box-body">
       <nz-list [nzDataSource]="hots?.currentData?hots?.currentData:[]" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
@@ -93,7 +93,7 @@
   </div>
   <div class="mb-box-wrapper" style="margin-top: 30px;">
     <div class="mb-box-header">
-      <h1 class="vd-box-title" style="background-image: url('../../assets/development.png')">发展之路</h1>
+      <h1 class="vd-box-title">发展之路</h1>
     </div>
     <div class="mb-box-body">
       <nz-list [nzDataSource]="developList" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
