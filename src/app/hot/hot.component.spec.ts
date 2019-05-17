@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HotComponent } from './development.component';
+import { HotComponent } from './hot.component';
 
 describe('HotComponent', () => {
   let component: HotComponent;

@@ -6,6 +6,14 @@
   <!-- <img src="data?.coverUrl ? data?.coverUrl : data?.imageUrl" alt=""> -->
   <div class="vd-desc">
     <h3>{{data?.title}}</h3>
+    <div class="li-hot-desc" *ngIf="data?.hot">
+      <span>
+        30分钟
+      </span>
+      <span>免费</span>
+    </div>
     <p>{{data?.intro}}</p>
   </div>
+
+
 </div>

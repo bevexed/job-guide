@@ -12,13 +12,20 @@ export class VditemComponent implements OnInit {
     'padding': 0,
     'background': 'red'
   };
-  @Input() devType: boolean = true;
-  public isIE: boolean = false;
-  
+  @Input() devType = true;
+
+
+  // li 二开
+  @Input() hot = false;
+
+  public; isIE = false;
+
   constructor() { }
 
   ngOnInit() {
     this.checkBrowerType();
+    console.log(this.hot);
+    console.log(this.data);
   }
 
   public vipTag(data: any): boolean {
@@ -32,7 +39,7 @@ export class VditemComponent implements OnInit {
   }
 
   public checkBrowerType() {
-    if(window.navigator.userAgent.indexOf("MSIE")>=1){
+    if (window.navigator.userAgent.indexOf('MSIE') >= 1) {
       this.isIE = true;
     }
   }

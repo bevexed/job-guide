@@ -23,16 +23,29 @@
           <a routerLink="../hot">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
       </div>
+
       <nz-list [nzDataSource]="hots?.currentData" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
-              <app-vditem [data]="item"></app-vditem>
+              <app-vditem [data]="item" [hot]="true"></app-vditem>
             </ng-template>
           </nz-list-item>
         </ng-template>
       </nz-list>
     </div>
+
+    <!--广告位-->
+    <ng-container>
+      <div class="vd-wrapper">
+        <div class="vd-box">
+          <div class="vd-box-header">
+            <img class="li-ad-img" src="../../assets/广告位.png" alt="">
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
     <div class="vd-box">
       <div class="vd-box-header">
         <h1 class="vd-box-title">发展之路</h1>
@@ -56,7 +69,7 @@
     </div>
     <div class="vd-box">
       <div class="vd-box-header">
-        <h1 class="vd-box-title" >职业菜单</h1>
+        <h1 class="vd-box-title">职业菜单</h1>
         <div class="vd-pagination">
           <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
@@ -73,6 +86,9 @@
     </div>
   </div>
 </ng-container>
+
+
+<!--手机端 ??? -->
 <ng-container *ngIf="!httpService.devType">
   <div class="mb-box-wrapper" style="margin-top: 30px;">
     <div class="mb-box-header">

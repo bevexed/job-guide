@@ -1,15 +1,16 @@
-import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import { HttpService } from '../http.service';
-import { Store, select } from '@ngrx/store';
-import { ActivatedRoute } from '@angular/router';
+import {Component, OnInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
+import {HttpService} from '../http.service';
+import {Store, select} from '@ngrx/store';
+import {ActivatedRoute} from '@angular/router';
 
 
 export interface videos {
-  data: any[],
-  size: number,
-  current: number,
-  currentData: any
-};
+  data: any[];
+  size: number;
+  current: number;
+  currentData: any;
+  hot?: boolean;
+}
 
 @Component({
   selector: 'app-index',
@@ -50,11 +51,14 @@ export class IndexComponent implements OnInit, OnDestroy {
       if (data.inviterId) {
         this.httpService.inviterId = +data.inviterId;
       }
-    })
+    });
   }
 
   ngOnDestroy() {
-    this.httpService.pageCache.hots = {...this.hots, top: document.documentElement.scrollTop !== 0 ? document.documentElement.scrollTop : document.body.scrollTop};
+    this.httpService.pageCache.hots = {
+      ...this.hots,
+      top: document.documentElement.scrollTop !== 0 ? document.documentElement.scrollTop : document.body.scrollTop
+    };
     if (this.observer) {
       this.observer.unsubscribe();
     }
@@ -68,37 +72,44 @@ export class IndexComponent implements OnInit, OnDestroy {
       res = await this.httpService.getMobileIndex();
     }
     this.bannerlist = res.data.bannerList;
+
+
+    res.data.hotList.forEach(item => item.hot = true);
     this.hots = {
       data: res.data.hotList,
       current: 1,
       size: 12,
-      currentData: []
+      currentData: [],
     };
+
     this.developList = res.data.developList.slice(0, 8);
     this.professionList = res.data.professionList.slice(0, 8);
-    for (let key in this.blockType) {
+
+    for (const key in this.blockType) {
       this.listFilter(this.blockType[key]);
     }
+
     if (this.observer) {
       return;
     }
+
     this.observer = this.httpService.ishistoryback.subscribe(() => {
       if (this.httpService.pageCache.hots) {
         if (this.httpService.devType) { // pc
-          this.hots.current = this.httpService.pageCache.hots.current;
-          this.listFilter(this.blockType.hots);
+          // this.hots.current = this.httpService.pageCache.hots.current;
+          // this.listFilter(this.blockType.hots);
         } else { // 手机
           this.mbPagination(this.httpService.pageCache.hots.current);
         }
         setTimeout(() => {
-          window.scrollTo(0,this.httpService.pageCache.hots.top);
+          window.scrollTo(0, this.httpService.pageCache.hots.top);
         }, 0);
       }
-    })
+    });
   }
 
   public listFilter(type: number) {
-    switch(type) {
+    switch (type) {
       case this.blockType.hots:
         this.hots.currentData = this.hots.data.slice((this.hots.current - 1) * this.hots.size, this.hots.current * this.hots.size);
         break;
@@ -108,7 +119,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   public mbPagination(pageNumber?: number) {
     if (pageNumber === undefined) {
       this.hots.current = this.hots.current + 1;
-      let sliceData = this.hots.data.slice((this.hots.current - 1) * this.hots.size, this.hots.current * this.hots.size);
+      const sliceData = this.hots.data.slice((this.hots.current - 1) * this.hots.size, this.hots.current * this.hots.size);
       this.hots.currentData = this.hots.currentData.concat(sliceData);
     } else {
       this.hots.current = pageNumber;

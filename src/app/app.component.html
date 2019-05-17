@@ -45,10 +45,23 @@
       <router-outlet></router-outlet>
     </nz-content>
 
+
+    <!--广告位-->
+    <ng-container>
+      <div class="vd-wrapper">
+        <div class="vd-box">
+          <div class="vd-box-header li-ad-padding">
+            <img class="li-ad-img" src="../../assets/广告位.png" alt="">
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
     <div class="vd-divilier2">
       <img src="../assets/banner3.png">
     </div>
-    <div></div>
+
+
     <div class="vd-slogan-wrapper">
       <div class="vd-slogan">
         <hr>
@@ -56,6 +69,7 @@
         <hr>
       </div>
     </div>
+
     <nz-footer style="*text-align: center;padding: 60px 0;overflow: hidden;">
       <div style="width: 1200px;margin: 0 auto;">
         <div class="vd-footer-left">
@@ -69,6 +83,9 @@
     </nz-footer>
   </nz-layout>
 </ng-container>
+
+
+
 <!-- 移动端首页 -->
 <ng-container *ngIf="!httpService.devType">
   <nz-layout class="layout">
