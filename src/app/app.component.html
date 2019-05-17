@@ -39,47 +39,6 @@
       </div>
     </div>
     <nz-footer style="*text-align: center;padding: 60px 0;overflow: hidden;">
-      <!-- <div class="vd-footer">
-            <ul class="vd-footnav" style="float: left;">
-              <li>
-                <ul class="vd-navlist">
-                  <li>产品介绍</li>
-                  <li><a>指学针APP</a></li>
-                  <li><a>指学针PC</a></li>
-                  <li><a>营销工具</a></li>
-                </ul>
-              </li>
-              <li>
-                <ul class="vd-navlist">
-                  <li>合作方案</li>
-                  <li><a>合作机构</a></li>
-                  <li><a>媒体资源</a></li>
-                </ul>
-              </li>
-              <li>
-                <ul class="vd-navlist">
-                  <li>帮助中心</li>
-                  <li><a>常见问题</a></li>
-                  <li><a>视频教程</a></li>
-                  <li><a>下载中心</a></li>
-                </ul>
-              </li>
-              <li>
-                <ul class="vd-navlist">
-                  <li>关于我们</li>
-                  <li><a>团队介绍</a></li>
-                  <li><a>成长历程</a></li>
-                  <li><a>联系我们</a></li>
-                </ul>
-              </li>
-            </ul>
-            <ul class="vd-navlist" style="float: right;">
-              <li>联系我们</li>
-              <li></li>
-              <li>邮箱：support@zhixuezhen.com</li>
-              <li>电话：0571-28880088</li>
-            </ul>
-          </div> -->
       <div style="width: 1200px;margin: 0 auto;">
         <div class="vd-footer-left">
           <img src="../assets/logo_black.png">
@@ -207,19 +166,17 @@
 
 
 <!-- 充值弹窗 -->
-<nz-modal [(nzVisible)]="httpService.vipModal" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320"
-          [nzBodyStyle]="{padding: 0}" (nzOnCancel)="closeVipModal()">
+<nz-modal
+  [(nzVisible)]="httpService.vipModal"
+  [nzTitle]=""
+  [nzFooter]="null"
+  nzClassName="loginModal"
+  [nzWidth]="360"
+  [nzBodyStyle]="{padding: 0}" (nzOnCancel)="closeVipModal()">
   <div class="vd-login li-login">
     <h1>加入职场司南</h1>
     <br/>
-    <p style="border: 1px solid #e9c285;background: #fffaf2;border-radius: 4px;padding: 10px 0;text-align: center;width: 100%;margin: 0 auto 10px;"><span
-      style="font-size: 24px;color: #666;font-weight: bold;">{{httpService.price}}</span>元/24个月</p>
-
-    <!--    <div class="pay-ways">-->
-    <!--      <div class="selected">-->
-    <!--        <img src="../assets/alipay.png" height="32">-->
-    <!--      </div>-->
-    <!--    </div>-->
+    <p class="price"><span>{{httpService.price}}</span>&nbsp; 元 &nbsp; /24个月</p>
 
     <div class="pay-ways">
       <div class="pay-way" [ngClass]="{'selected':payType === '支付宝'}" (click)="changePayType('支付宝')">
@@ -236,19 +193,21 @@
     <div class="aui-flex clearfix selected" *ngIf="httpService.coupon">
       <div class="aui-price-nub">
         <div class="aui-digit">
-          <h2><em>￥</em>{{httpService.coupon.price}}</h2>
+          <h2>{{httpService.coupon.price}}  <span>元</span>   </h2>
         </div>
       </div>
       <div class="aui-flex-box">
         <h2>用户分享专属优惠券</h2>
         <div class="checkicon">
-          <i nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#52c41a'"></i>
+          <i nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#ff5758'"></i>
         </div>
       </div>
     </div>
+
     <div class="promoCode" style="margin-bottom: 10px;">
       <input #input="ngModel" [ngClass]="{'error-border': getPromoCodeStatus(input)}" type="text" [(ngModel)]="promoCode" (input)="inputPromoCode()" (change)="checkPromoCode()" maxlength="16" placeholder="请输入优惠码"/>
     </div>
+
     <div class="price-detail">
       <p *ngIf="httpService.price && (httpService.coupon || promoCode)">原价： <font>￥ <span id="price">{{httpService.price}}</span></font></p>
       <p *ngIf="httpService.coupon">优惠券：<font>- ￥ <span id="price">{{httpService.coupon.price}}</span></font></p>
@@ -259,6 +218,8 @@
   </div>
 </nz-modal>
 <!-- <nz-modal [(nzVisible)]="shareModal" [nzStyle]="{ top: '50%', 'left': '50%', 'margin': '0', 'transform': 'translate(-50% -50%)', 'padding': '0' }" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320" -->
+
+<!--// 分享 弹窗-->
 <nz-modal [(nzVisible)]="shareModal"
           [nzStyle]="{'margin': '0 auto'}"
           [nzTitle]="" [nzFooter]="null"
@@ -272,13 +233,27 @@
     <div class="download_btn"></div>
     保存到相册
   </a> -->
-  <img id="qrcode" [src]="qrcode" alt="" >
-<!--  <img id="weixinqrcode" [src]="httpService.weixinImgUrl" alt="" *ngIf="payType==='微信'">-->
-
+  <img id="qrcode" [src]="qrcode" alt="">
   <p style="text-align: center;">邀请好友成功，即可获得现金奖励</p>
   <button id="load_btn" (click)="loadSharePic()" nz-button nzType="default" nzShape="round">保存二维码</button>
   <!-- </div> -->
 </nz-modal>
+
+
+<!--// li 微信支付 扫码弹窗-->
+<nz-modal [(nzVisible)]="httpService.weixinShow"
+          [nzStyle]="{'margin': '0 auto'}"
+          [nzTitle]="" [nzFooter]="null"
+          nzClassName="loginModal"
+          [nzWidth]="305"
+          [nzBodyStyle]="{padding: '30px'}"
+          (nzOnCancel)="httpService.weixinShow = false">
+  <img id="qrcode" [src]="httpService.weixinImgUrl" alt="">
+  <p style="text-align: center;">扫码支付</p>
+  <!-- </div> -->
+</nz-modal>
+
+
 <div style="display: none;">
   <img id="code_bg" style="display: none;" src="../assets/invite_bg.jpg" alt="">
   <canvas id="can1" width="1024" height="1818"></canvas>

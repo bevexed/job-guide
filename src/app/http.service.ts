@@ -46,7 +46,8 @@ export class HttpService {
   /** 是否是通过历史记录进入页面的 */
 
   // li
-  public weixinImgUrl:string;
+  public weixinImgUrl: string;
+  public weixinShow = false;
 
   constructor(
     private http: HttpClient,
@@ -310,12 +311,13 @@ export class HttpService {
         try {
           const res = await this.getWeiXinQrcode();
           console.log(res);
+          if (res.code === 200) {
+            this.weixinImgUrl = res.data.qrcodeurl;
+            this.weixinShow = true;
+          }
         } catch (e) {
           console.log(e);
-          if (e.status === 200) {
-            console.log(e.error.text);
-            this.weixinImgUrl = e.error.text;
-          }
+
         }
         break;
       }

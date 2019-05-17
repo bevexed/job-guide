@@ -28,6 +28,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   public promoCode = '';
   public promoCodePrice = 0;
   public paybtn = true;
+
+  // li 二开
   public payType = '微信';
 
   constructor(

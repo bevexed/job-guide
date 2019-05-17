@@ -568,6 +568,38 @@
 
 // li
 .li-login {
+  z-index: 0;
+  position: relative;
+  overflow: hidden;
+
+  h1 {
+    position: absolute;
+    width: 360px;
+    height: 56px;
+    text-align: center;
+    line-height: 56px;
+    top: 0;
+    left: 0;
+    //top: -30px;
+    //left: -30px;
+    background: #eaeaea;
+  }
+
+  > .price {
+    padding: 20px 0;
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+
+    span {
+      font-weight: bolder;
+      font-size: 20px;
+    }
+
+
+  }
+
+
   .pay-ways {
     position: relative;
     display: flex;
@@ -586,7 +618,7 @@
       background-color: #ffffff;
       border-radius: 10px;
       margin-bottom: 10px;
-      padding: 0 30px;
+      padding: 0 15px;
 
       &.selected {
         border-color: #d10000;
@@ -616,6 +648,7 @@
         font-size: 16px;
       }
 
+
       .ant-btn-primary {
         height: 50px;
         color: #fff;
@@ -624,6 +657,44 @@
         text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12);
         box-shadow: 0 2px 0 rgba(0, 0, 0, 0.045);
       }
+    }
+  }
+
+  .price-detail {
+    font {
+      color: #0699e0;
+    }
+  }
+
+  input {
+    background: #f2f2f2;
+    border: none;
+  }
+
+  .aui-flex .aui-flex-box {
+    border: none;
+  }
+
+  .aui-price-nub {
+    background: none;
+  }
+
+  .aui-flex.selected .aui-flex-box {
+    width: 68%;
+    height: 40px;
+    padding-top: 13px;
+  }
+
+  .aui-flex.selected .checkicon {
+    position: absolute;
+    right: 5px;
+    top: 14px;
+    font-weight: normal;
+  }
+
+  .aui-digit {
+    h2 {
+      background: linear-gradient(90deg, #ff885c, #ff2432);
     }
   }
 
