@@ -1,11 +1,12 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { timeout } from 'rxjs/operators';
-import { NzMessageService, NzModalService } from 'ng-zorro-antd';
-import { environment } from '../environments/environment';
-import { ReplaySubject } from 'rxjs';
-import { Router } from '@angular/router';
-import { PlatformLocation } from '@angular/common';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {timeout} from 'rxjs/operators';
+import {NzMessageService, NzModalService} from 'ng-zorro-antd';
+import {environment} from '../environments/environment';
+import {ReplaySubject} from 'rxjs';
+import {Router} from '@angular/router';
+import {PlatformLocation} from '@angular/common';
+
 declare var WeixinJSBridge: any;
 
 export enum BANNER_TYPELIST {
@@ -19,14 +20,12 @@ export enum BANNER_TYPELIST {
   providedIn: 'root'
 })
 export class HttpService {
-  public baseUrl = 'http://39.98.232.64:9090';
+  // public baseUrl = 'http://39.98.232.64:9090';
+  public baseUrl = 'http://api.zhichangsinan.com';
   public token: string;
   public user: any;
   public loginModal = false;
-  public devType = true; /** 设备类型，true：PC， false：移动端 */
-  private headers: HttpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json'
-  });
+  public devType = true;
   public inviterId: number;
   public vipModal = false;
   public price = 299;
@@ -38,7 +37,16 @@ export class HttpService {
     develope: null
   };
   public coupon: any;
-  public ishistoryback: ReplaySubject<any> = new ReplaySubject<any>(); /** 是否是通过历史记录进入页面的 */
+  public ishistoryback: ReplaySubject<any> = new ReplaySubject<any>();
+  /** 设备类型，true：PC， false：移动端 */
+  private headers: HttpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
+
+  /** 是否是通过历史记录进入页面的 */
+
+  // li
+  public weixinImgUrl:string;
 
   constructor(
     private http: HttpClient,
@@ -61,6 +69,7 @@ export class HttpService {
       });
     }
   }
+
   /** 浏览器检测 */
   public browserRedirect() {
     const sUserAgent = navigator.userAgent.toLowerCase();
@@ -144,7 +153,7 @@ export class HttpService {
 
   public getCaptcha(mobile: string): Promise<any> {
     const url = this.baseUrl + '/user/register/send/captcha';
-    const data = { mobile };
+    const data = {mobile};
     return this.httpPost(url, data, true);
   }
 
@@ -178,17 +187,20 @@ export class HttpService {
     const url = this.baseUrl + `/account/withdraw/apply`;
     return this.httpPost(url, data);
   }
+
   /** 获取修改密码的验证码 */
   public getPassportCaptcha(mobile: string): Promise<any> {
     const url = this.baseUrl + '/user/change/password/send/captcha';
-    const data = { mobile };
+    const data = {mobile};
     return this.httpPost(url, data);
   }
+
   /** 修改密码 */
   public passportSubmit(data: any): Promise<any> {
     const url = this.baseUrl + '/user/change/password';
     return this.httpPost(url, data);
   }
+
   /** 打开支付弹窗 */
   public async openPayModal() {
     this.getPrice();
@@ -209,61 +221,10 @@ export class HttpService {
       });
     }
   }
-  /** 支付 */
-  public async pay(promoCode?: string, userCouponId?: any) {
-    if (!this.user) {
-      this.modalService.error({
-        nzTitle: '权限不足',
-        nzContent: '请您先进行登录',
-        nzOnOk: () => {
-          this.vipModal = false;
-          this.loginModal = true;
-        }
-      });
-      return;
-    }
-    const results = await this.tokenValidate();
-    console.log(results);
-    if (!results) {
-      return this.modalService.error({
-        nzTitle: '权限不足',
-        nzContent: '请您重新进行登录',
-        nzOnOk: () => {
-          this.vipModal = false;
-          this.loginModal = true;
-        }
-      });
-    }
-    let url = this.baseUrl + '/order/alipay/trade/wap';
-
-    if (promoCode) {
-      if (url.indexOf('?') === -1) {
-        url = url + '?promoCode=' + promoCode;
-      } else {
-        url = url + '&promoCode=' + promoCode;
-      }
-    }
-    if (userCouponId) {
-      if (url.indexOf('?') === -1) {
-        url = url + '?userCouponId=' + userCouponId.id;
-      } else {
-        url = url + '&userCouponId=' + userCouponId.id;
-      }
-    }
-    const res = await this.httpGet(url);
-    if (res.code === 200) {
-      const wrapper = document.getElementById('pay-wrapper');
-       wrapper.innerHTML = '';
-       wrapper.innerHTML = res.data;
-       document.forms['punchout_form'].submit();
-    } else {
-      this.message.error(res.message);
-    }
-  }
 
   public coursePlay(id: number) {
     const url = this.baseUrl + '/course/play';
-    const data = { id };
+    const data = {id};
     this.httpPost(url, data);
   }
 
@@ -314,6 +275,91 @@ export class HttpService {
 
   public getPriceByPromoCode(promoCode: string) {
     const url = this.baseUrl + `/user/getPromo?promoCode=${promoCode}`;
+    return this.httpGet(url);
+  }
+
+  /** 支付 */
+  public async pay(payType: string, promoCode?: string, userCouponId?: any) {
+    if (!this.user) {
+      this.modalService.error({
+        nzTitle: '权限不足',
+        nzContent: '请您先进行登录',
+        nzOnOk: () => {
+          this.vipModal = false;
+          this.loginModal = true;
+        }
+      });
+      return;
+    }
+    const results = await this.tokenValidate();
+    console.log(results);
+    if (!results) {
+      return this.modalService.error({
+        nzTitle: '权限不足',
+        nzContent: '请您重新进行登录',
+        nzOnOk: () => {
+          this.vipModal = false;
+          this.loginModal = true;
+        }
+      });
+    }
+
+    // 支付分路口
+    switch (payType) {
+      case '微信': {
+        try {
+          const res = await this.getWeiXinQrcode();
+          console.log(res);
+        } catch (e) {
+          console.log(e);
+          if (e.status === 200) {
+            console.log(e.error.text);
+            this.weixinImgUrl = e.error.text;
+          }
+        }
+        break;
+      }
+      case '支付宝': {
+
+        let url = this.baseUrl + '/order/alipay/trade/wap';
+
+        if (promoCode) {
+          if (url.indexOf('?') === -1) {
+            url = url + '?promoCode=' + promoCode;
+          } else {
+            url = url + '&promoCode=' + promoCode;
+          }
+        }
+        if (userCouponId) {
+          if (url.indexOf('?') === -1) {
+            url = url + '?userCouponId=' + userCouponId.id;
+          } else {
+            url = url + '&userCouponId=' + userCouponId.id;
+          }
+        }
+        const res = await this.httpGet(url);
+        if (res.code === 200) {
+          const wrapper = document.getElementById('pay-wrapper');
+          wrapper.innerHTML = '';
+          wrapper.innerHTML = res.data;
+          document.forms['punchout_form'].submit();
+        } else {
+          this.message.error(res.message);
+        }
+
+        break;
+      }
+      default:
+        break;
+    }
+  }
+
+
+  // 二开
+  // li 微信 支付
+  // FIXME: 还有一个支付 不知道干啥的
+  public getWeiXinQrcode() {
+    const url = this.baseUrl + '/wxpay/qrcode';
     return this.httpGet(url);
   }
 }

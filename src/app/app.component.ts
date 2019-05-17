@@ -1,5 +1,5 @@
 import {Component, OnInit, ChangeDetectorRef, AfterViewInit, OnDestroy} from '@angular/core';
-import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {PlatformLocation} from '@angular/common';
 import {HttpService} from './http.service';
 import {Router, NavigationEnd, ActivatedRoute} from '@angular/router';
@@ -13,12 +13,12 @@ import {fromEvent} from 'rxjs';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
+
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   title = 'videos';
   visible = false;
   validateForm: FormGroup;
   public activeUrl: string;
-  public _store: any;
   public nativeShare: any;
   public bannerlist: any[] = [];
   public popoverVisible = false;
@@ -28,7 +28,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   public promoCode = '';
   public promoCodePrice = 0;
   public paybtn = true;
-
   public payType = '微信';
 
   constructor(
@@ -166,8 +165,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     const u = navigator.appVersion;
     const uc = u.split('UCBrowser/').length > 1 ? 1 : 0;
     const qq = u.split('MQQBrowser/').length > 1 ? 2 : 0;
-    const wx = ((u.match(/MicroMessenger/i)) && (u.match(/MicroMessenger/i).toString().toLowerCase() == 'micromessenger'));
-    const url = this.httpService.user ? window.location.origin + '/#/index/' + this.httpService.user.id : window.location.origin + '/#/index';
+    const wx = ((u.match(/MicroMessenger/i)) && (u.match(/MicroMessenger/i).toString().toLowerCase() === 'micromessenger'));
+    const url = this.httpService.user ?
+      window.location.origin + '/#/index/' + this.httpService.user.id : window.location.origin + '/#/index';
     if (uc || (qq && !wx)) {
       try {
         const shareData = {
@@ -208,19 +208,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public getPromoCodeStatus(input: any): boolean {
-    if (input.dirty && !input.untouched && !this.paybtn) {
-      return true;
-    } else {
-      return false;
-    }
+    return input.dirty && !input.untouched && !this.paybtn;
   }
 
   public inputPromoCode() {
-    if (this.promoCode.length === 0) {
-      this.paybtn = true;
-    } else {
-      this.paybtn = false;
-    }
+    this.paybtn = this.promoCode.length === 0;
   }
 
   public async checkPromoCode() {
