@@ -326,8 +326,8 @@ export class HttpService {
                     this.timer = null;
                     return;
                   }
-                  const res = await this.getWeixinCallBack(orderno);
-                  if (res.data) {
+                  const result = await this.getWeixinCallBack(orderno);
+                  if (result.data) {
                     clearInterval(this.timer);
                     this.timer = null;
                     this.message.success('支付成功');
