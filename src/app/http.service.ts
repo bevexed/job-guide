@@ -45,9 +45,10 @@ export class HttpService {
 
   /** 是否是通过历史记录进入页面的 */
 
-  // li
+    // li
   public weixinImgUrl: string;
   public weixinShow = false;
+  public timer;
 
   constructor(
     private http: HttpClient,
@@ -314,9 +315,32 @@ export class HttpService {
           if (res.code === 200) {
             this.weixinImgUrl = res.data.qrcodeurl;
             this.weixinShow = true;
+
+            // 支付 回调
+            const orderno = res.data.orderno;
+            if (this.weixinShow) {
+              this.timer = setInterval(
+                async () => {
+                  if (!this.weixinShow) {
+                    clearInterval(this.timer);
+                    this.timer = null;
+                    return;
+                  }
+                  const res = await this.getWeixinCallBack(orderno);
+                  if (res.data) {
+                    clearInterval(this.timer);
+                    this.timer = null;
+                    this.message.success('支付成功');
+                    setTimeout(() => {
+                      window.location.reload(true);
+                    });
+                  }
+                }
+                , 1000);
+            }
+
           }
         } catch (e) {
-          console.log(e);
 
         }
         break;
@@ -362,6 +386,12 @@ export class HttpService {
   // FIXME: 还有一个支付 不知道干啥的
   public getWeiXinQrcode() {
     const url = this.baseUrl + '/wxpay/qrcode';
+    return this.httpGet(url);
+  }
+
+  // li 微信 支付 回调
+  public getWeixinCallBack(orderno: string) {
+    const url = 'http://api.zhichangsinan.com/order/isorderpay?orderno=' + orderno;
     return this.httpGet(url);
   }
 }
