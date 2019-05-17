@@ -15,18 +15,36 @@
             用户名：{{httpService.user?.mobile}}</li>
         </ng-template>
       </ul>
-      <ul class="vd-header-nav" nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;">
-        <li nz-menu-item routerLink="/index" style="outline: none;width: 140px;" [nzSelected]="activeUrl==='/index'"
+
+      <!-- 导航 -->
+      <ul
+        class="vd-header-nav"
+        nz-menu [nzTheme]="'dark'"
+        [nzMode]="'horizontal'"
+        style="line-height: 64px;">
+        <li nz-menu-item
+            routerLink="/index"
+            style="outline: none;width: 140px;"
+            [nzSelected]="activeUrl==='/index'"
             routerlinkactive="ant-menu-item-selected">首页</li>
-        <li nz-menu-item routerLink="/development" style="outline: none;width: 140px;" [nzSelected]="activeUrl==='/development'"
+        <li nz-menu-item
+            routerLink="/development"
+            style="outline: none;width: 140px;"
+            [nzSelected]="activeUrl==='/development'"
             routerlinkactive="ant-menu-item-selected">发展之路</li>
-        <li nz-menu-item routerLink="/profession" style="outline: none;width: 140px;" [nzSelected]="activeUrl==='/profession'"
+        <li nz-menu-item
+            routerLink="/profession"
+            style="outline: none;width: 140px;"
+            [nzSelected]="activeUrl==='/profession'"
             routerlinkactive="ant-menu-item-selected">职业菜单</li>
       </ul>
     </nz-header>
+
+   <!-- 内容 -->
     <nz-content>
       <router-outlet></router-outlet>
     </nz-content>
+
     <div class="vd-divilier2">
       <img src="../assets/banner3.png">
     </div>

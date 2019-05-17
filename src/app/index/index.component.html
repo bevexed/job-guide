@@ -1,7 +1,7 @@
 <nz-carousel [nzEffect]="effect" [nzDots]="bannerlist.length>1" [nzAutoPlay]="true" [nzAutoPlaySpeed]="7000"
-  *ngIf="bannerlist.length" [nzEnableSwipe]="true">
+             *ngIf="bannerlist.length" [nzEnableSwipe]="true">
   <div nz-carousel-content *ngFor="let index of bannerlist"
-    style="cursor: pointer;">
+       style="cursor: pointer;">
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
       <img [src]="index.imageUrl" style="display: block;width: 100%;">
     </div>
@@ -18,9 +18,9 @@
     <div class="vd-box">
       <div class="vd-box-header">
         <h1 class="vd-box-title" style="background-image: url('../../assets/hot.png')">热门视频</h1>
-        <div class="vd-pagination" *ngIf="hots?.data.length > hots?.size">
-          <nz-pagination [(nzPageIndex)]="hots.current" [nzPageSize]="hots.size" [nzTotal]="hots.data.length"
-            (nzPageIndexChange)="listFilter(blockType.hots)" nzSimple></nz-pagination>
+        <div class="vd-pagination">
+          <!-- todo：查看更多-->
+          <a routerLink="../development">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
       </div>
       <nz-list [nzDataSource]="hots?.currentData" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
@@ -37,7 +37,7 @@
       <div class="vd-box-header">
         <h1 class="vd-box-title" style="background-image: url('../../assets/development.png')">发展之路</h1>
         <div class="vd-pagination">
-          <a routerLink="../development">更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+          <a routerLink="../development">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
       </div>
       <nz-list [nzDataSource]="developList" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
@@ -58,7 +58,7 @@
       <div class="vd-box-header">
         <h1 class="vd-box-title" style="background-image: url('../../assets/profession.png')">职业菜单</h1>
         <div class="vd-pagination">
-          <a routerLink="../profession">更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+          <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
       </div>
       <nz-list [nzDataSource]="professionList" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
@@ -111,7 +111,7 @@
   <div class="mb-box-wrapper" style="margin-top: 30px;">
     <div class="mb-box-header">
       <h1 class="vd-box-title"
-        style="background-image: url('../../assets/profession.png');background-size: 12px auto;background-position-x: 8px;">
+          style="background-image: url('../../assets/profession.png');background-size: 12px auto;background-position-x: 8px;">
         职业菜单</h1>
     </div>
     <div class="mb-box-body">
