@@ -140,15 +140,13 @@
 // 弹窗
 .vd-login {
   @padding: 30px;
-
+  padding: @padding;
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  width: 450px;
   background: white;
 
   h1 {
-    width: 450px;
     height: 56px;
     line-height: 56px;
     background-color: #eaeaea;
@@ -638,76 +636,6 @@
 }
 
 
-/** 移动端样式 */
-
-// @media screen and (max-width: 769px) {
-//   [nz-header] {
-//     min-width: initial;
-//   }
-//   .vd-header {
-//     padding: 0 5%;
-//   }
-//   .vd-header[_ngcontent-c0] .logo {
-//     height: 32px;
-//     width: 32px;
-//     background-size: auto 32px;
-//   }
-//   .vd-header[_ngcontent-c0] .ant-menu[_ngcontent-c0] {
-//     display: none;
-//   }
-//   .vd-header[_ngcontent-c0] .vd-userarea[_ngcontent-c0] .vd-vipicon[_ngcontent-c0] {
-//     display: none;
-//   }
-//   .vd-slogan[_ngcontent-c0] {
-//     width: 90%;
-//     margin: 0 auto;
-//     padding: 40px 0;
-//   }
-//   [nz-footer] {
-//     padding: 0;
-//   }
-//   .vd-footer[_ngcontent-c0] {
-//     width: 100%;
-//     padding: 20px 5%;
-//     flex-flow: wrap;
-//   }
-//   .vd-footnav,
-//   .vd-navlist {
-//     float: none;
-//   }
-//   .vd-footnav {
-//     width: 100%;
-//   }
-//   .vd-footer ul > li:first-child,
-//   .vd-footer a,
-//   .vd-navlist li {
-//     font-size: 12px;
-//   }
-//   .vd-footer[_ngcontent-c0] .vd-navlist[_ngcontent-c0] > li[_ngcontent-c0]:not(:first-child) {
-//     margin-top: 10px;
-//   }
-//   .vd-navlist {
-//     margin-top: 24px;
-//   }
-//   .vd-footer[_ngcontent-c0] + p[_ngcontent-c0] {
-//     margin: 0 0 20px 0;
-//     font-size: 12px;
-//   }
-//   .vd-divilier, .vd-divilier2 {
-//     padding: 20px 5%;
-//     width: 100%;
-//     margin: 0 auto;
-//   }
-//   .vd-slogan[_ngcontent-c0] p[_ngcontent-c0] {
-//     font-size: 12px;
-//     margin: 0 8px;
-//   }
-//   .vd-login {
-//     padding: 30px;
-//     width: 320px;
-//   }
-// }
-
 
 // li
 .li-login {
@@ -729,7 +657,7 @@
   }
 
   > .price {
-    padding: 20px 0;
+    padding: 40px 0 20px;
     margin: 0;
     font-size: 14px;
     text-align: center;
@@ -804,7 +732,9 @@
   }
 
   .price-detail {
+
     font {
+      float: right;
       color: #0699e0;
     }
   }
@@ -942,6 +872,5 @@
     right: 140px;
     top: 1vw;
   }
-
 
 }
