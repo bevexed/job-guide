@@ -1,6 +1,7 @@
 
 export function counterReducer(state = {}, action: {type, payload}) {
   console.log(action);
+  console.log(window.location.href);
   switch (action.type) {
     case 'SET_BANNERLIST':
       return action.payload;

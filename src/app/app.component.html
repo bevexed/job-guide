@@ -5,12 +5,12 @@
       <ul class="vd-userarea">
         <!-- <li *ngIf="!httpService.user?.vipFlag" class="vd-vipicon">会员</li> -->
         <ng-container *ngIf="!httpService.user; else logined">
-          <li style="margin-left: 25px;" (click)="showModal($event)">登录</li>
+          <li style="margin-left: 25px;color:#333" (click)="showModal($event)">登录</li>
           <li>|</li>
-          <li routerLink="register">注册</li>
+          <li routerLink="register" style="color: #333">注册</li>
         </ng-container>
         <ng-template #logined>
-          <li nz-popover nzTitle="" [nzContent]="contentTemplate" nzTrigger="hover">
+          <li style="color: #333" nz-popover nzTitle="" [nzContent]="contentTemplate" nzTrigger="hover">
 
             用户名：{{httpService.user?.mobile}}</li>
         </ng-template>
@@ -124,8 +124,8 @@
     <nz-header class="vd-header mb-header" style="position:fixed; width:100%;z-index: 100;box-shadow:0 3px 3px 0 rgba(0, 0, 0, 0.1);padding: 0 16px;display: flex;align-items: center;justify-content: space-between">
       <div class="logo mb-logo"></div>
       <!--<ul class="vd-userarea mb-headerCollapse" nz-popover nzTitle="" style="padding: 16px 0;" [nzContent]="contentTemplate"-->
-          <!--[(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">-->
-        <!--<i nz-icon nzType="bars" nzTheme="outline"></i>-->
+      <!--[(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">-->
+      <!--<i nz-icon nzType="bars" nzTheme="outline"></i>-->
       <!--</ul>-->
       <img class="daohangIcon" src="../assets/daohang.png" alt="图标" [nzContent]="contentTemplate" nz-popover [(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">
     </nz-header>
@@ -152,7 +152,7 @@
         <span>|</span>
         <span routerLink="/usercenter" (click)="popoverHiding()">个人中心</span>
       </div>
-      <p>Copyright © 2018-2019  职场司南 浙ICP备18039212号</p>
+      <p>Copyright © 2018-2019 职场司南 浙ICP备18039212号</p>
       <div class="telBox">
         <img src="../assets/tel.png" alt="电话">
         <span>0571-85383155</span>
@@ -233,7 +233,7 @@
   </ng-container>
   <ng-container *ngIf="!httpService.devType && !httpService.user">
     <!--<p class="vd-popoveritem mb-navlist" style="border-bottom: 1px solid #eee;"-->
-       <!--(click)="popoverHiding();showModal($event)">登录</p>-->
+    <!--(click)="popoverHiding();showModal($event)">登录</p>-->
     <p class="vd-popoveritem mb-navlist" style="border-bottom: 1px solid #eee;" routerLink="/login" (click)="popoverHiding()"><a
       routerLink="/passport">登录</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/register" (click)="popoverHiding()"><a
@@ -286,11 +286,11 @@
       </div>
     </div>
 
-    <div class="promoCode" style="margin-bottom: 10px;">
-      <input #input="ngModel" [ngClass]="{'error-border': getPromoCodeStatus(input)}" type="text" [(ngModel)]="promoCode" (input)="inputPromoCode()" (change)="checkPromoCode()" maxlength="16" placeholder="请输入优惠码"/>
+    <div class="promoCode" style="margin-bottom: 10px;width: 100%">
+      <input #input="ngModel" style="width: 100%;padding: 10px" [ngClass]="{'error-border': getPromoCodeStatus(input)}" type="text" [(ngModel)]="promoCode" (input)="inputPromoCode()" (change)="checkPromoCode()" maxlength="16" placeholder="请输入优惠码"/>
     </div>
 
-    <div class="price-detail">
+    <div class="price-detail" style="width: 100%">
       <p *ngIf="httpService.price && (httpService.coupon || promoCode)">原价： <font>￥ <span id="price">{{httpService.price}}</span></font></p>
       <p *ngIf="httpService.coupon">优惠券：<font>- ￥ <span id="price">{{httpService.coupon.price}}</span></font></p>
       <p *ngIf="paybtn && promoCode">优惠码：<font>- ￥ <span id="price">{{promoCodePrice}}</span></font></p>

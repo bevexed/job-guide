@@ -58,9 +58,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       filter((event) => event instanceof NavigationEnd)
     ).subscribe((data: any) => {
       this.activeUrl = data.url;
-      console.log(this.activeUrl);
       this.ref.detectChanges();
     });
+
     const cookie = localStorage.getItem('userInfo');
     console.log(cookie);
     if (cookie) {
@@ -70,6 +70,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       // this.httpService.user = localData.user;
       this.httpService.init();
     }
+
     // 初始化页面以后默认加在一次账号信息，用来校验token是否过期
     this.httpService.tokenValidate();
     // this.httpService.getInfoOfMine().then((res: any) => {
