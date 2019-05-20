@@ -51,18 +51,11 @@
     </nz-header>
 
     <!-- 内容 -->
-    <!-- 内容 -->
-    <!-- 内容 -->
-    <!-- 内容 -->
     <nz-content>
       <router-outlet></router-outlet>
     </nz-content>
 
 
-    <!--广告位-->
-    <!--广告位-->
-    <!--广告位-->
-    <!--广告位-->
     <!--广告位-->
     <ng-container>
       <div class="vd-wrapper">
@@ -79,12 +72,6 @@
     </div>
 
 
-    <!--    共用底部-->
-    <!--    共用底部-->
-    <!--    共用底部-->
-    <!--    共用底部-->
-    <!--    共用底部-->
-    <!--    共用底部-->
     <!--    共用底部-->
     <div class="vd-slogan-wrapper">
       <div class="vd-slogan">
@@ -133,15 +120,16 @@
 
 <!-- 移动端首页 -->
 <ng-container *ngIf="!httpService.devType">
-  <nz-layout class="layout">
-    <nz-header class="vd-header mb-header" style="position:fixed; width:100%;z-index: 100;">
+  <nz-layout class="layout" style="position: relative;min-height: 100vh;left: 0;top: 0;">
+    <nz-header class="vd-header mb-header" style="position:fixed; width:100%;z-index: 100;box-shadow:0 3px 3px 0 rgba(0, 0, 0, 0.1);">
       <div class="logo mb-logo"></div>
-      <ul class="vd-userarea mb-headerCollapse" nz-popover nzTitle="" style="padding: 16px 0;" [nzContent]="contentTemplate"
-          [(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">
-        <i nz-icon nzType="bars" nzTheme="outline"></i>
-      </ul>
+      <!--<ul class="vd-userarea mb-headerCollapse" nz-popover nzTitle="" style="padding: 16px 0;" [nzContent]="contentTemplate"-->
+          <!--[(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">-->
+        <!--<i nz-icon nzType="bars" nzTheme="outline"></i>-->
+      <!--</ul>-->
+      <img class="daohangIcon" src="../assets/daohang.png" alt="图标" [nzContent]="contentTemplate" nz-popover [(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">
     </nz-header>
-    <nz-content style="margin-top:64px;">
+    <nz-content style="margin-top:64px;background: #f2f2f2">
       <!-- <nz-carousel [nzEffect]="effect" [nzAutoPlay]="true">
         <div nz-carousel-content *ngFor="let index of bannerlist" [routerLink]="'../vd/'+index.courseId"
           style="cursor: pointer;">
@@ -149,23 +137,30 @@
         </div>
       </nz-carousel> -->
       <router-outlet></router-outlet>
-      <div class="mb-divilier vd-divilier2">
-        <div></div>
-      </div>
-      <div class="mb-slogan vd-slogan-wrapper">
-        <div class="vd-slogan">
-          <hr>
-          <p>专注于大学生及毕业五年内群体的职业发展</p>
-          <hr>
-        </div>
-      </div>
     </nz-content>
-    <nz-footer style="padding: 0;">
-      <div class="mb-footer-info">
-        <img src="../assets/logo_black.png" alt="">
-        <p>联系电话：0571-85383155</p>
+    <div style="height: 320px;width: 100vw"></div>
+    <!--移动端底部-->
+    <nz-footer class="mb-footer">
+      <div class="mb-menu">
+        <span routerLink="/index" (click)="popoverHiding()">首页</span>
+        <span>|</span>
+        <span routerLink="/development" (click)="popoverHiding()">发展之路</span>
+        <span>|</span>
+        <span routerLink="/profession" (click)="popoverHiding()">职业菜单</span>
+        <span>|</span>
+        <span>活动中心</span>
+        <span>|</span>
+        <span routerLink="/usercenter" (click)="popoverHiding()">个人中心</span>
       </div>
-      <p class="mb-copyright">Copyright © 2018-2019 职场司南，专注于大学生及毕业五年内群体的职业发展</p>
+      <p>Copyright © 2018-2019  职场司南 浙ICP备18039212号</p>
+      <div class="telBox">
+        <img src="../assets/tel.png" alt="电话">
+        <span>0571-85383155</span>
+      </div>
+      <div class="qrCode">
+        <img src="../assets/qrCode.png" alt="微信公众号二维码">
+      </div>
+      <p>微信公众号</p>
     </nz-footer>
   </nz-layout>
 </ng-container>
@@ -237,8 +232,10 @@
       (click)="logout()">退出登录</a></p>
   </ng-container>
   <ng-container *ngIf="!httpService.devType && !httpService.user">
-    <p class="vd-popoveritem mb-navlist" style="border-bottom: 1px solid #eee;"
-       (click)="popoverHiding();showModal($event)">登录</p>
+    <!--<p class="vd-popoveritem mb-navlist" style="border-bottom: 1px solid #eee;"-->
+       <!--(click)="popoverHiding();showModal($event)">登录</p>-->
+    <p class="vd-popoveritem mb-navlist" style="border-bottom: 1px solid #eee;" routerLink="/login" (click)="popoverHiding()"><a
+      routerLink="/passport">登录</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/register" (click)="popoverHiding()"><a
       routerLink="/passport">注册</a></p>
   </ng-container>

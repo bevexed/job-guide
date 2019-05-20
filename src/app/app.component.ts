@@ -161,8 +161,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         nzTitle: '权限不足',
         nzContent: '请您先进行登录',
         nzOnOk: () => {
-          this.httpService.vipModal = false;
-          this.httpService.loginModal = true;
+          // this.httpService.vipModal = false;
+          // this.httpService.loginModal = true;
+          this.router.navigateByUrl('/login');
         }
       });
       return;

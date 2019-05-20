@@ -29,6 +29,9 @@ import { AuthService } from './auth.service';
 import { ResultsComponent } from './results/results.component';
 import { RewardComponent } from './reward/reward.component';
 import { LoginComponent } from './login/login.component';
+import { TixianComponent } from './tixian/tixian.component';
+import { TixianAlipayComponent } from './tixian-alipay/tixian-alipay.component';
+import { TixianBankCardComponent } from './tixian-bank-card/tixian-bank-card.component';
 
 // li
 import {HotComponent} from './hot/hot.component';
@@ -49,6 +52,10 @@ registerLocaleData(zh);
     VideoDetialComponent,
     ResultsComponent,
     RewardComponent,
+    LoginComponent,
+    TixianComponent,
+    TixianAlipayComponent,
+    TixianBankCardComponent,
     LoginComponent,
     HotComponent
   ],

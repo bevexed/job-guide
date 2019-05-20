@@ -42,7 +42,7 @@ export class HttpService {
   private headers: HttpHeaders = new HttpHeaders({
     'Content-Type': 'application/json'
   });
-
+  public isWeixin: any;
   /** 是否是通过历史记录进入页面的 */
 
     // li
@@ -71,7 +71,6 @@ export class HttpService {
       });
     }
   }
-
   /** 浏览器检测 */
   public browserRedirect() {
     const sUserAgent = navigator.userAgent.toLowerCase();
@@ -83,7 +82,9 @@ export class HttpService {
     const bIsAndroid = sUserAgent.match(/android/i);
     const bIsCE = sUserAgent.match(/windows ce/i);
     const bIsWM = sUserAgent.match(/windows mobile/i);
-    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) { // 移动设备
+    const isWeixin = sUserAgent.match(/MicroMessenger/i);
+    this.isWeixin = isWeixin;
+    if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM || isWeixin) { // 移动设备
       this.devType = false;
       document.body.style.cssText = 'min-width: initial;';
     } else { // pc
@@ -202,6 +203,11 @@ export class HttpService {
     const url = this.baseUrl + '/user/change/password';
     return this.httpPost(url, data);
   }
+  // 获取openid
+  public getOpenId(code: any): Promise<any> {
+    const url = this.baseUrl + '/wxpay/getOpenid';
+    return this.httpPost(url, code);
+  }
 
   /** 打开支付弹窗 */
   public async openPayModal() {
@@ -217,8 +223,9 @@ export class HttpService {
         nzTitle: '权限不足',
         nzContent: '请您先进行登录',
         nzOnOk: () => {
-          this.vipModal = false;
-          this.loginModal = true;
+          // this.vipModal = false;
+          // this.loginModal = true;
+          this.router.navigateByUrl('/login');
         }
       });
     }
@@ -280,6 +287,12 @@ export class HttpService {
     return this.httpGet(url);
   }
 
+  public GetQueryString(name: string) {
+    const reg = new RegExp( '(^|&)' + name + '=([^&]*)(&|$)'); // 构造一个含有目标参数的正则表达式对象
+    const r = window.location.search.substr(1).match(reg); // 匹配目标参数
+    if (r != null) { return unescape(r[2]); } return null; // 返回参数值
+  }
+
   /** 支付 */
   public async pay(payType: string, promoCode?: string, userCouponId?: any) {
     if (!this.user) {
@@ -287,8 +300,9 @@ export class HttpService {
         nzTitle: '权限不足',
         nzContent: '请您先进行登录',
         nzOnOk: () => {
-          this.vipModal = false;
-          this.loginModal = true;
+          // this.vipModal = false;
+          // this.loginModal = true;
+          this.router.navigateByUrl('/login');
         }
       });
       return;
@@ -300,8 +314,9 @@ export class HttpService {
         nzTitle: '权限不足',
         nzContent: '请您重新进行登录',
         nzOnOk: () => {
-          this.vipModal = false;
-          this.loginModal = true;
+          // this.vipModal = false;
+          // this.loginModal = true;
+          this.router.navigateByUrl('/login');
         }
       });
     }
@@ -310,11 +325,24 @@ export class HttpService {
     switch (payType) {
       case '微信': {
         try {
-          const res = await this.getWeiXinQrcode();
-          console.log(res);
-          if (res.code === 200) {
-            this.weixinImgUrl = res.data.qrcodeurl;
-            this.weixinShow = true;
+          // 判断是否为微信浏览器
+          if (this.isWeixin) {
+            // this.GetQueryString('code');
+            const code = this.GetQueryString('code');
+            if (!code) {
+              window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc80f049c9265d854' +
+                '&redirect_uri=http%3a%2f%2fwww.zhichangsinan.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+            } else {
+              const res = await this.getOpenId(code);
+              console.log(res);
+            }
+          } else {
+            const res = await this.getWeiXinQrcode();
+            console.log(res);
+            if (res.code === 200) {
+              this.weixinImgUrl = res.data.qrcodeurl;
+              this.weixinShow = true;
+            }
 
             // 支付 回调
             const orderno = res.data.orderno;
@@ -338,9 +366,9 @@ export class HttpService {
                 }
                 , 1000);
             }
-
           }
         } catch (e) {
+          console.log(e);
 
         }
         break;

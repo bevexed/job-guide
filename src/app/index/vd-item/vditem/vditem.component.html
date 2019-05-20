@@ -3,11 +3,13 @@
      [routerLink]="'../vd/'+data.courseId"
      [style.background-color]="data?.moduleCode !== 'home_page_hot'? 'none' :'white'">
   <div class="vd-tags" *ngIf="!vipTag(data)">
-    <nz-tag [nzColor]="'#f50'">VIP</nz-tag>
+    <nz-tag [nzColor]="'#D10000'">VIP</nz-tag>
   </div>
   <div class="vd-imgbox" [ngStyle]="{'background-image': 'url('+ (data?.coverUrl ? data?.coverUrl : data?.imageUrl) +')'}"></div>
   <!-- <img src="data?.coverUrl ? data?.coverUrl : data?.imageUrl" alt=""> -->
   <div class="vd-desc">
+    <!--<h3>{{data?.title}}</h3>-->
+    <p>{{data?.intro}}</p>
 
     <!--    首页-->
     <!--    首页-->

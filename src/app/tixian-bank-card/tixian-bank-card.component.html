@@ -1,0 +1,40 @@
+<div class="contentBox">
+  <p>
+    <span (click)="goBack()"><</span>
+    <span>提现到银行卡</span>
+  </p>
+  <div class="vd-alipay">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="tixianBankCard()">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="bankNumber" nzRequired>账号<span class="iconWen">?</span>:</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['bankNumber']">
+          <input formControlName="bankNumber" id="'bankNumber'" nz-input />
+          <!--<nz-form-explain *ngIf="validateForm.get('phoneNumber')?.dirty && validateForm.get('phoneNumber')?.errors">-->
+          <!--请输入您的账号</nz-form-explain>-->
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired>姓名:</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input formControlName="nickname" id="nickname"/>
+          <!--<nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors">请输入您的姓名</nz-form-explain>-->
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="bankName" nzRequired>开户行:</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input formControlName="bankName" id="bankName"/>
+          <!--<nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors">请输入您的姓名</nz-form-explain>-->
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item nz-row style="margin-bottom:100px;">
+        <nz-form-control [nzSm]="{ span: 14, offset: 6 }" [nzXs]="{ span: 24, offset: 0 }">
+          <div nz-col [nzSpan]="24">
+            <button nzBlock nz-button [disabled]="validateForm.invalid" style="background: #ccc;color: #fff;">提现</button>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>

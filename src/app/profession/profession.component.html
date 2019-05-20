@@ -99,23 +99,26 @@
   </div>
 </ng-container>
 <ng-container *ngIf="!httpService.devType">
+  <div style="padding-top: 40px;padding-left: 17px;padding-bottom:20px;color: #222;text-align: left">
+    <h1 style="font-size: 23px;">发展之路</h1>
+  </div>
   <div class="vd-classify-wrapper mb-classify-wrapper">
-    <ul class="mb-classify vd-classify">
+    <ul class="mb-classify vd-classify" style="background: #fff;margin: 0 15px;box-shadow:0px 3px 3px 0px rgba(0, 0, 0, 0.1);">
       <li *ngFor="let type of classifySplit()" [ngClass]="{'checked': selectedId === type.id}"
         (click)="getCoursesList(type.id)">
         <a>{{type.name}}</a></li>
-      <li *ngIf="typeList.length > 12" (click)="open()"><a>查看更多</a></li>
+        <li *ngIf="typeList.length > 12" (click)="open()"><a>全部</a></li>
     </ul>
     <!-- <div class="vd-moreClassify" *ngIf="typeList.length > 18">
       <a (click)="open()">更多<i nz-icon nzType="down-square"
           nzTheme="outline"></i></a>
     </div> -->
   </div>
-  <div class="mb-box-wrapper" style="margin-top: 30px;">
-    <div class="mb-box-header">
-      <h1 class="vd-box-title" style="background-image: url('../../assets/jobs.png')">该专业可从事岗位</h1>
-    </div>
-    <div class="mb-box-body">
+  <div class="mb-box-wrapper" style="margin-top: 15px;">
+    <!--<div class="mb-box-header">-->
+      <!--<h1 class="vd-box-title" style="background-image: url('../../assets/jobs.png')">该专业可从事岗位</h1>-->
+    <!--</div>-->
+    <div  style="padding: 0 15px">
       <nz-list [nzDataSource]="professionList?.currentData" [nzRenderItem]="item"
         [nzGrid]="{ gutter: 10, xs: 12 }">
         <ng-template #item let-item>
@@ -131,44 +134,44 @@
         style="margin-top: 20px;">查看更多</button>
     </div>
   </div>
-  <div class="mb-box-wrapper" style="margin-top: 30px;">
-    <div class="mb-box-header">
-      <h1 class="vd-box-title" style="background-image: url('../../assets/link_jobs.png')">跨专业可从事岗位</h1>
-    </div>
-    <div class="mb-box-body">
-      <nz-list [nzDataSource]="crossList?.currentData" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
-        <ng-template #item let-item>
-          <nz-list-item [nzContent]="nzContent">
-            <ng-template #nzContent>
-              <app-vditem [data]="item" [devType]="httpService.devType"></app-vditem>
-            </ng-template>
-          </nz-list-item>
-        </ng-template>
-      </nz-list>
-      <button nz-button (click)="mbPagination(blockType.crossList)" nzType="default"
-        *ngIf="crossList?.currentData.length < crossList.data.length" nzBlock style="margin-top: 20px;">查看更多</button>
-    </div>
-  </div>
-  <div class="mb-box-wrapper" style="margin-top: 30px;">
-    <div class="mb-box-header">
-      <h1 class="vd-box-title" style="background-image: url('../../assets/unlimited_jobs.png')">不限专业可从事岗位</h1>
-    </div>
-    <div class="mb-box-body">
-      <nz-list [nzDataSource]="unlimitedList?.currentData" [nzRenderItem]="item"
-        [nzGrid]="{ gutter: 10, xs: 12 }">
-        <ng-template #item let-item>
-          <nz-list-item [nzContent]="nzContent">
-            <ng-template #nzContent>
-              <app-vditem [data]="item" [devType]="httpService.devType"></app-vditem>
-            </ng-template>
-          </nz-list-item>
-        </ng-template>
-      </nz-list>
-      <button nz-button (click)="mbPagination(blockType.unlimitedList)" nzType="default"
-        *ngIf="unlimitedList?.currentData.length < unlimitedList.data.length" nzBlock
-        style="margin-top: 20px;">查看更多</button>
-    </div>
-  </div>
+  <!--<div class="mb-box-wrapper" style="margin-top: 30px;">-->
+    <!--<div class="mb-box-header">-->
+      <!--<h1 class="vd-box-title" style="background-image: url('../../assets/link_jobs.png')">跨专业可从事岗位</h1>-->
+    <!--</div>-->
+    <!--<div class="mb-box-body">-->
+      <!--<nz-list [nzDataSource]="crossList?.currentData" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">-->
+        <!--<ng-template #item let-item>-->
+          <!--<nz-list-item [nzContent]="nzContent">-->
+            <!--<ng-template #nzContent>-->
+              <!--<app-vditem [data]="item" [devType]="httpService.devType"></app-vditem>-->
+            <!--</ng-template>-->
+          <!--</nz-list-item>-->
+        <!--</ng-template>-->
+      <!--</nz-list>-->
+      <!--<button nz-button (click)="mbPagination(blockType.crossList)" nzType="default"-->
+        <!--*ngIf="crossList?.currentData.length < crossList.data.length" nzBlock style="margin-top: 20px;">查看更多</button>-->
+    <!--</div>-->
+  <!--</div>-->
+  <!--<div class="mb-box-wrapper" style="margin-top: 30px;">-->
+    <!--<div class="mb-box-header">-->
+      <!--<h1 class="vd-box-title" style="background-image: url('../../assets/unlimited_jobs.png')">不限专业可从事岗位</h1>-->
+    <!--</div>-->
+    <!--<div class="mb-box-body">-->
+      <!--<nz-list [nzDataSource]="unlimitedList?.currentData" [nzRenderItem]="item"-->
+        <!--[nzGrid]="{ gutter: 10, xs: 12 }">-->
+        <!--<ng-template #item let-item>-->
+          <!--<nz-list-item [nzContent]="nzContent">-->
+            <!--<ng-template #nzContent>-->
+              <!--<app-vditem [data]="item" [devType]="httpService.devType"></app-vditem>-->
+            <!--</ng-template>-->
+          <!--</nz-list-item>-->
+        <!--</ng-template>-->
+      <!--</nz-list>-->
+      <!--<button nz-button (click)="mbPagination(blockType.unlimitedList)" nzType="default"-->
+        <!--*ngIf="unlimitedList?.currentData.length < unlimitedList.data.length" nzBlock-->
+        <!--style="margin-top: 20px;">查看更多</button>-->
+    <!--</div>-->
+  <!--</div>-->
   <div class="mb-fxied" *ngIf="visible">
     <h1>课程分类<i nz-icon nzType="close" nzTheme="outline" style="float: right;" (click)="close()"></i></h1>
     <ul class="mb-classify vd-classify" style="max-height: initial;">
