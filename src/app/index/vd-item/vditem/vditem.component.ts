@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+
 declare var window;
 
 @Component({
@@ -14,18 +15,14 @@ export class VditemComponent implements OnInit {
   };
   @Input() devType = true;
 
+  public;
+  isIE = false;
 
-  // li 二开
-  @Input() hot = false;
-
-  public; isIE = false;
-
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     this.checkBrowerType();
-    console.log(this.hot);
-    console.log(this.data);
   }
 
   public vipTag(data: any): boolean {

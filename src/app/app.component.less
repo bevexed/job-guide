@@ -177,19 +177,19 @@
   width: 1200px;
   margin: 0 auto;
   padding: 80px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.vd-slogan hr {
-  flex-grow: 1;
+  font-family: MicrosoftYaHei, serif;
+  font-size: 36px;
+  text-align: center;
+  >span{
+    font-family: MicrosoftYaHei, serif;
+    font-size: 18px;
+    font-weight: normal;
+    font-stretch: normal;
+  }
 }
 
 .vd-slogan p {
   margin: 0 25px;
-  font-family: PingFangSC-Regular;
-  font-size: 24px;
   color: #000000;
   letter-spacing: 0;
   text-align: center;
@@ -708,7 +708,31 @@
   }
 }
 
+
+// 二开
 .li-ad-padding {
   margin: 0 140px;
   background: white;
+}
+
+.vd-header {
+  background-color: white;
+  display: block;
+  position: relative;
+  color: black;
+}
+
+.vd-header .ant-menu, .vd-header .ant-menu-item {
+  background: white;
+  border-color: white;
+  border-width: 2px;
+}
+
+.vd-header-nav {
+  background: white;
+}
+
+.vd-header .ant-menu-item-selected {
+  border-color: #c10000;
+  color: #000;
 }

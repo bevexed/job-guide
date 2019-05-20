@@ -17,9 +17,14 @@
       </ul>
 
       <!-- 导航 -->
+      <!-- 导航 -->
+      <!-- 导航 -->
+      <!-- 导航 -->
+      <!-- 导航 -->
       <ul
         class="vd-header-nav"
-        nz-menu [nzTheme]="'dark'"
+        nz-menu
+        [nzTheme]=""
         [nzMode]="'horizontal'"
         style="line-height: 64px;">
         <li nz-menu-item
@@ -37,10 +42,15 @@
             style="outline: none;width: 140px;"
             [nzSelected]="activeUrl==='/profession'"
             routerlinkactive="ant-menu-item-selected">职业菜单</li>
+        <li nz-menu-item
+            routerLink="/profession"
+            style="outline: none;width: 140px;"
+            [nzSelected]="activeUrl==='/profession'"
+            routerlinkactive="ant-menu-item-selected">高考咨询</li>
       </ul>
     </nz-header>
 
-   <!-- 内容 -->
+    <!-- 内容 -->
     <nz-content>
       <router-outlet></router-outlet>
     </nz-content>
@@ -51,23 +61,25 @@
       <div class="vd-wrapper">
         <div class="vd-box">
           <div class="vd-box-header li-ad-padding">
-            <img class="li-ad-img" src="../../assets/广告位.png" alt="">
+
           </div>
         </div>
       </div>
     </ng-container>
 
     <div class="vd-divilier2">
-      <img src="../assets/banner3.png">
+      <img class="li-ad-img" src="../../assets/广告位.png" alt="">
     </div>
 
 
     <div class="vd-slogan-wrapper">
       <div class="vd-slogan">
-        <hr>
-        <p>专注于大学生及毕业五年内群体的职业发展</p>
-        <hr>
+        <p>现在就去注册，为自己的职业发展做选择</p>
+        <span>职场司南，专注于大学生及毕业五年内群体的职业发展</span>
+        <br>
+        <button nz-button nzType="primary" nzSize="large">专业的指导意见</button>
       </div>
+
     </div>
 
     <nz-footer style="*text-align: center;padding: 60px 0;overflow: hidden;">
@@ -83,7 +95,6 @@
     </nz-footer>
   </nz-layout>
 </ng-container>
-
 
 
 <!-- 移动端首页 -->
@@ -124,6 +135,17 @@
     </nz-footer>
   </nz-layout>
 </ng-container>
+
+<!-- 移动端首页 -->
+<!-- 移动端首页 -->
+<!-- 移动端首页 -->
+<!-- 移动端首页 -->
+<!-- 移动端首页 -->
+<!-- 移动端首页 -->
+<!-- 移动端首页 -->
+<!-- 移动端首页 -->
+<!-- 移动端首页 -->
+<!-- 移动端首页 -->
 <!-- 移动端首页 -->
 <div id="pay-wrapper" style="display: none;"></div>
 <ul class="vd-fixed">
@@ -228,7 +250,7 @@
     <div class="aui-flex clearfix selected" *ngIf="httpService.coupon">
       <div class="aui-price-nub">
         <div class="aui-digit">
-          <h2>{{httpService.coupon.price}}  <span>元</span>   </h2>
+          <h2>{{httpService.coupon.price}}  <span>元</span></h2>
         </div>
       </div>
       <div class="aui-flex-box">

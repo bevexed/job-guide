@@ -14,6 +14,11 @@
   </div>
 </nz-carousel>
 <ng-container *ngIf="httpService.devType">
+<!--  热门视频    -->
+<!--  热门视频    -->
+<!--  热门视频    -->
+<!--  热门视频    -->
+<!--  热门视频    -->
   <div class="vd-wrapper">
     <div class="vd-box">
       <div class="vd-box-header">
@@ -28,14 +33,19 @@
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
-              <app-vditem [data]="item" [hot]="true"></app-vditem>
+              <app-vditem [data]="item"></app-vditem>
             </ng-template>
           </nz-list-item>
         </ng-template>
       </nz-list>
     </div>
 
-    <!--广告位-->
+    <!--  广告位 -->
+    <!--  广告位 -->
+    <!--  广告位 -->
+    <!--  广告位 -->
+    <!--  广告位 -->
+    <!--  广告位 -->
     <ng-container>
       <div class="vd-wrapper">
         <div class="vd-box">
@@ -46,9 +56,14 @@
       </div>
     </ng-container>
 
-    <div class="vd-box">
+    <!--    发展之路    -->
+    <!--    发展之路    -->
+    <!--    发展之路    -->
+    <!--    发展之路    -->
+    <!--    发展之路    -->
+    <div class="vd-box li-fa-zan-zhi-lu" style="padding-top: 30px">
       <div class="vd-box-header">
-        <h1 class="vd-box-title">发展之路</h1>
+        <h1 class="vd-box-title">职业发展</h1>
         <div class="vd-pagination">
           <a routerLink="../development">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
@@ -63,13 +78,44 @@
         </ng-template>
       </nz-list>
     </div>
-    <div class="vd-divilier">
-      <img src="../../assets/banner5.png">
-      <img src="../../assets/banner6.png">
-    </div>
-    <div class="vd-box">
+
+    <!--    职业菜单    -->
+    <!--    职业菜单    -->
+    <!--    职业菜单    -->
+    <!--    职业菜单    -->
+    <!--    职业菜单    -->
+    <!--    <div class="vd-divilier">-->
+    <!--      <img src="../../assets/banner5.png">-->
+    <!--      <img src="../../assets/banner6.png">-->
+    <!--    </div>-->
+
+    <div class="vd-box  li-fa-zan-zhi-lu" style="padding-bottom: 50px">
       <div class="vd-box-header">
-        <h1 class="vd-box-title">职业菜单</h1>
+        <h1 class="vd-box-title">热门岗位 </h1>
+        <div class="vd-pagination">
+          <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+        </div>
+      </div>
+      <nz-list [nzDataSource]="professionList" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
+        <ng-template #item let-item>
+          <nz-list-item [nzContent]="nzContent">
+            <ng-template #nzContent>
+              <app-vditem [data]="item"></app-vditem>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+    </div>
+
+<!--    高考资讯-->
+<!--    高考资讯-->
+<!--    高考资讯-->
+<!--    高考资讯-->
+<!--    高考资讯-->
+<!--    高考资讯-->
+    <div class="vd-box" style="padding-top: 50px">
+      <div class="vd-box-header">
+        <h1 class="vd-box-title">高考资讯 </h1>
         <div class="vd-pagination">
           <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
