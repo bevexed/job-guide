@@ -180,7 +180,8 @@
   font-family: MicrosoftYaHei, serif;
   font-size: 36px;
   text-align: center;
-  >span{
+
+  > span {
     font-family: MicrosoftYaHei, serif;
     font-size: 18px;
     font-weight: normal;
@@ -735,4 +736,58 @@
 .vd-header .ant-menu-item-selected {
   border-color: #c10000;
   color: #000;
+}
+
+.li-footer {
+  position: relative;
+  padding: 2vw 140px;
+  width: 100vw;
+  height: 6.823vw;
+  background-color: #333333;
+
+  .nav {
+    display: flex;
+    font-family: MicrosoftYaHei, serif;
+    font-size: 0.729vw;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 1.939vw;
+    letter-spacing: 0vw;
+    color: #cccccc;
+
+    li {
+      height: 1em;
+      line-height: 1em;
+      padding: 0 10px 0 0;
+      margin-right: 10px;
+      border-right: 1px solid #ccc;
+
+      &:hover{
+        color: #c10000;
+        cursor: pointer;
+      }
+
+      &:last-child {
+        border: none;
+      }
+    }
+  }
+
+  p {
+    font-family: MicrosoftYaHei, serif;
+    font-size: 0.729vw;
+    font-weight: normal;
+    font-stretch: normal;
+    line-height: 1.939vw;
+    letter-spacing: 0vw;
+    color: #cccccc;
+    margin-top: 4px;
+  }
+
+  img {
+    width: 5vw;
+    position: absolute;
+    right: 140px;
+    top: 1vw;
+  }
 }
