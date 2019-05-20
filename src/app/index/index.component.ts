@@ -74,10 +74,6 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.bannerlist = res.data.bannerList;
 
     // 二开 底部
-    // 二开 底部
-    // 二开 底部
-    // 二开 底部
-    // 二开 底部
     res.data.hotList.forEach(item => item.hot = true);
     this.hots = {
       data: res.data.hotList,

@@ -121,7 +121,7 @@
 <!-- 移动端首页 -->
 <ng-container *ngIf="!httpService.devType">
   <nz-layout class="layout" style="position: relative;min-height: 100vh;left: 0;top: 0;">
-    <nz-header class="vd-header mb-header" style="position:fixed; width:100%;z-index: 100;box-shadow:0 3px 3px 0 rgba(0, 0, 0, 0.1);">
+    <nz-header class="vd-header mb-header" style="position:fixed; width:100%;z-index: 100;box-shadow:0 3px 3px 0 rgba(0, 0, 0, 0.1);padding: 0 16px;display: flex;align-items: center;justify-content: space-between">
       <div class="logo mb-logo"></div>
       <!--<ul class="vd-userarea mb-headerCollapse" nz-popover nzTitle="" style="padding: 16px 0;" [nzContent]="contentTemplate"-->
           <!--[(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">-->
@@ -261,7 +261,12 @@
         <span>支付宝</span>
       </div>
 
-      <div class="pay-way" [ngClass]="{'selected':payType === '微信'}" (click)="changePayType('微信')">
+      <div [hidden]="!httpService.devType" class="pay-way" [ngClass]="{'selected':payType === '微信'}" (click)="changePayType('微信')">
+        <img src="../assets/微信.svg" alt="">
+        <span>微信</span>
+      </div>
+
+      <div [hidden]="httpService.devType" class="pay-way" [ngClass]="{'selected':payType === 'wechat'}" (click)="changePayType('wechat')">
         <img src="../assets/微信.svg" alt="">
         <span>微信</span>
       </div>

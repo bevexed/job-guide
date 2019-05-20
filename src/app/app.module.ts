@@ -35,6 +35,7 @@ import { TixianBankCardComponent } from './tixian-bank-card/tixian-bank-card.com
 
 // li
 import {HotComponent} from './hot/hot.component';
+import { ZixunComponent } from './zixun/zixun.component';
 
 registerLocaleData(zh);
 
@@ -57,7 +58,8 @@ registerLocaleData(zh);
     TixianAlipayComponent,
     TixianBankCardComponent,
     LoginComponent,
-    HotComponent
+    HotComponent,
+    ZixunComponent
   ],
   imports: [
     BrowserModule,

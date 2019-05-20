@@ -209,6 +209,13 @@ export class HttpService {
     return this.httpPost(url, code);
   }
 
+  // 微信支付
+  public wxpay(userId: string, promoCode: string, userCouponId: string, openId: string, payChannel: any) {
+    const url = this.baseUrl + `/wxpay/gzhOrder?userid=${userId}&promoCode=${promoCode}
+    &userCouponId=${userCouponId}&openId=${openId}&payChannel=${payChannel}`;
+    return this.httpGet(url);
+  }
+
   /** 打开支付弹窗 */
   public async openPayModal() {
     this.getPrice();
@@ -294,7 +301,7 @@ export class HttpService {
   }
 
   /** 支付 */
-  public async pay(payType: string, promoCode?: string, userCouponId?: any) {
+  public async pay(payType: string,  promoCode?: string, userCouponId?: any) {
     if (!this.user) {
       this.modalService.error({
         nzTitle: '权限不足',
@@ -320,23 +327,10 @@ export class HttpService {
         }
       });
     }
-
     // 支付分路口
     switch (payType) {
       case '微信': {
         try {
-          // 判断是否为微信浏览器
-          if (this.isWeixin) {
-            // this.GetQueryString('code');
-            const code = this.GetQueryString('code');
-            if (!code) {
-              window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc80f049c9265d854' +
-                '&redirect_uri=http%3a%2f%2fwww.zhichangsinan.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
-            } else {
-              const res = await this.getOpenId(code);
-              console.log(res);
-            }
-          } else {
             const res = await this.getWeiXinQrcode();
             console.log(res);
             if (res.code === 200) {
@@ -365,7 +359,6 @@ export class HttpService {
                   }
                 }
                 , 1000);
-            }
           }
         } catch (e) {
           console.log(e);
@@ -401,6 +394,43 @@ export class HttpService {
           this.message.error(res.message);
         }
 
+        break;
+      }
+      case 'wechat': {
+        const code = this.GetQueryString('code');
+        if (!code) {
+          window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc80f049c9265d854' +
+            '&redirect_uri=http%3a%2f%2fwww.zhichangsinan.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+        } else {
+          const res = await this.getOpenId(code);
+
+          let url = this.baseUrl + '/wxpay/gzhOrder';
+
+          if (promoCode) {
+            if (url.indexOf('?') === -1) {
+              url = url + '?promoCode=' + promoCode;
+            } else {
+              url = url + '&promoCode=' + promoCode;
+            }
+          }
+          if (userCouponId) {
+            if (url.indexOf('?') === -1) {
+              url = url + '?userCouponId=' + userCouponId.id;
+            } else {
+              url = url + '&userCouponId=' + userCouponId.id;
+            }
+          }
+          const res = await this.httpGet(url);
+          if (res.code === 200) {
+            const wrapper = document.getElementById('pay-wrapper');
+            wrapper.innerHTML = '';
+            wrapper.innerHTML = res.data;
+            document.forms['punchout_form'].submit();
+          } else {
+            this.message.error(res.message);
+          }
+
+        }
         break;
       }
       default:
