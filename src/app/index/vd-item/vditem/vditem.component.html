@@ -8,8 +8,24 @@
   <div class="vd-imgbox" [ngStyle]="{'background-image': 'url('+ (data?.coverUrl ? data?.coverUrl : data?.imageUrl) +')'}"></div>
   <!-- <img src="data?.coverUrl ? data?.coverUrl : data?.imageUrl" alt=""> -->
   <div class="vd-desc">
-    <h3 [hidden]="data?.moduleCode === 'home_page_hot'" class="li-gray">{{data?.title}}</h3>
-    <h3 [hidden]="data?.moduleCode !== 'home_page_hot'">{{data?.title}}</h3>
+
+    <!--    首页-->
+    <!--    首页-->
+    <!--    首页-->
+    <!--    首页-->
+    <div [hidden]="!index">
+      <h3 [hidden]="data?.moduleCode === 'home_page_hot'" class="li-gray">{{data?.title}}</h3>
+      <h3 [hidden]="data?.moduleCode !== 'home_page_hot'">{{data?.title}}</h3>
+    </div>
+
+    <!--    发展之路-->
+    <!--    发展之路-->
+    <!--    发展之路-->
+    <!--    发展之路-->
+
+    <h3>{{data?.title}}</h3>
+
+
     <div class="li-hot-desc" *ngIf="data?.hot">
       <span>
         30分钟

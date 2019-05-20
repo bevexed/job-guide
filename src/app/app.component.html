@@ -91,7 +91,7 @@
         <p>现在就去注册，为自己的职业发展做选择</p>
         <span>职场司南，专注于大学生及毕业五年内群体的职业发展</span>
         <br>
-        <button nz-button nzType="primary" nzSize="large">专业的指导意见</button>
+        <button [hidden]="activeUrl !== '/index'" nz-button nzType="primary" nzSize="large">专业的指导意见</button>
       </div>
 
     </div>
@@ -170,17 +170,6 @@
   </nz-layout>
 </ng-container>
 
-<!-- 移动端首页 -->
-<!-- 移动端首页 -->
-<!-- 移动端首页 -->
-<!-- 移动端首页 -->
-<!-- 移动端首页 -->
-<!-- 移动端首页 -->
-<!-- 移动端首页 -->
-<!-- 移动端首页 -->
-<!-- 移动端首页 -->
-<!-- 移动端首页 -->
-<!-- 移动端首页 -->
 <div id="pay-wrapper" style="display: none;"></div>
 <ul class="vd-fixed">
   <li *ngIf="!httpService.user?.vipFlag" (click)="httpService.openPayModal()">

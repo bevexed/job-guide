@@ -15,15 +15,20 @@ export class VditemComponent implements OnInit {
   };
   @Input() devType = true;
 
-  public;
-  isIE = false;
+  public isIE = false;
+
+  //
+  public index = false;
 
   constructor() {
   }
 
   ngOnInit() {
     this.checkBrowerType();
+    this.index = window.location.hash.includes('index');
+    console.log(this.index);
   }
+
 
   public vipTag(data: any): boolean {
     if (data.courseFreeFlag) {

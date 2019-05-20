@@ -1,7 +1,7 @@
 <nz-carousel [nzEffect]="effect" [nzDots]="banner.length>1" [nzAutoPlay]="true" [nzAutoPlaySpeed]="7000"
-  *ngIf="banner.length">
+             *ngIf="banner.length">
   <div nz-carousel-content *ngFor="let index of banner"
-    style="cursor: pointer;">
+       style="cursor: pointer;">
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
       <img [src]="index.imageUrl" style="display: block;width: 100%;">
     </div>
@@ -13,32 +13,37 @@
     </div>
   </div>
 </nz-carousel>
+
+
 <ng-container *ngIf="httpService.devType">
+
+  <!--  导航列表-->
+  <!--  导航列表-->
+  <!--  导航列表-->
+  <!--  导航列表-->
+  <!--  导航列表-->
+  <!--todo  后台修改 返回数据-->
   <div class="vd-wrapper">
     <div class="vd-classify-wrapper">
       <div class="vd-classify" #vdwrapper>
         <span *ngFor="let item of classifySplit();" [ngClass]="{'checked': selectedCourseName === item.name}"
-          (click)="getCourseByName(item.name)" [attr.title]="item.name">{{item.name}}</span>
-        <span class="load-more" (click)="classifySlice=!classifySlice" *ngIf="developmentlist.length > rowCount*2"><a>{{classifySlice?'查看更多':'收起'}}</a></span>
+              (click)="getCourseByName(item.name)" [attr.title]="item.name">{{item.name}}</span>
+        <span class="load-more" (click)="classifySlice=!classifySlice" *ngIf="developmentlist.length > rowCount*2"><a>{{classifySlice ? '查看更多' : '收起'}}</a></span>
       </div>
-      <!-- <div class="vd-moreClassify" *ngIf="developmentlist.length > 18">
-        <a *ngIf="classifySlice; else close" (click)="classifySlice=false">更多<i nz-icon nzType="down-square"
-            nzTheme="outline"></i></a>
-        <ng-template #close>
-          <a (click)="classifySlice=true">收起<i nz-icon nzType="up-square" nzTheme="outline"></i></a>
-        </ng-template>
-      </div> -->
     </div>
-    <div class="vd-box" style="margin-top: 30px;">
+
+
+    <div class="vd-box">
       <div class="vd-box-header">
-        <h1 class="vd-box-title" style="background-image: url('../../assets/hot.png')">课程列表</h1>
         <div class="vd-pagination" *ngIf="courseList?.data.length > courseList?.size">
           <nz-pagination [(nzPageIndex)]="courseList.current" [nzPageSize]="courseList.size"
-            [nzTotal]="courseList.data.length" (nzPageIndexChange)="listFilter()" nzSimple></nz-pagination>
+                         [nzTotal]="courseList.data.length" (nzPageIndexChange)="listFilter()" nzSimple></nz-pagination>
         </div>
       </div>
+
+
       <nz-list [nzDataSource]="courseList?.currentData" [nzRenderItem]="item"
-        [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
+               [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
@@ -47,32 +52,36 @@
           </nz-list-item>
         </ng-template>
       </nz-list>
-      <!-- <div class="vd-box-body">
-        <div *ngFor="let item of courseList">
-          <app-vditem [data]="item"></app-vditem>
-        </div>
-        <div *ngFor="let item of courseList">
-          <app-vditem [data]="item"></app-vditem>
-        </div>
-        <div *ngFor="let item of courseList">
-          <app-vditem [data]="item"></app-vditem>
-        </div>
-      </div> -->
+
+      <div class="li-loading-more">
+
+        <button nz-button nzType="primary" nzSize="large">加载更多</button>
+      </div>
+
     </div>
   </div>
 </ng-container>
+
+
+<!--手机-->
+<!--手机-->
+<!--手机-->
+<!--手机-->
+<!--手机-->
+<!--手机-->
+<!--手机-->
 <ng-container *ngIf="!httpService.devType">
   <div class="vd-classify-wrapper mb-classify-wrapper">
     <ul class="mb-classify vd-classify">
       <li *ngFor="let item of classifySplit();" [ngClass]="{'checked': selectedCourseName === item.name}"
-        (click)="getCourseByName(item.name)"><a>{{item.name}}</a></li>
+          (click)="getCourseByName(item.name)"><a>{{item.name}}</a></li>
       <li *ngIf="developmentlist.length > 12" (click)="open()"><a>查看更多</a></li>
     </ul>
     <!-- <div class="vd-moreClassify" *ngIf="developmentlist.length > 18">
       <a (click)="open()">更多<i nz-icon nzType="down-square" nzTheme="outline"></i></a>
     </div> -->
   </div>
-  
+
   <div class="mb-box-wrapper">
     <div class="mb-box-header">
       <h1 class="vd-box-title" style="background-image: url('../../assets/hot.png')">课程列表</h1>
@@ -88,14 +97,15 @@
         </ng-template>
       </nz-list>
       <button nz-button (click)="mbPagination()" nzType="default"
-        *ngIf="courseList?.currentData.length < courseList.data.length" nzBlock style="margin-top: 20px;">查看更多</button>
+              *ngIf="courseList?.currentData.length < courseList.data.length" nzBlock style="margin-top: 20px;">查看更多
+      </button>
     </div>
   </div>
   <div class="mb-fxied" *ngIf="visible">
     <h1>课程分类<i nz-icon nzType="close" nzTheme="outline" style="float: right;" (click)="close()"></i></h1>
     <ul class="mb-classify vd-classify" style="max-height: initial;">
       <li *ngFor="let item of developmentlist;" [ngClass]="{'checked': selectedCourseName === item.name}"
-        (click)="getCourseByName(item.name)"><a>{{item.name}}</a></li>
+          (click)="getCourseByName(item.name)"><a>{{item.name}}</a></li>
     </ul>
   </div>
 </ng-container>
