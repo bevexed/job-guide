@@ -14,11 +14,11 @@
   </div>
 </nz-carousel>
 <ng-container *ngIf="httpService.devType">
-<!--  热门视频    -->
-<!--  热门视频    -->
-<!--  热门视频    -->
-<!--  热门视频    -->
-<!--  热门视频    -->
+  <!--  热门视频    -->
+  <!--  热门视频    -->
+  <!--  热门视频    -->
+  <!--  热门视频    -->
+  <!--  热门视频    -->
   <div class="vd-wrapper">
     <div class="vd-box">
       <div class="vd-box-header">
@@ -107,12 +107,12 @@
       </nz-list>
     </div>
 
-<!--    高考资讯-->
-<!--    高考资讯-->
-<!--    高考资讯-->
-<!--    高考资讯-->
-<!--    高考资讯-->
-<!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
     <div class="vd-box" style="padding-top: 50px">
       <div class="vd-box-header">
         <h1 class="vd-box-title">高考资讯 </h1>
@@ -120,15 +120,20 @@
           <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
       </div>
-      <nz-list [nzDataSource]="professionList" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
-        <ng-template #item let-item>
-          <nz-list-item [nzContent]="nzContent">
-            <ng-template #nzContent>
-              <app-vditem [data]="item"></app-vditem>
-            </ng-template>
-          </nz-list-item>
-        </ng-template>
-      </nz-list>
+
+      <div class="li-gao-kao">
+        <div class="item" *ngFor="let item of [1,2,3]">
+          <img src="../../assets/gk.png" alt="">
+
+          <div class="content">
+            <h6>招考政策</h6>
+
+            <ul *ngFor="let news of [1,2,3,4,5]">
+              <li><span></span> {{news}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </ng-container>
