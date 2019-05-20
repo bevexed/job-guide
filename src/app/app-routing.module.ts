@@ -10,7 +10,10 @@ import { VideoDetialComponent } from './video-detial/video-detial.component';
 import { AuthService } from './auth.service';
 import { ResultsComponent } from './results/results.component';
 import { RewardComponent } from './reward/reward.component';
-import { LoginComponent } from "./login/login.component";
+import { LoginComponent } from './login/login.component';
+import { TixianComponent } from './tixian/tixian.component';
+import { TixianAlipayComponent } from './tixian-alipay/tixian-alipay.component';
+import { TixianBankCardComponent } from './tixian-bank-card/tixian-bank-card.component';
 
 const routes: Routes = [
   {
@@ -63,6 +66,18 @@ const routes: Routes = [
   {
     path: 'reward',
     component: RewardComponent
+  },
+  {
+    path: 'tixian',
+    component: TixianComponent
+  },
+  {
+    path: 'tixianAlipay',
+    component: TixianAlipayComponent
+  },
+  {
+    path: 'tixianBank',
+    component: TixianBankCardComponent
   }
 ];
 

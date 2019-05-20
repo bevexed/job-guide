@@ -109,21 +109,31 @@
 <ng-container *ngIf="!httpService.devType">
   <div class="mb-wrapper">
     <div class="mb-userinfo">
-      <h1>欢迎您, {{httpService?.user.mobile}} <a (click)="showModal()">去提现</a></h1>
+      <div style="display: flex;align-items: center;justify-content: space-between">
+        <div style="display: flex;align-items: center">
+          <img style="width:50px;height:50px;border-radius: 50%;margin-right: 12px" src="../../assets/qrCode.png" alt="用户头像">
+          <h1>{{httpService?.user.mobile}}</h1>
+        </div>
+        <!--<a (click)="showModal()">去提现></a>-->
+        <a routerLink="/tixian">去提现></a>
+      </div>
       <ul>
         <li>
-          余额
-          <div>￥<span class="mb-account">{{accountInfo?.balance}}</span></div>
+          账户余额(元)
+          <div><span class="mb-account">{{accountInfo?.balance}}</span></div>
         </li>
-        <li class="diliver"></li>
         <li>
-          提现中
-          <div>￥<span class="mb-account">{{accountInfo?.withdrawAmount}}</span></div>
+          提现中金额(元)
+          <div><span class="mb-account">{{accountInfo?.withdrawAmount}}</span></div>
+        </li>
+        <li>
+          优惠券
+          <div><span class="mb-account">{{accountInfo?.withdrawAmount}}</span></div>
         </li>
       </ul>
     </div>
   </div>
-  <nz-tabset [nzTabBarStyle]="{'text-align': 'center'}">
+  <nz-tabset [nzTabBarStyle]="{'text-align': 'center','background':'#E4E4E4','margin':'15px'}" [nzShowPagination]="false">
     <nz-tab nzTitle="我的账户">
       <ul class="mb-tablist">
         <li *ngFor="let data of (accountList?.records ? accountList.records : [])">

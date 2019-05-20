@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-pass',
   templateUrl: './pass.component.html',
-  styleUrls: ['./pass.component.less', '../usercenter/usercenter.component.less']
+  styleUrls: ['./pass.component.less', '../usercenter/usercenter.component.less', '../register/register.component.less']
 })
 export class PassComponent implements OnInit {
 
@@ -58,7 +58,7 @@ export class PassComponent implements OnInit {
 
   getBtnText() {
     if (!this.btn_clicked) {
-      return '获取验证码';
+      return '获取短信验证码';
     } else {
       return '倒计时'+ this.time +'s';
     }

@@ -1,0 +1,33 @@
+<div class="contentBox">
+  <p>
+     <span (click)="goBack()"><</span>
+     <span>提现到支付宝</span>
+  </p>
+  <div class="vd-alipay">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="tixianAlipay()">
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>账号<span class="iconWen">?</span>:</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phoneNumber']">
+          <input formControlName="phoneNumber" id="'phoneNumber'" nz-input />
+          <!--<nz-form-explain *ngIf="validateForm.get('phoneNumber')?.dirty && validateForm.get('phoneNumber')?.errors">-->
+            <!--请输入您的账号</nz-form-explain>-->
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>密码</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input type="password" id="password" formControlName="password" />
+          <!--<nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors"></nz-form-explain>-->
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item nz-row style="margin-bottom:100px;">
+        <nz-form-control [nzSm]="{ span: 14, offset: 6 }" [nzXs]="{ span: 24, offset: 0 }">
+          <div nz-col [nzSpan]="24">
+            <button nzBlock nz-button [disabled]="validateForm.invalid" style="background: #ccc;color: #fff;">提现</button>
+          </div>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
