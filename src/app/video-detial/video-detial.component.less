@@ -1,10 +1,13 @@
 a {
   color: #333;
 }
+
 .album-head-con {
-  width: 980px;
-  margin: 0 auto;
+  width: 100%;
+  padding: 20px 140px;
+  background: #f2f2f2;
 }
+
 .album-head-info {
   position: relative;
   padding: 30px 0;
@@ -16,24 +19,28 @@ a {
   border: 10px solid #fff;
   float: left;
   margin-right: 20px;
-  box-shadow: 0 1px 1px 1px rgba(98,98,98,0.1);
+  box-shadow: 0 1px 1px 1px rgba(98, 98, 98, 0.1);
   position: relative;
 }
+
 .album-head-info .info-img img {
   width: 100%;
   height: 100%;
 }
+
 .album-head-info .info-intro {
   position: relative;
   float: left;
   width: 610px;
 }
+
 .album-head-info h1 {
   font-size: 26px;
   color: #333;
   line-height: 42px;
   font-weight: normal;
 }
+
 .info-intro-title {
   display: inline-block;
   max-width: 540px;
@@ -42,38 +49,45 @@ a {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
 .album-head-v2 .episodeIntro-item {
   margin-bottom: 7px;
 }
+
 .episodeIntro-line {
   float: left;
   padding-right: 20px;
 }
+
 .episodeIntro em {
   color: #999;
   font-size: 14px;
   font-style: normal;
 }
+
 .intro-btns {
   font-size: 0;
   position: relative;
 }
+
 .albumPlayBtn {
+  position: absolute;
   display: inline-block;
   width: 108px;
-  height: 32px;
-  line-height: 31px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
-  color: #fff;
-  background-color: #5aa700;
   border-radius: 3px;
   font-size: 14px;
   margin-right: 12px;
   vertical-align: 5px;
+  color: #999;
 }
+
 .titleInfo-viserabHei {
   margin-bottom: 15px;
 }
+
 .vd-tabwrapper {
   width: 980px;
   margin: 0 auto;
@@ -84,12 +98,15 @@ a {
   display: block;
   width: 100%;
 }
+
 .mb-poster {
   margin-bottom: 10px;
 }
+
 .mb-box-preview {
   position: relative;
 }
+
 .mb-box-preview:after {
   content: '';
   display: block;
@@ -103,23 +120,51 @@ a {
   background-repeat: no-repeat;
   background-position: center;
 }
+
 .mb-video-info {
   display: flex;
   justify-content: space-between;
   padding: 0 15px;
   line-height: 24px;
 }
+
 .mb-video-info p {
   margin-bottom: 0;
 }
+
 .mb-video-info em,
 .mb-video-intro em {
   color: #999;
   font-size: 14px;
   font-style: normal;
 }
+
 .mb-video-intro {
   padding: 0 15px;
   line-height: 24px;
 }
+
 /** 移动端样式  */
+
+
+// 二开
+.li-v-d {
+
+
+  .album-head-info {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    background: white;
+  }
+
+  .info-img {
+    width: 50%;
+    padding: 4vw;
+    background: rgba(0, 0, 0, .6);
+  }
+
+  .info-intro {
+    padding: 3.1vw 2.8vw;
+  }
+}
