@@ -64,6 +64,7 @@ export class HttpService {
   }
 
   public init() {
+    console.log(this.token);
     if (this.token) {
       this.headers = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -71,6 +72,7 @@ export class HttpService {
       });
     }
   }
+
   /** 浏览器检测 */
   public browserRedirect() {
     const sUserAgent = navigator.userAgent.toLowerCase();
@@ -203,6 +205,7 @@ export class HttpService {
     const url = this.baseUrl + '/user/change/password';
     return this.httpPost(url, data);
   }
+
   // 获取openid
   public getOpenId(code: any): Promise<any> {
     const url = this.baseUrl + '/wxpay/getOpenid';
@@ -295,13 +298,17 @@ export class HttpService {
   }
 
   public GetQueryString(name: string) {
-    const reg = new RegExp( '(^|&)' + name + '=([^&]*)(&|$)'); // 构造一个含有目标参数的正则表达式对象
+    const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)'); // 构造一个含有目标参数的正则表达式对象
     const r = window.location.search.substr(1).match(reg); // 匹配目标参数
-    if (r != null) { return unescape(r[2]); } return null; // 返回参数值
+    if (r != null) {
+      return unescape(r[2]);
+    }
+    return null; // 返回参数值
   }
 
   /** 支付 */
-  public async pay(payType: string,  promoCode?: string, userCouponId?: any) {
+  public async pay(payType: string, promoCode?: string, userCouponId?: any) {
+    this.init();
     if (!this.user) {
       this.modalService.error({
         nzTitle: '权限不足',
@@ -314,6 +321,7 @@ export class HttpService {
       });
       return;
     }
+
     const results = await this.tokenValidate();
     console.log(results);
     if (!results) {
@@ -327,16 +335,16 @@ export class HttpService {
         }
       });
     }
+
     // 支付分路口
     switch (payType) {
       case '微信': {
         try {
-            const res = await this.getWeiXinQrcode();
-            console.log(res);
-            if (res.code === 200) {
-              this.weixinImgUrl = res.data.qrcodeurl;
-              this.weixinShow = true;
-            }
+          const res = await this.getWeiXinQrcode();
+          console.log(res);
+          if (res.code === 200) {
+            this.weixinImgUrl = res.data.qrcodeurl;
+            this.weixinShow = true;
 
             // 支付 回调
             const orderno = res.data.orderno;
@@ -359,9 +367,10 @@ export class HttpService {
                   }
                 }
                 , 1000);
+            }
+
           }
         } catch (e) {
-          console.log(e);
 
         }
         break;
@@ -396,43 +405,7 @@ export class HttpService {
 
         break;
       }
-      case 'wechat': {
-        const code = this.GetQueryString('code');
-        if (!code) {
-          window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc80f049c9265d854' +
-            '&redirect_uri=http%3a%2f%2fwww.zhichangsinan.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
-        } else {
-          const res = await this.getOpenId(code);
 
-          let url = this.baseUrl + '/wxpay/gzhOrder';
-
-          if (promoCode) {
-            if (url.indexOf('?') === -1) {
-              url = url + '?promoCode=' + promoCode;
-            } else {
-              url = url + '&promoCode=' + promoCode;
-            }
-          }
-          if (userCouponId) {
-            if (url.indexOf('?') === -1) {
-              url = url + '?userCouponId=' + userCouponId.id;
-            } else {
-              url = url + '&userCouponId=' + userCouponId.id;
-            }
-          }
-          const res = await this.httpGet(url);
-          if (res.code === 200) {
-            const wrapper = document.getElementById('pay-wrapper');
-            wrapper.innerHTML = '';
-            wrapper.innerHTML = res.data;
-            document.forms['punchout_form'].submit();
-          } else {
-            this.message.error(res.message);
-          }
-
-        }
-        break;
-      }
       default:
         break;
     }
