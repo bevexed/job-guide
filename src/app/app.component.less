@@ -11,6 +11,12 @@
   background-color: @nav-color;
   display: block;
   position: relative;
+
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
 }
 
 .logo {
@@ -28,11 +34,6 @@
   margin-left: -210px;
 }
 
-.vd-header:after {
-  content: '';
-  display: block;
-  clear: both;
-}
 
 .vd-header .ant-menu {
   background-color: @nav-color;
@@ -721,6 +722,8 @@
   display: block;
   position: relative;
   color: black;
+  padding: 0 140px;
+  box-shadow: 0 0.26vw 0.26vw 0 rgba(0, 0, 0, 0.15);
 }
 
 .vd-header .ant-menu, .vd-header .ant-menu-item {

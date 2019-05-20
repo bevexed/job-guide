@@ -26,7 +26,6 @@ export class VditemComponent implements OnInit {
   ngOnInit() {
     this.checkBrowerType();
     this.index = window.location.hash.includes('index');
-    console.log(this.index);
   }
 
 
