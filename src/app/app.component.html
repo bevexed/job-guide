@@ -10,7 +10,7 @@
           <li routerLink="register">注册</li>
         </ng-container>
         <ng-template #logined>
-          <li nz-popover nzTitle="" [nzContent]="contentTemplate" nzTrigger="hover">
+          <li style="color: #333" nz-popover nzTitle="" [nzContent]="contentTemplate" nzTrigger="hover">
 
             用户名：{{httpService.user?.mobile}}</li>
         </ng-template>

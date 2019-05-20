@@ -19,6 +19,7 @@ export class VditemComponent implements OnInit {
 
   //
   public index = false;
+  public development = false;
 
   constructor() {
   }
@@ -26,6 +27,7 @@ export class VditemComponent implements OnInit {
   ngOnInit() {
     this.checkBrowerType();
     this.index = window.location.hash.includes('index');
+    this.development = window.location.hash.includes('development');
   }
 
 
