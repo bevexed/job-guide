@@ -1,11 +1,13 @@
 <ng-container *ngIf="httpService.devType">
-  <div class="album-head-con" itemscope="" itemtype="http://schema.org/TVSeries">
+  <div class="album-head-con li-v-d" itemscope="" itemtype="http://schema.org/TVSeries">
     <div class="album-head-info clearfix" *ngIf="!isplay">
       <div class="info-img">
         <a (click)="play()">
           <img [src]="courseInfo?.coverUrl" id="j-album-img" itemprop="image">
         </a>
       </div>
+
+
       <div class="info-intro">
         <h1 itemprop="name" class="j-head-hot-wrap">
           <a>{{courseInfo?.title}}</a>
@@ -16,32 +18,14 @@
             <div class="episodeIntro-line">
               <p class="episodeIntro-area" itemprop="contentLocation">
                 <em>播放次数：</em>
-                <a>{{courseInfo?.playCount}}次</a>
+                <a style="color: #d10000;">{{courseInfo?.playCount}}</a>次
               </p>
               <!-- <p class="episodeIntro-time" itemprop="datePublished">
                 <em>是否免费：</em>
                 <span>{{courseInfo?.freeFlag ? '是':'否'}}</span>
               </p> -->
             </div>
-            <!-- <div class="episodeIntro-line">
-              <p class="episodeIntro-lang">
-                <em>电视台：</em>
-                <span>
-                  芒果TV
-                </span>
-              </p>
-              <p class="episodeIntro-update">
-                <em>更新时间：</em>
-                <span>每周五12:00</span>
-              </p>
-            </div>
-            <div class="episodeIntro-line">
-              <p class="episodeIntro-type">
-                <em>类型：</em>
-                <a href="//www.iqiyi.com/lib/$!{zongyi}/真人秀%2C%2C_11_1.html" target="_blank" title="真人秀" alt="真人秀"
-                  data-pb="&amp;c1=6" rseat="708111_qwys_leixing">真人秀</a>
-              </p>
-            </div> -->
+
           </div>
           <!-- 展开前 -->
           <div class="shortWordIntro-brief" data-moreorless="lessinfo" itemprop="description">
@@ -50,10 +34,11 @@
           </div>
         </div>
         <!-- 播放按钮 -->
-        <div class="intro-btns clearfix">
-          <button nz-button nzType="primary" (click)="play()">立即播放</button>
-          <!-- <a class="albumPlayBtn" (click)="play()"><i class="album-icons album-icon_play"></i>付费播放</a> -->
+        <div class="intro-btns clearfix" style="padding-top: 1.3vw">
+          <button nz-button nzType="primary" nzSize="large" (click)="play()">立即播放</button>
+           <a class="albumPlayBtn"><i nz-icon nzType="share-alt" nzTheme="outline"></i>分享</a>
         </div>
+
       </div>
     </div>
     <video controls="true" controlslist="nodownload" style="display: block;width: 100%;margin: 20px 0;outline: none;" *ngIf="isplay">
@@ -61,6 +46,8 @@
     </video>
   </div>
 </ng-container>
+
+<!--手机-->
 <ng-container *ngIf="!httpService.devType">
   <div class="mb-poster">
     <div class="mb-box-preview" *ngIf="!isplay" (click)="play($event)">

@@ -15,42 +15,122 @@
             用户名：{{httpService.user?.mobile}}</li>
         </ng-template>
       </ul>
-      <ul class="vd-header-nav" nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;">
-        <li nz-menu-item routerLink="/index" style="outline: none;width: 140px;" [nzSelected]="activeUrl==='/index'"
+
+      <!-- 导航 -->
+      <!-- 导航 -->
+      <!-- 导航 -->
+      <!-- 导航 -->
+      <!-- 导航 -->
+      <ul
+        class="vd-header-nav"
+        nz-menu
+        [nzTheme]=""
+        [nzMode]="'horizontal'"
+        style="line-height: 64px;">
+        <li nz-menu-item
+            routerLink="/index"
+            style="outline: none;width: 140px;"
+            [nzSelected]="activeUrl==='/index'"
             routerlinkactive="ant-menu-item-selected">首页</li>
-        <li nz-menu-item routerLink="/development" style="outline: none;width: 140px;" [nzSelected]="activeUrl==='/development'"
+        <li nz-menu-item
+            routerLink="/development"
+            style="outline: none;width: 140px;"
+            [nzSelected]="activeUrl==='/development'"
             routerlinkactive="ant-menu-item-selected">发展之路</li>
-        <li nz-menu-item routerLink="/profession" style="outline: none;width: 140px;" [nzSelected]="activeUrl==='/profession'"
+        <li nz-menu-item
+            routerLink="/profession"
+            style="outline: none;width: 140px;"
+            [nzSelected]="activeUrl==='/profession'"
             routerlinkactive="ant-menu-item-selected">职业菜单</li>
+        <li nz-menu-item
+            routerLink="/profession"
+            style="outline: none;width: 140px;"
+            [nzSelected]="activeUrl==='/profession'"
+            routerlinkactive="ant-menu-item-selected">高考咨询</li>
       </ul>
     </nz-header>
+
+    <!-- 内容 -->
+    <!-- 内容 -->
+    <!-- 内容 -->
+    <!-- 内容 -->
     <nz-content>
       <router-outlet></router-outlet>
     </nz-content>
+
+
+    <!--广告位-->
+    <!--广告位-->
+    <!--广告位-->
+    <!--广告位-->
+    <!--广告位-->
+    <ng-container>
+      <div class="vd-wrapper">
+        <div class="vd-box">
+          <div class="vd-box-header li-ad-padding">
+
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
     <div class="vd-divilier2">
-      <img src="../assets/banner3.png">
+      <img class="li-ad-img" src="../../assets/广告位.png" alt="">
     </div>
-    <div></div>
+
+
+    <!--    共用底部-->
+    <!--    共用底部-->
+    <!--    共用底部-->
+    <!--    共用底部-->
+    <!--    共用底部-->
+    <!--    共用底部-->
+    <!--    共用底部-->
     <div class="vd-slogan-wrapper">
       <div class="vd-slogan">
-        <hr>
-        <p>专注于大学生及毕业五年内群体的职业发展</p>
-        <hr>
+        <p>现在就去注册，为自己的职业发展做选择</p>
+        <span>职场司南，专注于大学生及毕业五年内群体的职业发展</span>
+        <br>
+        <button [hidden]="activeUrl !== '/index'" nz-button nzType="primary" nzSize="large">专业的指导意见</button>
       </div>
+
     </div>
-    <nz-footer style="*text-align: center;padding: 60px 0;overflow: hidden;">
-      <div style="width: 1200px;margin: 0 auto;">
-        <div class="vd-footer-left">
-          <img src="../assets/logo_black.png">
-        </div>
-        <div class="vd-footer-right">
-          <p>联系电话：0571-85383155</p>
-          <p>Copyright © 2018-2019 职场司南，专注于大学生及毕业五年内群体的职业发展</p>
-        </div>
-      </div>
-    </nz-footer>
+
+
+    <div class="li-footer">
+      <ul class="nav">
+        <li
+          routerLink="/index"
+        >
+          首页
+        </li>
+        <li
+          routerLink="/development"
+        >
+          发展之路
+        </li>
+        <li
+          routerLink="/profession"
+        >
+          职业菜单
+        </li>
+        <li>
+          活动中心
+        </li>
+        <li>
+          个人中心
+        </li>
+      </ul>
+      <p>
+        Copyright © 2018-2019 职场司南 浙ICP备18039212号 &nbsp; &nbsp; <i nz-icon nzType="phone" nzTheme="outline"></i>
+      </p>
+
+      <img src="../assets/嘻嘻.png" alt="">
+    </div>
   </nz-layout>
 </ng-container>
+
+
 <!-- 移动端首页 -->
 <ng-container *ngIf="!httpService.devType">
   <nz-layout class="layout" style="position: relative;min-height: 100vh;left: 0;top: 0;">
@@ -97,7 +177,7 @@
     </nz-footer>
   </nz-layout>
 </ng-container>
-<!-- 移动端首页 -->
+
 <div id="pay-wrapper" style="display: none;"></div>
 <ul class="vd-fixed">
   <li *ngIf="!httpService.user?.vipFlag" (click)="httpService.openPayModal()">
@@ -203,7 +283,7 @@
     <div class="aui-flex clearfix selected" *ngIf="httpService.coupon">
       <div class="aui-price-nub">
         <div class="aui-digit">
-          <h2>{{httpService.coupon.price}}  <span>元</span>   </h2>
+          <h2>{{httpService.coupon.price}}  <span>元</span></h2>
         </div>
       </div>
       <div class="aui-flex-box">

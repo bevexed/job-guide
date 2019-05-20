@@ -49,6 +49,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit(): void {
+
     this.validateForm = this.fb.group({
       username: [null, [Validators.required]],
       password: [null, [Validators.required]],
@@ -57,6 +58,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       filter((event) => event instanceof NavigationEnd)
     ).subscribe((data: any) => {
       this.activeUrl = data.url;
+      console.log(this.activeUrl);
       this.ref.detectChanges();
     });
     const cookie = localStorage.getItem('userInfo');

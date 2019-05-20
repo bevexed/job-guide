@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
+
 declare var window;
 
 @Component({
@@ -12,14 +13,21 @@ export class VditemComponent implements OnInit {
     'padding': 0,
     'background': 'red'
   };
-  @Input() devType: boolean = true;
-  public isIE: boolean = false;
-  
-  constructor() { }
+  @Input() devType = true;
+
+  public isIE = false;
+
+  //
+  public index = false;
+
+  constructor() {
+  }
 
   ngOnInit() {
     this.checkBrowerType();
+    this.index = window.location.hash.includes('index');
   }
+
 
   public vipTag(data: any): boolean {
     if (data.courseFreeFlag) {
@@ -32,7 +40,7 @@ export class VditemComponent implements OnInit {
   }
 
   public checkBrowerType() {
-    if(window.navigator.userAgent.indexOf("MSIE")>=1){
+    if (window.navigator.userAgent.indexOf('MSIE') >= 1) {
       this.isIE = true;
     }
   }

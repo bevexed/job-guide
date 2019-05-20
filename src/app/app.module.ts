@@ -33,6 +33,9 @@ import { TixianComponent } from './tixian/tixian.component';
 import { TixianAlipayComponent } from './tixian-alipay/tixian-alipay.component';
 import { TixianBankCardComponent } from './tixian-bank-card/tixian-bank-card.component';
 
+// li
+import {HotComponent} from './hot/hot.component';
+
 registerLocaleData(zh);
 
 @NgModule({
@@ -52,7 +55,9 @@ registerLocaleData(zh);
     LoginComponent,
     TixianComponent,
     TixianAlipayComponent,
-    TixianBankCardComponent
+    TixianBankCardComponent,
+    LoginComponent,
+    HotComponent
   ],
   imports: [
     BrowserModule,

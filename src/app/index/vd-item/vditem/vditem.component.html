@@ -1,4 +1,7 @@
-<div class="vd-item" [ngClass]="{'mb-item': !devType, 'vd-ie': isIE}" [routerLink]="'../vd/'+data.courseId">
+<div class="vd-item"
+     [ngClass]="{'mb-item': !devType, 'vd-ie': isIE}"
+     [routerLink]="'../vd/'+data.courseId"
+     [style.background-color]="data?.moduleCode !== 'home_page_hot'? 'none' :'white'">
   <div class="vd-tags" *ngIf="!vipTag(data)">
     <nz-tag [nzColor]="'#D10000'">VIP</nz-tag>
   </div>
@@ -7,5 +10,32 @@
   <div class="vd-desc">
     <!--<h3>{{data?.title}}</h3>-->
     <p>{{data?.intro}}</p>
+
+    <!--    首页-->
+    <!--    首页-->
+    <!--    首页-->
+    <!--    首页-->
+    <div [hidden]="!index">
+      <h3 [hidden]="data?.moduleCode === 'home_page_hot'" class="li-gray">{{data?.title}}</h3>
+      <h3 [hidden]="data?.moduleCode !== 'home_page_hot'">{{data?.title}}</h3>
+    </div>
+
+    <!--    发展之路-->
+    <!--    发展之路-->
+    <!--    发展之路-->
+    <!--    发展之路-->
+
+    <h3>{{data?.title}}</h3>
+
+
+    <div class="li-hot-desc" *ngIf="data?.hot">
+      <span>
+        30分钟
+      </span>
+      <span>免费</span>
+    </div>
+    <p [hidden]="data?.intro">{{data?.intro}}</p>
   </div>
+
+
 </div>

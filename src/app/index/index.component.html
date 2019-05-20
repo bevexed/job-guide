@@ -1,7 +1,7 @@
 <nz-carousel [nzEffect]="effect" [nzDots]="bannerlist.length>1" [nzAutoPlay]="true" [nzAutoPlaySpeed]="7000"
-  *ngIf="bannerlist.length" [nzEnableSwipe]="true">
+             *ngIf="bannerlist.length" [nzEnableSwipe]="true">
   <div nz-carousel-content *ngFor="let index of bannerlist"
-    style="cursor: pointer;">
+       style="cursor: pointer;">
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
       <img [src]="index.imageUrl" style="display: block;width: 100%;">
     </div>
@@ -14,15 +14,21 @@
   </div>
 </nz-carousel>
 <ng-container *ngIf="httpService.devType">
+  <!--  热门视频    -->
+  <!--  热门视频    -->
+  <!--  热门视频    -->
+  <!--  热门视频    -->
+  <!--  热门视频    -->
   <div class="vd-wrapper">
     <div class="vd-box">
       <div class="vd-box-header">
-        <h1 class="vd-box-title" style="background-image: url('../../assets/hot.png')">热门视频</h1>
-        <div class="vd-pagination" *ngIf="hots?.data.length > hots?.size">
-          <nz-pagination [(nzPageIndex)]="hots.current" [nzPageSize]="hots.size" [nzTotal]="hots.data.length"
-            (nzPageIndexChange)="listFilter(blockType.hots)" nzSimple></nz-pagination>
+        <h1 class="vd-box-title">热门视频</h1>
+        <div class="vd-pagination">
+          <!-- todo：查看更多-->
+          <a routerLink="../hot">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
       </div>
+
       <nz-list [nzDataSource]="hots?.currentData" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
@@ -33,11 +39,33 @@
         </ng-template>
       </nz-list>
     </div>
-    <div class="vd-box">
+
+    <!--  广告位 -->
+    <!--  广告位 -->
+    <!--  广告位 -->
+    <!--  广告位 -->
+    <!--  广告位 -->
+    <!--  广告位 -->
+    <ng-container>
+      <div class="vd-wrapper">
+        <div class="vd-box">
+          <div class="vd-box-header">
+            <img class="li-ad-img" src="../../assets/广告位.png" alt="">
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <!--    发展之路    -->
+    <!--    发展之路    -->
+    <!--    发展之路    -->
+    <!--    发展之路    -->
+    <!--    发展之路    -->
+    <div class="vd-box li-fa-zan-zhi-lu" style="padding-top: 30px">
       <div class="vd-box-header">
-        <h1 class="vd-box-title" style="background-image: url('../../assets/development.png')">发展之路</h1>
+        <h1 class="vd-box-title">职业发展</h1>
         <div class="vd-pagination">
-          <a routerLink="../development">更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+          <a routerLink="../development">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
       </div>
       <nz-list [nzDataSource]="developList" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
@@ -50,15 +78,22 @@
         </ng-template>
       </nz-list>
     </div>
-    <div class="vd-divilier">
-      <img src="../../assets/banner5.png">
-      <img src="../../assets/banner6.png">
-    </div>
-    <div class="vd-box">
+
+    <!--    职业菜单    -->
+    <!--    职业菜单    -->
+    <!--    职业菜单    -->
+    <!--    职业菜单    -->
+    <!--    职业菜单    -->
+    <!--    <div class="vd-divilier">-->
+    <!--      <img src="../../assets/banner5.png">-->
+    <!--      <img src="../../assets/banner6.png">-->
+    <!--    </div>-->
+
+    <div class="vd-box  li-fa-zan-zhi-lu" style="padding-bottom: 50px">
       <div class="vd-box-header">
-        <h1 class="vd-box-title" style="background-image: url('../../assets/profession.png')">职业菜单</h1>
+        <h1 class="vd-box-title">热门岗位 </h1>
         <div class="vd-pagination">
-          <a routerLink="../profession">更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+          <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
       </div>
       <nz-list [nzDataSource]="professionList" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
@@ -71,12 +106,44 @@
         </ng-template>
       </nz-list>
     </div>
+
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <div class="vd-box" style="padding-top: 50px">
+      <div class="vd-box-header">
+        <h1 class="vd-box-title">高考资讯 </h1>
+        <div class="vd-pagination">
+          <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+        </div>
+      </div>
+
+      <div class="li-gao-kao">
+        <div class="item" *ngFor="let item of [1123123213,2123213213123,3123213213]">
+          <img src="../../assets/gk.png" alt="">
+
+          <div class="content">
+            <h6>招考政策</h6>
+
+            <ul *ngFor="let news of [1123213213213213,2123213213213,1232131231233,4123123,5123123123123]">
+              <li><span></span> {{news}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </ng-container>
+
+
+<!--手机端 ??? -->
 <ng-container *ngIf="!httpService.devType">
   <div class="mb-box-wrapper" style="margin-top: 30px;">
     <div class="mb-box-header">
-      <h1 class="vd-box-title" style="background-image: url('../../assets/hot.png')">热门课程</h1>
+      <h1 class="vd-box-title">热门课程</h1>
     </div>
     <div class="mb-box-body">
       <nz-list [nzDataSource]="hots?.currentData?hots?.currentData:[]" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
@@ -93,7 +160,7 @@
   </div>
   <div class="mb-box-wrapper" style="margin-top: 30px;">
     <div class="mb-box-header">
-      <h1 class="vd-box-title" style="background-image: url('../../assets/development.png')">发展之路</h1>
+      <h1 class="vd-box-title">发展之路</h1>
     </div>
     <div class="mb-box-body">
       <nz-list [nzDataSource]="developList" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
@@ -111,7 +178,7 @@
   <div class="mb-box-wrapper" style="margin-top: 30px;">
     <div class="mb-box-header">
       <h1 class="vd-box-title"
-        style="background-image: url('../../assets/profession.png');background-size: 12px auto;background-position-x: 8px;">
+          style="background-image: url('../../assets/profession.png');background-size: 12px auto;background-position-x: 8px;">
         职业菜单</h1>
     </div>
     <div class="mb-box-body">

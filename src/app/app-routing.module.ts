@@ -14,7 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { TixianComponent } from './tixian/tixian.component';
 import { TixianAlipayComponent } from './tixian-alipay/tixian-alipay.component';
 import { TixianBankCardComponent } from './tixian-bank-card/tixian-bank-card.component';
-
+// li
+// 热门
+import {HotComponent} from './hot/hot.component';
 const routes: Routes = [
   {
     path: '',
@@ -78,6 +80,12 @@ const routes: Routes = [
   {
     path: 'tixianBank',
     component: TixianBankCardComponent
+  },
+
+  // li
+  {
+    path: 'hot',
+    component: HotComponent
   }
 ];
 
