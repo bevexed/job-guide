@@ -18,10 +18,6 @@
 <ng-container *ngIf="httpService.devType">
 
   <!--  导航列表-->
-  <!--  导航列表-->
-  <!--  导航列表-->
-  <!--  导航列表-->
-  <!--  导航列表-->
   <!--todo  后台修改 返回数据-->
   <div class="vd-wrapper">
     <div class="vd-classify-wrapper">
@@ -79,7 +75,6 @@
       <li *ngFor="let item of classifySplit();" [ngClass]="{'checked': selectedCourseName === item.name}"
         (click)="getCourseByName(item.name)"><a>{{item.name}}</a></li>
       <!--<li *ngIf="developmentlist.length > 0" (click)="open()"><a>查看更多</a></li>-->
-          (click)="getCourseByName(item.name)"><a>{{item.name}}</a></li>
       <li *ngIf="developmentlist.length > 12" (click)="open()"><a>查看更多</a></li>
     </ul>
     <!-- <div class="vd-moreClassify" *ngIf="developmentlist.length > 18">

@@ -343,11 +343,6 @@ export class HttpService {
               this.weixinImgUrl = res.data.qrcodeurl;
               this.weixinShow = true;
             }
-          const res = await this.getWeiXinQrcode();
-          console.log(res);
-          if (res.code === 200) {
-            this.weixinImgUrl = res.data.qrcodeurl;
-            this.weixinShow = true;
 
             // 支付 回调
             const orderno = res.data.orderno;
@@ -371,7 +366,6 @@ export class HttpService {
                 }
                 , 1000);
             }
-
           }
         } catch (e) {
           console.log(e);
