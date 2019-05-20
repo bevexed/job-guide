@@ -3,7 +3,7 @@
   width: 100%;
   border-radius: 4px;
   overflow: hidden;
-  background: #fff;
+  //background: #fff;
   padding: 10px;
   cursor: pointer;
 }
@@ -25,13 +25,18 @@
   background-position: 0 0;
   background-size: 100% 100%;
   background-repeat: no-repeat;
+  border-radius: 5px 5px 0 0;
 }
 
 .vd-item h3 {
   line-height: 30px;
-  font-weight: bolder;
-  margin-bottom: 0;
-}
+  font-family: MicrosoftYaHei;
+  font-size: 14px;
+  font-weight: normal;
+  font-stretch: normal;
+  padding: 15px;
+  border-radius: 0 0 5px 5px;
+ }
 
 .vd-item p {
   margin-bottom: 0;
@@ -102,7 +107,13 @@
 .li-hot-desc {
   display: flex;
   justify-content: space-between;
-  :last-child{
+
+  :last-child {
     color: #c10000;
   }
+}
+
+.li-gray {
+  background: rgb(128, 128, 128);
+  color: white;
 }

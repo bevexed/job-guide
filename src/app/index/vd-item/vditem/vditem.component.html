@@ -1,18 +1,22 @@
-<div class="vd-item" [ngClass]="{'mb-item': !devType, 'vd-ie': isIE}" [routerLink]="'../vd/'+data.courseId">
+<div class="vd-item"
+     [ngClass]="{'mb-item': !devType, 'vd-ie': isIE}"
+     [routerLink]="'../vd/'+data.courseId"
+     [style.background-color]="data?.moduleCode !== 'home_page_hot'? 'none' :'white'">
   <div class="vd-tags" *ngIf="!vipTag(data)">
     <nz-tag [nzColor]="'#f50'">VIP</nz-tag>
   </div>
   <div class="vd-imgbox" [ngStyle]="{'background-image': 'url('+ (data?.coverUrl ? data?.coverUrl : data?.imageUrl) +')'}"></div>
   <!-- <img src="data?.coverUrl ? data?.coverUrl : data?.imageUrl" alt=""> -->
   <div class="vd-desc">
-    <h3>{{data?.title}}</h3>
+    <h3 [hidden]="data?.moduleCode === 'home_page_hot'" class="li-gray">{{data?.title}}</h3>
+    <h3 [hidden]="data?.moduleCode !== 'home_page_hot'">{{data?.title}}</h3>
     <div class="li-hot-desc" *ngIf="data?.hot">
       <span>
         30分钟
       </span>
       <span>免费</span>
     </div>
-    <p>{{data?.intro}}</p>
+    <p [hidden]="data?.intro">{{data?.intro}}</p>
   </div>
 
 
