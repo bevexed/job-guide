@@ -1,17 +1,17 @@
-<div class="vd-item"
-     [ngClass]="
+<div [ngClass]="
      {
        'mb-item': !devType,
        'vd-ie': isIE,
        'to-up':data?.moduleCode !== 'home_page_hot',
-       'shadow-box':data?.moduleCode !== 'home_page_hot'
+       'shadow-box':data?.moduleCode !== 'home_page_hot' && index
      }"
      [routerLink]="'../vd/'+data.courseId"
-     [style.background-color]="data?.moduleCode !== 'home_page_hot'? 'none' :'white'">
-  <div class="vd-tags" *ngIf="!vipTag(data)">
+     [style.background-color]="data?.moduleCode !== 'home_page_hot'? 'none' :'white'"
+     class="vd-item">
+  <div *ngIf="!vipTag(data)" class="vd-tags">
     <nz-tag [nzColor]="'#D10000'">VIP</nz-tag>
   </div>
-  <div class="vd-imgbox" [ngStyle]="{'background-image': 'url('+ (data?.coverUrl ? data?.coverUrl : data?.imageUrl) +')'}"></div>
+  <div [ngStyle]="{'background-image': 'url('+ (data?.coverUrl ? data?.coverUrl : data?.imageUrl) +')'}" class="vd-imgbox"></div>
   <!-- <img src="data?.coverUrl ? data?.coverUrl : data?.imageUrl" alt=""> -->
   <div class="vd-desc">
 
@@ -35,7 +35,7 @@
     </div>
 
 
-    <div class="li-hot-desc red" *ngIf="data?.hot" style="margin: 0">
+    <div *ngIf="data?.hot" class="li-hot-desc red" style="margin: 0">
       <span>
         30分钟
       </span>

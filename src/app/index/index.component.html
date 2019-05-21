@@ -5,7 +5,8 @@
              *ngIf="bannerlist.length"
              [nzEnableSwipe]="true">
   <div nz-carousel-content *ngFor="let index of bannerlist"
-       style="cursor: pointer;height: 21vw">
+       style="cursor: pointer;height: 21vw"
+  >
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
       <img [src]="index.imageUrl" style="display: block;width: 100%;">
     </div>

@@ -13,18 +13,18 @@
                padding: 0 18.75vw"
     >
 
-      <div class="logo" (click)="open()"></div>
+      <div (click)="open()" class="logo"></div>
 
 
       <ul class="vd-userarea">
         <!-- <li *ngIf="!httpService.user?.vipFlag" class="vd-vipicon">会员</li> -->
         <ng-container *ngIf="!httpService.user; else logined">
-          <li style="margin-left: 25px;color:#333" (click)="showModal($event)">登录</li>
+          <li (click)="showModal($event)" style="margin-left: 25px;color:#333">登录</li>
           <li>|</li>
           <li routerLink="register" style="color: #333">注册</li>
         </ng-container>
         <ng-template #logined>
-          <li style="color: #333" nz-popover nzTitle="" [nzContent]="contentTemplate" nzTrigger="hover">
+          <li [nzContent]="contentTemplate" nz-popover nzTitle="" nzTrigger="hover" style="color: #333">
 
             用户名：{{httpService.user?.mobile}}</li>
         </ng-template>
@@ -36,31 +36,34 @@
       <!-- 导航 -->
       <!-- 导航 -->
       <ul
+        [nzMode]="'horizontal'"
+        [nzTheme]=""
         class="vd-header-nav"
         nz-menu
-        [nzTheme]=""
-        [nzMode]="'horizontal'"
         style="line-height: 64px;">
-        <li nz-menu-item
+        <li [nzSelected]="activeUrl==='/index'"
+            nz-menu-item
             routerLink="/index"
-            style="outline: none;width: auto;padding: 0 20px; "
-            [nzSelected]="activeUrl==='/index'"
-            routerlinkactive="ant-menu-item-selected">首页</li>
-        <li nz-menu-item
+            routerlinkactive="ant-menu-item-selected"
+            style="outline: none;width: auto;padding: 0 20px; margin-left: 10px"
+        >首页</li>
+        <li [nzSelected]="activeUrl==='/development'"
+            nz-menu-item
             routerLink="/development"
-            style="outline: none;width: auto;padding: 0 20px; "
-            [nzSelected]="activeUrl==='/development'"
-            routerlinkactive="ant-menu-item-selected">发展之路</li>
-        <li nz-menu-item
+            routerlinkactive="ant-menu-item-selected"
+            style="outline: none;width: auto;padding: 0 20px;margin-left: 10px "
+        >发展之路</li>
+        <li [nzSelected]="activeUrl==='/profession'"
+            nz-menu-item
             routerLink="/profession"
-            style="outline: none;width: auto;padding: 0 20px; "
-            [nzSelected]="activeUrl==='/profession'"
-            routerlinkactive="ant-menu-item-selected">职业菜单</li>
-        <li nz-menu-item
+            routerlinkactive="ant-menu-item-selected"
+            style="outline: none;width: auto;padding: 0 20px; margin-left: 10px"
+        >职业菜单</li>
+        <li [nzSelected]="activeUrl==='/profession'"
+            nz-menu-item
             routerLink="/profession"
-            style="outline: none;width: auto;padding: 0 20px; "
-            [nzSelected]="activeUrl==='/profession'"
-            routerlinkactive="ant-menu-item-selected">高考咨询</li>
+            routerlinkactive="ant-menu-item-selected"
+            style="outline: none;width: auto;padding: 0 20px;margin-left: 10px ">高考咨询</li>
       </ul>
     </nz-header>
 
@@ -75,7 +78,7 @@
     <!--广告位-->
 
     <div class="vd-box">
-      <img class="li-ad-img shadow-box" src="../../assets/广告位.png" alt="">
+      <img alt="" class="li-ad-img shadow-box" src="../../assets/广告位.png">
     </div>
 
 
@@ -85,7 +88,7 @@
         <p>现在就去注册，为自己的职业发展做选择</p>
         <span>职场司南，专注于大学生及毕业五年内群体的职业发展</span>
         <br>
-        <button [hidden]="activeUrl !== '/index'" nz-button nzType="primary" nzSize="large">专业的指导意见</button>
+        <button [hidden]="activeUrl !== '/index'" nz-button nzSize="large" nzType="primary">专业的指导意见</button>
       </div>
 
     </div>
@@ -103,7 +106,7 @@
         outline: none;
       }
 
-      .li-footer > .nav > li{
+      .li-footer > .nav > li {
         outline: none;
       }
 
@@ -137,10 +140,10 @@
         </li>
       </ul>
       <p>
-        Copyright © 2018-2019 职场司南 浙ICP备18039212号 &nbsp; &nbsp; <i nz-icon nzType="phone" nzTheme="outline"></i> 0571-85383155
+        Copyright © 2018-2019 职场司南 浙ICP备18039212号 &nbsp; &nbsp; <i nz-icon nzTheme="outline" nzType="phone"></i> 0571-85383155
       </p>
 
-      <img src="../assets/嘻嘻.png" alt="">
+      <img alt="" src="../assets/嘻嘻.png">
     </div>
   </nz-layout>
 </ng-container>
@@ -155,7 +158,7 @@
       <!--[(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">-->
       <!--<i nz-icon nzType="bars" nzTheme="outline"></i>-->
       <!--</ul>-->
-      <img class="daohangIcon" src="../assets/daohang.png" alt="图标" [nzContent]="contentTemplate" nz-popover [(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">
+      <img [(nzVisible)]="popoverVisible" [nzContent]="contentTemplate" alt="图标" class="daohangIcon" nz-popover nzPlacement="bottomRight" nzTrigger="click" src="../assets/daohang.png">
     </nz-header>
     <nz-content style="margin-top:64px;background: #f2f2f2">
       <!-- <nz-carousel [nzEffect]="effect" [nzAutoPlay]="true">
@@ -170,23 +173,23 @@
     <!--移动端底部-->
     <nz-footer class="mb-footer">
       <div class="mb-menu">
-        <span routerLink="/index" (click)="popoverHiding()">首页</span>
+        <span (click)="popoverHiding()" routerLink="/index">首页</span>
         <span>|</span>
-        <span routerLink="/development" (click)="popoverHiding()">发展之路</span>
+        <span (click)="popoverHiding()" routerLink="/development">发展之路</span>
         <span>|</span>
-        <span routerLink="/profession" (click)="popoverHiding()">职业菜单</span>
+        <span (click)="popoverHiding()" routerLink="/profession">职业菜单</span>
         <span>|</span>
         <span>活动中心</span>
         <span>|</span>
-        <span routerLink="/usercenter" (click)="popoverHiding()">个人中心</span>
+        <span (click)="popoverHiding()" routerLink="/usercenter">个人中心</span>
       </div>
       <p>Copyright © 2018-2019 职场司南 浙ICP备18039212号</p>
       <div class="telBox">
-        <img src="../assets/tel.png" alt="电话">
+        <img alt="电话" src="../assets/tel.png">
         <span>0571-85383155</span>
       </div>
       <div class="qrCode">
-        <img src="../assets/qrCode.png" alt="微信公众号二维码">
+        <img alt="微信公众号二维码" src="../assets/qrCode.png">
       </div>
       <p>微信公众号</p>
     </nz-footer>
@@ -195,7 +198,7 @@
 
 <div id="pay-wrapper" style="display: none;"></div>
 <ul class="vd-fixed">
-  <li *ngIf="!httpService.user?.vipFlag" (click)="httpService.openPayModal()">
+  <li (click)="httpService.openPayModal()" *ngIf="!httpService.user?.vipFlag">
     <img src="../assets/user-vip.png">成为会员
   </li>
   <li (click)="call()" style="border-top: 1px solid #eee;">
@@ -203,16 +206,16 @@
   </li>
 </ul>
 <!-- 登录弹窗 -->
-<nz-modal [(nzVisible)]="httpService.loginModal" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320"
-          [nzBodyStyle]="{padding: 0}" (nzOnCancel)="closeModal()">
+<nz-modal (nzOnCancel)="closeModal()" [(nzVisible)]="httpService.loginModal" [nzBodyStyle]="{padding: 0}" [nzFooter]="null" [nzTitle]=""
+          [nzWidth]="320" nzClassName="loginModal">
   <div class="vd-login">
     <h1>登录</h1>
     <br/>
-    <form nz-form [formGroup]="validateForm" class="login-form" style="margin: 0 auto;" (ngSubmit)="login()">
+    <form (ngSubmit)="login()" [formGroup]="validateForm" class="login-form" nz-form style="margin: 0 auto;">
       <nz-form-item>
         <nz-form-control>
           <nz-input-group [nzPrefix]="prefixUser">
-            <input type="text" nz-input formControlName="username" placeholder="请输入您的手机号"/>
+            <input formControlName="username" nz-input placeholder="请输入您的手机号" type="text"/>
           </nz-input-group>
           <nz-form-explain *ngIf="validateForm.get('username')?.dirty && validateForm.get('username')?.errors">
             请输入您的手机号!
@@ -222,7 +225,7 @@
       <nz-form-item>
         <nz-form-control>
           <nz-input-group [nzPrefix]="prefixLock">
-            <input type="password" nz-input formControlName="password" placeholder="请输入您的密码"/>
+            <input formControlName="password" nz-input placeholder="请输入您的密码" type="password"/>
           </nz-input-group>
           <nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors">
             请输入您的密码
@@ -231,9 +234,9 @@
       </nz-form-item>
       <nz-form-item style="padding-bottom: 0;">
         <nz-form-control>
-          <button nz-button class="login-form-button" [nzType]="'primary'" [disabled]="validateForm.invalid">登录</button>
-          <a routerLink="/register" (click)="closeModal()">去注册</a>
-          <a class="login-form-forgot" routerLink="/passport" (click)="closeModal()">忘记密码</a>
+          <button [disabled]="validateForm.invalid" [nzType]="'primary'" class="login-form-button" nz-button>登录</button>
+          <a (click)="closeModal()" routerLink="/register">去注册</a>
+          <a (click)="closeModal()" class="login-form-forgot" routerLink="/passport">忘记密码</a>
         </nz-form-control>
       </nz-form-item>
     </form>
@@ -244,27 +247,27 @@
 <!-- 个人中心 -->
 <ng-template #contentTemplate>
   <ng-container *ngIf="!httpService.devType">
-    <p class="vd-popoveritem mb-navlist" routerLink="/index" (click)="popoverHiding()"
+    <p (click)="popoverHiding()" class="vd-popoveritem mb-navlist" routerLink="/index"
        style="border-bottom: 1px solid #eee;"><a>首页</a></p>
-    <p class="vd-popoveritem mb-navlist" routerLink="/development" (click)="popoverHiding()"
+    <p (click)="popoverHiding()" class="vd-popoveritem mb-navlist" routerLink="/development"
        style="border-bottom: 1px solid #eee;"><a>发展之路</a></p>
-    <p class="vd-popoveritem mb-navlist" routerLink="/profession" (click)="popoverHiding()"
+    <p (click)="popoverHiding()" class="vd-popoveritem mb-navlist" routerLink="/profession"
        style="border-bottom: 1px solid #eee;"><a>职业菜单</a></p>
   </ng-container>
   <ng-container *ngIf="httpService.user">
-    <p class="vd-popoveritem" [ngClass]="{'mb-navlist': !httpService.devType}" (click)="popoverHiding()"
+    <p (click)="popoverHiding()" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"
        style="border-bottom: 1px solid #eee;"><a routerLink="/usercenter">个人中心</a></p>
-    <p class="vd-popoveritem" [ngClass]="{'mb-navlist': !httpService.devType}" (click)="popoverHiding()"
+    <p (click)="popoverHiding()" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"
        style="border-bottom: 1px solid #eee;"><a routerLink="/passport">修改密码</a></p>
-    <p class="vd-popoveritem" [ngClass]="{'mb-navlist': !httpService.devType}" (click)="popoverHiding()"><a
+    <p (click)="popoverHiding()" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"><a
       (click)="logout()">退出登录</a></p>
   </ng-container>
   <ng-container *ngIf="!httpService.devType && !httpService.user">
     <!--<p class="vd-popoveritem mb-navlist" style="border-bottom: 1px solid #eee;"-->
     <!--(click)="popoverHiding();showModal($event)">登录</p>-->
-    <p class="vd-popoveritem mb-navlist" style="border-bottom: 1px solid #eee;" routerLink="/login" (click)="popoverHiding()"><a
+    <p (click)="popoverHiding()" class="vd-popoveritem mb-navlist" routerLink="/login" style="border-bottom: 1px solid #eee;"><a
       routerLink="/passport">登录</a></p>
-    <p class="vd-popoveritem mb-navlist" routerLink="/register" (click)="popoverHiding()"><a
+    <p (click)="popoverHiding()" class="vd-popoveritem mb-navlist" routerLink="/register"><a
       routerLink="/passport">注册</a></p>
   </ng-container>
 </ng-template>
@@ -272,35 +275,35 @@
 
 <!-- 充值弹窗 -->
 <nz-modal
+  (nzOnCancel)="closeVipModal()"
   [(nzVisible)]="httpService.vipModal"
-  [nzTitle]=""
+  [nzBodyStyle]="{padding: 0}"
   [nzFooter]="null"
-  nzClassName="loginModal"
-  [nzWidth]="360"
-  [nzBodyStyle]="{padding: 0}" (nzOnCancel)="closeVipModal()">
+  [nzTitle]=""
+  [nzWidth]="360" nzClassName="loginModal">
   <div class="vd-login li-login">
     <h1>加入职场司南</h1>
     <br/>
     <p class="price"><span>{{httpService.price}}</span>&nbsp; 元 &nbsp; /24个月</p>
 
     <div class="pay-ways">
-      <div class="pay-way" [ngClass]="{'selected':payType === '支付宝'}" (click)="changePayType('支付宝')">
-        <img src="../assets/支付宝.svg" alt="">
+      <div (click)="changePayType('支付宝')" [ngClass]="{'selected':payType === '支付宝'}" class="pay-way">
+        <img alt="" src="../assets/支付宝.svg">
         <span>支付宝</span>
       </div>
 
-      <div [hidden]="!httpService.devType" class="pay-way" [ngClass]="{'selected':payType === '微信'}" (click)="changePayType('微信')">
-        <img src="../assets/微信.svg" alt="">
+      <div (click)="changePayType('微信')" [hidden]="!httpService.devType" [ngClass]="{'selected':payType === '微信'}" class="pay-way">
+        <img alt="" src="../assets/微信.svg">
         <span>微信</span>
       </div>
 
-      <div [hidden]="httpService.devType" class="pay-way" [ngClass]="{'selected':payType === 'wechat'}" (click)="changePayType('wechat')">
-        <img src="../assets/微信.svg" alt="">
+      <div (click)="changePayType('wechat')" [hidden]="httpService.devType" [ngClass]="{'selected':payType === 'wechat'}" class="pay-way">
+        <img alt="" src="../assets/微信.svg">
         <span>微信</span>
       </div>
     </div>
 
-    <div class="aui-flex clearfix selected" *ngIf="httpService.coupon">
+    <div *ngIf="httpService.coupon" class="aui-flex clearfix selected">
       <div class="aui-price-nub">
         <div class="aui-digit">
           <h2>{{httpService.coupon.price}}  <span>元</span></h2>
@@ -309,13 +312,13 @@
       <div class="aui-flex-box">
         <h2>用户分享专属优惠券</h2>
         <div class="checkicon">
-          <i nz-icon [nzType]="'check-circle'" [nzTheme]="'twotone'" [nzTwotoneColor]="'#ff5758'"></i>
+          <i [nzTheme]="'twotone'" [nzTwotoneColor]="'#ff5758'" [nzType]="'check-circle'" nz-icon></i>
         </div>
       </div>
     </div>
 
     <div class="promoCode" style="margin-bottom: 10px;width: 100%">
-      <input #input="ngModel" style="width: 100%;padding: 10px" [ngClass]="{'error-border': getPromoCodeStatus(input)}" type="text" [(ngModel)]="promoCode" (input)="inputPromoCode()" (change)="checkPromoCode()" maxlength="16" placeholder="请输入优惠码"/>
+      <input #input="ngModel" (change)="checkPromoCode()" (input)="inputPromoCode()" [(ngModel)]="promoCode" [ngClass]="{'error-border': getPromoCodeStatus(input)}" maxlength="16" placeholder="请输入优惠码" style="width: 100%;padding: 10px" type="text"/>
     </div>
 
     <div class="price-detail" style="width: 100%">
@@ -324,47 +327,47 @@
       <p *ngIf="paybtn && promoCode">优惠码：<font>- ￥ <span id="price">{{promoCodePrice}}</span></font></p>
       <p>合计：<font>￥ <span id="price">{{getPrice()}}</span></font></p>
     </div>
-    <button nz-button nzType="primary" [disabled]="!paybtn" (click)="httpService.pay(payType,promoCode, httpService.coupon)" nzBlock>去支付</button>
+    <button (click)="httpService.pay(payType,promoCode, httpService.coupon)" [disabled]="!paybtn" nz-button nzBlock nzType="primary">去支付</button>
   </div>
 </nz-modal>
 <!-- <nz-modal [(nzVisible)]="shareModal" [nzStyle]="{ top: '50%', 'left': '50%', 'margin': '0', 'transform': 'translate(-50% -50%)', 'padding': '0' }" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320" -->
 
 <!--// 分享 弹窗-->
-<nz-modal [(nzVisible)]="shareModal"
+<nz-modal (nzOnCancel)="closeShareModal()"
+          [(nzVisible)]="shareModal"
+          [nzBodyStyle]="{padding: '30px'}" [nzFooter]="null"
           [nzStyle]="{'margin': '0 auto'}"
-          [nzTitle]="" [nzFooter]="null"
-          nzClassName="loginModal"
+          [nzTitle]=""
           [nzWidth]="305"
-          [nzBodyStyle]="{padding: '30px'}"
-          (nzOnCancel)="closeShareModal()">
+          nzClassName="loginModal">
   <!-- <div class="bg-share"> -->
   <!--
   <a class="load_btn" (click)="loadSharePic()">
     <div class="download_btn"></div>
     保存到相册
   </a> -->
-  <img id="qrcode" [src]="qrcode" alt="">
+  <img [src]="qrcode" alt="" id="qrcode">
   <p style="text-align: center;">邀请好友成功，即可获得现金奖励</p>
-  <button id="load_btn" (click)="loadSharePic()" nz-button nzType="default" nzShape="round">保存二维码</button>
+  <button (click)="loadSharePic()" id="load_btn" nz-button nzShape="round" nzType="default">保存二维码</button>
   <!-- </div> -->
 </nz-modal>
 
 
 <!--// li 微信支付 扫码弹窗-->
-<nz-modal [(nzVisible)]="httpService.weixinShow"
+<nz-modal (nzOnCancel)="httpService.weixinShow = false"
+          [(nzVisible)]="httpService.weixinShow"
+          [nzBodyStyle]="{padding: '30px'}" [nzFooter]="null"
           [nzStyle]="{'margin': '0 auto'}"
-          [nzTitle]="" [nzFooter]="null"
-          nzClassName="loginModal"
+          [nzTitle]=""
           [nzWidth]="305"
-          [nzBodyStyle]="{padding: '30px'}"
-          (nzOnCancel)="httpService.weixinShow = false">
-  <img id="qrcode" [src]="httpService.weixinImgUrl" alt="">
+          nzClassName="loginModal">
+  <img [src]="httpService.weixinImgUrl" alt="" id="qrcode">
   <p style="text-align: center;">扫码支付</p>
   <!-- </div> -->
 </nz-modal>
 
 
 <div style="display: none;">
-  <img id="code_bg" style="display: none;" src="../assets/invite_bg.jpg" alt="">
-  <canvas id="can1" width="1024" height="1818"></canvas>
+  <img alt="" id="code_bg" src="../assets/invite_bg.jpg" style="display: none;">
+  <canvas height="1818" id="can1" width="1024"></canvas>
 </div>

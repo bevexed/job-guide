@@ -1,7 +1,8 @@
-<nz-carousel [nzEffect]="effect" [nzDots]="banner.length>1" [nzAutoPlay]="true" [nzAutoPlaySpeed]="7000"
-             *ngIf="banner.length">
-  <div nz-carousel-content *ngFor="let index of banner"
-       style="cursor: pointer;">
+<nz-carousel *ngIf="banner.length" [nzAutoPlaySpeed]="7000" [nzAutoPlay]="true" [nzDots]="banner.length>1"
+             [nzEffect]="effect">
+  <div *ngFor="let index of banner" nz-carousel-content
+       style="cursor: pointer;height: 21vw"
+  >
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
       <img [src]="index.imageUrl" style="display: block;width: 100%;">
     </div>
@@ -21,25 +22,29 @@
   <!--todo  后台修改 返回数据-->
   <div class="vd-wrapper">
     <div class="vd-classify-wrapper">
-      <div class="vd-classify" #vdwrapper>
-        <span *ngFor="let item of classifySplit();" [ngClass]="{'checked': selectedCourseName === item.name}"
-              (click)="getCourseByName(item.name)" [attr.title]="item.name">{{item.name}}</span>
-        <span class="load-more" (click)="classifySlice=!classifySlice" *ngIf="developmentlist.length > rowCount*2"><a>{{classifySlice ? '查看更多' : '收起'}}</a></span>
+      <h1>发展之路</h1>
+      <div #vdwrapper class="vd-classify">
+        <span
+          (click)="getCourseByName(item.name)"
+          *ngFor="let item of classifySplit();"
+          [attr.title]="item.name"
+          [ngClass]="{'checked': selectedCourseName === item.name}">{{item.name}}</span>
+        <span (click)="classifySlice=!classifySlice" *ngIf="developmentlist.length > rowCount*2" class="load-more"><a>{{classifySlice ? '查看更多' : '收起'}}</a></span>
       </div>
     </div>
 
 
-    <div class="vd-box">
+    <div class="vd-box" style="padding-top: 1vw !important;">
       <div class="vd-box-header">
-        <div class="vd-pagination" *ngIf="courseList?.data.length > courseList?.size">
-          <nz-pagination [(nzPageIndex)]="courseList.current" [nzPageSize]="courseList.size"
-                         [nzTotal]="courseList.data.length" (nzPageIndexChange)="listFilter()" nzSimple></nz-pagination>
+        <div *ngIf="courseList?.data.length > courseList?.size" class="vd-pagination">
+          <nz-pagination (nzPageIndexChange)="listFilter()" [(nzPageIndex)]="courseList.current"
+                         [nzPageSize]="courseList.size" [nzTotal]="courseList.data.length" nzSimple></nz-pagination>
         </div>
       </div>
 
 
-      <nz-list [nzDataSource]="courseList?.currentData" [nzRenderItem]="item"
-               [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
+      <nz-list [nzDataSource]="courseList?.currentData" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }"
+               [nzRenderItem]="item">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
@@ -51,7 +56,7 @@
 
       <div class="li-loading-more">
 
-        <button nz-button nzType="primary" nzSize="large">加载更多</button>
+        <button nz-button nzSize="large" nzType="primary">加载更多</button>
       </div>
 
     </div>
@@ -72,10 +77,10 @@
   </div>
   <div class="vd-classify-wrapper mb-classify-wrapper">
     <ul class="mb-classify vd-classify">
-      <li *ngFor="let item of classifySplit();" [ngClass]="{'checked': selectedCourseName === item.name}"
-        (click)="getCourseByName(item.name)"><a>{{item.name}}</a></li>
+      <li (click)="getCourseByName(item.name)" *ngFor="let item of classifySplit();"
+          [ngClass]="{'checked': selectedCourseName === item.name}"><a>{{item.name}}</a></li>
       <!--<li *ngIf="developmentlist.length > 0" (click)="open()"><a>查看更多</a></li>-->
-      <li *ngIf="developmentlist.length > 12" (click)="open()"><a>查看更多</a></li>
+      <li (click)="open()" *ngIf="developmentlist.length > 12"><a>查看更多</a></li>
     </ul>
     <!-- <div class="vd-moreClassify" *ngIf="developmentlist.length > 18">
       <a (click)="open()">更多<i nz-icon nzType="down-square" nzTheme="outline"></i></a>
@@ -84,7 +89,7 @@
 
   <div class="mb-box-wrapper">
     <div class="mb-box-body">
-      <nz-list [nzDataSource]="courseList?.currentData" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
+      <nz-list [nzDataSource]="courseList?.currentData" [nzGrid]="{ gutter: 10, xs: 12 }" [nzRenderItem]="item">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
@@ -93,18 +98,18 @@
           </nz-list-item>
         </ng-template>
       </nz-list>
-      <button nz-button (click)="mbPagination()" nzType="default"
-              *ngIf="courseList?.currentData.length < courseList.data.length" nzBlock style="margin-top: 20px;">查看更多
+      <button (click)="mbPagination()" *ngIf="courseList?.currentData.length < courseList.data.length" nz-button
+              nzBlock nzType="default" style="margin-top: 20px;">查看更多
       </button>
-      <button nz-button (click)="mbPagination()" style="background: #d10000;width: 110px;height: 30px;color: #fff;margin: 42px 133px" *ngIf="courseList?.currentData.length < courseList.data.length">查看更多</button>
+      <button (click)="mbPagination()" *ngIf="courseList?.currentData.length < courseList.data.length" nz-button style="background: #d10000;width: 110px;height: 30px;color: #fff;margin: 42px 133px">查看更多</button>
       <div style="height: 40px"></div>
     </div>
   </div>
-  <div class="mb-fxied" *ngIf="visible">
-    <h1>课程分类<i nz-icon nzType="close" nzTheme="outline" style="float: right;" (click)="close()"></i></h1>
+  <div *ngIf="visible" class="mb-fxied">
+    <h1>课程分类<i (click)="close()" nz-icon nzTheme="outline" nzType="close" style="float: right;"></i></h1>
     <ul class="mb-classify vd-classify" style="max-height: initial;">
-      <li *ngFor="let item of developmentlist;" [ngClass]="{'checked': selectedCourseName === item.name}"
-          (click)="getCourseByName(item.name)"><a>{{item.name}}</a></li>
+      <li (click)="getCourseByName(item.name)" *ngFor="let item of developmentlist;"
+          [ngClass]="{'checked': selectedCourseName === item.name}"><a>{{item.name}}</a></li>
     </ul>
   </div>
 </ng-container>
