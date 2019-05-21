@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
 
   getBtnText() {
     if (!this.btn_clicked) {
-      return '获取验证码';
+      return '获取短信验证码';
     } else {
       return '倒计时'+ this.time +'s';
     }

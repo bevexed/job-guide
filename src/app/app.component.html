@@ -5,12 +5,13 @@
     <!--    头部-->
     <!--    头部-->
     <!--    头部-->
-    <nz-header class="vd-header"
-               style="
-               position:relative;
-               width:100%;
-               z-index: 100;
-               padding: 0 18.75vw"
+    <nz-header
+      [hidden]="activeUrl==='/register'"
+      class="vd-header"
+      style="position:relative;
+             width:100%;
+             z-index: 100;
+             padding: 0 18.75vw"
     >
 
       <div (click)="open()" class="logo"></div>
@@ -73,8 +74,6 @@
     </nz-content>
 
 
-
-
     <style>
       .li-footer > .nav > li:hover {
         color: #fff;
@@ -94,7 +93,7 @@
 
     </style>
 
-    <div class="li-footer">
+    <div [hidden]="activeUrl==='/register'" class="li-footer">
       <ul class="nav">
         <li
           routerLink="/index"
