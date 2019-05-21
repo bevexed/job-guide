@@ -7,7 +7,7 @@ import {ReplaySubject} from 'rxjs';
 import {Router} from '@angular/router';
 import {PlatformLocation} from '@angular/common';
 
-declare var WeixinJSBridge: any;
+declare var WeixinJSBridge: Boolean;
 
 export enum BANNER_TYPELIST {
   develop_banner = 0,
@@ -71,6 +71,7 @@ export class HttpService {
       });
     }
   }
+
   /** 浏览器检测 */
   public browserRedirect() {
     const sUserAgent = navigator.userAgent.toLowerCase();
@@ -82,8 +83,13 @@ export class HttpService {
     const bIsAndroid = sUserAgent.match(/android/i);
     const bIsCE = sUserAgent.match(/windows ce/i);
     const bIsWM = sUserAgent.match(/windows mobile/i);
-    const isWeixin = sUserAgent.match(/MicroMessenger/i);
-    this.isWeixin = isWeixin;
+    const isWeixinF = sUserAgent.match(/MicroMessenger/i);
+    if (isWeixinF == 'micromessenger') {
+      this.isWeixin = true;
+    } else {
+      this.isWeixin = false;
+    }
+    console.log(this.isWeixin);
     if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM || isWeixin) { // 移动设备
       this.devType = false;
       document.body.style.cssText = 'min-width: initial;';
@@ -211,8 +217,8 @@ export class HttpService {
 
   // 微信支付
   public wxpay(userId: string, promoCode: string, userCouponId: string, openId: string, payChannel: any) {
-    const url = this.baseUrl + `/wxpay/gzhOrder?userid=${userId}&promoCode=${promoCode}
-    &userCouponId=${userCouponId}&openId=${openId}&payChannel=${payChannel}`;
+    const url = this.baseUrl + `/wxpay/gzhOrder?promoCode=${promoCode}
+    &userCouponId=${userCouponId}&openId=${openId}`;
     return this.httpGet(url);
   }
 
@@ -420,15 +426,58 @@ export class HttpService {
               url = url + '&userCouponId=' + userCouponId.id;
             }
           }
-          const res = await this.httpGet(url);
-          if (res.code === 200) {
-            const wrapper = document.getElementById('pay-wrapper');
-            wrapper.innerHTML = '';
-            wrapper.innerHTML = res.data;
-            document.forms['punchout_form'].submit();
-          } else {
-            this.message.error(res.message);
+          if (res.openId) {
+            if (url.indexOf('?') === -1) {
+              url = url + '?openId=' + res.openId;
+            } else {
+              url = url + '&openId=' + res.openId;
+            }
           }
+          const respone = await this.httpGet(url);
+          console.log(respone);
+          // WeixinJSBridge.invoke('getBrandIAPPayRequest', {
+          //                   'appId' : 'wxf8b4f85f3a794e77', // 公众号名称，由商户传入
+          //                   'timeStamp' : '189026618', // 时间戳 这里随意使用了一个值
+          //                   'nonceStr' : 'adssdasssd13d', // 随机串
+          //                    'package' : 'bankType=CITIC_CREDIT&bankName=%e4%b8%ad%e4%bf%a1%e9%93%b6%e8%a1%8c&sign' +
+          //                      '=CF8922F49431FFE8A1834D0B32B25CE3',
+          //                   // 扩展字段，由商户传入
+          //                  'signType': 'SHA1', // 微信签名方式:sha1
+          //                   'paySign': '1e6f13f78ca0ec43fbb80899087f77568af66987' //微信签名
+          //                 },
+          //                 function(e) {
+          //                        alert(e.err_msg);
+          //                    });
+          // wx.config({
+          //   debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数，可以在pc端打开，参数信息会通过log打出，仅在pc端时才会打印。
+          //   appId: '', // 必填，公众号的唯一标识
+          //   timestamp: , // 必填，生成签名的时间戳
+          //   nonceStr: '', // 必填，生成签名的随机串
+          //   signature: '', // 必填，签名
+          //   jsApiList: [
+          //     'chooseWXPay'
+          //   ] // 必填，需要使用的JS接口列表
+          // });
+  //         wx.ready({
+  //           wx.chooseWXPay({
+  //             timestamp: 0, // 支付签名时间戳，注意微信jssdk中的所有使用timestamp字段均为小写。但最新版的支付后台生成签名使用的timeStamp字段名需大写其中的S字符
+  //             nonceStr: '', // 支付签名随机串，不长于 32 位
+  //             package: '', // 统一支付接口返回的prepay_id参数值，提交格式如：prepay_id=\*\*\*）
+  //             signType: '', // 签名方式，默认为'SHA1'，使用新版支付需传入'MD5'
+  //             paySign: '', // 支付签名
+  //             success: function (response) {
+  // // 支付成功后的回调函数
+  //             }
+  //           })
+  //         })
+          // if (res.code === 200) {
+          //   const wrapper = document.getElementById('pay-wrappers');
+          //   wrapper.innerHTML = '';
+          //   wrapper.innerHTML = res.data;
+          //   document.forms['punchout_form'].submit();
+          // } else {
+          //   this.message.error(res.message);
+          // }
 
         }
         break;
