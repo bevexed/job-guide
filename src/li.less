@@ -21,6 +21,9 @@
 }
 
 .vd-box-title {
+  padding: 0 !important;
+  margin: 0 !important;
+
   &:hover {
     color: #c10000;
     cursor: pointer;
@@ -29,6 +32,33 @@
 
 .shadow-box {
   box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .15);
+}
+
+.li-select {
+  position: relative;
+
+  &:hover {
+    color: red;
+    cursor: pointer;
+  }
+
+  &-active {
+    color: red;
+
+    &:after {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 2em;
+      content: '';
+      width: 0;
+      height: 0;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #D10000 transparent transparent transparent; /*灰 透明 透明 */
+      margin: auto;
+    }
+  }
 }
 
 

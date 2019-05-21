@@ -23,7 +23,11 @@
   <div class="vd-wrapper">
     <div class="vd-classify-wrapper">
       <h1>发展之路</h1>
-      <div #vdwrapper class="vd-classify">
+      <div
+        #vdwrapper
+        class="vd-classify"
+        style="background: white"
+      >
         <span
           (click)="getCourseByName(item.name)"
           *ngFor="let item of classifySplit();"
@@ -60,6 +64,16 @@
       </div>
 
     </div>
+
+
+    <!--广告位-->
+    <!--广告位-->
+    <!--广告位-->
+
+    <div class="vd-box" style="background: none">
+      <img alt="" class="li-ad-img shadow-box" src="../../assets/广告位.png">
+    </div>
+
   </div>
 </ng-container>
 
@@ -112,4 +126,6 @@
           [ngClass]="{'checked': selectedCourseName === item.name}"><a>{{item.name}}</a></li>
     </ul>
   </div>
+
+
 </ng-container>
