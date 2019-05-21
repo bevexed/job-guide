@@ -1,7 +1,21 @@
 <ng-container *ngIf="httpService.devType">
   <nz-layout class="layout">
-    <nz-header class="vd-header" style="position:relative; width:100%;z-index: 100;">
+
+    <!--    头部-->
+    <!--    头部-->
+    <!--    头部-->
+    <!--    头部-->
+    <nz-header class="vd-header"
+               style="
+               position:relative;
+               width:100%;
+               z-index: 100;
+               padding: 0 18.75vw"
+    >
+
       <div class="logo" (click)="open()"></div>
+
+
       <ul class="vd-userarea">
         <!-- <li *ngIf="!httpService.user?.vipFlag" class="vd-vipicon">会员</li> -->
         <ng-container *ngIf="!httpService.user; else logined">
@@ -29,22 +43,22 @@
         style="line-height: 64px;">
         <li nz-menu-item
             routerLink="/index"
-            style="outline: none;width: 140px;"
+            style="outline: none;width: auto;padding: 0 20px; "
             [nzSelected]="activeUrl==='/index'"
             routerlinkactive="ant-menu-item-selected">首页</li>
         <li nz-menu-item
             routerLink="/development"
-            style="outline: none;width: 140px;"
+            style="outline: none;width: auto;padding: 0 20px; "
             [nzSelected]="activeUrl==='/development'"
             routerlinkactive="ant-menu-item-selected">发展之路</li>
         <li nz-menu-item
             routerLink="/profession"
-            style="outline: none;width: 140px;"
+            style="outline: none;width: auto;padding: 0 20px; "
             [nzSelected]="activeUrl==='/profession'"
             routerlinkactive="ant-menu-item-selected">职业菜单</li>
         <li nz-menu-item
             routerLink="/profession"
-            style="outline: none;width: 140px;"
+            style="outline: none;width: auto;padding: 0 20px; "
             [nzSelected]="activeUrl==='/profession'"
             routerlinkactive="ant-menu-item-selected">高考咨询</li>
       </ul>
@@ -57,17 +71,10 @@
 
 
     <!--广告位-->
-    <ng-container>
-      <div class="vd-wrapper">
-        <div class="vd-box">
-          <div class="vd-box-header li-ad-padding">
+    <!--广告位-->
+    <!--广告位-->
 
-          </div>
-        </div>
-      </div>
-    </ng-container>
-
-    <div class="vd-divilier2">
+    <div class="vd-box">
       <img class="li-ad-img" src="../../assets/广告位.png" alt="">
     </div>
 

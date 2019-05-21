@@ -1,7 +1,11 @@
-<nz-carousel [nzEffect]="effect" [nzDots]="bannerlist.length>1" [nzAutoPlay]="true" [nzAutoPlaySpeed]="7000"
-             *ngIf="bannerlist.length" [nzEnableSwipe]="true">
+<nz-carousel [nzEffect]="effect"
+             [nzDots]="bannerlist.length>1"
+             [nzAutoPlay]="true"
+             [nzAutoPlaySpeed]="7000"
+             *ngIf="bannerlist.length"
+             [nzEnableSwipe]="true">
   <div nz-carousel-content *ngFor="let index of bannerlist"
-       style="cursor: pointer;">
+       style="cursor: pointer;height: 21vw">
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
       <img [src]="index.imageUrl" style="display: block;width: 100%;">
     </div>
@@ -13,6 +17,8 @@
     </div>
   </div>
 </nz-carousel>
+
+
 <ng-container *ngIf="httpService.devType">
   <!--  热门视频    -->
   <div class="vd-wrapper">
@@ -25,7 +31,11 @@
         </div>
       </div>
 
-      <nz-list [nzDataSource]="hots?.currentData" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
+      <nz-list
+        [nzDataSource]="hots?.currentData"
+        [nzRenderItem]="item"
+        [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }"
+      >
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>

@@ -74,17 +74,13 @@
 </ng-container>
 
 <div class="vd-tabwrapper">
-  <nz-tabset>
-    <nz-tab nzTitle="相关视频">
-      <!--      <nz-list [nzDataSource]="hots" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, xs: 6, sm: 6, md: 6, lg: 6, xl: 6 }">-->
-      <!--        <ng-template #item let-item>-->
-      <!--          <nz-list-item [nzContent]="nzContent">-->
-      <!--            <ng-template #nzContent>-->
-      <!--              <app-vditem [data]="item"></app-vditem>-->
-      <!--            </ng-template>-->
-      <!--          </nz-list-item>-->
-      <!--        </ng-template>-->
-      <!--      </nz-list>-->
-    </nz-tab>
-  </nz-tabset>
+  <nz-list [nzDataSource]="hots?.currentData" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
+    <ng-template #item let-item>
+      <nz-list-item [nzContent]="nzContent">
+        <ng-template #nzContent>
+          <app-vditem [data]="item"></app-vditem>
+        </ng-template>
+      </nz-list-item>
+    </ng-template>
+  </nz-list>
 </div>
