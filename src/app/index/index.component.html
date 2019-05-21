@@ -18,6 +18,12 @@
   </div>
 </nz-carousel>
 
+<style>
+  .hover-red:hover {
+    color: #D10000 !important;
+    cursor: pointer;
+  }
+</style>
 
 <ng-container *ngIf="httpService.devType">
   <!--  热门视频    -->
@@ -34,7 +40,7 @@
       <nz-list
         [nzDataSource]="hots?.currentData"
         [nzRenderItem]="item"
-        [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }"
+        [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6  }"
       >
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
@@ -101,6 +107,10 @@
     </div>
 
     <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
     <div class="vd-box" style="padding-top: 50px">
       <div class="vd-box-header">
         <h1 class="vd-box-title">高考资讯 </h1>
@@ -108,6 +118,7 @@
           <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
       </div>
+
 
       <div class="li-gao-kao">
         <div class="item" *ngFor="let item of [1123123213,2123213213123,3123213213]">
@@ -117,7 +128,7 @@
             <h6>招考政策</h6>
 
             <ul *ngFor="let news of [1123213213213213,2123213213213,1232131231233,4123123,5123123123123]">
-              <li><span></span> {{news}}</li>
+              <li class="hover-red"><span></span> {{news}}</li>
             </ul>
           </div>
         </div>
@@ -125,6 +136,7 @@
     </div>
   </div>
 </ng-container>
+
 
 
 <!--手机端 ??? -->

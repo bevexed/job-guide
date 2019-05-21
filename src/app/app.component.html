@@ -75,7 +75,7 @@
     <!--广告位-->
 
     <div class="vd-box">
-      <img class="li-ad-img" src="../../assets/广告位.png" alt="">
+      <img class="li-ad-img shadow-box" src="../../assets/广告位.png" alt="">
     </div>
 
 
@@ -90,21 +90,42 @@
 
     </div>
 
+    <style>
+      .li-footer > .nav > li:hover {
+        color: #fff;
+        cursor: pointer;
+      }
+
+      .li-footer > .nav > li:active {
+        color: #fff;
+        cursor: pointer;
+        border: none;
+        outline: none;
+      }
+
+      .li-footer > .nav > li{
+        outline: none;
+      }
+
+    </style>
 
     <div class="li-footer">
       <ul class="nav">
         <li
           routerLink="/index"
+          routerlinkactive="ant-menu-item-selected"
         >
           首页
         </li>
         <li
           routerLink="/development"
+          routerlinkactive="ant-menu-item-selected"
         >
           发展之路
         </li>
         <li
           routerLink="/profession"
+          routerlinkactive="ant-menu-item-selected"
         >
           职业菜单
         </li>
@@ -116,7 +137,7 @@
         </li>
       </ul>
       <p>
-        Copyright © 2018-2019 职场司南 浙ICP备18039212号 &nbsp; &nbsp; <i nz-icon nzType="phone" nzTheme="outline"></i>
+        Copyright © 2018-2019 职场司南 浙ICP备18039212号 &nbsp; &nbsp; <i nz-icon nzType="phone" nzTheme="outline"></i> 0571-85383155
       </p>
 
       <img src="../assets/嘻嘻.png" alt="">
