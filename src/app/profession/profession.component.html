@@ -34,7 +34,7 @@
 
 
     <div class="vd-box" style="background: #f2f2f2;padding-top: 2vw !important;">
-      <div class="vd-box-header" style="margin-bottom: 35px">
+      <div class="vd-box-header" style="margin-bottom: 20px">
         <ul style="display: flex; justify-content: space-between; width: 350px">
           <li [ngClass]="{'li-select-active':menuSelect === 0}" class="li-select" (click)="changSelect(0)">该专业可从事岗位</li>
           <li [ngClass]="{'li-select-active':menuSelect === 1}" class="li-select" (click)="changSelect(1)">跨专业可从事岗位</li>
@@ -42,7 +42,7 @@
         </ul>
 
       </div>
-      <nz-list [nzDataSource]="professionList?.currentData" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }"
+      <nz-list [nzDataSource]="showData?.currentData" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }"
                [nzRenderItem]="item">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">

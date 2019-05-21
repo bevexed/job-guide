@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {BANNER_TYPELIST, HttpService} from '../http.service';
 import {videos} from '../index/index.component';
 
@@ -7,11 +7,10 @@ import {videos} from '../index/index.component';
   templateUrl: './profession.component.html',
   styleUrls: ['../development/development.component.less', '../index/index.component.less']
 })
-export class ProfessionComponent implements OnInit, AfterViewInit {
-
-
+export class ProfessionComponent implements OnInit, AfterViewInit, OnDestroy {
   effect = 'scrollx';
   public menuSelect = 0;
+  public showData: any;
   public classifySlice = true;
   public visible = false;
   public banner: any[] = [];
@@ -53,6 +52,13 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
 
   public changSelect(num: number): void {
     this.menuSelect = num;
+    if (num === 0) {
+      this.showData = this.professionList;
+    } else if (num === 1) {
+      this.showData = this.crossList;
+    } else if (num === 2) {
+      this.showData = this.unlimitedList;
+    }
   }
 
   ngOnInit() {
@@ -130,19 +136,20 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
     this.professionList = {
       data: res.data.canList,
       current: 1,
-      size: 4,
+      size: 12,
       currentData: []
     };
+    this.showData = this.professionList;
     this.crossList = {
       data: res.data.crossList,
       current: 1,
-      size: 4,
+      size: 12,
       currentData: []
     };
     this.unlimitedList = {
       data: res.data.unlimitedList,
       current: 1,
-      size: 8,
+      size: 12,
       currentData: []
     };
     for (const key in this.blockType) {
