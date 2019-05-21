@@ -209,6 +209,7 @@ export class HttpService {
     const url = this.baseUrl + '/user/change/password';
     return this.httpPost(url, data);
   }
+
   // 获取openid
   public getOpenId(code: any): Promise<any> {
     const url = this.baseUrl + '/wxpay/getOpenid';
@@ -333,16 +334,34 @@ export class HttpService {
         }
       });
     }
+
     // 支付分路口
     switch (payType) {
       case '微信': {
         try {
-            const res = await this.getWeiXinQrcode();
-            console.log(res);
-            if (res.code === 200) {
-              this.weixinImgUrl = res.data.qrcodeurl;
-              this.weixinShow = true;
+          let url = this.baseUrl + '/wxpay/qrcode';
+          console.log(promoCode, userCouponId);
+          if (promoCode) {
+            if (url.indexOf('?') === -1) {
+              url = url + '?promoCode=' + promoCode;
+            } else {
+              url = url + '&promoCode=' + promoCode;
             }
+          }
+
+          if (userCouponId) {
+            if (url.indexOf('?') === -1) {
+              url = url + '?userCouponId=' + userCouponId.id;
+            } else {
+              url = url + '&userCouponId=' + userCouponId.id;
+            }
+          }
+
+          const res = await this.getWeiXinQrcode(url);
+          console.log(res);
+          if (res.code === 200) {
+            this.weixinImgUrl = res.data.qrcodeurl;
+            this.weixinShow = true;
 
             // 支付 回调
             const orderno = res.data.orderno;
@@ -365,9 +384,10 @@ export class HttpService {
                   }
                 }
                 , 1000);
+            }
+
           }
         } catch (e) {
-          console.log(e);
 
         }
         break;
@@ -482,6 +502,7 @@ export class HttpService {
         }
         break;
       }
+
       default:
         break;
     }
@@ -491,8 +512,7 @@ export class HttpService {
   // 二开
   // li 微信 支付
   // FIXME: 还有一个支付 不知道干啥的
-  public getWeiXinQrcode() {
-    const url = this.baseUrl + '/wxpay/qrcode';
+  public getWeiXinQrcode(url: string) {
     return this.httpGet(url);
   }
 
