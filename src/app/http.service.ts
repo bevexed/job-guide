@@ -340,7 +340,25 @@ export class HttpService {
     switch (payType) {
       case '微信': {
         try {
-          const res = await this.getWeiXinQrcode();
+          let url = this.baseUrl + '/wxpay/qrcode';
+          console.log(promoCode, userCouponId);
+          if (promoCode) {
+            if (url.indexOf('?') === -1) {
+              url = url + '?promoCode=' + promoCode;
+            } else {
+              url = url + '&promoCode=' + promoCode;
+            }
+          }
+
+          if (userCouponId) {
+            if (url.indexOf('?') === -1) {
+              url = url + '?userCouponId=' + userCouponId.id;
+            } else {
+              url = url + '&userCouponId=' + userCouponId.id;
+            }
+          }
+
+          const res = await this.getWeiXinQrcode(url);
           console.log(res);
           if (res.code === 200) {
             this.weixinImgUrl = res.data.qrcodeurl;
@@ -415,8 +433,7 @@ export class HttpService {
   // 二开
   // li 微信 支付
   // FIXME: 还有一个支付 不知道干啥的
-  public getWeiXinQrcode() {
-    const url = this.baseUrl + '/wxpay/qrcode';
+  public getWeiXinQrcode(url: string) {
     return this.httpGet(url);
   }
 
