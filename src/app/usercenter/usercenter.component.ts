@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../http.service';
-import { NzModalService, NzMessageService  } from 'ng-zorro-antd';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {HttpService} from '../http.service';
+import {NzModalService, NzMessageService} from 'ng-zorro-antd';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {Router, NavigationEnd, ActivatedRoute} from '@angular/router';
 
 
@@ -19,6 +19,7 @@ export class UsercenterComponent implements OnInit {
   public withdrawList: any;
   public withdrawcurrentPage = 1;
   public coupon: any;
+  public selected = 0;
 
   constructor(
     private fb: FormBuilder,
@@ -26,28 +27,23 @@ export class UsercenterComponent implements OnInit {
     private modalService: NzModalService,
     private message: NzMessageService,
     private router: Router,
+  ) {
+  }
 
-  ) { }
+  public changeSelect(num) {
+    this.selected = num;
+  }
 
   ngOnInit() {
     this.validateForm = this.fb.group({
       accountType: ['alipay', [Validators.required]],
-      account : [null, [Validators.required]],
-      realName : [null, [Validators.required]],
+      account: [null, [Validators.required]],
+      realName: [null, [Validators.required]],
       bankName: [null]
     });
     this.getAccountInfo();
     this.getAccountList();
     this.getWithdrawList();
-  }
-
-  private async getAccountInfo() {
-    const res = await this.httpService.getInfoOfMine();
-    if (res.code === 200) {
-      this.accountInfo = res.data;
-    } else if (res.code === 401) {
-      this.httpService.logout();
-    }
   }
 
   public async getAccountList() {
@@ -58,17 +54,6 @@ export class UsercenterComponent implements OnInit {
     const res = await this.httpService.getAccountList(data);
     if (res.code === 200) {
       this.accountList = res.data;
-    }
-  }
-
-  private async getWithdrawList() {
-    const data = {
-      size: 10,
-      current: this.withdrawcurrentPage
-    };
-    const res = await this.httpService.getWithdrawList(data);
-    if (res.code === 200) {
-      this.withdrawList = res.data;
     }
   }
 
@@ -125,6 +110,26 @@ export class UsercenterComponent implements OnInit {
       if (res.data.length) {
         this.coupon = res.data[0];
       }
+    }
+  }
+
+  private async getAccountInfo() {
+    const res = await this.httpService.getInfoOfMine();
+    if (res.code === 200) {
+      this.accountInfo = res.data;
+    } else if (res.code === 401) {
+      this.httpService.logout();
+    }
+  }
+
+  private async getWithdrawList() {
+    const data = {
+      size: 10,
+      current: this.withdrawcurrentPage
+    };
+    const res = await this.httpService.getWithdrawList(data);
+    if (res.code === 200) {
+      this.withdrawList = res.data;
     }
   }
 }

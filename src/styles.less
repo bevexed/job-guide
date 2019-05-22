@@ -621,17 +621,6 @@ button > span {
   }
 }
 
-// .ant-btn-primary{
-//   background-image: linear-gradient(-215deg, #FF9595 0%, #FF6060 100%);
-//   border-radius: 36px;
-//   border-radius: 36px;
-//   width: 160px;
-//   height: 40px;
-//   font-size: 18px;
-//   margin: 0 auto;
-//   display: none;
-//   border: none;
-// }
 
 /** 优惠券 */
 .aui-flex {
@@ -641,7 +630,7 @@ button > span {
   border-radius: 3px;
   border: 1px solid #efefef;
   padding: 0;
-  width: 260px;
+  width: 290px;
   -webkit-box-align: initial;
   -webkit-align-items: initial;
   align-items: initial;
@@ -667,13 +656,28 @@ button > span {
   content: '';
   position: absolute;
   z-index: 0;
+  top: 0;
+  bottom: 0;
   left: -10px;
-  bottom: 5px;
   width: 18px;
   height: 18px;
   border-radius: 100%;
-  background: #f6f6f6;
-  margin-top: -10px;
+  background: #f2f2f2;
+  margin: auto;
+}
+
+.aui-flex:after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  right: -10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 100%;
+  margin: auto;
+  background: #f2f2f2;
 }
 
 .aui-flex.selected .aui-price-nub {
@@ -694,7 +698,7 @@ button > span {
 
 .aui-price-nub {
   float: left;
-  width: 78px;
+  width: 90px;
   background-image: -webkit-gradient(linear, left top, right top, from(#f63f5d), to(#ec2546));
   background-image: -webkit-linear-gradient(left, #f63f5d, #ec2546);
   background-image: -moz-linear-gradient(left, #f63f5d, #ec2546);
@@ -708,9 +712,10 @@ button > span {
 .aui-digit h2 {
   color: #fefefe;
   font-size: 36px;
-  line-height: 70px;
+  line-height: 76px;
   text-align: center;
   margin-bottom: 0;
+  border-right:1px dashed #D10000;
 }
 
 .aui-digit h2 em {
@@ -723,13 +728,12 @@ button > span {
   float: left;
   width: 180px;
   height: 65px;
-  border-bottom: 1px dashed #eaeaea;
-  padding-left: 10px;
-  padding-top: 25px;
   position: relative;
 }
 
 .aui-flex-box h2 {
+  padding: 16px 0 0 16px;
+  font-weight: normal;
   font-size: 14px;
   margin-bottom: 10px;
 }

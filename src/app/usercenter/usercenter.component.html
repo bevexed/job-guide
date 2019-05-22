@@ -1,28 +1,34 @@
 <ng-container *ngIf="httpService.devType" style="background: #f2f2f2">
   <div class="vd-user clearfix">
     <div class="vd-userinfo">
-      <div class="vd-avantar">
+      <div class="vd-avantar" style="margin-bottom: 30px">
         <img alt="" src="../../assets/timg.jpg">
         <br>
         <span style="color: white;font-size: 16px">{{httpService?.user?.mobile}}</span>
       </div>
-
       <div
-        style="width: 100%;border-left:5px solid #D10000;background: white;height: 48px;line-height: 48px; text-align: center;font-size: 16px;margin-top: 30px;color: #D10000"
-      ><i nz-icon nzTheme="outline" nzType="user-add"></i> 个人中心
+        (click)="changeSelect(0)"
+        [ngClass]="{'left-select':true,'active':selected === 0}">
+        <img [hidden]="selected === 1" alt="" src="../../assets/1558505579772.jpg" style="display: inline-block; margin-top: -5px">
+        <img [hidden]="selected === 0" alt="" src="../../assets/1558505824908.jpg" style="display: inline-block; margin-top: -5px">
+
+        个人中心
       </div>
       <div
-        (click)="router.navigateByUrl('/passport')"
+        (click)="changeSelect(1)"
+        [ngClass]="{'left-select':true,'active':selected === 1}"
         class="passport"
-        style="width: 100%;height: 48px;line-height: 48px; text-align: center;font-size: 16px;color:#999"
+        style=""
       ><i nz-icon nzTheme="outline" nzType="edit"></i> 修改密码
       </div>
 
     </div>
 
 
-    <div class="vd-box-right">
-      <div style="font-size: 26px;font-weight: bolder;color: #000c17;border-bottom: 1px solid #ccc;padding:0 0 18px 0">个人中心</div>
+    <div [hidden]="selected === 1" class="vd-box-right">
+      <div
+        style="font-size: 26px;font-weight: bolder;color: #000c17;border-bottom: 1px solid #ccc;padding:0 0 14px 0"
+      >个人中心</div>
       <div class="vd-username" nz-row>
         <table style="margin-top: 20px">
           <tr style="height: 40px">
@@ -59,20 +65,18 @@
           <nz-table
             #borderedTable
             (nzPageIndexChange)="getAccountList()"
-            [(nzPageIndex)]="currentPage" [nzData]="accountList?.records ? accountList.records : []"
+            [(nzPageIndex)]="currentPage"
+            [nzData]="accountList?.records ? accountList.records : []"
             [nzFrontPagination]="false"
             [nzHideOnSinglePage]="true"
             [nzPageSizeOptions]="10"
-            [nzTotal]="accountList?.total" nzBordered>
+            [nzTotal]="accountList?.total">
             <thead>
             <tr>
-              <th>时间</th>
-              <th>用户ID</th>
-              <!-- <th>用户账户ID</th>
-              <th>备注</th>
-              <th>标题</th> -->
-              <th>金额</th>
-              <th>余额</th>
+              <th nzAlign="center">时间</th>
+              <th nzAlign="center">用户ID</th>
+              <th nzAlign="center">金额</th>
+              <th nzAlign="center">余额（元）</th>
             </tr>
             </thead>
             <tbody>
@@ -90,16 +94,18 @@
           </nz-table>
         </nz-tab>
         <nz-tab nzTitle="提现记录">
-          <nz-table #borderedTable (nzPageIndexChange)="getAccountList()" [(nzPageIndex)]="withdrawcurrentPage" [nzData]="withdrawList?.records ? withdrawList.records : []"
-                    [nzFrontPagination]="false" [nzHideOnSinglePage]="true" [nzPageSizeOptions]="10"
-                    [nzTotal]="withdrawList?.total" nzBordered>
+          <nz-table #borderedTable (nzPageIndexChange)="getAccountList()"
+                    [(nzPageIndex)]="withdrawcurrentPage" [nzData]="withdrawList?.records ? withdrawList.records : []"
+                    [nzFrontPagination]="false"
+                    [nzHideOnSinglePage]="true" [nzPageSizeOptions]="10"
+                    [nzTotal]="withdrawList?.total">
             <thead>
             <tr>
               <!-- <th>序号</th> -->
-              <th>提现编号</th>
-              <th>时间</th>
-              <th>提现金额</th>
-              <th>申请状态</th>
+              <th nzAlign="center">提现编号</th>
+              <th nzAlign="center">时间</th>
+              <th nzAlign="center">提现金额</th>
+              <th nzAlign="center">申请状态</th>
             </tr>
             </thead>
             <tbody>
@@ -115,13 +121,13 @@
         </nz-tab>
         <nz-tab (nzClick)="getMyCoupon()" nzTitle="我的优惠券">
           <div *ngIf="coupon; else noCoupon" class="aui-flex clearfix">
-            <div class="aui-price-nub">
+            <div class="aui-price-nub" style="background: linear-gradient(-45deg, #ff8b5c, #ff4a3c)">
               <div class="aui-digit">
-                <h2><em>￥</em>{{coupon.price}}</h2>
+                <h2>{{coupon.price}}<em>元</em></h2>
               </div>
             </div>
             <div class="aui-flex-box">
-              <h2>用户分享专属优惠券</h2>
+              <h2>用户分享专属 <br>优惠券</h2>
             </div>
           </div>
           <ng-template #noCoupon>
@@ -134,6 +140,14 @@
           </ng-template>
         </nz-tab>
       </nz-tabset>
+    </div>
+
+    <div [hidden]="selected === 0" class="vd-box-right">
+      <div
+        style="font-size: 26px;font-weight: bolder;color: #000c17;border-bottom: 1px solid #ccc;padding:0 0 14px 0"
+      >修改密码</div>
+
+      <app-pass></app-pass>
     </div>
   </div>
 </ng-container>
