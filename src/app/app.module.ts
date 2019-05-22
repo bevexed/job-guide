@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import {NgZorroAntdModule, NZ_I18N, NzOverlayModule, zh_CN} from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -74,7 +74,8 @@ registerLocaleData(zh);
     BrowserAnimationsModule,
     VdItemModule,
     IconModule,
-    StoreModule.forRoot({bannerlist: counterReducer})
+    StoreModule.forRoot({bannerlist: counterReducer}),
+    NzOverlayModule,
     // environment.production? [] : HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, { dataEncapsulation: false }
     // )
