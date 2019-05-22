@@ -6,7 +6,7 @@
     <!--    头部-->
     <!--    头部-->
     <nz-header
-      [hidden]="activeUrl==='/register'"
+      [hidden]="activeUrl==='/register' || activeUrl === '/login'"
       class="vd-header"
       style="position:relative;
              width:100%;
@@ -20,7 +20,8 @@
       <ul class="vd-userarea">
         <!-- <li *ngIf="!httpService.user?.vipFlag" class="vd-vipicon">会员</li> -->
         <ng-container *ngIf="!httpService.user; else logined">
-          <li (click)="showModal($event)" style="margin-left: 25px;color:#333">登录</li>
+<!--          <li (click)="showModal($event)" style="margin-left: 25px;color:#333">登录</li>-->
+          <li (click)="router.navigateByUrl('/login')" style="margin-left: 25px;color:#333">登录</li>
           <li>|</li>
           <li routerLink="register" style="color: #333">注册</li>
         </ng-container>
@@ -93,7 +94,7 @@
 
     </style>
 
-    <div [hidden]="activeUrl==='/register'" class="li-footer">
+    <div [hidden]="activeUrl==='/register' || activeUrl==='/login' " class="li-footer">
       <ul class="nav">
         <li
           routerLink="/index"

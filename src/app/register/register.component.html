@@ -3,9 +3,9 @@
     <img alt="" src="../../assets/logo.png" width="324">
     <div style="">
       <span>已有账号？</span>
-      <span style="color: #D10000;font-size: 14px">去登录</span>
+      <span style="color: #D10000;font-size: 14px" (click)="router.navigateByUrl('/login')">去登录</span>
       <span>&nbsp;|&nbsp;</span>
-      <span style="color: #D10000;font-size: 14px">返回职场司南</span>
+      <span style="color: #D10000;font-size: 14px" (click)="router.navigateByUrl('/index')">返回职场司南</span>
     </div>
   </div>
 
@@ -73,4 +73,8 @@
       </nz-form-item>
     </form>
   </div>
+
+  <footer style="padding-top: 40px">
+    Copyright © 2018-2019 职场司南 浙ICP备18039212号 <i nz-icon nzTheme="outline" nzType="phone"></i> 0571-85383155
+  </footer>
 </div>
