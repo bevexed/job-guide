@@ -1,153 +1,157 @@
 <ng-container *ngIf="httpService.devType" style="background: #f2f2f2">
-  <div class="vd-user clearfix">
-    <div class="vd-userinfo">
-      <div class="vd-avantar" style="margin-bottom: 30px">
-        <img alt="" src="../../assets/timg.jpg">
-        <br>
-        <span style="color: white;font-size: 16px">{{httpService?.user?.mobile}}</span>
-      </div>
-      <div
-        (click)="changeSelect(0)"
-        [ngClass]="{'left-select':true,'active':selected === 0}">
-        <img [hidden]="selected === 1" alt="" src="../../assets/1558505579772.jpg" style="display: inline-block; margin-top: -5px">
-        <img [hidden]="selected === 0" alt="" src="../../assets/1558505824908.jpg" style="display: inline-block; margin-top: -5px">
+  <div style="background: #f2f2f2;width: 100vw;border-top: 1px solid transparent">
+    <div class="vd-user clearfix">
+      <div class="vd-userinfo">
+        <div class="vd-avantar" style="margin-bottom: 30px">
+          <img alt="" src="../../assets/timg.jpg">
+          <br>
+          <span style="color: white;font-size: 16px">{{httpService?.user?.mobile}}</span>
+        </div>
+        <div
+          (click)="changeSelect(0)"
+          [ngClass]="{'left-select':true,'active':selected === 0}">
+          <img [hidden]="selected === 1" alt="" src="../../assets/1558505579772.jpg" style="display: inline-block; margin-top: -5px">
+          <img [hidden]="selected === 0" alt="" src="../../assets/1558505824908.jpg" style="display: inline-block; margin-top: -5px">
 
-        个人中心
-      </div>
-      <div
-        (click)="changeSelect(1)"
-        [ngClass]="{'left-select':true,'active':selected === 1}"
-        class="passport"
-        style=""
-      ><i nz-icon nzTheme="outline" nzType="edit"></i> 修改密码
-      </div>
-
-    </div>
-
-
-    <div [hidden]="selected === 1" class="vd-box-right">
-      <div
-        style="font-size: 26px;font-weight: bolder;color: #000c17;border-bottom: 1px solid #ccc;padding:0 0 14px 0"
-      >个人中心</div>
-      <div class="vd-username" nz-row>
-        <table style="margin-top: 20px">
-          <tr style="height: 40px">
-            <td style="color: #999">账户余额：</td>
-            <td style="color: #D10000">
-              ￥{{accountInfo?.balance}}
-            </td>
-            <td>
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              <button (click)="showModal()" nz-button nzSize="small" nzType="primary">全部提现</button>
-            </td>
-          </tr>
-
-          <tr style="height: 40px">
-            <td style="color: #999">提现中金额：</td>
-            <td style="color: #D10000">
-              ￥{{accountInfo?.withdrawAmount}}
-            </td>
-          </tr>
-
-          <tr style="height: 40px">
-            <td style="color: #999">可用优惠卷：</td>
-            <td style="color: #D10000">
-              ￥{{accountInfo?.withdrawAmount}}
-            </td>
-          </tr>
-
-        </table>
+          个人中心
+        </div>
+        <div
+          (click)="changeSelect(1)"
+          [ngClass]="{'left-select':true,'active':selected === 1}"
+          class="passport"
+          style=""
+        ><i nz-icon nzTheme="outline" nzType="edit"></i> 修改密码
+        </div>
 
       </div>
 
-      <nz-tabset class="my">
-        <nz-tab nzTitle="我的账户">
-          <nz-table
-            #borderedTable
-            (nzPageIndexChange)="getAccountList()"
-            [(nzPageIndex)]="currentPage"
-            [nzData]="accountList?.records ? accountList.records : []"
-            [nzFrontPagination]="false"
-            [nzHideOnSinglePage]="true"
-            [nzPageSizeOptions]="10"
-            [nzTotal]="accountList?.total">
-            <thead>
-            <tr>
-              <th nzAlign="center">时间</th>
-              <th nzAlign="center">用户ID</th>
-              <th nzAlign="center">金额</th>
-              <th nzAlign="center">余额（元）</th>
+
+      <div [hidden]="selected === 1" class="vd-box-right">
+        <div
+          style="font-size: 26px;font-weight: bolder;color: #000c17;border-bottom: 1px solid #ccc;padding:0 0 14px 0"
+        >个人中心
+        </div>
+        <div class="vd-username" nz-row style="margin-bottom: 50px">
+          <table style="margin-top: 20px">
+            <tr style="height: 40px">
+              <td style="color: #999">账户余额：</td>
+              <td style="color: #D10000">
+                ￥{{accountInfo?.balance}}
+              </td>
+              <td>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                <button (click)="showModal()" nz-button nzSize="small" nzType="primary">全部提现</button>
+              </td>
             </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let data of (accountList?.records ? accountList.records : [])">
-              <!-- <td>{{ data.id }}</td> -->
-              <td>{{ data.gmtCreate | date:'yyyy-MM-dd HH:mm:ss' }}</td>
-              <td>{{ data.userId }}</td>
-              <!-- <td>{{ data.accountId }}</td>
-              <td>{{ data.businessNum }}</td>
-              <td>{{ data.title }}</td> -->
-              <td>{{ data.type === 'withdraw' ? '-' : '+'}}{{ data.amount }}</td>
-              <td>{{ data.balance }}</td>
+
+            <tr style="height: 40px">
+              <td style="color: #999">提现中金额：</td>
+              <td style="color: #D10000">
+                ￥{{accountInfo?.withdrawAmount}}
+              </td>
             </tr>
-            </tbody>
-          </nz-table>
-        </nz-tab>
-        <nz-tab nzTitle="提现记录">
-          <nz-table #borderedTable (nzPageIndexChange)="getAccountList()"
-                    [(nzPageIndex)]="withdrawcurrentPage" [nzData]="withdrawList?.records ? withdrawList.records : []"
-                    [nzFrontPagination]="false"
-                    [nzHideOnSinglePage]="true" [nzPageSizeOptions]="10"
-                    [nzTotal]="withdrawList?.total">
-            <thead>
-            <tr>
-              <!-- <th>序号</th> -->
-              <th nzAlign="center">提现编号</th>
-              <th nzAlign="center">时间</th>
-              <th nzAlign="center">提现金额</th>
-              <th nzAlign="center">申请状态</th>
+
+            <tr style="height: 40px">
+              <td style="color: #999">可用优惠卷：</td>
+              <td>
+                您还有 <font style="color: #D10000">{{1}}</font> 个优惠券未使用
+              </td>
             </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let data of (withdrawList?.records ? withdrawList.records : [])">
-              <!-- <td>{{ data.id }}</td> -->
-              <td>{{ data.withdrawNum }}</td>
-              <td>{{ data.gmtCreate | date:'yyyy-MM-dd HH:mm:ss' }}</td>
-              <td>-{{ data.amount }}</td>
-              <td>{{ data.statusText }}</td>
-            </tr>
-            </tbody>
-          </nz-table>
-        </nz-tab>
-        <nz-tab (nzClick)="getMyCoupon()" nzTitle="我的优惠券">
-          <div *ngIf="coupon; else noCoupon" class="aui-flex clearfix">
-            <div class="aui-price-nub" style="background: linear-gradient(-45deg, #ff8b5c, #ff4a3c)">
-              <div class="aui-digit">
-                <h2>{{coupon.price}}<em>元</em></h2>
+
+          </table>
+
+        </div>
+
+        <nz-tabset class="my">
+          <nz-tab nzTitle="我的账户">
+            <nz-table
+              #borderedTable
+              (nzPageIndexChange)="getAccountList()"
+              [(nzPageIndex)]="currentPage"
+              [nzData]="accountList?.records ? accountList.records : []"
+              [nzFrontPagination]="false"
+              [nzHideOnSinglePage]="true"
+              [nzPageSizeOptions]="10"
+              [nzTotal]="accountList?.total">
+              <thead>
+              <tr>
+                <th nzAlign="center">时间</th>
+                <th nzAlign="center">用户ID</th>
+                <th nzAlign="center">金额</th>
+                <th nzAlign="center">余额（元）</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let data of (accountList?.records ? accountList.records : [])">
+                <!-- <td>{{ data.id }}</td> -->
+                <td>{{ data.gmtCreate | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td>{{ data.userId }}</td>
+                <!-- <td>{{ data.accountId }}</td>
+                <td>{{ data.businessNum }}</td>
+                <td>{{ data.title }}</td> -->
+                <td>{{ data.type === 'withdraw' ? '-' : '+'}}{{ data.amount }}</td>
+                <td>{{ data.balance }}</td>
+              </tr>
+              </tbody>
+            </nz-table>
+          </nz-tab>
+          <nz-tab nzTitle="提现记录">
+            <nz-table #borderedTable (nzPageIndexChange)="getAccountList()"
+                      [(nzPageIndex)]="withdrawcurrentPage" [nzData]="withdrawList?.records ? withdrawList.records : []"
+                      [nzFrontPagination]="false"
+                      [nzHideOnSinglePage]="true" [nzPageSizeOptions]="10"
+                      [nzTotal]="withdrawList?.total">
+              <thead>
+              <tr>
+                <!-- <th>序号</th> -->
+                <th nzAlign="center">提现编号</th>
+                <th nzAlign="center">时间</th>
+                <th nzAlign="center">提现金额</th>
+                <th nzAlign="center">申请状态</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let data of (withdrawList?.records ? withdrawList.records : [])">
+                <!-- <td>{{ data.id }}</td> -->
+                <td>{{ data.withdrawNum }}</td>
+                <td>{{ data.gmtCreate | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td>-{{ data.amount }}</td>
+                <td>{{ data.statusText }}</td>
+              </tr>
+              </tbody>
+            </nz-table>
+          </nz-tab>
+          <nz-tab (nzClick)="getMyCoupon()" nzTitle="我的优惠券">
+            <div *ngIf="coupon; else noCoupon" class="aui-flex clearfix">
+              <div class="aui-price-nub" style="background: linear-gradient(-45deg, #ff8b5c, #ff4a3c)">
+                <div class="aui-digit">
+                  <h2>{{coupon.price}}<em>元</em></h2>
+                </div>
+              </div>
+              <div class="aui-flex-box">
+                <h2>用户分享专属 <br>优惠券</h2>
               </div>
             </div>
-            <div class="aui-flex-box">
-              <h2>用户分享专属 <br>优惠券</h2>
-            </div>
-          </div>
-          <ng-template #noCoupon>
-            <div class="list-empty-image" style="padding: 30px 0;">
-              <img
-                alt="empty"
-                class="ng-star-inserted"
-                src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI0MXB4IiB2aWV3Qm94PSIwIDAgNjQgNDEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUyLjUgKDY3NDY5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDxnIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NzIuMDAwMDAwLCAtMTMzNS4wMDAwMDApIj4KICAgICAgICAgICAgPGcgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY0LjAwMDAwMCwgMTExNC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnICB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MC4wMDAwMDAsIDc4LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgIDxnICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNjguMDAwMDAwLCAxNDQuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxnID4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxlbGxpcHNlICBmaWxsPSIjRjVGNUY1IiBjeD0iMzIiIGN5PSIzMyIgcng9IjMyIiByeT0iNyI+PC9lbGxpcHNlPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGcgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSg5LjAwMDAwMCwgMC4wMDAwMDApIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0iI0Q5RDlEOSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTQ2LDEyLjc2MDU2MDQgTDM1Ljg1NDMwNDcsMS4yNTczOTYzMyBDMzUuMzY3NDQxNCwwLjQ3MzgyNjYwNSAzNC42NTU4Nzg5LDAgMzMuOTA2NzYxNywwIEwxMi4wOTMyMzgzLDAgQzExLjM0NDEyMTEsMCAxMC42MzI1NTg2LDAuNDczOTUwMjU1IDEwLjE0NTY5NTMsMS4yNTczOTYzMyBMMi42MTQ3OTcyN2UtMTIsMTIuNzYwNTYwNCBMMCwyMiBMNDYsMjIgTDQ2LDEyLjc2MDU2MDQgWiIgID48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTMyLjYxMzI4MTMsMTUuOTMxNSBDMzIuNjEzMjgxMywxNC4zMjU4NTExIDMzLjYwNjk1MzEsMTMuMDAwMjM0IDM0LjgzOTY5OTIsMTMgTDQ2LDEzIEw0NiwzMS4xMzcxMjc3IEM0NiwzMy4yNTg5NTc0IDQ0LjY3OTM4NjcsMzUgNDMuMDUwNDI5NywzNSBMMi45NDk1NzAzMSwzNSBDMS4zMjA1MjM0NCwzNSAwLDMzLjI1ODg0MDQgMCwzMS4xMzcxMjc3IEwwLDEzIEwxMS4xNjAzMDA4LDEzIEMxMi4zOTMwNDY5LDEzIDEzLjM4NjcxODgsMTQuMzIyODA4NSAxMy4zODY3MTg4LDE1LjkyODQ1NzQgTDEzLjM4NjcxODgsMTUuOTQ5NjM4MyBDMTMuMzg2NzE4OCwxNy41NTUyODcyIDE0LjM5MTcxMDksMTguODUxMTgwOSAxNS42MjQ0NTcsMTguODUxMTgwOSBMMzAuMzc1NTQzLDE4Ljg1MTE4MDkgQzMxLjYwODI4OTEsMTguODUxMTgwOSAzMi42MTMyODEzLDE3LjU0MzM1MTEgMzIuNjEzMjgxMywxNS45Mzc3MDIxIEwzMi42MTMyODEzLDE1LjkzMTUgWiIgIGZpbGw9IiNGQUZBRkEiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+">
-            </div>
-          </ng-template>
-        </nz-tab>
-      </nz-tabset>
-    </div>
+            <ng-template #noCoupon>
+              <div class="list-empty-image" style="padding: 30px 0;">
+                <img
+                  alt="empty"
+                  class="ng-star-inserted"
+                  src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNjRweCIgaGVpZ2h0PSI0MXB4IiB2aWV3Qm94PSIwIDAgNjQgNDEiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDUyLjUgKDY3NDY5KSAtIGh0dHA6Ly93d3cuYm9oZW1pYW5jb2RpbmcuY29tL3NrZXRjaCAtLT4KICAgIDxnIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKC00NzIuMDAwMDAwLCAtMTMzNS4wMDAwMDApIj4KICAgICAgICAgICAgPGcgIHRyYW5zZm9ybT0idHJhbnNsYXRlKDY0LjAwMDAwMCwgMTExNC4wMDAwMDApIj4KICAgICAgICAgICAgICAgIDxnICB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0MC4wMDAwMDAsIDc4LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgIDxnICB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzNjguMDAwMDAwLCAxNDQuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxnID4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxlbGxpcHNlICBmaWxsPSIjRjVGNUY1IiBjeD0iMzIiIGN5PSIzMyIgcng9IjMyIiByeT0iNyI+PC9lbGxpcHNlPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGcgICB0cmFuc2Zvcm09InRyYW5zbGF0ZSg5LjAwMDAwMCwgMC4wMDAwMDApIiBmaWxsLXJ1bGU9Im5vbnplcm8iIHN0cm9rZT0iI0Q5RDlEOSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTQ2LDEyLjc2MDU2MDQgTDM1Ljg1NDMwNDcsMS4yNTczOTYzMyBDMzUuMzY3NDQxNCwwLjQ3MzgyNjYwNSAzNC42NTU4Nzg5LDAgMzMuOTA2NzYxNywwIEwxMi4wOTMyMzgzLDAgQzExLjM0NDEyMTEsMCAxMC42MzI1NTg2LDAuNDczOTUwMjU1IDEwLjE0NTY5NTMsMS4yNTczOTYzMyBMMi42MTQ3OTcyN2UtMTIsMTIuNzYwNTYwNCBMMCwyMiBMNDYsMjIgTDQ2LDEyLjc2MDU2MDQgWiIgID48L3BhdGg+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPHBhdGggZD0iTTMyLjYxMzI4MTMsMTUuOTMxNSBDMzIuNjEzMjgxMywxNC4zMjU4NTExIDMzLjYwNjk1MzEsMTMuMDAwMjM0IDM0LjgzOTY5OTIsMTMgTDQ2LDEzIEw0NiwzMS4xMzcxMjc3IEM0NiwzMy4yNTg5NTc0IDQ0LjY3OTM4NjcsMzUgNDMuMDUwNDI5NywzNSBMMi45NDk1NzAzMSwzNSBDMS4zMjA1MjM0NCwzNSAwLDMzLjI1ODg0MDQgMCwzMS4xMzcxMjc3IEwwLDEzIEwxMS4xNjAzMDA4LDEzIEMxMi4zOTMwNDY5LDEzIDEzLjM4NjcxODgsMTQuMzIyODA4NSAxMy4zODY3MTg4LDE1LjkyODQ1NzQgTDEzLjM4NjcxODgsMTUuOTQ5NjM4MyBDMTMuMzg2NzE4OCwxNy41NTUyODcyIDE0LjM5MTcxMDksMTguODUxMTgwOSAxNS42MjQ0NTcsMTguODUxMTgwOSBMMzAuMzc1NTQzLDE4Ljg1MTE4MDkgQzMxLjYwODI4OTEsMTguODUxMTgwOSAzMi42MTMyODEzLDE3LjU0MzM1MTEgMzIuNjEzMjgxMywxNS45Mzc3MDIxIEwzMi42MTMyODEzLDE1LjkzMTUgWiIgIGZpbGw9IiNGQUZBRkEiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgICAgICAgICAgPC9nPgogICAgICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPC9nPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+">
+              </div>
+            </ng-template>
+          </nz-tab>
+        </nz-tabset>
+      </div>
 
-    <div [hidden]="selected === 0" class="vd-box-right">
-      <div
-        style="font-size: 26px;font-weight: bolder;color: #000c17;border-bottom: 1px solid #ccc;padding:0 0 14px 0"
-      >修改密码</div>
+      <div [hidden]="selected === 0" class="vd-box-right">
+        <div
+          style="font-size: 26px;font-weight: bolder;color: #000c17;border-bottom: 1px solid #ccc;padding:0 0 14px 0"
+        >修改密码
+        </div>
 
-      <app-pass></app-pass>
+        <app-pass></app-pass>
+      </div>
     </div>
   </div>
 </ng-container>
@@ -260,8 +264,14 @@
 </ng-container>
 
 <!-- 提现弹窗 -->
-<nz-modal (nzOnCancel)="closeModal()" [(nzVisible)]="isVisible" [nzBodyStyle]="{padding: 0}" [nzFooter]="null" [nzTitle]=""
-          [nzWidth]="350" nzClassName="loginModal">
+<nz-modal
+  (nzOnCancel)="closeModal()"
+  [(nzVisible)]="isVisible"
+  [nzBodyStyle]="{padding: 0}"
+  [nzFooter]="null"
+  [nzTitle]=""
+  [nzWidth]="350"
+  nzClassName="loginModal">
   <div class="vd-withdraw">
     <h1>全部提现</h1>
     <br/>
@@ -277,7 +287,7 @@
       </nz-form-item>
       <nz-form-item>
         <nz-form-label [nzSpan]="8" nzRequired>账号
-          <i nz-icon nz-tooltip nzTitle="请认真填写否则您将无法收到我们的汇款" style="vertical-align: middle;" theme="outline"
+          <i nz-icon nz-tooltip nzTitle="请认真填写否则您将无法收到我们的汇款" style="vertical-align: middle;color: #D10000" theme="outline"
              type="question-circle"></i></nz-form-label>
         <nz-form-control [nzSpan]="16">
           <input formControlName="account" nz-input/>

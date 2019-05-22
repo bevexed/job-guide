@@ -1,22 +1,24 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { IndexComponent } from './index/index.component';
-import { DevelopmentComponent } from './development/development.component';
-import { UsercenterComponent } from './usercenter/usercenter.component';
-import { ProfessionComponent } from './profession/profession.component';
-import { RegisterComponent } from './register/register.component';
-import { PassComponent } from './pass/pass.component';
-import { VideoDetialComponent } from './video-detial/video-detial.component';
-import { AuthService } from './auth.service';
-import { ResultsComponent } from './results/results.component';
-import { RewardComponent } from './reward/reward.component';
-import { LoginComponent } from './login/login.component';
-import { TixianComponent } from './tixian/tixian.component';
-import { TixianAlipayComponent } from './tixian-alipay/tixian-alipay.component';
-import { TixianBankCardComponent } from './tixian-bank-card/tixian-bank-card.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {IndexComponent} from './index/index.component';
+import {DevelopmentComponent} from './development/development.component';
+import {UsercenterComponent} from './usercenter/usercenter.component';
+import {ProfessionComponent} from './profession/profession.component';
+import {RegisterComponent} from './register/register.component';
+import {PassComponent} from './pass/pass.component';
+import {VideoDetialComponent} from './video-detial/video-detial.component';
+import {AuthService} from './auth.service';
+import {ResultsComponent} from './results/results.component';
+import {RewardComponent} from './reward/reward.component';
+import {LoginComponent} from './login/login.component';
+import {TixianComponent} from './tixian/tixian.component';
+import {TixianAlipayComponent} from './tixian-alipay/tixian-alipay.component';
+import {TixianBankCardComponent} from './tixian-bank-card/tixian-bank-card.component';
 // li
 // 热门
 import {HotComponent} from './hot/hot.component';
+import {GaokaoComponent} from './gaokao/gaokao.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -42,7 +44,7 @@ const routes: Routes = [
   {
     path: 'usercenter',
     component: UsercenterComponent,
-    // canActivate: [AuthService]
+    canActivate: [AuthService]
   },
   {
     path: 'register',
@@ -86,6 +88,10 @@ const routes: Routes = [
   {
     path: 'hot',
     component: HotComponent
+  },
+  {
+    path: 'gaokao',
+    component: GaokaoComponent
   }
 ];
 
@@ -93,4 +99,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, {useHash: true})],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
