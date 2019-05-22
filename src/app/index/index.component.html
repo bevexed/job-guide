@@ -4,7 +4,8 @@
              [nzAutoPlaySpeed]="7000"
              *ngIf="bannerlist.length"
              [nzEnableSwipe]="true">
-  <div nz-carousel-content *ngFor="let index of bannerlist"
+  <div nz-carousel-content
+       *ngFor="let index of bannerlist"
        style="cursor: pointer;height: 21vw"
   >
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">

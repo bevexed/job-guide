@@ -1,56 +1,60 @@
 <div class="vd-box gaokao">
   <img alt="" class="head-img" src="https://zcsn-public-prod.oss-cn-hangzhou.aliyuncs.com/banner/e2e16f5fcc144e52a5cd5ef11424a9be.png?x-oss-process=image/quality,Q_30/resize,h_540/interlace,1">
+  <div>
+    <div class="left">
 
-  <div class="left">
+      <div class="tabs">
+        <div
+          (click)="changeTab(tabIndex)"
+          *ngFor="let tab of Tabs; let tabIndex = index"
+          [ngClass]="{active:tabIndex === activeTab}"
+          class="tab"
+        >{{tab}}</div>
 
-    <div class="tabs">
-      <div
-        (click)="changeTab(tabIndex)"
-        *ngFor="let tab of Tabs; let tabIndex = index"
-        [ngClass]="{active:tabIndex === activeTab}"
-        class="tab"
-      >{{tab}}</div>
+      </div>
 
-    </div>
+      <div class="content">
+        <ul class="list">
+          <li *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"
+              class="item"
+          >
+            <img
+              [hidden]="i % 3 === 1"
+              alt=""
+              class=""
+              src="https://zcsn-public-prod.oss-cn-hangzhou.aliyuncs.com/banner/e2e16f5fcc144e52a5cd5ef11424a9be.png?x-oss-process=image/quality,Q_30/resize,h_540/interlace,1">
+            <section>
+              <h1>
+                清华、北大招办访谈，详解2019年在京招生政策
+              </h1>
 
-    <div class="content">
-      <ul class="list">
-        <li *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"
-            class="item"
-        >
-          <img
-            [hidden]="i % 3 === 1"
-            alt=""
-            class=""
-            src="https://zcsn-public-prod.oss-cn-hangzhou.aliyuncs.com/banner/e2e16f5fcc144e52a5cd5ef11424a9be.png?x-oss-process=image/quality,Q_30/resize,h_540/interlace,1">
-          <section>
-            <h1>
-              清华、北大招办访谈，详解2019年在京招生政策
-            </h1>
+              <article>
+                今年，北京高考共有5.9万人报名，本市将继续推进录取批次改革，将本科一批、二批合并为本科普通批，设置16所平行志愿高校，每个志愿高校设置6个志愿专业[详细]
+              </article>
 
-            <article>
-              今年，北京高考共有5.9万人报名，本市将继续推进录取批次改革，将本科一批、二批合并为本科普通批，设置16所平行志愿高校，每个志愿高校设置6个志愿专业[详细]
-            </article>
-
-            <footer>
-              来源：北京日报 &nbsp;&nbsp;&nbsp; 2019-05-10
-            </footer>
-          </section>
-        </li>
-      </ul>
-
-      <nz-pagination
-        [nzItemRender]="renderItemTemplate"
-        [nzPageIndex]="1"
-        [nzTotal]="500"
-      ></nz-pagination>
-      <ng-template #renderItemTemplate let-page="page" let-type>
-<!--        <a *ngIf="type === 'pre'">Previous</a>-->
-<!--        <a *ngIf="type === 'next'">Next</a>-->
-        <a *ngIf="type === 'page'">{{ page }}</a>
-      </ng-template>
+              <footer>
+                来源：北京日报 &nbsp;&nbsp;&nbsp; 2019-05-10
+              </footer>
+            </section>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 
+<!--  <p class="bottom">-->
+    <nz-pagination
+      class="bottom"
+      [nzItemRender]="renderItemTemplate"
+      [nzPageIndex]="1"
+      [nzTotal]="500"
+    ></nz-pagination>
+<!--  </p>-->
+
+  <ng-template #renderItemTemplate let-page="page" let-type>
+    <a *ngIf="type === ''" [hidden]="true">Previous</a>
+    <a *ngIf="type === ''" [hidden]="true">Next</a>
+    <a *ngIf="type === 'page'">{{ page }}</a>
+  </ng-template>
 
 </div>
