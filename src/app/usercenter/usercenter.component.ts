@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../http.service';
 import { NzModalService, NzMessageService  } from 'ng-zorro-antd';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import {Router, NavigationEnd, ActivatedRoute} from '@angular/router';
+
 
 @Component({
   selector: 'app-usercenter',
@@ -13,16 +15,18 @@ export class UsercenterComponent implements OnInit {
   validateForm: FormGroup;
   public accountInfo: any;
   public accountList: any;
-  public currentPage: number = 1;
+  public currentPage = 1;
   public withdrawList: any;
-  public withdrawcurrentPage: number = 1;
+  public withdrawcurrentPage = 1;
   public coupon: any;
 
   constructor(
     private fb: FormBuilder,
     public httpService: HttpService,
     private modalService: NzModalService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private router: Router,
+
   ) { }
 
   ngOnInit() {
@@ -38,7 +42,7 @@ export class UsercenterComponent implements OnInit {
   }
 
   private async getAccountInfo() {
-    let res = await this.httpService.getInfoOfMine();
+    const res = await this.httpService.getInfoOfMine();
     if (res.code === 200) {
       this.accountInfo = res.data;
     } else if (res.code === 401) {
@@ -47,22 +51,22 @@ export class UsercenterComponent implements OnInit {
   }
 
   public async getAccountList() {
-    let data = {
+    const data = {
       size: 10,
       current: this.currentPage
     };
-    let res = await this.httpService.getAccountList(data);
+    const res = await this.httpService.getAccountList(data);
     if (res.code === 200) {
       this.accountList = res.data;
     }
   }
 
   private async getWithdrawList() {
-    let data = {
+    const data = {
       size: 10,
       current: this.withdrawcurrentPage
     };
-    let res = await this.httpService.getWithdrawList(data);
+    const res = await this.httpService.getWithdrawList(data);
     if (res.code === 200) {
       this.withdrawList = res.data;
     }
@@ -70,9 +74,9 @@ export class UsercenterComponent implements OnInit {
 
   public typeChange() {
     if (this.validateForm.value.accountType === 'bank_card') {
-      this.validateForm.setControl('bankName', new FormControl('', Validators.required))
+      this.validateForm.setControl('bankName', new FormControl('', Validators.required));
     } else {
-      this.validateForm.setControl('bankName', new FormControl(''))
+      this.validateForm.setControl('bankName', new FormControl(''));
     }
   }
 
@@ -87,8 +91,8 @@ export class UsercenterComponent implements OnInit {
         if (this.accountInfo.balance === 0) {
           return this.message.create('error', '当前账户余额不支持提现');
         }
-        let data: any = {
-          amount: this.accountInfo.balance, 
+        const data: any = {
+          amount: this.accountInfo.balance,
         };
         Object.assign(data, this.validateForm.value);
         this.httpService.withdraw(data).then((res: any) => {
@@ -101,7 +105,7 @@ export class UsercenterComponent implements OnInit {
           } else {
             return this.message.create('error', res.message);
           }
-        })
+        });
       }
     });
   }
@@ -116,7 +120,7 @@ export class UsercenterComponent implements OnInit {
   }
 
   public async getMyCoupon() {
-    let res = await this.httpService.getCouponList();
+    const res = await this.httpService.getCouponList();
     if (res.code === 200) {
       if (res.data.length) {
         this.coupon = res.data[0];

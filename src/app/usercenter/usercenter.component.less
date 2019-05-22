@@ -1,32 +1,48 @@
 .vd-user {
-  width: 1200px;
-  margin: 20px auto 22px;
-  background-color: #fdfdfd;
-  border: 1px solid #eee;
+  //width: 1200px;
+  background-color: #f2f2f2;
+  padding: 80px 18.75vw;
+
+  .passport:hover {
+    color: #D10000 !important;
+    cursor: pointer;
+  }
 }
+
+.my .ant-tabs-nav-scroll {
+  background: #E4E4e4 !important;
+}
+
 .vd-userinfo {
-  // float: left;
-  // width: 300px;
-  display: flex;
-  padding: 20px;
+  float: left;
   position: relative;
-  background-image: url('../../assets/vip@2x.jpg');
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
 
 .vd-avantar {
-  width: 150px;
-  height: 150px;
+  width: 250px;
+  height: 186px;
+  background: #7d7d7d;
+  text-align: center;
+
+  > img {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    background: white;
+    border-radius: 50%;
+    margin: 20px auto 10px;
+  }
 }
 
 .vd-username {
   flex-grow: 1;
   font-size: 14px;
-  margin: 0 0 0 30px;
   text-align: left;
   line-height: 24px;
 }
+
 .vd-nametext {
   font-size: 24px;
   margin: 0 15px;
@@ -46,10 +62,12 @@
   position: relative;
   top: -2px;
 }
+
 .vd-bevip:hover {
   filter: grayscale(0);
   color: #000;
 }
+
 .vd-bevip img {
   display: inline-block;
   width: 14px;
@@ -57,10 +75,9 @@
 }
 
 .vd-box-right {
-  // float: right;
-  // width: 898px;
+  float: right;
+  width: 898px;
   padding: 20px;
-  border-left: 1px solid #eee;
 }
 
 .vd-acount {
@@ -68,8 +85,6 @@
 }
 
 [nz-table] {
-  border-left: 1px solid #e8e8e8;
-  border-right: 1px solid #e8e8e8;
 }
 
 font {
@@ -81,10 +96,12 @@ font {
   padding: 30px;
   box-sizing: border-box;
 }
+
 .vd-withdraw h1 {
   text-align: center;
   font-size: 18px;
 }
+
 nz-form-label {
   text-align: left;
 }
@@ -95,46 +112,55 @@ nz-form-label {
   padding: 15px;
   background: #f5f5f5;
 }
+
 .mb-userinfo {
   width: 100%;
   background: #fff;
   padding: 26px 20px;
   border-radius: 4px;
-  box-shadow:0 3px 13px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 13px 0 rgba(0, 0, 0, 0.1);
 }
+
 .mb-userinfo h1 {
   font-size: 16px;
   font-weight: normal;
   //border-bottom: 1px solid #f5f5f5;
   margin-bottom: 0;
 }
+
 .mb-userinfo h1 a {
   float: right;
   font-size: 14px;
 }
+
 .mb-userinfo ul {
   margin-top: 21px;
   display: flex;
   justify-content: space-between;
   color: #666;
 }
+
 .mb-userinfo ul li {
   text-align: center;
   font-size: 13px;
 }
+
 .mb-userinfo ul .diliver {
   width: 1px;
   flex-grow: initial;
   background: #f5f5f5;
 }
+
 .mb-userinfo .mb-account {
   font-size: 20px;
   font-weight: bolder;
   color: #D10000;
 }
+
 .mb-tablist {
   padding: 0 15px;
 }
+
 .mb-tablist li {
   display: flex;
   align-items: center;
@@ -142,30 +168,38 @@ nz-form-label {
   flex: 1;
   padding: 10px 0
 }
+
 .mb-tablist li {
   border-bottom: 1px solid #f5f5f5;
 }
+
 .mb-status {
   text-align: right;
 }
+
 .mb-withdrawal-amount {
   font-size: 14px;
   font-weight: bolder;
 }
+
 .mb-info p {
   margin-bottom: 0;
 }
+
 .status {
   font-size: 16px;
 }
-.list-empty-image{
+
+.list-empty-image {
   width: 100%;
   text-align: center;
 }
+
 .mb-user {
   width: initial;
   margin: 0;
   border: 0;
   background: #f2f2f2;
 }
+
 /** 移动端样式  */

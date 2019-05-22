@@ -20,7 +20,7 @@
       <ul class="vd-userarea">
         <!-- <li *ngIf="!httpService.user?.vipFlag" class="vd-vipicon">会员</li> -->
         <ng-container *ngIf="!httpService.user; else logined">
-<!--          <li (click)="showModal($event)" style="margin-left: 25px;color:#333">登录</li>-->
+          <!--          <li (click)="showModal($event)" style="margin-left: 25px;color:#333">登录</li>-->
           <li (click)="router.navigateByUrl('/login')" style="margin-left: 25px;color:#333">登录</li>
           <li>|</li>
           <li routerLink="register" style="color: #333">注册</li>
@@ -117,7 +117,9 @@
         <li>
           活动中心
         </li>
-        <li>
+        <li
+          routerLink="/usercenter"
+          routerlinkactive="ant-menu-item-selected">
           个人中心
         </li>
       </ul>
@@ -237,12 +239,14 @@
        style="border-bottom: 1px solid #eee;"><a>职业菜单</a></p>
   </ng-container>
   <ng-container *ngIf="httpService.user">
-    <p (click)="popoverHiding()" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"
-       style="border-bottom: 1px solid #eee;"><a routerLink="/usercenter">个人中心</a></p>
-    <p (click)="popoverHiding()" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"
-       style="border-bottom: 1px solid #eee;"><a routerLink="/passport">修改密码</a></p>
-    <p (click)="popoverHiding()" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"><a
-      (click)="logout()">退出登录</a></p>
+    <div style="background: #999;color: white">
+      <p (click)="popoverHiding()" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"
+         style="color: #fff"><a routerLink="/usercenter">个人中心</a></p>
+      <p (click)="popoverHiding()" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"
+         style="color: #fff"><a routerLink="/passport">修改密码</a></p>
+      <p (click)="popoverHiding()" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"
+         style="color: #fff;"><a (click)="logout()">退出登录</a></p>
+    </div>
   </ng-container>
   <ng-container *ngIf="!httpService.devType && !httpService.user">
     <!--<p class="vd-popoveritem mb-navlist" style="border-bottom: 1px solid #eee;"-->

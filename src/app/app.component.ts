@@ -66,7 +66,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     if (cookie) {
       const localData = JSON.parse(cookie);
       this.httpService.token = localData.token;
-      console.error(this.httpService.token);
       // this.httpService.user = localData.user;
       this.httpService.init();
     }

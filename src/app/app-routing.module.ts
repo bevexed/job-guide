@@ -42,7 +42,7 @@ const routes: Routes = [
   {
     path: 'usercenter',
     component: UsercenterComponent,
-    canActivate: [AuthService]
+    // canActivate: [AuthService]
   },
   {
     path: 'register',
