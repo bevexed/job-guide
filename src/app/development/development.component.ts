@@ -36,8 +36,8 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
+    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    // Add 'implements AfterViewInit' to the class.
     if (this.httpService.devType) {
       this.setRowCount();
       window.addEventListener('resize', () => {

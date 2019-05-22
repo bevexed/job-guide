@@ -100,7 +100,7 @@
 </ng-container>
 <ng-container *ngIf="!httpService.devType">
   <div style="padding-top: 40px;padding-left: 17px;padding-bottom:20px;color: #222;text-align: left">
-    <h1 style="font-size: 23px;">发展之路</h1>
+    <h1 style="font-size: 23px;">职业菜单</h1>
   </div>
   <div class="vd-classify-wrapper mb-classify-wrapper">
     <ul class="mb-classify vd-classify" style="background: #fff;margin: 0 15px;box-shadow:0px 3px 3px 0px rgba(0, 0, 0, 0.1);">
@@ -129,9 +129,11 @@
           </nz-list-item>
         </ng-template>
       </nz-list>
-      <button nz-button (click)="mbPagination(blockType.professionList)" nzType="default"
-        *ngIf="professionList?.currentData.length < professionList.data.length" nzBlock
-        style="margin-top: 20px;">查看更多</button>
+      <div style="text-align: center">
+        <button nz-button (click)="mbPagination(blockType.professionList)" nzType="default"
+                 style="margin: 30px 0;background: #D10000;color: #fff;">加载更多
+        </button>
+      </div>
     </div>
   </div>
   <!--<div class="mb-box-wrapper" style="margin-top: 30px;">-->

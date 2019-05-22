@@ -74,8 +74,10 @@
           </nz-list-item>
         </ng-template>
       </nz-list>
-      <button nz-button (click)="mbPagination()" nzType="default"
-        *ngIf="courseList?.currentData.length < courseList.data.length" nzBlock style="margin-top: 20px;">查看更多</button>
+      <div style="text-align: center">
+        <button nz-button (click)="mbPagination()" nzType="default"
+                *ngIf="courseList?.currentData.length < courseList.data.length" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
+      </div>
     </div>
   </div>
   <div class="mb-fxied" *ngIf="visible">

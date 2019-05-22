@@ -119,9 +119,10 @@
 
 <!--手机端 ??? -->
 <ng-container *ngIf="!httpService.devType">
-  <div class="mb-box-wrapper" style="margin-top: 30px;">
-    <div class="mb-box-header">
-      <h1 class="vd-box-title">热门课程</h1>
+  <div class="mb-box-wrapper">
+    <div class="mb-box-header" style="display: flex;justify-content: space-between;align-items: center;padding: 0 15px">
+      <h1 style="margin-bottom: 0">热门视频</h1>
+      <span (click)="mbPagination()">查看更多   ></span>
     </div>
     <div class="mb-box-body">
       <nz-list [nzDataSource]="hots?.currentData?hots?.currentData:[]" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
@@ -133,12 +134,15 @@
           </nz-list-item>
         </ng-template>
       </nz-list>
-      <button nz-button (click)="mbPagination()" nzType="default" *ngIf="hots?.currentData.length < hots.data.length" nzBlock style="margin-top: 20px;">查看更多</button>
+      <div style="text-align: center">
+        <button nz-button (click)="mbPagination()" nzType="default" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
+      </div>
     </div>
   </div>
-  <div class="mb-box-wrapper" style="margin-top: 30px;">
-    <div class="mb-box-header">
-      <h1 class="vd-box-title">发展之路</h1>
+  <div class="mb-box-wrapper">
+    <div class="mb-box-header" style="display: flex;justify-content: space-between;align-items: center;padding: 0 15px">
+      <h1 style="margin-bottom: 0">职业发展</h1>
+      <span routerLink="../development">查看更多   ></span>
     </div>
     <div class="mb-box-body">
       <nz-list [nzDataSource]="developList" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
@@ -150,14 +154,15 @@
           </nz-list-item>
         </ng-template>
       </nz-list>
-      <button routerLink="../development" nz-button nzType="default" nzBlock style="margin-top: 20px;">查看更多</button>
+      <div style="text-align: center">
+        <button routerLink="../development" nz-button nzType="default" style="margin-top: 30px;background: #D10000;color: #fff;">加载更多</button>
+      </div>
     </div>
   </div>
-  <div class="mb-box-wrapper" style="margin-top: 30px;">
-    <div class="mb-box-header">
-      <h1 class="vd-box-title"
-          style="background-image: url('../../assets/profession.png');background-size: 12px auto;background-position-x: 8px;">
-        职业菜单</h1>
+  <div class="mb-box-wrapper">
+    <div class="mb-box-header" style="display: flex;justify-content: space-between;align-items: center;padding: 0 15px">
+      <h1 style="margin-bottom: 0">热门岗位</h1>
+      <span routerLink="../profession">查看更多   ></span>
     </div>
     <div class="mb-box-body">
       <nz-list [nzDataSource]="professionList" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12}">
@@ -169,7 +174,29 @@
           </nz-list-item>
         </ng-template>
       </nz-list>
-      <button routerLink="../profession" nz-button nzType="default" nzBlock style="margin-top: 20px;">查看更多</button>
+      <div style="text-align: center">
+        <button routerLink="../profession" nz-button nzType="default" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
+      </div>
+    </div>
+  </div>
+  <div class="mb-box-wrapper">
+    <div class="mb-box-header" style="display: flex;justify-content: space-between;align-items: center;padding: 0 15px">
+      <h1 style="margin-bottom: 0">高考资讯</h1>
+      <span routerLink="../zixun">查看更多   ></span>
+    </div>
+    <div class="mb-box-body">
+      <nz-list [nzDataSource]="professionList" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12}">
+        <ng-template #item let-item>
+          <nz-list-item [nzContent]="nzContent">
+            <ng-template #nzContent>
+              <app-vditem [data]="item" [devType]="httpService.devType"></app-vditem>
+            </ng-template>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+      <div style="text-align: center">
+        <button routerLink="../zixun" nz-button nzType="default" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
+      </div>
     </div>
   </div>
 </ng-container>

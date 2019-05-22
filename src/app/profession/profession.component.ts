@@ -53,19 +53,19 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
+    // Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    // Add 'implements AfterViewInit' to the class.
     if (this.httpService.devType) {
       this.setRowCount();
       window.addEventListener('resize', () => {
         this.setRowCount();
-      })
+      });
     }
   }
 
   ngOnDestroy(): void {
     this.httpService.pageCache.jobs = {...this.professionList, type: this.selectedId, top: document.documentElement.scrollTop !== 0 ? document.documentElement.scrollTop : document.body.scrollTop};
-    this.httpService.pageCache.link_jobs = this.crossList; 
+    this.httpService.pageCache.link_jobs = this.crossList;
     this.httpService.pageCache.unlimited_jobs = this.unlimitedList;
     if (this.observer) {
       this.observer.unsubscribe();

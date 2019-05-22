@@ -14,6 +14,9 @@ import { LoginComponent } from './login/login.component';
 import { TixianComponent } from './tixian/tixian.component';
 import { TixianAlipayComponent } from './tixian-alipay/tixian-alipay.component';
 import { TixianBankCardComponent } from './tixian-bank-card/tixian-bank-card.component';
+import { ZixunComponent } from './zixun/zixun.component';
+import { ZixunDetailComponent } from './zixun-detail/zixun-detail.component';
+
 // li
 // 热门
 import {HotComponent} from './hot/hot.component';
@@ -81,11 +84,18 @@ const routes: Routes = [
     path: 'tixianBank',
     component: TixianBankCardComponent
   },
-
+  {
+    path : 'zixun',
+    component: ZixunComponent
+  },
   // li
   {
     path: 'hot',
     component: HotComponent
+  },
+  {
+    path: 'zixunDetail',
+    component: ZixunDetailComponent
   }
 ];
 
