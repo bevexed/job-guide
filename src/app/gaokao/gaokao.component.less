@@ -1,0 +1,83 @@
+.gaokao {
+  .head-img {
+    width: 62.5vw;
+    height: 12.5vw;
+    background-color: #005bad;
+  }
+
+  .left {
+    width: 14.063vw * 3.1;
+    float: left;
+
+    .tabs {
+      width: 100%;
+      font-family: MicrosoftYaHei, serif;
+      font-size: 1.042vw;
+      font-weight: normal;
+      font-stretch: normal;
+      margin: 2.6vw 0 0;
+
+      .tab {
+        display: inline-block;
+        width: 14.063vw;
+        height: 2.396vw;
+        line-height: 2.396vw;
+        color: #666;
+        background: #f2f2f2;
+        text-align: center;
+        margin-right: 2px;
+
+        &.active {
+          background-color: #d10000;
+          color: white;
+        }
+      }
+    }
+
+    .content {
+      .list {
+        .item {
+          width: 100%;
+          padding: 1.6vw 0;
+          display: flex;
+          border-bottom: 1px solid #bdbdbd;
+
+          img {
+            width: 12.5vw;
+            height: 7.031vw;
+            background-image: linear-gradient(
+              rgba(0, 0, 0, 0.1),
+              rgba(0, 0, 0, 0.1)),
+            linear-gradient(
+              #ffffff,
+              #ffffff);
+            background-blend-mode: normal,
+            normal;
+            margin-right: 1.5vw;
+          }
+
+          section {
+            h1 {
+              font-family: MicrosoftYaHei, serif;
+              font-size: 1.042vw;
+              font-weight: normal;
+              font-stretch: normal;
+            }
+
+            article {
+              font-family: MicrosoftYaHei, serif;
+              font-size: 0.729vw;
+              font-weight: normal;
+              font-stretch: normal;
+              color: #666666;
+            }
+
+            footer {
+              padding-top: 1.5vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}

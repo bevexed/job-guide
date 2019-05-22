@@ -37,7 +37,7 @@ import { TixianBankCardComponent } from './tixian-bank-card/tixian-bank-card.com
 import {HotComponent} from './hot/hot.component';
 import { ZixunComponent } from './zixun/zixun.component';
 import { ZixunDetailComponent } from './zixun-detail/zixun-detail.component';
-
+import { GaokaoComponent } from './gaokao/gaokao.component';
 registerLocaleData(zh);
 
 @NgModule({
@@ -61,7 +61,8 @@ registerLocaleData(zh);
     LoginComponent,
     HotComponent,
     ZixunComponent,
-    ZixunDetailComponent
+    ZixunDetailComponent,
+    GaokaoComponent
   ],
   imports: [
     BrowserModule,

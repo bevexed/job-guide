@@ -1,18 +1,26 @@
-<div class="vd-item"
-     [ngClass]="{'mb-item': !devType, 'vd-ie': isIE}"
+<div [ngClass]="
+     {
+       'mb-item': !devType,
+       'vd-ie': isIE,
+       'to-up':data?.moduleCode !== 'home_page_hot',
+       'shadow-box':data?.moduleCode !== 'home_page_hot' && index
+     }"
      [routerLink]="'../vd/'+data.courseId"
-     [style.background-color]="data?.moduleCode !== 'home_page_hot'? 'none' :'white'">
-  <div class="vd-tags" *ngIf="!vipTag(data)">
+     [style.background-color]="data?.moduleCode !== 'home_page_hot'? 'none' :'white'"
+     class="vd-item">
+  <div *ngIf="!vipTag(data)" class="vd-tags">
     <nz-tag [nzColor]="'#D10000'">VIP</nz-tag>
   </div>
-  <div class="vd-imgbox" [ngStyle]="{'background-image': 'url('+ (data?.coverUrl ? data?.coverUrl : data?.imageUrl) +')'}"></div>
+  <div [ngStyle]="{'background-image': 'url('+ (data?.coverUrl ? data?.coverUrl : data?.imageUrl) +')'}" class="vd-imgbox"></div>
   <!-- <img src="data?.coverUrl ? data?.coverUrl : data?.imageUrl" alt=""> -->
   <div class="vd-desc">
 
     <!--    首页-->
     <div *ngIf="index">
       <h3 [hidden]="data?.moduleCode === 'home_page_hot'" class="li-gray">{{data?.title}}</h3>
-      <h3 [hidden]="data?.moduleCode !== 'home_page_hot'">{{data?.title}}</h3>
+
+      <!-- fixme： 数据不对-->
+      <h3 [hidden]="data?.moduleCode !== 'home_page_hot'" class="red">{{data?.intro}} 123123123123</h3>
     </div>
 
     <!--    发展之路-->
@@ -21,13 +29,13 @@
     </div>
 
 
-    <div class="li-hot-desc" *ngIf="data?.hot">
+    <div *ngIf="data?.hot" class="li-hot-desc red" style="margin: 0">
       <span>
         30分钟
       </span>
       <span>免费</span>
     </div>
-    <p [hidden]="data?.intro">{{data?.intro}}</p>
+    <!--    <p [hidden]="data?.intro">{{data?.intro}}</p>-->
   </div>
 
 

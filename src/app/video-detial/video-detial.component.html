@@ -1,6 +1,9 @@
 <ng-container *ngIf="httpService.devType">
-  <div class="album-head-con li-v-d" itemscope="" itemtype="http://schema.org/TVSeries">
-    <div class="album-head-info clearfix" *ngIf="!isplay">
+  <div class="album-head-con li-v-d vd-box"
+       itemscope="" itemtype="http://schema.org/TVSeries"
+       style="padding-top: 3vw !important;padding-bottom: 2.4vw !important;"
+  >
+    <div *ngIf="!isplay" class="album-head-info clearfix">
       <div class="info-img">
         <a (click)="play()">
           <img [src]="courseInfo?.coverUrl" id="j-album-img" itemprop="image">
@@ -9,7 +12,7 @@
 
 
       <div class="info-intro">
-        <h1 itemprop="name" class="j-head-hot-wrap">
+        <h1 class="j-head-hot-wrap" itemprop="name">
           <a>{{courseInfo?.title}}</a>
         </h1>
         <!-- 简介 -->
@@ -35,34 +38,71 @@
         </div>
         <!-- 播放按钮 -->
         <div class="intro-btns clearfix" style="padding-top: 1.3vw">
-          <button nz-button nzType="primary" nzSize="large" (click)="play()">立即播放</button>
-          <a class="albumPlayBtn"><i nz-icon nzType="share-alt" nzTheme="outline"></i>分享</a>
+          <button (click)="play()" nz-button nzSize="large" nzType="primary">&nbsp;&nbsp;&nbsp; 立即播放 &nbsp;&nbsp;&nbsp;</button>
+          <a class="albumPlayBtn"><i nz-icon nzTheme="outline" nzType="share-alt"></i>分享</a>
         </div>
 
       </div>
     </div>
-    <video controls="true" controlslist="nodownload" style="display: block;width: 100%;margin: 20px 0;outline: none;" *ngIf="isplay">
+    <video *ngIf="isplay" controls="true" controlslist="nodownload" style="display: block;width: 100%;margin: 20px 0;outline: none;">
       <source [src]="courseInfo?.videoUrl">
     </video>
-
-
-    <!--    相关课程推荐-->
-    <!--    相关课程推荐-->
-    <!--    相关课程推荐-->
-    <!--    相关课程推荐-->
-    <!--    相关课程推荐-->
-
-
   </div>
+
+  <!--    相关课程推荐-->
+  <!--    相关课程推荐-->
+  <!--    相关课程推荐-->
+  <!--    相关课程推荐-->
+  <!--    相关课程推荐-->
+
+  <div class="white-space">
+    <h3>相关课程推荐</h3>
+
+    <nz-list [nzDataSource]="[1,2,3,4,5,6,7,8]" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }"
+             [nzRenderItem]="item">
+      <ng-template #item let-item>
+        <nz-list-item [nzContent]="nzContent">
+          <ng-template #nzContent>
+            <app-vditem [data]="item"></app-vditem>
+          </ng-template>
+        </nz-list-item>
+      </ng-template>
+    </nz-list>
+  </div>
+
+
+  <!--广告位-->
+  <!--广告位-->
+  <!--广告位-->
+
+  <div class="vd-box" style="background: #f2f2f2">
+    <img alt="" class="li-ad-img shadow-box" src="../../assets/广告位.png">
+  </div>
+
+
 </ng-container>
+
+<style>
+  .white-space {
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    background: #f2f2f2;
+  }
+
+  .white-space > h3 {
+    font-size: 16px;
+    color: #999;
+    padding-bottom: 1vw;
+  }
+</style>
 
 <!--手机-->
 <ng-container *ngIf="!httpService.devType">
   <div class="mb-poster">
-    <div class="mb-box-preview" *ngIf="!isplay" (click)="play($event)">
+    <div (click)="play($event)" *ngIf="!isplay" class="mb-box-preview">
       <img [src]="courseInfo?.coverUrl">
     </div>
-    <video id="videos" controls style="display: block;width: 100%;outline: none;position: relative;z-index: 1;" *ngIf="isplay">
+    <video *ngIf="isplay" controls id="videos" style="display: block;width: 100%;outline: none;position: relative;z-index: 1;">
       <source [src]="courseInfo?.videoUrl">
     </video>
   </div>
@@ -74,17 +114,13 @@
 </ng-container>
 
 <div class="vd-tabwrapper">
-  <nz-tabset>
-    <nz-tab nzTitle="相关视频">
-      <!--      <nz-list [nzDataSource]="hots" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, xs: 6, sm: 6, md: 6, lg: 6, xl: 6 }">-->
-      <!--        <ng-template #item let-item>-->
-      <!--          <nz-list-item [nzContent]="nzContent">-->
-      <!--            <ng-template #nzContent>-->
-      <!--              <app-vditem [data]="item"></app-vditem>-->
-      <!--            </ng-template>-->
-      <!--          </nz-list-item>-->
-      <!--        </ng-template>-->
-      <!--      </nz-list>-->
-    </nz-tab>
-  </nz-tabset>
+  <nz-list [nzDataSource]="hots?.currentData" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }" [nzRenderItem]="item">
+    <ng-template #item let-item>
+      <nz-list-item [nzContent]="nzContent">
+        <ng-template #nzContent>
+          <app-vditem [data]="item"></app-vditem>
+        </ng-template>
+      </nz-list-item>
+    </ng-template>
+  </nz-list>
 </div>

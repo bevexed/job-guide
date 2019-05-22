@@ -39,13 +39,25 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
     crossList: 1,
     unlimitedList: 2
   };
-  public rowCount: number = 6;
+  public rowCount = 6;
   @ViewChild('vdwrapper') wrapper;
   private observer: any;
 
   constructor(
     public httpService: HttpService
-  ) {}
+  ) {
+  }
+
+  public changSelect(num: number): void {
+    this.menuSelect = num;
+    if (num === 0) {
+      this.showData = this.professionList;
+    } else if (num === 1) {
+      this.showData = this.crossList;
+    } else if (num === 2) {
+      this.showData = this.unlimitedList;
+    }
+  }
 
   ngOnInit() {
     this.getProfessionList();
@@ -72,23 +84,18 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private setRowCount() {
-    let width = this.wrapper.nativeElement.clientWidth;
-    this.rowCount = Math.floor(width/140);
-  }
-
   public async getProfessionList() {
-    let res = await this.httpService.getProfrssionTypeList();
+    const res = await this.httpService.getProfrssionTypeList();
     this.typeList = res.data;
     if (this.typeList.length) {
-      let a = await this.getCoursesList(this.typeList[0].id);
+      const a = await this.getCoursesList(this.typeList[0].id);
       if (this.observer) {
         return;
       }
       this.observer = this.httpService.ishistoryback.subscribe(async () => {
         if (this.httpService.pageCache.jobs) {
           this.selectedId = this.httpService.pageCache.jobs.type;
-          let b = await this.getCoursesList(this.selectedId);
+          const b = await this.getCoursesList(this.selectedId);
           if (this.httpService.devType) { // pc
             this.professionList.current = this.httpService.pageCache.jobs.current;
             this.listFilter(this.blockType.professionList);
@@ -97,21 +104,21 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
             this.unlimitedList.current = this.httpService.pageCache.unlimited_jobs.current;
             this.listFilter(this.blockType.unlimitedList);
           } else { // 手机
-            this.mbPagination(this.blockType.professionList,this.httpService.pageCache.jobs.current);
-            this.mbPagination(this.blockType.crossList,this.httpService.pageCache.link_jobs.current);
-            this.mbPagination(this.blockType.unlimitedList,this.httpService.pageCache.unlimited_jobs.current);
+            this.mbPagination(this.blockType.professionList, this.httpService.pageCache.jobs.current);
+            this.mbPagination(this.blockType.crossList, this.httpService.pageCache.link_jobs.current);
+            this.mbPagination(this.blockType.unlimitedList, this.httpService.pageCache.unlimited_jobs.current);
           }
           setTimeout(() => {
-            window.scrollTo(0,this.httpService.pageCache.jobs.top);
+            window.scrollTo(0, this.httpService.pageCache.jobs.top);
           }, 0);
         }
-      })
+      });
     }
   }
 
   public async getBanner() {
-    let type = this.httpService.devType ? BANNER_TYPELIST[1] : BANNER_TYPELIST[3];
-    let res = await this.httpService.getBannerByType(type);
+    const type = this.httpService.devType ? BANNER_TYPELIST[1] : BANNER_TYPELIST[3];
+    const res = await this.httpService.getBannerByType(type);
     if (res.code === 200) {
       this.banner = res.data;
     }
@@ -119,36 +126,37 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
 
   public async getCoursesList(id: number) {
     this.selectedId = id;
-    let res = await this.httpService.getProfessionById(id);
+    const res = await this.httpService.getProfessionById(id);
     this.professionList = {
       data: res.data.canList,
       current: 1,
-      size: 4,
+      size: 12,
       currentData: []
     };
+    this.showData = this.professionList;
     this.crossList = {
       data: res.data.crossList,
       current: 1,
-      size: 4,
+      size: 12,
       currentData: []
     };
     this.unlimitedList = {
       data: res.data.unlimitedList,
       current: 1,
-      size: 8,
+      size: 12,
       currentData: []
     };
-    for (let key in this.blockType) {
+    for (const key in this.blockType) {
       this.listFilter(this.blockType[key]);
     }
     this.close();
     return new Promise((resolve, reject) => {
       resolve();
-    })
+    });
   }
 
   public classifySplit() {
-    if (this.classifySlice && this.typeList.length > this.rowCount *2) {
+    if (this.classifySlice && this.typeList.length > this.rowCount * 2) {
       return this.typeList.slice(0, this.rowCount * 2 - 1);
     } else {
       return this.typeList;
@@ -160,7 +168,7 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
   }
 
   public listFilter(type: number) {
-    switch(type) {
+    switch (type) {
       case this.blockType.professionList:
         this.professionList.currentData = this.professionList.data.slice((this.professionList.current - 1) * this.professionList.size, this.professionList.current * this.professionList.size);
         break;
@@ -175,20 +183,20 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
 
   public mbPagination(type: number, pageNumber?: number) {
     let aimlist;
-      switch(type) {
-        case this.blockType.professionList:
-          aimlist = this.professionList;
-          break;
-        case this.blockType.crossList:
-          aimlist = this.crossList;
-          break;
-        case this.blockType.unlimitedList:
-          aimlist = this.unlimitedList;
-          break;
-      }
+    switch (type) {
+      case this.blockType.professionList:
+        aimlist = this.professionList;
+        break;
+      case this.blockType.crossList:
+        aimlist = this.crossList;
+        break;
+      case this.blockType.unlimitedList:
+        aimlist = this.unlimitedList;
+        break;
+    }
     if (pageNumber === undefined) {
-      aimlist.current  = aimlist.current + 1;
-      let sliceData = aimlist.data.slice((aimlist.current - 1) * aimlist.size, aimlist.current * aimlist.size);
+      aimlist.current = aimlist.current + 1;
+      const sliceData = aimlist.data.slice((aimlist.current - 1) * aimlist.size, aimlist.current * aimlist.size);
       aimlist.currentData = aimlist.currentData.concat(sliceData);
     } else {
       aimlist.current = pageNumber;
@@ -202,5 +210,10 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
 
   close(): void {
     this.visible = false;
+  }
+
+  private setRowCount() {
+    const width = this.wrapper.nativeElement.clientWidth;
+    this.rowCount = Math.floor(width / 140);
   }
 }

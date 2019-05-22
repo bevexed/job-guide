@@ -20,6 +20,8 @@ import { ZixunDetailComponent } from './zixun-detail/zixun-detail.component';
 // li
 // 热门
 import {HotComponent} from './hot/hot.component';
+import {GaokaoComponent} from './gaokao/gaokao.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -96,6 +98,10 @@ const routes: Routes = [
   {
     path: 'zixunDetail',
     component: ZixunDetailComponent
+  },
+  {
+    path: 'gaokao',
+    component: GaokaoComponent
   }
 ];
 

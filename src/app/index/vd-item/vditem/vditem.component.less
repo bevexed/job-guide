@@ -56,6 +56,15 @@
 .vd-item:not(.mb-item):not(.vd-ie):hover {
   transform: scale(1.05);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .2);
+
+  &.to-up{
+    transform: translateY(-20px);
+  }
+
+  .red {
+    color: #D10000;
+
+  }
 }
 
 .vd-item:not(.mb-item):not(.vd-ie):hover:after {
@@ -66,11 +75,9 @@
   display: block;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, .2);
-  background-image: url('../../../../assets/play.png');
-  background-repeat: no-repeat;
-  background-position: center;
+  background: rgba(0, 0, 0, .2) url('../../../../assets/play.png') no-repeat center;
   background-size: 64px;
+  color: #D10000;
 }
 
 .vd-item,
@@ -115,5 +122,10 @@
 .li-gray {
   background: rgb(128, 128, 128);
   color: white;
-  padding: 15px;
+  padding: .4vw .8vw;
 }
+
+h3 {
+  margin: 0;
+}
+

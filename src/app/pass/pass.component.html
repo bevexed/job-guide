@@ -1,54 +1,57 @@
-<div class="vd-user clearfix" [ngClass]="{'mb-user': !httpService.devType}">
-    <h1>{{httpService.user?'修改密码':'找回密码'}}</h1>
-    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>手机号</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phoneNumber']">
-          <input formControlName="mobile" id="'phoneNumber'" nz-input />
-          <nz-form-explain *ngIf="validateForm.get('mobile')?.dirty && validateForm.get('mobile')?.errors">请输入您的手机号</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>新密码</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24">
-          <input nz-input type="password" id="password" formControlName="password" />
-          <nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors">长度为4-16，只支持大小写字母及数字</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>确认密码</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24">
-          <input nz-input type="password" formControlName="checkPassword" id="checkPassword" />
-          <nz-form-explain *ngIf="validateForm.get('checkPassword')?.dirty && validateForm.get('checkPassword')?.errors">
-            <ng-container *ngIf="validateForm.get('checkPassword')?.hasError('required')">
-              请输入确认密码
-            </ng-container>
-            <ng-container *ngIf="validateForm.get('checkPassword')?.hasError('confirm')">
-              密码不一致
-            </ng-container>
-          </nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha" nzRequired>验证码</nz-form-label>
-        <nz-form-control [nzSm]="14" [nzXs]="24">
-          <div nz-row [nzGutter]="8">
-            <div nz-col [nzSpan]="14">
-              <input nz-input formControlName="captcha" id="captcha" />
-            </div>
-            <div nz-col [nzSpan]="10">
-              <button class="getCode" nz-button (click)="getCaptcha()" [disabled]="btn_clicked">{{getBtnText()}}</button>
-            </div>
-          </div>
-          <nz-form-explain *ngIf="validateForm.get('captcha')?.dirty && validateForm.get('captcha')?.errors">请输入验证码</nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item nz-row style="margin-bottom:8px;">
-        <nz-form-control [nzSm]="{ span: 14, offset: 6 }" [nzXs]="{ span: 24, offset: 0 }">
-          <div nz-col [nzSpan]="24">
-            <button nzBlock nz-button nzType="primary" [disabled]="validateForm.invalid" style="background: #ccc;color: #fff;">确定</button>
-          </div>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
+<div [ngClass]="{'mb-user': !httpService.devType}" class="vd-user clearfix" style="width: 455px;margin: 0 auto">
+<!--  <h1>{{httpService.user ? '修改密码' : '找回密码'}}</h1>-->
+  <div style="margin: 50px 0 0 0">
+
   </div>
+  <form (ngSubmit)="submitForm()" [formGroup]="validateForm" nz-form>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>手机号</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzValidateStatus]="validateForm.controls['phoneNumber']" [nzXs]="24">
+        <input formControlName="mobile" id="'phoneNumber'" nz-input/>
+        <nz-form-explain *ngIf="validateForm.get('mobile')?.dirty && validateForm.get('mobile')?.errors">请输入您的手机号</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>新密码</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input formControlName="password" id="password" nz-input type="password"/>
+        <nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors">长度为4-16，只支持大小写字母及数字</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>确认密码</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input formControlName="checkPassword" id="checkPassword" nz-input type="password"/>
+        <nz-form-explain *ngIf="validateForm.get('checkPassword')?.dirty && validateForm.get('checkPassword')?.errors">
+          <ng-container *ngIf="validateForm.get('checkPassword')?.hasError('required')">
+            请输入确认密码
+          </ng-container>
+          <ng-container *ngIf="validateForm.get('checkPassword')?.hasError('confirm')">
+            密码不一致
+          </ng-container>
+        </nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="captcha" nzRequired>验证码</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <div [nzGutter]="8" nz-row>
+          <div [nzSpan]="14" nz-col>
+            <input formControlName="captcha" id="captcha" nz-input/>
+          </div>
+          <div [nzSpan]="10" nz-col>
+            <button (click)="getCaptcha()" [disabled]="btn_clicked" class="getCode" nz-button>{{getBtnText()}}</button>
+          </div>
+        </div>
+        <nz-form-explain *ngIf="validateForm.get('captcha')?.dirty && validateForm.get('captcha')?.errors">请输入验证码</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-row style="margin-bottom:8px;">
+      <nz-form-control [nzSm]="{ span: 14, offset: 6 }" [nzXs]="{ span: 24, offset: 0 }">
+        <div [nzSpan]="24" nz-col>
+          <button [disabled]="validateForm.invalid" nz-button nzBlock nzType="primary" style="background: #ccc;color: #fff;">确定</button>
+        </div>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

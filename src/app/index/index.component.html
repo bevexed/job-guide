@@ -1,7 +1,12 @@
-<nz-carousel [nzEffect]="effect" [nzDots]="bannerlist.length>1" [nzAutoPlay]="true" [nzAutoPlaySpeed]="7000"
-             *ngIf="bannerlist.length" [nzEnableSwipe]="true">
+<nz-carousel [nzEffect]="effect"
+             [nzDots]="bannerlist.length>1"
+             [nzAutoPlay]="true"
+             [nzAutoPlaySpeed]="7000"
+             *ngIf="bannerlist.length"
+             [nzEnableSwipe]="true">
   <div nz-carousel-content *ngFor="let index of bannerlist"
-       style="cursor: pointer;">
+       style="cursor: pointer;height: 21vw"
+  >
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
       <img [src]="index.imageUrl" style="display: block;width: 100%;">
     </div>
@@ -13,6 +18,14 @@
     </div>
   </div>
 </nz-carousel>
+
+<style>
+  .hover-red:hover {
+    color: #D10000 !important;
+    cursor: pointer;
+  }
+</style>
+
 <ng-container *ngIf="httpService.devType">
   <!--  热门视频    -->
   <div class="vd-wrapper">
@@ -25,7 +38,11 @@
         </div>
       </div>
 
-      <nz-list [nzDataSource]="hots?.currentData" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
+      <nz-list
+        [nzDataSource]="hots?.currentData"
+        [nzRenderItem]="item"
+        [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6  }"
+      >
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
@@ -72,7 +89,7 @@
     <!--      <img src="../../assets/banner6.png">-->
     <!--    </div>-->
 
-    <div class="vd-box  li-fa-zan-zhi-lu" style="padding-bottom: 50px">
+    <div class="vd-box  li-fa-zan-zhi-lu" style="padding-bottom: 100px !important;">
       <div class="vd-box-header">
         <h1 class="vd-box-title">热门岗位 </h1>
         <div class="vd-pagination">
@@ -91,6 +108,10 @@
     </div>
 
     <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
+    <!--    高考资讯-->
     <div class="vd-box" style="padding-top: 50px">
       <div class="vd-box-header">
         <h1 class="vd-box-title">高考资讯 </h1>
@@ -98,6 +119,7 @@
           <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
         </div>
       </div>
+
 
       <div class="li-gao-kao">
         <div class="item" *ngFor="let item of [1123123213,2123213213123,3123213213]">
@@ -107,14 +129,35 @@
             <h6>招考政策</h6>
 
             <ul *ngFor="let news of [1123213213213213,2123213213213,1232131231233,4123123,5123123123123]">
-              <li><span></span> {{news}}</li>
+              <li class="hover-red"><span></span> {{news}}</li>
             </ul>
           </div>
         </div>
       </div>
     </div>
+
+
+    <!--广告位-->
+    <!--广告位-->
+    <!--广告位-->
+
+    <div class="vd-box" style="background: none">
+      <img alt="" class="li-ad-img shadow-box" src="../../assets/广告位.png">
+    </div>
+
+    <!--    共用底部-->
+    <div class="vd-slogan-wrapper">
+      <div class="vd-slogan">
+        <p>现在就去注册，为自己的职业发展做选择</p>
+        <span>职场司南，专注于大学生及毕业五年内群体的职业发展</span>
+        <br>
+        <button nz-button nzSize="large" nzType="primary">专业的指导意见</button>
+      </div>
+
+    </div>
   </div>
 </ng-container>
+
 
 
 <!--手机端 ??? -->
