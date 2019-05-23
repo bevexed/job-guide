@@ -424,8 +424,9 @@ export class HttpService {
       }
       case 'wechat': {
         const code = sessionStorage.getItem('code');
+        const href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc80f049c9265d854&redirect_uri=http%3a%2f%2fwww.zhichangsinan.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
         if (code == null || code === '' || code === 'null') {
-          window.location.href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc80f049c9265d854&redirect_uri=http%3a%2f%2fwww.zhichangsinan.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
+          window.location.href = href;
         } else {
           const res = await this.getOpenId(code);
           console.log(res);
@@ -464,9 +465,9 @@ export class HttpService {
             'paySign' : respone.data.paySign           // 微信签名
           }, function (e) {
             if (e.err_msg === 'get_brand_wcpay_request:ok' ) {
-              window.location.reload();
+              window.location.href = href;
             } else {
-              window.location.reload();
+              window.location.href = href;
             }
           });
           // const that = this;
