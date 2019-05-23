@@ -44,7 +44,10 @@
       <div class="title">热点新闻</div>
       <div class="content">
         <ul>
-          <li *ngFor="let i of [1,2,34,2,2,2,2,2,22,2]">sjhdkhsajkhdkjahskdjashjkdahskjahsdkashk</li>
+          <li
+            *ngFor="let i of [1,2,34,2,2,2,2,2,22,2]"
+            (click)="router.navigateByUrl('/gaokao-detail/'+ i)"
+          >sjhdkhsajkhdkjahskdjashjkdahskjahsdkashk</li>
         </ul>
       </div>
     </div>

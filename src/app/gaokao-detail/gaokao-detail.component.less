@@ -1,0 +1,110 @@
+.gaokao-detail {
+  .wrap {
+    width: 62.5vw;
+    display: flex;
+    justify-content: space-between;
+    margin: 2.6vw 0 0;
+  }
+
+  .left {
+    width: 14.063vw * 3.1;
+
+    article {
+      h1 {
+        font-family: MicrosoftYaHei, serif;
+        font-size: 1.563vw;
+        line-height: 2.083vw;
+        color: #222222;
+      }
+
+      h6 {
+        font-family: MicrosoftYaHei, serif;
+        font-size: 0.729vw;
+        line-height: 1.146vw;
+        color: #999999;
+      }
+
+      section {
+        padding: 1.5vw 0;
+        border-color: #bdbdbd;
+        border-style: solid;
+        border-width: 1px 0;
+
+        p {
+          font-family: MicrosoftYaHei, serif;
+          font-size: 0.833vw;
+          line-height: 1.875vw;
+          color: #4c4c4c;
+          text-indent: 2em;
+        }
+
+        img {
+          display: block;
+          margin: 0 auto;
+          width: 20.833vw;
+          border: solid 0.052vw #dbdbdb;
+        }
+      }
+    }
+
+    footer {
+      margin-top: 2.652vw;
+      font-family: MicrosoftYaHei-Bold, serif;
+      font-size: 0.729vw;
+      font-weight: 500;
+      line-height: 1.667vw;
+      color: #404040;
+
+      div:hover {
+        color: #D10000;
+        cursor: pointer;
+      }
+    }
+  }
+
+
+  .right {
+    width: 14.844vw;
+
+    .title {
+      @height: 0.99vw;
+      height: @height;
+      line-height: @height;
+      font-family: MicrosoftYaHei, serif;
+      font-size: @height;
+      font-weight: normal;
+      font-stretch: normal;
+      border-left: @height/5 solid #D10000;
+      text-indent: 1em;
+      margin-top: @height/2;
+      margin-bottom: 1.717vw;
+    }
+
+    .content {
+      width: 14.844vw;
+      background-color: #f6f6f6;
+      box-shadow: inset 0vw -0.052vw 0vw 0vw #e6e8eb;
+
+      ul {
+        padding: 1.56vw;
+
+        li {
+          width: 11.667vw;
+          list-style-type: disc;
+          font-family: MicrosoftYaHei, serif;
+          font-size: 0.729vw;
+          line-height: 1.458vw;
+          color: #666666;
+          margin-bottom: 1.5vw;
+          word-break: break-all;
+
+          &:hover {
+            color: #D10000;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+}
