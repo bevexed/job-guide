@@ -38,6 +38,7 @@ import {HotComponent} from './hot/hot.component';
 import { ZixunComponent } from './zixun/zixun.component';
 import { ZixunDetailComponent } from './zixun-detail/zixun-detail.component';
 import { GaokaoComponent } from './gaokao/gaokao.component';
+import { GaokaoDetailComponent } from './gaokao-detail/gaokao-detail.component';
 registerLocaleData(zh);
 
 @NgModule({
@@ -62,7 +63,8 @@ registerLocaleData(zh);
     HotComponent,
     ZixunComponent,
     ZixunDetailComponent,
-    GaokaoComponent
+    GaokaoComponent,
+    GaokaoDetailComponent
   ],
   imports: [
     BrowserModule,

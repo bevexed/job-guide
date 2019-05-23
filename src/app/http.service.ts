@@ -39,10 +39,6 @@ export class HttpService {
   };
   public coupon: any;
   public ishistoryback: ReplaySubject<any> = new ReplaySubject<any>();
-  /** 设备类型，true：PC， false：移动端 */
-  private headers: HttpHeaders = new HttpHeaders({
-    'Content-Type': 'application/json'
-  });
   public isWel = false;
   /** 是否是通过历史记录进入页面的 */
 
@@ -50,6 +46,10 @@ export class HttpService {
   public weixinImgUrl: string;
   public weixinShow = false;
   public timer;
+  /** 设备类型，true：PC， false：移动端 */
+  private headers: HttpHeaders = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
 
   constructor(
     private http: HttpClient,
@@ -302,13 +302,16 @@ export class HttpService {
   }
 
   public GetQueryString(name: string) {
-    const reg = new RegExp( '(^|&)' + name + '=([^&]*)(&|$)'); // 构造一个含有目标参数的正则表达式对象
+    const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)'); // 构造一个含有目标参数的正则表达式对象
     const r = window.location.search.substr(1).match(reg); // 匹配目标参数
-    if (r != null) { return unescape(r[2]); } return null; // 返回参数值
+    if (r != null) {
+      return unescape(r[2]);
+    }
+    return null; // 返回参数值
   }
 
   /** 支付 */
-  public async pay(payType: string,  promoCode?: string, userCouponId?: any) {
+  public async pay(payType: string, promoCode?: string, userCouponId?: any) {
     if (!this.user) {
       this.modalService.error({
         nzTitle: '权限不足',
@@ -424,7 +427,7 @@ export class HttpService {
       }
       case 'wechat': {
         const code = sessionStorage.getItem('code');
-        const href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc80f049c9265d854&redirect_uri=http%3a%2f%2fwww.zhichangsinan.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect'
+        const href = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxc80f049c9265d854&redirect_uri=http%3a%2f%2fwww.zhichangsinan.com&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect';
         if (code == null || code === '' || code === 'null') {
           window.location.href = href;
         } else {
@@ -457,14 +460,14 @@ export class HttpService {
           console.log(respone);
           this.vipModal = false;
           WeixinJSBridge.invoke('getBrandWCPayRequest', {
-            'appId' : respone.data.appId,                  // 公众号名称，由商户传入
+            'appId': respone.data.appId,                  // 公众号名称，由商户传入
             'timeStamp': respone.data.timeStamp,          // 时间戳，自 1970 年以来的秒数
-            'nonceStr' : respone.data.nonceStr,         // 随机串
-            'package' : respone.data.package,      // 商品包信息</span>
-            'signType' : respone.data.signType,        // 微信签名方式
-            'paySign' : respone.data.paySign           // 微信签名
+            'nonceStr': respone.data.nonceStr,         // 随机串
+            'package': respone.data.package,      // 商品包信息</span>
+            'signType': respone.data.signType,        // 微信签名方式
+            'paySign': respone.data.paySign           // 微信签名
           }, function (e) {
-            if (e.err_msg === 'get_brand_wcpay_request:ok' ) {
+            if (e.err_msg === 'get_brand_wcpay_request:ok') {
               window.location.href = href;
             } else {
               window.location.href = href;
