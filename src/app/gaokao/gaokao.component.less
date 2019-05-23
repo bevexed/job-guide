@@ -5,6 +5,13 @@
     background-color: #005bad;
   }
 
+  .wrap {
+    width: 62.5vw;
+    display: flex;
+    justify-content: space-between;
+    margin: 2.6vw 0 0;
+  }
+
   .left {
     width: 14.063vw * 3.1;
 
@@ -14,7 +21,6 @@
       font-size: 1.042vw;
       font-weight: normal;
       font-stretch: normal;
-      margin: 2.6vw 0 0;
 
       .tab {
         display: inline-block;
@@ -80,6 +86,52 @@
     }
   }
 
+
+  .right {
+    width: 14.844vw;
+    height: 35.833vw;
+
+    .title {
+      @height: 0.99vw;
+      height: @height;
+      line-height: @height;
+      font-family: MicrosoftYaHei, serif;
+      font-size: @height;
+      font-weight: normal;
+      font-stretch: normal;
+      border-left: @height/5 solid #D10000;
+      text-indent: 1em;
+      margin-top: @height/2;
+      margin-bottom: 1.717vw;
+    }
+
+    .content {
+      width: 14.844vw;
+      background-color: #f6f6f6;
+      box-shadow: inset 0vw -0.052vw 0vw 0vw #e6e8eb;
+
+      ul {
+        padding: 1.56vw;
+
+        li {
+          width: 11.667vw;
+          list-style-type: disc;
+          font-family: MicrosoftYaHei, serif;
+          font-size: 0.729vw;
+          line-height: 1.458vw;
+          color: #666666;
+          margin-bottom: 1.5vw;
+          word-break: break-all;
+
+          &:hover {
+            color: #D10000;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
   .bottom {
     width: 400px;
     margin: 2.5vw auto;
@@ -101,10 +153,14 @@
     display: none;
   }
 
+  ::ng-deep .ant-pagination-jump-prev:after {
+    display: none;
+  }
+
   ::ng-deep .ant-pagination-jump-next:after, .ant-pagination-jump-prev:after {
     content: "•••";
     letter-spacing: 2px;
-    color: rgba(0,0,0,.25);
+    color: rgba(0, 0, 0, .25);
     text-align: center;
     display: none !important;
   }
@@ -123,5 +179,10 @@
     background: #f2f2f2;
   }
 
+  ::ng-deep .ant-pagination-jump-prev:hover {
+    &:after {
+      display: none !important;
+    }
+  }
 
 }

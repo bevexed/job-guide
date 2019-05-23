@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { HttpService, BANNER_TYPELIST } from '../http.service';
-import { videos } from '../index/index.component';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {BANNER_TYPELIST, HttpService} from '../http.service';
+import {videos} from '../index/index.component';
 
 @Component({
   selector: 'app-profession',
@@ -9,9 +9,11 @@ import { videos } from '../index/index.component';
 })
 export class ProfessionComponent implements OnInit, AfterViewInit {
   effect = 'scrollx';
-  public classifySlice: boolean = true;
-  public visible:boolean = false;
+  public classifySlice = true;
+  public visible = false;
   public banner: any[] = [];
+  public showData: any;
+  public menuSelect = 0;
   public professionList: videos = {
     data: [],
     current: 1,
@@ -48,6 +50,7 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
   ) {
   }
 
+
   public changSelect(num: number): void {
     this.menuSelect = num;
     if (num === 0) {
@@ -76,7 +79,11 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy(): void {
-    this.httpService.pageCache.jobs = {...this.professionList, type: this.selectedId, top: document.documentElement.scrollTop !== 0 ? document.documentElement.scrollTop : document.body.scrollTop};
+    this.httpService.pageCache.jobs = {
+      ...this.professionList,
+      type: this.selectedId,
+      top: document.documentElement.scrollTop !== 0 ? document.documentElement.scrollTop : document.body.scrollTop
+    };
     this.httpService.pageCache.link_jobs = this.crossList;
     this.httpService.pageCache.unlimited_jobs = this.unlimitedList;
     if (this.observer) {

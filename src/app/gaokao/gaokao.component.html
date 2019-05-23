@@ -1,6 +1,6 @@
 <div class="vd-box gaokao">
   <img alt="" class="head-img" src="https://zcsn-public-prod.oss-cn-hangzhou.aliyuncs.com/banner/e2e16f5fcc144e52a5cd5ef11424a9be.png?x-oss-process=image/quality,Q_30/resize,h_540/interlace,1">
-  <div>
+  <div class="wrap">
     <div class="left">
 
       <div class="tabs">
@@ -10,7 +10,6 @@
           [ngClass]="{active:tabIndex === activeTab}"
           class="tab"
         >{{tab}}</div>
-
       </div>
 
       <div class="content">
@@ -40,21 +39,23 @@
         </ul>
       </div>
     </div>
+
+    <div class="right">
+      <div class="title">热点新闻</div>
+      <div class="content">
+        <ul>
+          <li *ngFor="let i of [1,2,34,2,2,2,2,2,22,2]">sjhdkhsajkhdkjahskdjashjkdahskjahsdkashk</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
-<!--  <p class="bottom">-->
-    <nz-pagination
-      class="bottom"
-      [nzItemRender]="renderItemTemplate"
-      [nzPageIndex]="1"
-      [nzTotal]="500"
-    ></nz-pagination>
-<!--  </p>-->
-
+  <div class="bottom">
+    <nz-pagination [nzItemRender]="renderItemTemplate" [nzPageIndex]="1" [nzTotal]="500"></nz-pagination>
+  </div>
   <ng-template #renderItemTemplate let-page="page" let-type>
-    <a *ngIf="type === ''" [hidden]="true">Previous</a>
-    <a *ngIf="type === ''" [hidden]="true">Next</a>
+    <!--    <a *ngIf="type === 'pre'">上一页</a>-->
+    <!--    <a *ngIf="type === 'next'">下一页</a>-->
     <a *ngIf="type === 'page'">{{ page }}</a>
   </ng-template>
-
 </div>
