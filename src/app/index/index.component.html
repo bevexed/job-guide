@@ -1,11 +1,11 @@
-<nz-carousel [nzEffect]="effect"
-             [nzDots]="bannerlist.length>1"
-             [nzAutoPlay]="true"
+<nz-carousel *ngIf="bannerlist.length"
              [nzAutoPlaySpeed]="7000"
-             *ngIf="bannerlist.length"
+             [nzAutoPlay]="true"
+             [nzDots]="bannerlist.length>1"
+             [nzEffect]="effect"
              [nzEnableSwipe]="true">
-  <div nz-carousel-content
-       *ngFor="let index of bannerlist"
+  <div *ngFor="let index of bannerlist"
+       nz-carousel-content
        style="cursor: pointer;height: 21vw"
   >
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
@@ -35,14 +35,14 @@
         <h1 class="vd-box-title">热门视频</h1>
         <div class="vd-pagination">
           <!-- todo：查看更多-->
-          <a routerLink="../hot">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+          <a routerLink="../hot">查看更多 <i nz-icon nzTheme="outline" nzType="double-right"></i></a>
         </div>
       </div>
 
       <nz-list
         [nzDataSource]="hots?.currentData"
-        [nzRenderItem]="item"
         [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6  }"
+        [nzRenderItem]="item"
       >
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
@@ -59,7 +59,7 @@
       <div class="vd-wrapper">
         <div class="vd-box">
           <div class="vd-box-header">
-            <img class="li-ad-img" src="../../assets/广告位.png" alt="">
+            <img alt="" class="li-ad-img" src="../../assets/广告位.png">
           </div>
         </div>
       </div>
@@ -70,10 +70,10 @@
       <div class="vd-box-header">
         <h1 class="vd-box-title">职业发展</h1>
         <div class="vd-pagination">
-          <a routerLink="../development">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+          <a routerLink="../development">查看更多 <i nz-icon nzTheme="outline" nzType="double-right"></i></a>
         </div>
       </div>
-      <nz-list [nzDataSource]="developList" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
+      <nz-list [nzDataSource]="developList" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }" [nzRenderItem]="item">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
@@ -94,10 +94,10 @@
       <div class="vd-box-header">
         <h1 class="vd-box-title">热门岗位 </h1>
         <div class="vd-pagination">
-          <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+          <a routerLink="../profession">查看更多 <i nz-icon nzTheme="outline" nzType="double-right"></i></a>
         </div>
       </div>
-      <nz-list [nzDataSource]="professionList" [nzRenderItem]="item" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">
+      <nz-list [nzDataSource]="professionList" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }" [nzRenderItem]="item">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
@@ -113,24 +113,26 @@
     <!--    高考资讯-->
     <!--    高考资讯-->
     <!--    高考资讯-->
+
+    <!--    fixme : 图片数组-->
     <div class="vd-box" style="padding-top: 50px">
       <div class="vd-box-header">
         <h1 class="vd-box-title">高考资讯 </h1>
         <div class="vd-pagination">
-          <a routerLink="../profession">查看更多 <i nz-icon nzType="double-right" nzTheme="outline"></i></a>
+          <a routerLink="../profession">查看更多 <i nz-icon nzTheme="outline" nzType="double-right"></i></a>
         </div>
       </div>
 
 
       <div class="li-gao-kao">
-        <div class="item" *ngFor="let item of [1123123213,2123213213123,3123213213]">
-          <img src="../../assets/gk.png" alt="">
+        <div *ngFor="let item of gaokaozixun" class="item">
+          <img alt="" src="../../assets/gk.png">
 
           <div class="content">
-            <h6>招考政策</h6>
+            <h6>{{item.title}}</h6>
 
-            <ul *ngFor="let news of [1123213213213213,2123213213213,1232131231233,4123123,5123123123123]">
-              <li class="hover-red"><span></span> {{news}}</li>
+            <ul *ngFor="let news of item">
+              <li class="hover-red"><span></span> {{news?.title}}</li>
             </ul>
           </div>
         </div>
@@ -160,7 +162,6 @@
 </ng-container>
 
 
-
 <!--手机端 ??? -->
 <ng-container *ngIf="!httpService.devType">
   <div class="mb-box-wrapper">
@@ -169,7 +170,7 @@
       <span (click)="mbPagination()">查看更多   ></span>
     </div>
     <div class="mb-box-body">
-      <nz-list [nzDataSource]="hots?.currentData?hots?.currentData:[]" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
+      <nz-list [nzDataSource]="hots?.currentData?hots?.currentData:[]" [nzGrid]="{ gutter: 10, xs: 12 }" [nzRenderItem]="item">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
@@ -179,7 +180,7 @@
         </ng-template>
       </nz-list>
       <div style="text-align: center">
-        <button nz-button (click)="mbPagination()" nzType="default" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
+        <button (click)="mbPagination()" nz-button nzType="default" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
       </div>
     </div>
   </div>
@@ -189,7 +190,7 @@
       <span routerLink="../development">查看更多   ></span>
     </div>
     <div class="mb-box-body">
-      <nz-list [nzDataSource]="developList" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12 }">
+      <nz-list [nzDataSource]="developList" [nzGrid]="{ gutter: 10, xs: 12 }" [nzRenderItem]="item">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
@@ -199,7 +200,7 @@
         </ng-template>
       </nz-list>
       <div style="text-align: center">
-        <button routerLink="../development" nz-button nzType="default" style="margin-top: 30px;background: #D10000;color: #fff;">加载更多</button>
+        <button nz-button nzType="default" routerLink="../development" style="margin-top: 30px;background: #D10000;color: #fff;">加载更多</button>
       </div>
     </div>
   </div>
@@ -209,7 +210,7 @@
       <span routerLink="../profession">查看更多   ></span>
     </div>
     <div class="mb-box-body">
-      <nz-list [nzDataSource]="professionList" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12}">
+      <nz-list [nzDataSource]="professionList" [nzGrid]="{ gutter: 10, xs: 12}" [nzRenderItem]="item">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
@@ -219,7 +220,7 @@
         </ng-template>
       </nz-list>
       <div style="text-align: center">
-        <button routerLink="../profession" nz-button nzType="default" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
+        <button nz-button nzType="default" routerLink="../profession" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
       </div>
     </div>
   </div>
@@ -229,7 +230,7 @@
       <span routerLink="../zixun">查看更多   ></span>
     </div>
     <div class="mb-box-body">
-      <nz-list [nzDataSource]="professionList" [nzRenderItem]="item" [nzGrid]="{ gutter: 10, xs: 12}">
+      <nz-list [nzDataSource]="professionList" [nzGrid]="{ gutter: 10, xs: 12}" [nzRenderItem]="item">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
             <ng-template #nzContent>
@@ -239,7 +240,7 @@
         </ng-template>
       </nz-list>
       <div style="text-align: center">
-        <button routerLink="../zixun" nz-button nzType="default" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
+        <button nz-button nzType="default" routerLink="../zixun" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
       </div>
     </div>
   </div>

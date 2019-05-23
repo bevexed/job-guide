@@ -508,4 +508,28 @@ export class HttpService {
     const url = 'http://api.zhichangsinan.com/order/isorderpay?orderno=' + orderno;
     return this.httpGet(url);
   }
+
+  // 1.首页资讯列表
+  // http://api.zhichangsinan.com/information/homeListPage
+  //   请求方式:GET
+
+  public reqHomeListPage() {
+    const url = 'http://api.zhichangsinan.com/information/homeListPage';
+    return this.httpGet(url);
+  }
+
+  //
+  // 2.首页资讯查看更多
+  // http://api.zhichangsinan.com/information/homeInformationMore
+  //   请求方式:GET
+  // 参数:
+  //   type--类型(0:招考政策 1:高校动态 2:志愿指南)          必填
+  // current--页码                                                        必填
+  // size--每页大小                                                       必填
+  //
+  // 3.资讯详情
+  // http://api.zhichangsinan.com/information/informationInfo
+  //   请求方式:GET
+  // 参数:
+  //   id--主键id                                                              必填
 }

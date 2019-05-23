@@ -1,6 +1,5 @@
-import {Component, OnInit, ChangeDetectorRef, OnDestroy} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {HttpService} from '../http.service';
-import {Store, select} from '@ngrx/store';
 import {ActivatedRoute} from '@angular/router';
 
 
@@ -35,6 +34,8 @@ export class IndexComponent implements OnInit, OnDestroy {
     development: 1,
     profession: 2
   };
+  // erkai
+  public gaokaozixun = [];
   private observer: any;
 
   constructor(
@@ -47,6 +48,7 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.indexInit();
+    this.getHomeListPage();
     this.route.params.subscribe((data: any) => {
       if (data.inviterId) {
         this.httpService.inviterId = +data.inviterId;
@@ -124,6 +126,13 @@ export class IndexComponent implements OnInit, OnDestroy {
     } else {
       this.hots.current = pageNumber;
       this.hots.currentData = this.hots.data.slice(0, this.hots.current * this.hots.size);
+    }
+  }
+
+  public async getHomeListPage() {
+    const result = await this.httpService.reqHomeListPage();
+    if (result.code === 200) {
+      this.gaokaozixun = Object.values(result.data[0]);
     }
   }
 }
