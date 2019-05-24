@@ -21,6 +21,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   effect = 'scrollx';
   public bannerlist: any[] = [];
   public zixunlist: any[] = [];
+  public dotIndex: any[] = [];
   public hots: videos = {
     data: [],
     current: 1,
@@ -126,6 +127,9 @@ export class IndexComponent implements OnInit, OnDestroy {
     response = await this.httpService.getZixun();
     console.log(response);
     // this.zixunlist = res.+
+  }
+  public changeCarousel(e) {
+    this.dotIndex = e.to;
   }
   public mbPagination(pageNumber?: number) {
     if (pageNumber === undefined) {

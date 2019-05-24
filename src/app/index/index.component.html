@@ -239,14 +239,14 @@
           <!--</nz-list-item>-->
         <!--</ng-template>-->
       <!--</nz-list>-->
-      <!--<ng-template #renderItemTemplate>-->
-        <!--1234-->
-      <!--</ng-template>-->
+
       <nz-carousel *ngIf="gaokaozixun.length"
                    [nzAutoPlaySpeed]="7000"
                    [nzAutoPlay]="false"
                    [nzEffect]="effect"
-                   [nzEnableSwipe]="true">
+                   [nzEnableSwipe]="true"
+                   [nzDots]="false"
+                   (nzBeforeChange)="changeCarousel($event)">
         <div *ngFor="let index of gaokaozixun"
              nz-carousel-content
              style="cursor: pointer;"
@@ -258,10 +258,6 @@
               <p style="margin-bottom: 0">152512</p>
             </div>
           </div>
-
-          <div class="dots_box">
-            <p *ngFor="let i of gaokaozixun"></p>
-          </div>
           <!--<a *ngIf="!index.courseId && index.link" [href]="index.link" style="display: block;">-->
             <!--<img [src]="index.imageUrl" style="display: block;width: 100%;">-->
           <!--</a>-->
@@ -270,6 +266,9 @@
           <!--</div>-->
         </div>
       </nz-carousel>
+      <div class="dots_box">
+        <p  *ngFor="let item of gaokaozixun; let i = index" [class]="dotIndex==i?'activeP':''"></p>
+      </div>
 
       <div style="text-align: center">
         <button nz-button nzType="default" routerLink="../zixun" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
@@ -288,7 +287,7 @@
   .dots_box>p {
     width:10px;
     height:10px;
-    background:rgba(242,242,242,1);
+    background:#F2F2F2;
     border-radius:50%;
     margin-left: 5px;
   }
@@ -296,6 +295,6 @@
     margin-left: 0;
   }
   .activeP {
-    background:rgba(234,0,20,1);
+    background:rgba(234,0,20,1)!important;
   }
 </style>
