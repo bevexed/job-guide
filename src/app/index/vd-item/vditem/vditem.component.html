@@ -17,10 +17,10 @@
 
     <!--    首页-->
     <div *ngIf="index">
-      <h3 [hidden]="data?.moduleCode === 'home_page_hot'" class="li-gray">{{data?.title}}</h3>
+      <h3 class="li-gray">{{data?.title}}</h3>
 
-      <!-- fixme： 数据不对-->
-      <h3 [hidden]="data?.moduleCode !== 'home_page_hot'" class="red">{{data?.intro}} 123123123123</h3>
+      <!--&lt;!&ndash; fixme： 数据不对&ndash;&gt;-->
+      <!--<h3 [hidden]="data?.moduleCode !== 'home_page_hot'" class="red">{{data?.intro}} 123123123123</h3>-->
     </div>
 
     <!--    发展之路-->
@@ -29,12 +29,12 @@
     </div>
 
 
-    <div *ngIf="data?.hot" class="li-hot-desc red" style="margin: 0">
-      <span>
-        30分钟
-      </span>
-      <span>免费</span>
-    </div>
+    <!--<div *ngIf="data?.hot" class="li-hot-desc red" style="margin: 0">-->
+      <!--<span>-->
+        <!--30分钟-->
+      <!--</span>-->
+      <!--<span>免费</span>-->
+    <!--</div>-->
     <!--    <p [hidden]="data?.intro">{{data?.intro}}</p>-->
   </div>
 

@@ -1,5 +1,5 @@
-<div [ngClass]="{'mb-user': !httpService.devType}" class="clearfix" style="width: 900px;margin: 155px auto">
-  <div style="margin-bottom: 25px;display: flex;justify-content: space-between;align-items: baseline">
+<div [ngClass]="{'mb-user': !httpService.devType}" class="clearfix" [class]="httpService.devType?'contentWrapPc':'contentWrapMb'">
+  <div *ngIf="httpService.devType" style="margin-bottom: 25px;display: flex;justify-content: space-between;align-items: baseline">
     <img alt="" src="../../assets/logo.png" width="324">
     <div style="">
       <span>已有账号？</span>
@@ -9,11 +9,11 @@
     </div>
   </div>
 
-  <div style="width: 900px;height: 497px;background-color: #ffffff;box-shadow: 0px 0px 10px 0px	rgba(0, 0, 0, 0.08);">
+  <div [class]="httpService.devType?'vb-show':'mb-show'">
 
-    <h3 style="margin-bottom:50px;width: 900px;height: 60px;background-color: #999999;text-align: center;line-height: 60px;font-family: MicrosoftYaHei;font-size: 24px;font-weight: normal;font-stretch: normal;color:white">用户注册</h3>
+    <h3 style="height: 60px;text-align: center;line-height: 60px;font-family: MicrosoftYaHei;font-size: 24px;font-weight: normal;font-stretch: normal;">用户注册</h3>
 
-    <form (ngSubmit)="login()" [formGroup]="validateForm" class="li-form" nz-form>
+    <form (ngSubmit)="login()" [formGroup]="validateForm" [class]="httpService.devType?'li-form':''" nz-form>
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>手机号</nz-form-label>
         <nz-form-control [nzSm]="14" [nzValidateStatus]="validateForm.controls['username']" [nzXs]="24">
@@ -41,7 +41,7 @@
     </form>
 
   </div>
-  <footer style="padding-top: 40px">
+  <footer *ngIf="httpService.devType" style="padding-top: 40px">
     Copyright © 2018-2019 职场司南 浙ICP备18039212号 <i nz-icon nzTheme="outline" nzType="phone"></i> 0571-85383155
   </footer>
 </div>

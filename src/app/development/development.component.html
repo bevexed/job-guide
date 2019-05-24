@@ -89,7 +89,7 @@
   <div style="padding-top: 40px;padding-left: 17px;color: #222;text-align: left">
     <h1 style="font-size: 23px;">发展之路</h1>
   </div>
-  <div class="vd-classify-wrapper mb-classify-wrapper">
+  <div class="mb-classify-wrapper">
     <ul class="mb-classify vd-classify">
       <li (click)="getCourseByName(item.name)" *ngFor="let item of classifySplit();"
           [ngClass]="{'checked': selectedCourseName === item.name}"><a>{{item.name}}</a></li>

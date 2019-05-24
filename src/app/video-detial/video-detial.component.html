@@ -113,8 +113,8 @@
   <p class="mb-video-intro"><em>简介：</em>{{courseInfo?.intro}}</p>
 </ng-container>
 
-<div class="vd-tabwrapper">
-  <nz-list [nzDataSource]="hots?.currentData" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }" [nzRenderItem]="item">
+<div style="width: 100vw;padding: 0 15px">
+  <nz-list [nzDataSource]="[1,2,3,4]" [nzItemLayout]="'vertical'" [nzGrid]="{ gutter: 10, xs: 12 }" [nzRenderItem]="item">
     <ng-template #item let-item>
       <nz-list-item [nzContent]="nzContent">
         <ng-template #nzContent>
@@ -123,4 +123,9 @@
       </nz-list-item>
     </ng-template>
   </nz-list>
+  <div style="text-align: center">
+    <button nz-button  nzType="default"
+            style="margin: 30px 0;background: #D10000;color: #fff;">加载更多
+    </button>
+  </div>
 </div>

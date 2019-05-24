@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.less', '../usercenter/usercenter.component.less']
+  styleUrls: ['./register.component.less', '../usercenter/usercenter.component.less', '../login/login.component.less']
 })
 export class RegisterComponent implements OnInit {
 
@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
       this.message.create('success', '请注意查收验证码');
     } else {
       this.message.create('error', res.message);
-    } 
+    }
   }
 
   public async register() {

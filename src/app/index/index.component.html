@@ -230,18 +230,72 @@
       <span routerLink="../zixun">查看更多   ></span>
     </div>
     <div class="mb-box-body">
-      <nz-list [nzDataSource]="professionList" [nzGrid]="{ gutter: 10, xs: 12}" [nzRenderItem]="item">
-        <ng-template #item let-item>
-          <nz-list-item [nzContent]="nzContent">
-            <ng-template #nzContent>
-              <app-vditem [data]="item" [devType]="httpService.devType"></app-vditem>
-            </ng-template>
-          </nz-list-item>
-        </ng-template>
-      </nz-list>
+      <!--<nz-list [nzDataSource]="gaokaozixun" [nzGrid]="{ gutter: 10, xs: 12}" [nzRenderItem]="item">-->
+        <!--<ng-template #item let-item>-->
+          <!--<nz-list-item [nzContent]="nzContent">-->
+            <!--<ng-template #nzContent>-->
+              <!--<app-vditem [data]="item" [devType]="httpService.devType"></app-vditem>-->
+            <!--</ng-template>-->
+          <!--</nz-list-item>-->
+        <!--</ng-template>-->
+      <!--</nz-list>-->
+      <!--<ng-template #renderItemTemplate>-->
+        <!--1234-->
+      <!--</ng-template>-->
+      <nz-carousel *ngIf="gaokaozixun.length"
+                   [nzAutoPlaySpeed]="7000"
+                   [nzAutoPlay]="false"
+                   [nzEffect]="effect"
+                   [nzEnableSwipe]="true">
+        <div *ngFor="let index of gaokaozixun"
+             nz-carousel-content
+             style="cursor: pointer;"
+        >
+          <div style="background: #F6F6F6;padding: 26px 4px 31px 16px">
+            <p style="color: #D10000;font-size: 18px;margin-bottom: 0">招考政策</p>
+            <div style="display: flex;line-height:29px;align-items: center;color: #404040;font-size: 14px">
+              <span style="width: 4px;height: 4px;background: #d10000;border-radius: 50%;display: inline-block;margin-right: 10px"></span>
+              <p style="margin-bottom: 0">152512</p>
+            </div>
+          </div>
+
+          <div class="dots_box">
+            <p *ngFor="let i of gaokaozixun"></p>
+          </div>
+          <!--<a *ngIf="!index.courseId && index.link" [href]="index.link" style="display: block;">-->
+            <!--<img [src]="index.imageUrl" style="display: block;width: 100%;">-->
+          <!--</a>-->
+          <!--<div *ngIf="!index.courseId && !index.link">-->
+            <!--<img [src]="index.imageUrl" style="display: block;width: 100%;">-->
+          <!--</div>-->
+        </div>
+      </nz-carousel>
+
       <div style="text-align: center">
         <button nz-button nzType="default" routerLink="../zixun" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
       </div>
     </div>
   </div>
 </ng-container>
+
+<style>
+  .dots_box {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dots_box>p {
+    width:10px;
+    height:10px;
+    background:rgba(242,242,242,1);
+    border-radius:50%;
+    margin-left: 5px;
+  }
+  .dots_box>p:nth-child(1){
+    margin-left: 0;
+  }
+  .activeP {
+    background:rgba(234,0,20,1);
+  }
+</style>

@@ -162,7 +162,7 @@
 <!--手机端-->
 <!--手机端-->
 <!--手机端-->
-<ng-container *ngIf="!httpService.devType">
+<ng-container *ngIf="!httpService.devType" >
   <div class="mb-wrapper">
     <div class="mb-userinfo">
       <div style="display: flex;align-items: center;justify-content: space-between">
@@ -189,7 +189,7 @@
       </ul>
     </div>
   </div>
-  <nz-tabset [nzShowPagination]="false" [nzTabBarStyle]="{'text-align': 'center','background':'#E4E4E4','margin':'15px'}">
+  <nz-tabset style="padding-bottom: 50px" [nzShowPagination]="false" [nzTabBarStyle]="{'text-align': 'center','background':'#E4E4E4','margin':'15px'}">
     <nz-tab nzTitle="我的账户">
       <ul class="mb-tablist">
         <li *ngFor="let data of (accountList?.records ? accountList.records : [])">

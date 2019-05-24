@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import {NgZorroAntdModule, NZ_I18N, NzOverlayModule, zh_CN} from 'ng-zorro-antd';
+import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,7 +38,8 @@ import {HotComponent} from './hot/hot.component';
 import { ZixunComponent } from './zixun/zixun.component';
 import { ZixunDetailComponent } from './zixun-detail/zixun-detail.component';
 import { GaokaoComponent } from './gaokao/gaokao.component';
-import { GaokaoDetailComponent } from './gaokao-detail/gaokao-detail.component';
+import {GaokaoDetailComponent} from './gaokao-detail/gaokao-detail.component';
+
 registerLocaleData(zh);
 
 @NgModule({
@@ -76,8 +77,7 @@ registerLocaleData(zh);
     BrowserAnimationsModule,
     VdItemModule,
     IconModule,
-    StoreModule.forRoot({bannerlist: counterReducer}),
-    NzOverlayModule,
+    StoreModule.forRoot({bannerlist: counterReducer})
     // environment.production? [] : HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, { dataEncapsulation: false }
     // )

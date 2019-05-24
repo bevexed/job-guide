@@ -6,6 +6,7 @@ import {environment} from '../environments/environment';
 import {ReplaySubject} from 'rxjs';
 import {Router} from '@angular/router';
 import {PlatformLocation} from '@angular/common';
+import {promise} from 'selenium-webdriver';
 
 declare var wx: any;
 declare var WeixinJSBridge: any;
@@ -132,6 +133,11 @@ export class HttpService {
 
   public getMobileIndex(): Promise<any> {
     const url = this.baseUrl + '/home/page/mobile/module';
+    return this.httpGet(url);
+  }
+
+  public getZixun(): Promise<any> {
+    const url = this.baseUrl + '/information/homeListPage';
     return this.httpGet(url);
   }
 

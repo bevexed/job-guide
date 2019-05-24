@@ -28,7 +28,7 @@
     "core-js": "^2.5.4",
     "intl": "^1.2.5",
     "nativeshare": "^2.1.3",
-    "ng-zorro-antd": "^7.0.3",
+    "ng-zorro-antd": "^7.4.1",
     "qrcode": "^1.3.3",
     "rxjs": "~6.3.3",
     "web-animations-js": "^2.3.1",

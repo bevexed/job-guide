@@ -1,8 +1,5 @@
-<div [ngClass]="{'mb-user': !httpService.devType}" class="vd-user clearfix" style="width: 455px;margin: 0 auto">
-<!--  <h1>{{httpService.user ? '修改密码' : '找回密码'}}</h1>-->
-  <div style="margin: 50px 0 0 0">
-
-  </div>
+<div [ngClass]="{'mb-user': !httpService.devType}" class="vd-user clearfix" style="margin: 0 auto;padding: 0 38px 50px!important;">
+  <h1 style="margin: 65px 0 24px">{{httpService.user ? '修改密码' : '找回密码'}}</h1>
   <form (ngSubmit)="submitForm()" [formGroup]="validateForm" nz-form>
     <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>手机号</nz-form-label>

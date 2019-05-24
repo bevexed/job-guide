@@ -3,6 +3,7 @@ import {HttpService} from '../http.service';
 import {ActivatedRoute} from '@angular/router';
 
 
+
 export interface videos {
   data: any[];
   size: number;
@@ -19,6 +20,7 @@ export interface videos {
 export class IndexComponent implements OnInit, OnDestroy {
   effect = 'scrollx';
   public bannerlist: any[] = [];
+  public zixunlist: any[] = [];
   public hots: videos = {
     data: [],
     current: 1,
@@ -37,6 +39,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   // erkai
   public gaokaozixun = [];
   private observer: any;
+  private await: any;
 
   constructor(
     public httpService: HttpService,
@@ -118,6 +121,12 @@ export class IndexComponent implements OnInit, OnDestroy {
     }
   }
 
+  public async zixunList() {
+    let response: any;
+    response = await this.httpService.getZixun();
+    console.log(response);
+    // this.zixunlist = res.+
+  }
   public mbPagination(pageNumber?: number) {
     if (pageNumber === undefined) {
       this.hots.current = this.hots.current + 1;
@@ -134,5 +143,6 @@ export class IndexComponent implements OnInit, OnDestroy {
     if (result.code === 200) {
       this.gaokaozixun = Object.values(result.data[0]);
     }
+    console.log(result, this.gaokaozixun);
   }
 }
