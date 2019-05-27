@@ -37,6 +37,11 @@ export class IndexComponent implements OnInit, OnDestroy {
     development: 1,
     profession: 2
   };
+  public gkPngList = [
+    '../../assets/gk.png',
+    '../../assets/gk2.png',
+    '../../assets/gk3.png'
+  ];
   // erkai
   public gaokaozixun = [];
   private observer: any;
@@ -146,7 +151,11 @@ export class IndexComponent implements OnInit, OnDestroy {
     const result = await this.httpService.reqHomeListPage();
     if (result.code === 200) {
       this.gaokaozixun = Object.values(result.data[0]);
+      for (let i = 0; i < this.gaokaozixun.length; i++) {
+        this.gaokaozixun[i].src = this.gkPngList[i];
+        this.gaokaozixun[i].pageM = Object.keys(result.data[0])[i];
+      }
     }
-    console.log(result, this.gaokaozixun);
+    console.log(Object.keys(result.data[0]), this.gaokaozixun);
   }
 }
