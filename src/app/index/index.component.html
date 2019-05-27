@@ -225,7 +225,7 @@
     </div>
   </div>
   <div class="mb-box-wrapper">
-    <div class="mb-box-header" style="display: flex;justify-content: space-between;align-items: center;padding: 0 15px">
+    <div class="mb-box-header" style="display: flex;justify-content: space-between;align-items: center;padding: 0 15px;margin-bottom: 25px">
       <h1 style="margin-bottom: 0">高考资讯</h1>
       <span routerLink="../zixun">查看更多   ></span>
     </div>
@@ -239,7 +239,6 @@
           <!--</nz-list-item>-->
         <!--</ng-template>-->
       <!--</nz-list>-->
-
       <nz-carousel *ngIf="gaokaozixun.length"
                    [nzAutoPlaySpeed]="7000"
                    [nzAutoPlay]="false"
@@ -251,27 +250,24 @@
              nz-carousel-content
              style="cursor: pointer;"
         >
+          <img class="gkImage" [src]="index.src" alt="图片">
           <div style="background: #F6F6F6;padding: 26px 4px 31px 16px">
-            <p style="color: #D10000;font-size: 18px;margin-bottom: 0">招考政策</p>
-            <div style="display: flex;line-height:29px;align-items: center;color: #404040;font-size: 14px">
+            <p style="color: #D10000;font-size: 18px;margin-bottom: 0">{{index.pageM == 'iPage1'?'招考政策':index.pageM == 'iPage2'?'高校动态':index.pageM == 'iPage3'?'志愿指南':''}}</p>
+            <div *ngFor="let v of index" style="display: flex;line-height:29px;align-items: center;color: #404040;font-size: 14px">
               <span style="width: 4px;height: 4px;background: #d10000;border-radius: 50%;display: inline-block;margin-right: 10px"></span>
-              <p style="margin-bottom: 0">152512</p>
+              <p style="margin-bottom: 0">{{v.title}}</p>
             </div>
           </div>
-          <!--<a *ngIf="!index.courseId && index.link" [href]="index.link" style="display: block;">-->
-            <!--<img [src]="index.imageUrl" style="display: block;width: 100%;">-->
-          <!--</a>-->
-          <!--<div *ngIf="!index.courseId && !index.link">-->
-            <!--<img [src]="index.imageUrl" style="display: block;width: 100%;">-->
-          <!--</div>-->
         </div>
       </nz-carousel>
       <div class="dots_box">
         <p  *ngFor="let item of gaokaozixun; let i = index" [class]="dotIndex==i?'activeP':''"></p>
       </div>
 
+      <p class="promptRegister">现在就去注册，为自己的职业发展做选择</p>
+      <p style="text-align: center">职场司南，专注于大学生及毕业五年内群体的职业发展</p>
       <div style="text-align: center">
-        <button nz-button nzType="default" routerLink="../zixun" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
+        <button nz-button nzType="default" style="width: 150px;height: 41px;border-radius: 3px;font-size: 16px;margin: 8px 0 30px;background: #D10000;color: #fff;">专业的指导意见</button>
       </div>
     </div>
   </div>
