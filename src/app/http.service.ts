@@ -550,4 +550,17 @@ export class HttpService {
     const url = 'http://api.zhichangsinan.com/information/informationInfo?id=' + id;
     return this.httpGet(url);
   }
+
+  // 5.推荐视频
+  // http://api.zhichangsinan.com/course/recommendedVideo
+  //   请求方式:GET
+  // 参数:
+  //   isRecommend--是否为推荐视频(false:否 true:是)      必填
+  // current--页码                                                         非必填
+  // size--每页大小                                                        非必填
+
+  public reqRecommendedVideo() {
+    const url = 'http://api.zhichangsinan.com/course/recommendedVideo?isRecommend=true';
+    return this.httpGet(url);
+  }
 }

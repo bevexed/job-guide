@@ -17,7 +17,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
   public courseList: videos = {
     data: [],
     current: 1,
-    size: 16,
+    size: 10000,
     currentData: []
   };
   public selectedCourseName: string;
@@ -103,7 +103,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
       this.courseList = {
         data: filter.courseList,
         current: 1,
-        size: 16,
+        size: 10000,
         currentData: []
       };
       this.listFilter();

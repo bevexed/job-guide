@@ -5,7 +5,7 @@
        'to-up':data?.moduleCode !== 'home_page_hot',
        'shadow-box':data?.moduleCode !== 'home_page_hot' && index
      }"
-     [routerLink]="'../vd/'+data.courseId"
+     (click)="to('#/vd/'+data?.courseId)"
      [style.background-color]="data?.moduleCode !== 'home_page_hot'? 'none' :'white'"
      class="vd-item">
   <div *ngIf="!vipTag(data)" class="vd-tags">
@@ -14,7 +14,6 @@
   <div [ngStyle]="{'background-image': 'url('+ (data?.coverUrl ? data?.coverUrl : data?.imageUrl) +')'}" class="vd-imgbox"></div>
   <!-- <img src="data?.coverUrl ? data?.coverUrl : data?.imageUrl" alt=""> -->
   <div class="vd-desc">
-
     <!--    首页-->
     <div *ngIf="index">
       <h3 [hidden]="data?.moduleCode == 'home_page_hot' " class="li-gray">{{data?.title}}</h3>
@@ -27,7 +26,7 @@
     <div *ngIf="development">
       <h3>{{data?.title}}</h3>
     </div>
-
+<!--{{data|json}}-->
 
     <div *ngIf="data?.hot" class="li-hot-desc red" style="margin: 0">
       <span>
@@ -37,6 +36,19 @@
       <span *ngIf="data.courseFreeFlag === true">免费</span>
     </div>
     <p [hidden]="data?.intro">{{data?.intro}}</p>
+
+    <!--    职业菜单-->
+    <div *ngIf="profession">
+      <h3>{{data?.title}}</h3>
+    </div>
+
+
+    <!--    推荐-->
+    <div *ngIf="tuijian">
+      <h3>{{data?.title}}</h3>
+    </div>
+
+
   </div>
 
 

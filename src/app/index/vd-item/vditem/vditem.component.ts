@@ -1,4 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Route} from '@angular/router';
 
 declare var window;
 
@@ -20,6 +21,8 @@ export class VditemComponent implements OnInit {
   //
   public index = false;
   public development = false;
+  public profession = false;
+public tuijian = false;
 
   constructor() {
   }
@@ -28,6 +31,13 @@ export class VditemComponent implements OnInit {
     this.checkBrowerType();
     this.index = window.location.hash.includes('index');
     this.development = window.location.hash.includes('development');
+    this.profession = window.location.hash.includes('profession');
+    this.tuijian = window.location.hash.includes('vd');
+
+  }
+
+  public to(url) {
+    window.location.assign(url);
   }
 
 
