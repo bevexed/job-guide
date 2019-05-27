@@ -6,7 +6,6 @@ import {environment} from '../environments/environment';
 import {ReplaySubject} from 'rxjs';
 import {Router} from '@angular/router';
 import {PlatformLocation} from '@angular/common';
-import {promise} from 'selenium-webdriver';
 
 declare var wx: any;
 declare var WeixinJSBridge: any;
@@ -533,9 +532,22 @@ export class HttpService {
   // current--页码                                                        必填
   // size--每页大小                                                       必填
   //
+
+  public reqHomeInformationMore(type: number, current: number, size: number) {
+    const url = `http://api.zhichangsinan.com/information/homeInformationMore?type=${type}&current=${current}&size=${size}`;
+    return this.httpGet(url);
+  }
+
+
   // 3.资讯详情
   // http://api.zhichangsinan.com/information/informationInfo
   //   请求方式:GET
   // 参数:
-  //   id--主键id                                                              必填
+  //   id--主键id
+  //  必填
+
+  public reqInformationInfo(id: number) {
+    const url = 'http://api.zhichangsinan.com/information/informationInfo?id=' + id;
+    return this.httpGet(url);
+  }
 }

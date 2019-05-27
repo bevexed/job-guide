@@ -14,25 +14,26 @@
 
       <div class="content">
         <ul class="list">
-          <li *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]"
+          <li (click)="router.navigateByUrl('/gaokao-detail/'+ i.id)"
+              *ngFor="let i of dataList"
               class="item"
           >
             <img
-              [hidden]="i % 3 === 1"
+              [hidden]="!i.thumbnail"
+              [src]="i.thumbnail"
               alt=""
-              class=""
-              src="https://zcsn-public-prod.oss-cn-hangzhou.aliyuncs.com/banner/e2e16f5fcc144e52a5cd5ef11424a9be.png?x-oss-process=image/quality,Q_30/resize,h_540/interlace,1">
+              class="">
             <section>
               <h1>
-                清华、北大招办访谈，详解2019年在京招生政策
+                {{i.title}}
               </h1>
 
               <article>
-                今年，北京高考共有5.9万人报名，本市将继续推进录取批次改革，将本科一批、二批合并为本科普通批，设置16所平行志愿高校，每个志愿高校设置6个志愿专业[详细]
+                {{i.articleContent}}
               </article>
 
               <footer>
-                来源：北京日报 &nbsp;&nbsp;&nbsp; 2019-05-10
+                来源：{{i.source}} &nbsp;&nbsp;{{i.gmtCreate}}
               </footer>
             </section>
           </li>
@@ -45,8 +46,8 @@
       <div class="content">
         <ul>
           <li
-            *ngFor="let i of [1,2,34,2,2,2,2,2,22,2]"
             (click)="router.navigateByUrl('/gaokao-detail/'+ i)"
+            *ngFor="let i of dataList"
           >sjhdkhsajkhdkjahskdjashjkdahskjahsdkashk</li>
         </ul>
       </div>
@@ -54,7 +55,7 @@
   </div>
 
   <div class="bottom">
-    <nz-pagination [nzItemRender]="renderItemTemplate" [nzPageIndex]="1" [nzTotal]="500"></nz-pagination>
+    <nz-pagination (nzPageIndexChange)="changePage($event)" [nzItemRender]="renderItemTemplate" [nzPageIndex]="current" [nzPageSize]="size" [nzTotal]="total"></nz-pagination>
   </div>
   <ng-template #renderItemTemplate let-page="page" let-type>
     <!--    <a *ngIf="type === 'pre'">上一页</a>-->

@@ -2,37 +2,23 @@
   <div class="wrap">
     <div class="left">
       <article>
-        <h1>浙江2019年高考实行网上填报志愿 分段招生录取</h1>
-        <h6>来源：北京日报 &nbsp; &nbsp; &nbsp; 2019-05-10 </h6>
+        <h1>{{content?.title}}</h1>
+        <h6>来源：{{content?.source}} &nbsp; &nbsp; &nbsp; {{content?.gmtCreate}} </h6>
 
         <section>
-          <p>
-            浙江省教育考试院网站（www.zjzs.net）为填报志愿的唯一网站。考生须在规定时间内参加相应段（批）志愿填报。未按时完成志愿填报的考生视为自动放弃该段（批）报考资格。考生填报志愿前须认真阅读有关高校招生章程，准确了解招生专业选考科目范围、单科成绩、体检等各项具体要求，确保符合报考条件。有选考科目要求的专业，考生3门选考科目中须至少有1门符合要求方可填报志愿。
-          </p>
-          <p>
-            浙江省教育考试院网站（www.zjzs.net）为填报志愿的唯一网站。考生须在规定时间内参加相应段（批）志愿填报。未按时完成志愿填报的考生视为自动放弃该段（批）报考资格。考生填报志愿前须认真阅读有关高校招生章程，准确了解招生专业选考科目范围、单科成绩、体检等各项具体要求，确保符合报考条件。有选考科目要求的专业，考生3门选考科目中须至少有1门符合要求方可填报志愿。
-          </p>
-
-          <img alt="" src="https://zcsn-public-prod.oss-cn-hangzhou.aliyuncs.com/banner/e2e16f5fcc144e52a5cd5ef11424a9be.png?x-oss-process=image/quality,Q_30/resize,h_540/interlace,1">
-          <p>
-            浙江省教育考试院网站（www.zjzs.net）为填报志愿的唯一网站。考生须在规定时间内参加相应段（批）志愿填报。未按时完成志愿填报的考生视为自动放弃该段（批）报考资格。考生填报志愿前须认真阅读有关高校招生章程，准确了解招生专业选考科目范围、单科成绩、体检等各项具体要求，确保符合报考条件。有选考科目要求的专业，考生3门选考科目中须至少有1门符合要求方可填报志愿。
-          </p> <p>
-            浙江省教育考试院网站（www.zjzs.net）为填报志愿的唯一网站。考生须在规定时间内参加相应段（批）志愿填报。未按时完成志愿填报的考生视为自动放弃该段（批）报考资格。考生填报志愿前须认真阅读有关高校招生章程，准确了解招生专业选考科目范围、单科成绩、体检等各项具体要求，确保符合报考条件。有选考科目要求的专业，考生3门选考科目中须至少有1门符合要求方可填报志愿。
-          </p>
-          <p>
-            浙江省教育考试院网站（www.zjzs.net）为填报志愿的唯一网站。考生须在规定时间内参加相应段（批）志愿填报。未按时完成志愿填报的考生视为自动放弃该段（批）报考资格。考生填报志愿前须认真阅读有关高校招生章程，准确了解招生专业选考科目范围、单科成绩、体检等各项具体要求，确保符合报考条件。有选考科目要求的专业，考生3门选考科目中须至少有1门符合要求方可填报志愿。
-          </p>
+         {{content?.articleContent}}
         </section>
       </article>
 
       <footer>
-        <div class="pre">上一篇：四川2019年高考加分及照顾政策</div>
-        <div class="nex">下一篇：2019年山东高考加分及照顾政策</div>
+        <div class="pre"  (click)="upload(content?.upid)" [hidden]="!content?.upid">上一篇：{{content?.uptitle}}</div>
+        <div class="nex"  (click)="upload(content?.downid)" [hidden]="!content?.downid">下一篇：{{content?.downtitle}}</div>
       </footer>
     </div>
 
     <div class="right">
       <div class="title">热点新闻</div>
+      <div class="content">
       <div class="content">
         <ul>
           <li
