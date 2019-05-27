@@ -17,19 +17,19 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
   public professionList: videos = {
     data: [],
     current: 1,
-    size: 4,
+    size: 500,
     currentData: []
   };
   public crossList: videos = {
     data: [],
     current: 1,
-    size: 4,
+    size: 500,
     currentData: []
   };
   public unlimitedList: videos = {
     data: [],
     current: 1,
-    size: 8,
+    size: 500,
     currentData: []
   };
   public typeList: any[] = [];
@@ -137,20 +137,20 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
     this.professionList = {
       data: res.data.canList,
       current: 1,
-      size: 12,
+      size: 10000,
       currentData: []
     };
     this.showData = this.professionList;
     this.crossList = {
       data: res.data.crossList,
       current: 1,
-      size: 12,
+      size: 10000,
       currentData: []
     };
     this.unlimitedList = {
       data: res.data.unlimitedList,
       current: 1,
-      size: 12,
+      size: 10000,
       currentData: []
     };
     for (const key in this.blockType) {
