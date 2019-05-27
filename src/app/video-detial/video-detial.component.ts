@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {HttpService} from '../http.service';
-import {NzModalService, NzMessageService} from 'ng-zorro-antd';
+import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {fromEvent} from 'rxjs';
 
 
@@ -14,6 +14,8 @@ export class VideoDetialComponent implements OnInit {
   public courseInfo: any;
   public isplay = false;
   public courseId: number;
+
+  public tuijian: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -36,6 +38,21 @@ export class VideoDetialComponent implements OnInit {
         }
       });
     }
+
+    this.httpService.reqRecommendedVideo().then(
+      res => {
+        console.log(res);
+        if (res.code === 200) {
+          this.tuijian = res.data.records;
+          this.tuijian.forEach(
+            item => {
+              item.courseId = item.id;
+              item.coverUrl = 'https://zcsn-public-prod.oss-cn-hangzhou.aliyuncs.com/' + item.cover;
+            }
+          );
+        }
+      }
+    );
   }
 
   public async getCourseDetail(id: number) {
