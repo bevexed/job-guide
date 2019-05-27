@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NzMessageService} from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-tixian',
@@ -7,20 +8,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./tixian.component.less']
 })
 export class TixianComponent implements OnInit {
-
+  private acount: number;
   constructor(
-    private router: Router
+    private router: Router,
+    private routeinfo: ActivatedRoute,
+    private message: NzMessageService
   ) {}
 
   ngOnInit() {
+    this.routeinfo.params.subscribe((params: Params) => {this.acount = params['count']; });
+    // this.acount = this.routeinfo.snapshot.queryParams['count'];
   }
   public goBack() {
    history.go(-1);
   }
   public async goAlipay() {
-    this.router.navigateByUrl('/tixianAlipay');
+    // if (this.acount == 0) {
+    //   return this.message.create('error', '当前账户余额不支持提现');
+    // }
+    this.router.navigate(['/tixianAlipay', this.acount]);
   }
-  public async goBank(){
+  public async goBank() {
+    if (this.acount == 0) {
+      return this.message.create('error', '当前账户余额不支持提现');
+    }
     this.router.navigateByUrl('/tixianBank');
   }
 }

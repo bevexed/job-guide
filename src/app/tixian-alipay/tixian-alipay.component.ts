@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzModalService, NzMessageService } from 'ng-zorro-antd';
 import { HttpService } from '../http.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-tixian-alipay',
@@ -14,12 +14,15 @@ export class TixianAlipayComponent implements OnInit {
   validateForm: FormGroup;
   public btn_clicked: boolean = false;
   public time: number = 60;
+  public acount: number;
 
   constructor(
     private fb: FormBuilder,
     private message: NzMessageService,
+    private modalService: NzModalService,
     public httpService: HttpService,
-    private router: Router
+    private router: Router,
+    private routeinfo: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -30,62 +33,49 @@ export class TixianAlipayComponent implements OnInit {
       phoneNumber: [null, [Validators.required, Validators.pattern('^[0-9]{11}$')]],
       // captcha: [null, [Validators.required]],
     });
+    this.routeinfo.params.subscribe((params: Params) => {this.acount = params['acount']; });
+    this.validateForm = this.fb.group({
+      accountType: ['alipay', [Validators.required]],
+      realName: [null, [Validators.required]],
+      account: [null, [Validators.required]]
+    });
   }
 
   public goBack() {
     history.go(-1);
   }
-  public confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
-    if (!control.value) {
-      return { required: true };
-    } else if (control.value !== this.validateForm.controls.password.value) {
-      return { confirm: true, error: true };
-    }
-    return {};
-  }
-
-  getBtnText() {
-    if (!this.btn_clicked) {
-      return '获取验证码';
-    } else {
-      return '倒计时' + this.time + 's';
-    }
-  }
-
-  public async getCaptcha(e: MouseEvent) {
-    e.preventDefault();
-    if (this.validateForm.get('phoneNumber').errors) {
-      return this.message.create('error', '请输入正确的电话号码');
-    }
-    const res = await this.httpService.getCaptcha(this.validateForm.get('phoneNumber').value);
-    if (res.code === 200) {
-      this.btn_clicked = true;
-      const timer = setInterval(() => {
-        if (this.time === 0) {
-          this.btn_clicked = false;
-          this.time = 60;
-          clearInterval(timer);
-        } else {
-          this.time -= 1;
-        }
-      }, 1000);
-      this.message.create('success', '请注意查收验证码');
-    } else {
-      this.message.create('error', res.message);
-    }
-  }
-
   public async tixianAlipay() {
     if (this.validateForm.invalid) {
       return;
     }
-    const data: any = {
-      mobile: this.validateForm.value.phoneNumber,
-      password: this.validateForm.value.password,
-    };
-    if (this.httpService.inviterId) {
-      data.inviterId = this.httpService.inviterId;
-    }
+    // const data: any = {
+    //   mobile: this.validateForm.value.phoneNumber,
+    //   password: this.validateForm.value.password,
+    // };
+    // if (this.httpService.inviterId) {
+    //   data.inviterId = this.httpService.inviterId;
+    // }
+    this.modalService.confirm({
+      nzTitle: '是否将您当前的账户余额全部提现？',
+      nzContent: '',
+      nzOnOk: () => {
+        const data: any = {
+          amount: this.acount,
+        };
+        Object.assign(data, this.validateForm.value);
+        this.httpService.withdraw(data).then((res: any) => {
+          if (res.code === 200) {
+            this.message.create('success', '申请提现成功。');
+            // this.getAccountInfo();
+            // this.getAccountList();
+            // this.getWithdrawList();
+            // this.closeModal();
+          } else {
+            return this.message.create('error', res.message);
+          }
+        });
+      }
+    });
     // const res = await this.httpService.register(data);
     // if (res.code === 200) {
     //   this.message.create('success', '提现成功');
