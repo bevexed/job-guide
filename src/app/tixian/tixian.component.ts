@@ -16,22 +16,21 @@ export class TixianComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.routeinfo.params.subscribe((params: Params) => {this.acount = params['count']; });
-    // this.acount = this.routeinfo.snapshot.queryParams['count'];
+    this.acount = this.routeinfo.snapshot.queryParams['count'];
   }
   public goBack() {
    history.go(-1);
   }
   public async goAlipay() {
-    // if (this.acount == 0) {
-    //   return this.message.create('error', '当前账户余额不支持提现');
-    // }
-    this.router.navigate(['/tixianAlipay', this.acount]);
+    if (this.acount == 0) {
+      return this.message.create('error', '当前账户余额不支持提现');
+    }
+    this.router.navigate(['/tixianAlipay'], { queryParams: {acount: this.acount}});
   }
   public async goBank() {
     if (this.acount == 0) {
       return this.message.create('error', '当前账户余额不支持提现');
     }
-    this.router.navigateByUrl('/tixianBank');
+    this.router.navigate(['/tixianBank'], { queryParams: {acount: this.acount}});
   }
 }

@@ -14,7 +14,7 @@ export class TixianAlipayComponent implements OnInit {
   validateForm: FormGroup;
   public btn_clicked: boolean = false;
   public time: number = 60;
-  public acount: number;
+  private money: number;
 
   constructor(
     private fb: FormBuilder,
@@ -23,17 +23,21 @@ export class TixianAlipayComponent implements OnInit {
     public httpService: HttpService,
     private router: Router,
     private routeinfo: ActivatedRoute
-  ) {}
+  ) {
+    routeinfo.queryParams.subscribe(queryParams => {
+      const money = queryParams.acount;
+      this.money = money;
+    });
+  }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      password: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]],
+      realName: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]],
       // checkPassword: [null, [Validators.required, this.confirmationValidator]],
       // nickname: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]],
       phoneNumber: [null, [Validators.required, Validators.pattern('^[0-9]{11}$')]],
       // captcha: [null, [Validators.required]],
     });
-    this.routeinfo.params.subscribe((params: Params) => {this.acount = params['acount']; });
     this.validateForm = this.fb.group({
       accountType: ['alipay', [Validators.required]],
       realName: [null, [Validators.required]],
@@ -48,41 +52,24 @@ export class TixianAlipayComponent implements OnInit {
     if (this.validateForm.invalid) {
       return;
     }
-    // const data: any = {
-    //   mobile: this.validateForm.value.phoneNumber,
-    //   password: this.validateForm.value.password,
-    // };
-    // if (this.httpService.inviterId) {
-    //   data.inviterId = this.httpService.inviterId;
-    // }
     this.modalService.confirm({
       nzTitle: '是否将您当前的账户余额全部提现？',
       nzContent: '',
       nzOnOk: () => {
         const data: any = {
-          amount: this.acount,
+          amount: this.money,
         };
         Object.assign(data, this.validateForm.value);
         this.httpService.withdraw(data).then((res: any) => {
           if (res.code === 200) {
             this.message.create('success', '申请提现成功。');
-            // this.getAccountInfo();
-            // this.getAccountList();
-            // this.getWithdrawList();
-            // this.closeModal();
+            this.router.navigate(['../index']);
           } else {
             return this.message.create('error', res.message);
           }
         });
       }
     });
-    // const res = await this.httpService.register(data);
-    // if (res.code === 200) {
-    //   this.message.create('success', '提现成功');
-    //   this.router.navigate(['../index']);
-    // } else {
-    //   this.message.create('error', res.message);
-    // }
   }
 
 }

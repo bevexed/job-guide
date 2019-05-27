@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NzMessageService } from 'ng-zorro-antd';
+import { NzModalService,NzMessageService } from 'ng-zorro-antd';
 import { HttpService } from '../http.service';
-import { Router } from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {composeAsyncValidators} from '@angular/forms/src/directives/shared';
 
 @Component({
@@ -15,34 +15,40 @@ export class TixianBankCardComponent implements OnInit {
   validateForm: FormGroup;
   public btn_clicked: boolean = false;
   public time: number = 60;
+  private money: number;
 
   constructor(
     private fb: FormBuilder,
     private message: NzMessageService,
     public httpService: HttpService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private modalService: NzModalService,
+    private routeinfo: ActivatedRoute
+  ) {
+    routeinfo.queryParams.subscribe(queryParams => {
+      const money = queryParams.acount;
+      this.money = money;
+    });
+  }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
       // checkPassword: [null, [Validators.required, this.confirmationValidator]],
-      nickname: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]],
+      realName: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]],
       bankNumber: [null, [Validators.required, Validators.pattern('/^([1-9]{1})(\\d{14}|\\d{18})$/')]],
       bankName: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]]
       // captcha: [null, [Validators.required]],
+    });
+    this.validateForm = this.fb.group({
+      accountType: ['bank_card', [Validators.required]],
+      realName: [null, [Validators.required]],
+      bankNumber: [null, [Validators.required]],
+      bankName: [null,[Validators.required]]
     });
   }
 
   public goBack() {
     history.go(-1);
-  }
-  public confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
-    if (!control.value) {
-      return { required: true };
-    } else if (control.value !== this.validateForm.controls.password.value) {
-      return { confirm: true, error: true };
-    }
-    return {};
   }
 
 
@@ -50,20 +56,24 @@ export class TixianBankCardComponent implements OnInit {
     if (this.validateForm.invalid) {
       return;
     }
-    const data: any = {
-      mobile: this.validateForm.value.bankNumber,
-      // password: this.validateForm.value.password,
-    };
-    if (this.httpService.inviterId) {
-      data.inviterId = this.httpService.inviterId;
-    }
-    // const res = await this.httpService.register(data);
-    // if (res.code === 200) {
-    //   this.message.create('success', '提现成功');
-    //   this.router.navigate(['../index']);
-    // } else {
-    //   this.message.create('error', res.message);
-    // }
+    this.modalService.confirm({
+      nzTitle: '是否将您当前的账户余额全部提现？',
+      nzContent: '',
+      nzOnOk: () => {
+        const data: any = {
+          amount: this.money,
+        };
+        Object.assign(data, this.validateForm.value);
+        this.httpService.withdraw(data).then((res: any) => {
+          if (res.code === 200) {
+            this.message.create('success', '申请提现成功。');
+            this.router.navigate(['../index']);
+          } else {
+            return this.message.create('error', res.message);
+          }
+        });
+      }
+    });
   }
 
 }
