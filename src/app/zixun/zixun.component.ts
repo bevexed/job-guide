@@ -19,15 +19,16 @@ export class ZixunComponent implements OnInit, AfterViewInit {
   public loadingMore = false;
   public data: any[] = [];
   public list: Array<{ loading: boolean; name: any }> = [];
-
-  public fakeDataUrl = 'https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo';
   public count = 5;
+  public type = 0;
+  public current = 1;
+  public size = 14;
 
   ngOnInit() {
     this.getBanner();
-    this.getData((res: any) => {
-      this.data = res.results;
-      this.list = res.results;
+    this.getList(this.type, this.current, this.size, (res: any) => {
+      this.data = res.data.records;
+      this.list = res.data.records;
       this.initLoading = false;
     });
   }
@@ -54,15 +55,27 @@ export class ZixunComponent implements OnInit, AfterViewInit {
       this.banner = res.data;
     }
   }
-  public getData(callback: (res: any) => void): void {
-    this.httpService.httpGet(this.fakeDataUrl).then((res: any) => callback(res));
+  // 切换动态
+  public moveTab(type) {
+    this.type = type;
+    this.list = [];
+    this.data = [];
+    this.getList(this.type, this.current, this.size, (res: any) => {
+      this.data = res.data.records;
+      this.list = res.data.records;
+      this.initLoading = false;
+    });
+  }
+  // 加载列表
+  public async getList(type, current, size, callback: (res: any) => void): void {
+    this.httpService.reqHomeInformationMore(type, current, size).then((res) => callback(res));
   }
 
   // 加载更多
   public onLoadMore(): void {
     this.loadingMore = true;
     this.list = this.data.concat([...Array(this.count)].fill({}).map(() => ({ loading: true, name: {} })));
-    this.httpService.httpGet(this.fakeDataUrl).then((res: any) => {
+    this.httpService.reqHomeInformationMore(type, current, size).then((res: any) => {
       this.data = this.data.concat(res.results);
       this.list = [...this.data];
       this.loadingMore = false;
