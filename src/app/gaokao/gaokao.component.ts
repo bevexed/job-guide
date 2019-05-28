@@ -21,6 +21,8 @@ export class GaokaoComponent implements OnInit {
   public size = 10;
   public total = 0;
 
+  public hot = [];
+
   constructor(
     public router: Router,
     public Http: HttpService
@@ -28,6 +30,8 @@ export class GaokaoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getHot();
+
     this.Http.reqHomeInformationMore(this.activeTab, this.current, this.size).then(
       res => {
         console.log(res);
@@ -72,7 +76,14 @@ export class GaokaoComponent implements OnInit {
     );
   };
 
-
-
+  public getHot = () => {
+    this.Http.reqHotInformation().then(
+      res => {
+        console.log('hot', res);
+        this.hot = res.data.records;
+        console.log(this.hot);
+      }
+    );
+  };
 
 }

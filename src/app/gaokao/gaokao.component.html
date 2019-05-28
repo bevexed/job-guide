@@ -46,9 +46,9 @@
       <div class="content">
         <ul>
           <li
-            (click)="router.navigateByUrl('/gaokao-detail/'+ i)"
-            *ngFor="let i of dataList"
-          >sjhdkhsajkhdkjahskdjashjkdahskjahsdkashk</li>
+            (click)="router.navigateByUrl('/gaokao-detail/'+ i?.id)"
+            *ngFor="let i of hot"
+          >{{i?.title}}</li>
         </ul>
       </div>
     </div>

@@ -19,14 +19,12 @@
     <div class="right">
       <div class="title">热点新闻</div>
       <div class="content">
-      <div class="content">
         <ul>
           <li
-            (click)="router.navigateByUrl('/gaokao-detail/'+ i)"
-            *ngFor="let i of [1,2,34,2,2,2,2,2,22,2]"
-          >sjhdkhsajkhdkjahskdjashjkdahskjahsdkashk</li>
+            (click)="upload(i?.id)"
+            *ngFor="let i of hot"
+          >{{i?.title}}</li>
         </ul>
       </div>
     </div>
-  </div>
 </div>

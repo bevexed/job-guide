@@ -12,6 +12,7 @@ export class GaokaoDetailComponent implements OnInit {
   public id = 0;
 
   public content: any;
+  public hot = [];
 
   constructor(
     public router: Router,
@@ -21,6 +22,8 @@ export class GaokaoDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getHot();
+
     console.log(this.router);
     this.route.params.subscribe(data => {
       this.id = data.id;
@@ -51,5 +54,15 @@ export class GaokaoDetailComponent implements OnInit {
       }
     );
   }
+
+  public getHot = () => {
+    this.httpService.reqHotInformation().then(
+      res => {
+        console.log('hot', res);
+        this.hot = res.data.records;
+        console.log(this.hot);
+      }
+    );
+  };
 
 }

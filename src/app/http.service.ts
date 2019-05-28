@@ -551,6 +551,12 @@ export class HttpService {
     return this.httpGet(url);
   }
 
+  // 4.首页添加视频时间
+  // http://api.zhichangsinan.com/home/page/module
+  //   返回参数:
+  // videoTime--时间字段
+  //
+
   // 5.推荐视频
   // http://api.zhichangsinan.com/course/recommendedVideo
   //   请求方式:GET
@@ -563,4 +569,44 @@ export class HttpService {
     const url = 'http://api.zhichangsinan.com/course/recommendedVideo?isRecommend=true';
     return this.httpGet(url);
   }
+
+
+  // 6.发展之路-课程分类列表
+  // http://api.zhichangsinan.com/course/category/develop/typeList
+  //   请求方式:GET
+  // 参数:
+  //   current--页码                                                        不必填
+  // size--每页大小                                                        不必填
+
+
+  // 7.发展之路-分类的课程列表
+  // http://api.zhichangsinan.com/course/category/develop/courseList
+  //   请求方式:GET
+  // 参数:
+  //   courseSubcategoryId--分类id                                 必填
+  // current--页码                                                         必填
+  // size--每页大小                                                        必填
+
+
+  // 例子:http://api.zhichangsinan.com/course/category/develop/courseList?courseSubcategoryId=54&current=1&size=10
+  //
+  // 8.资讯点击次数记录
+  // http://api.zhichangsinan.com/information/play
+  //   请求方式:POST
+  // 参数:
+  //   id--主键id                                                              必填
+  //
+
+  // 9.热点新闻列表
+  // http://api.zhichangsinan.com/information/hotInformation
+  //   请求方式:GET
+  // 参数:
+  //   current--页码                                                         不必填
+  // size--每页大小                                                        不必填
+
+  public reqHotInformation(){
+    const url = 'http://api.zhichangsinan.com/information/hotInformation';
+    return this.httpGet(url);
+  }
+
 }
