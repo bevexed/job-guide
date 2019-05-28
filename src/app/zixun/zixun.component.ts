@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { HttpService, BANNER_TYPELIST } from '../http.service';
-import { videos } from '../index/index.component';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {BANNER_TYPELIST, HttpService} from '../http.service';
 
 @Component({
   selector: 'app-zixun',
@@ -67,7 +66,7 @@ export class ZixunComponent implements OnInit, AfterViewInit {
     });
   }
   // 加载列表
-  public async getList(type, current, size, callback: (res: any) => void): void {
+  public async getList(type, current, size, callback: (res: any) => void) {
     this.httpService.reqHomeInformationMore(type, current, size).then((res) => callback(res));
   }
 
@@ -75,7 +74,7 @@ export class ZixunComponent implements OnInit, AfterViewInit {
   public onLoadMore(): void {
     this.loadingMore = true;
     this.list = this.data.concat([...Array(this.count)].fill({}).map(() => ({ loading: true, name: {} })));
-    this.httpService.reqHomeInformationMore(type, current, size).then((res: any) => {
+    this.httpService.reqHomeInformationMore(this.type, this.current, this.size).then((res: any) => {
       this.data = this.data.concat(res.results);
       this.list = [...this.data];
       this.loadingMore = false;

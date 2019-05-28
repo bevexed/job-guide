@@ -1,7 +1,6 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {HttpService} from '../http.service';
-import {ActivatedRoute} from '@angular/router';
-
+import {ActivatedRoute,Router} from '@angular/router';
 
 
 export interface videos {
@@ -44,10 +43,12 @@ export class IndexComponent implements OnInit, OnDestroy {
   ];
   // erkai
   public gaokaozixun = [];
+  public gaokaozixun1 = [];
   private observer: any;
   private await: any;
 
   constructor(
+    public router: Router,
     public httpService: HttpService,
     public ref: ChangeDetectorRef,
     private route: ActivatedRoute
@@ -151,6 +152,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     const result = await this.httpService.reqHomeListPage();
     if (result.code === 200) {
       this.gaokaozixun = Object.values(result.data[0]);
+      this.gaokaozixun1 = result.data;
       for (let i = 0; i < this.gaokaozixun.length; i++) {
         this.gaokaozixun[i].src = this.gkPngList[i];
         this.gaokaozixun[i].pageM = Object.keys(result.data[0])[i];

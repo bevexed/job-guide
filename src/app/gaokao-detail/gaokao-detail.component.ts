@@ -26,6 +26,8 @@ export class GaokaoDetailComponent implements OnInit {
       this.id = data.id;
     });
 
+    window.scrollTo(0, 0);
+
     this.httpService.reqInformationInfo(this.id).then(
       res => {
         console.log(res);

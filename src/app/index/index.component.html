@@ -119,24 +119,50 @@
       <div class="vd-box-header">
         <h1 class="vd-box-title">高考资讯 </h1>
         <div class="vd-pagination">
-          <a routerLink="../profession">查看更多 <i nz-icon nzTheme="outline" nzType="double-right"></i></a>
+          <a routerLink="../gaokao">查看更多 <i nz-icon nzTheme="outline" nzType="double-right"></i></a>
         </div>
       </div>
 
 
       <div class="li-gao-kao">
-        <div *ngFor="let item of gaokaozixun" class="item">
+        <div class="item">
           <img alt="" src="../../assets/gk.png">
 
           <div class="content">
-            <h6>{{item.title}}</h6>
+            <h6>招考政策</h6>
 
-            <ul *ngFor="let news of item">
-              <li class="hover-red"><span></span> {{news?.title}}</li>
+            <ul>
+              <li class="hover-red" (click)="router.navigateByUrl('/gaokao-detail/'+ item.id)"  *ngFor="let item of gaokaozixun1[0].iPage1"><span></span> {{item.title}}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="item">
+          <img alt="" src="../../assets/gk2.png">
+
+          <div class="content">
+            <h6>高校动态</h6>
+
+            <ul>
+              <li class="hover-red" (click)="router.navigateByUrl('/gaokao-detail/'+ item.id)"  *ngFor="let item of gaokaozixun1[0].iPage2"><span></span> {{item.title}}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="item">
+          <img alt="" src="../../assets/gk3.png">
+
+          <div class="content">
+            <h6>志愿指南</h6>
+            <ul>
+              <li class="hover-red" (click)="router.navigateByUrl('/gaokao-detail/'+ item.id)"  *ngFor="let item of gaokaozixun1[0].iPage3"><span></span> {{item.title}}</li>
             </ul>
           </div>
         </div>
       </div>
+
+
+
     </div>
 
 
