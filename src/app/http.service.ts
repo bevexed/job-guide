@@ -596,6 +596,11 @@ export class HttpService {
   // 参数:
   //   id--主键id                                                              必填
   //
+  public reqPlay(id) {
+    const url = 'http://api.zhichangsinan.com/information/play';
+    return this.httpPost(url, id);
+  }
+
 
   // 9.热点新闻列表
   // http://api.zhichangsinan.com/information/hotInformation

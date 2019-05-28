@@ -27,6 +27,7 @@ export class GaokaoDetailComponent implements OnInit {
     console.log(this.router);
     this.route.params.subscribe(data => {
       this.id = data.id;
+      this.doPalay({id: data.id});
     });
 
     window.scrollTo(0, 0);
@@ -61,6 +62,14 @@ export class GaokaoDetailComponent implements OnInit {
         console.log('hot', res);
         this.hot = res.data.records;
         console.log(this.hot);
+      }
+    );
+  };
+
+  public doPalay = id => {
+    this.httpService.reqPlay(id).then(
+      res => {
+        console.log('play', res);
       }
     );
   };
