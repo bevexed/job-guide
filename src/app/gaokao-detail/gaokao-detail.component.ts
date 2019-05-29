@@ -48,7 +48,7 @@ export class GaokaoDetailComponent implements OnInit {
 
   public upload(id) {
     this.id = id;
-    this.httpService.reqInformationInfo(this.id).then(
+    this.httpService.reqInformationInfo(this.id, this.type).then(
       res => {
         console.log(res);
         if (res.code === 200) {
