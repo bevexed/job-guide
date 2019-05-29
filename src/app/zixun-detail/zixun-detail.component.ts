@@ -16,14 +16,16 @@ export class ZixunDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const id = this.routeinfo.snapshot.queryParams['id'];
-    this.getDetail(id);
+    this.routeinfo.queryParams.subscribe(params => {
+      console.log(params);
+      this.getDetail(params.id, params.type);
+    });
   }
   public goBack() {
     history.go(-1);
   }
-  public getDetail(id) {
-    this.httpService.reqInformationInfo(id).then((res) => {
+  public getDetail(id, type: any) {
+    this.httpService.reqInformationInfo(id, type).then((res) => {
       this.infoMsg = res.data;
     });
   }

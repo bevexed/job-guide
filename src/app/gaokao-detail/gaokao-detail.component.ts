@@ -10,6 +10,7 @@ import {HttpService} from '../http.service';
 export class GaokaoDetailComponent implements OnInit {
 
   public id = 0;
+  public type = 0;
 
   public content: any;
   public hot = [];
@@ -24,15 +25,17 @@ export class GaokaoDetailComponent implements OnInit {
   ngOnInit() {
     this.getHot();
 
-    console.log(this.router);
-    this.route.params.subscribe(data => {
+
+    this.route.queryParams.subscribe(data => {
+      console.log(data);
       this.id = data.id;
+      this.type = data.type;
       this.doPalay({id: data.id});
     });
 
     window.scrollTo(0, 0);
 
-    this.httpService.reqInformationInfo(this.id).then(
+    this.httpService.reqInformationInfo(this.id, this.type).then(
       res => {
         console.log(res);
         if (res.code === 200) {

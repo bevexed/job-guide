@@ -104,7 +104,7 @@ const routes: Routes = [
     component: GaokaoComponent
   },
   {
-    path: 'gaokao-detail/:id',
+    path: 'gaokao-detail',
     component: GaokaoDetailComponent
   }
 ];

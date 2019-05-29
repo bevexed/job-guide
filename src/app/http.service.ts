@@ -546,8 +546,8 @@ export class HttpService {
   //   id--主键id
   //  必填
 
-  public reqInformationInfo(id: number) {
-    const url = 'http://api.zhichangsinan.com/information/informationInfo?id=' + id;
+  public reqInformationInfo(id: number, type: number) {
+    const url = 'http://api.zhichangsinan.com/information/informationInfo?id=' + id + '&type=' + type;
     return this.httpGet(url);
   }
 

@@ -99,7 +99,7 @@
           </nz-list-item>
         </ng-template>
       </nz-list>
-      <div style="text-align: center" *ngIf="professionList.data.length>12 && professionList.currentData.length<=12">
+      <div style="text-align: center" *ngIf="professionList?.data.length>12 && professionList?.currentData.length<=12">
         <button nz-button (click)="mbPagination(blockType.professionList)" nzType="default"
                  style="margin: 30px 0;background: #D10000;color: #fff;">加载更多
         </button>

@@ -14,12 +14,12 @@
 
       <div class="content">
         <ul class="list">
-          <li (click)="router.navigateByUrl('/gaokao-detail/'+ i.id)"
+          <li (click)="router.navigateByUrl('/gaokao-detail?id='+ i.id + '&type=' + i.type)"
               *ngFor="let i of dataList"
               class="item"
           >
             <img
-              [hidden]="!i.thumbnail"
+              [hidden]="!i.thumbnail || i.thumbnail==='' || i.thumbnail ==='{}' || i.thumbnail === null"
               [src]="i.thumbnail"
               alt=""
               class="">

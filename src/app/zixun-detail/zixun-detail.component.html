@@ -4,21 +4,21 @@
     <span>高考资讯</span>
   </p>
   <div style="padding: 0 17px 25px;border-bottom: 1px #DBDBDB solid">
-    <h1>{{infoMsg.title}}</h1>
+    <h1>{{infoMsg?.title}}</h1>
     <p>
-      <span>来源：{{infoMsg.source}}</span>
-      <span>{{infoMsg.gmtCreate}}</span>
+      <span>来源：{{infoMsg?.source}}</span>
+      <span>{{infoMsg?.gmtCreate}}</span>
     </p>
   </div>
-  <p style="padding: 25px 15px;border-bottom: 1px #DBDBDB solid">{{infoMsg.articleContent}}</p>
+  <p style="padding: 25px 15px;border-bottom: 1px #DBDBDB solid">{{infoMsg?.articleContent}}</p>
   <div style="font-size: 14px;color: #404040;padding: 39px 15px 15px;font-family: SourceHanSansCN-Bold;font-weight: bold">
-    <p style="margin-bottom: 25px" *ngIf="infoMsg.upid !== null && infoMsg.upid !== 'null'">
+    <p style="margin-bottom: 25px" *ngIf="infoMsg?.upid !== null && infoMsg?.upid !== 'null'">
       <span>上一篇：</span>
-      <span>{{infoMsg.uptitle}}</span>
+      <span>{{infoMsg?.uptitle}}</span>
     </p>
-    <p *ngIf="infoMsg.downid !== null && infoMsg.downid !== 'null'">
+    <p *ngIf="infoMsg?.downid !== null && infoMsg?.downid !== 'null'">
       <span>下一篇：</span>
-      <span>{{infoMsg.downtitle}}</span>
+      <span>{{infoMsg?.downtitle}}</span>
     </p>
   </div>
 </div>
