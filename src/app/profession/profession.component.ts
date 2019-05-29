@@ -137,7 +137,7 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
     this.professionList = {
       data: res.data.canList,
       current: 1,
-      size: 10000,
+      size: 12,
       currentData: []
     };
     this.showData = this.professionList;

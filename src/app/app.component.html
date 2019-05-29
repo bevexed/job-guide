@@ -62,7 +62,7 @@
             routerLink="/gaokao"
             style="outline: none;width: 140px;"
             [nzSelected]="activeUrl==='/gaokao'"
-            routerlinkactive="ant-menu-item-selected">高考咨询</li>
+            routerlinkactive="ant-menu-item-selected">高考资讯</li>
       </ul>
     </nz-header>
 
@@ -100,15 +100,15 @@
         >
           职业菜单
         </li>
-        <li>
-          活动中心
-        </li>
-        <li>
+        <!--<li>-->
+          <!--活动中心-->
+        <!--</li>-->
+        <li *ngIf="httpService.user" routerLink="/usercenter">
           个人中心
         </li>
       </ul>
       <p>
-        Copyright © 2018-2019 职场司南 浙ICP备18039212号 &nbsp; &nbsp; <i nz-icon nzType="phone" nzTheme="outline"></i>
+        Copyright © 2018-2019 职场司南 浙ICP备18039212号 &nbsp; &nbsp; <i nz-icon nzType="phone" nzTheme="outline"></i>&nbsp;0571-85383155
       </p>
 
       <img src="../assets/嘻嘻.png" alt="">
@@ -146,10 +146,8 @@
         <span routerLink="/development" (click)="popoverHiding()">发展之路</span>
         <span>|</span>
         <span routerLink="/profession" (click)="popoverHiding()">职业菜单</span>
-        <span>|</span>
-        <span>活动中心</span>
-        <span>|</span>
-        <span routerLink="/usercenter" (click)="popoverHiding()">个人中心</span>
+        <span *ngIf="httpService.user">|</span>
+        <span *ngIf="httpService.user" routerLink="/usercenter" (click)="popoverHiding()">个人中心</span>
       </div>
       <p>Copyright © 2018-2019 职场司南 浙ICP备18039212号</p>
       <div class="telBox">

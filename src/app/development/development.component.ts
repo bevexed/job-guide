@@ -48,6 +48,12 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.httpService.pageCache.develope = {...this.courseList, selectedCourseName: this.selectedCourseName, top: document.documentElement.scrollTop !== 0 ? document.documentElement.scrollTop : document.body.scrollTop};
+    this.courseList = {
+      data: [],
+      current: 1,
+      size: 10000,
+      currentData: []
+    };
   }
 
   private setRowCount() {
@@ -103,7 +109,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
       this.courseList = {
         data: filter.courseList,
         current: 1,
-        size: 10000,
+        size: 12,
         currentData: []
       };
       this.listFilter();

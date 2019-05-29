@@ -24,7 +24,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   public hots: videos = {
     data: [],
     current: 1,
-    size: 12,
+    size: 6,
     currentData: []
   };
   public developList: any[] = [];
@@ -90,12 +90,12 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.hots = {
       data: res.data.hotList,
       current: 1,
-      size: 12,
+      size: 6,
       currentData: [],
     };
 
-    this.developList = res.data.developList.slice(0, 8);
-    this.professionList = res.data.professionList.slice(0, 8);
+    this.developList = res.data.developList.slice(0, 6);
+    this.professionList = res.data.professionList.slice(0, 6);
 
     for (const key in this.blockType) {
       this.listFilter(this.blockType[key]);

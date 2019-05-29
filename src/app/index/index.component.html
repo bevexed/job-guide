@@ -205,10 +205,10 @@
           </nz-list-item>
         </ng-template>
       </nz-list>
-      <div style="text-align: center">
-        <button (click)="mbPagination()" nz-button nzType="default" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
+      <div style="text-align: center" *ngIf="hots.data.length>6 && hots.currentData.length<=6">
+        <button (click)="mbPagination()" nz-button nzType="default" style="margin: 30px 0 0;background: #D10000;color: #fff;">加载更多</button>
       </div>
-      <img style="width: 100%;height: 50px;margin-bottom: 30px" src="../../assets/sharePg.jpg" alt="分享">
+      <img style="width: 100%;height: 50px;margin: 30px 0" src="../../assets/sharePg.jpg" alt="分享">
     </div>
   </div>
   <div class="mb-box-wrapper">
@@ -266,27 +266,29 @@
           <!--</nz-list-item>-->
         <!--</ng-template>-->
       <!--</nz-list>-->
-      <nz-carousel *ngIf="gaokaozixun.length"
-                   [nzAutoPlaySpeed]="7000"
-                   [nzAutoPlay]="false"
-                   [nzEffect]="effect"
-                   [nzEnableSwipe]="true"
-                   [nzDots]="false"
-                   (nzBeforeChange)="changeCarousel($event)">
-        <div *ngFor="let index of gaokaozixun"
-             nz-carousel-content
-             style="cursor: pointer;"
-        >
-          <img class="gkImage" [src]="index.src" alt="图片">
-          <div style="background: #F6F6F6;padding: 26px 4px 31px 16px">
-            <p style="color: #D10000;font-size: 18px;margin-bottom: 0">{{index.pageM == 'iPage1'?'招考政策':index.pageM == 'iPage2'?'高校动态':index.pageM == 'iPage3'?'志愿指南':''}}</p>
-            <div *ngFor="let v of index" style="display: flex;line-height:29px;align-items: center;color: #404040;font-size: 14px">
-              <span style="width: 4px;height: 4px;background: #d10000;border-radius: 50%;display: inline-block;margin-right: 10px"></span>
-              <p style="margin-bottom: 0">{{v.title}}</p>
-            </div>
-          </div>
-        </div>
-      </nz-carousel>
+     <div style="min-height: 350px;background: #F6F6F6">
+       <nz-carousel *ngIf="gaokaozixun.length"
+                    [nzAutoPlaySpeed]="7000"
+                    [nzAutoPlay]="false"
+                    [nzEffect]="effect"
+                    [nzEnableSwipe]="true"
+                    [nzDots]="false"
+                    (nzBeforeChange)="changeCarousel($event)">
+         <div *ngFor="let index of gaokaozixun"
+              nz-carousel-content
+              style="cursor: pointer;"
+         >
+           <img class="gkImage" [src]="index.src" alt="图片">
+           <div style="background: #F6F6F6;padding: 26px 4px 31px 16px">
+             <p style="color: #D10000;font-size: 18px;margin-bottom: 0">{{index.pageM == 'iPage1'?'招考政策':index.pageM == 'iPage2'?'高校动态':index.pageM == 'iPage3'?'志愿指南':''}}</p>
+             <div *ngFor="let v of index" style="display: flex;line-height:29px;align-items: center;color: #404040;font-size: 14px">
+               <span style="width: 4px;height: 4px;background: #d10000;border-radius: 50%;display: inline-block;margin-right: 10px"></span>
+               <p style="margin-bottom: 0">{{v.title}}</p>
+             </div>
+           </div>
+         </div>
+       </nz-carousel>
+     </div>
       <div class="dots_box">
         <p  *ngFor="let item of gaokaozixun; let i = index" [class]="dotIndex==i?'activeP':''"></p>
       </div>

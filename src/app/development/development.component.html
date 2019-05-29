@@ -112,9 +112,9 @@
           </nz-list-item>
         </ng-template>
       </nz-list>
-      <div style="text-align: center">
+      <div style="text-align: center" *ngIf="courseList.data.length>12 && courseList.currentData.length<=12">
         <button nz-button (click)="mbPagination()" nzType="default"
-                *ngIf="courseList?.currentData.length < courseList.data.length" style="margin: 30px 0;background: #D10000;color: #fff;">暂无更多
+                *ngIf="courseList?.currentData.length < courseList.data.length" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多
         </button>
       </div>
       <!--<button nz-button (click)="mbPagination()" style="margin: 30px 0;background: #D10000;color: #fff;" *ngIf="courseList?.currentData.length < courseList.data.length">加载更多</button>-->
