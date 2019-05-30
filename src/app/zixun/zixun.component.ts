@@ -12,7 +12,7 @@ export class ZixunComponent implements OnInit, AfterViewInit {
   ) { }
   effect = 'scrollx';
   public banner: any[] = [];
-  @ViewChild('vdwrapper') wrapper;
+  @ViewChild('vdwrapper', {static: true}) wrapper;
   public rowCount = 6;
   public initLoading = true; // bug
   public loadingMore = false;

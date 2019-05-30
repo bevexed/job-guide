@@ -8,7 +8,7 @@ import {NzMessageService} from 'ng-zorro-antd';
   styleUrls: ['./tixian.component.less']
 })
 export class TixianComponent implements OnInit {
-  private acount: number;
+  public acount: number;
   constructor(
     private router: Router,
     private routeinfo: ActivatedRoute,

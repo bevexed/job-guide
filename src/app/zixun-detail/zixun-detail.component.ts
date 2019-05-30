@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpService } from '../http.service';
+import {Component, OnInit} from '@angular/core';
+import {HttpService} from '../http.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -8,7 +8,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./zixun-detail.component.less']
 })
 export class ZixunDetailComponent implements OnInit {
-  public infoMsg = {};
+  public infoMsg: any;
   constructor(
     private httpService: HttpService,
     private router: Router,

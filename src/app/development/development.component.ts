@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
-import { HttpService, BANNER_TYPELIST } from '../http.service';
-import { videos } from '../index/index.component';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {BANNER_TYPELIST, HttpService} from '../http.service';
+import {videos} from '../index/index.component';
 
 @Component({
   selector: 'app-development',
@@ -22,7 +22,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
   };
   public selectedCourseName: string;
   public isSpinning = true;
-  @ViewChild('vdwrapper') wrapper;
+  @ViewChild('vdwrapper', {static: true}) wrapper;
   private observer: any;
   public dotD: any[] = [];
 

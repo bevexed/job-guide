@@ -54,6 +54,8 @@ export class GaokaoDetailComponent implements OnInit {
         if (res.code === 200) {
 
           this.content = res.data;
+          window.scrollTo(0, 0);
+
         }
       }
     );
@@ -76,5 +78,7 @@ export class GaokaoDetailComponent implements OnInit {
       }
     );
   };
+
+
 
 }
