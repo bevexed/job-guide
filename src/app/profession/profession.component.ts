@@ -43,7 +43,7 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
     unlimitedList: 2
   };
   public rowCount = 6;
-  @ViewChild('vdwrapper') wrapper;
+  @ViewChild('vdwrapper', {static: true}) wrapper;
   private observer: any;
 
   constructor(

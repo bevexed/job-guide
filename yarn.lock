@@ -133,6 +133,15 @@
   optionalDependencies:
     parse5 "^5.0.0"
 
+"@angular/cdk@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.npm.taobao.org/@angular/cdk/download/@angular/cdk-8.0.0.tgz#34ca95e71d71780b29b5ba07318c88c4577bdc25"
+  integrity sha1-NMqV5x1xeAsptboHMYyIxFd73CU=
+  dependencies:
+    tslib "^1.7.1"
+  optionalDependencies:
+    parse5 "^5.0.0"
+
 "@angular/cli@~7.0.6":
   version "7.0.7"
   resolved "https://registry.npm.taobao.org/@angular/cli/download/@angular/cli-7.0.7.tgz#0f4500c5fcf22694c9c40f14d2a5b3dc90fbb4a3"
@@ -180,10 +189,10 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/core@~7.0.0":
-  version "7.0.4"
-  resolved "https://registry.npm.taobao.org/@angular/core/download/@angular/core-7.0.4.tgz#98340a1bdb53f0bbecfcfc9831a7a22a1540d79b"
-  integrity sha1-mDQKG9tT8Lvs/PyYMaeiKhVA15s=
+"@angular/core@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.npm.taobao.org/@angular/core/download/@angular/core-8.0.0.tgz#bf7a582b818e9181d830219907470e2b865ba32f"
+  integrity sha1-v3pYK4GOkYHYMCGZB0cOK4Zboy8=
   dependencies:
     tslib "^1.9.0"
 
@@ -205,6 +214,13 @@
   version "7.0.4"
   resolved "https://registry.npm.taobao.org/@angular/language-service/download/@angular/language-service-7.0.4.tgz#db221f183725ff54c1188aec7acb2948e29f4c50"
   integrity sha1-2yIfGDcl/1TBGIrsesspSOKfTFA=
+
+"@angular/material@^8.0.0":
+  version "8.0.0"
+  resolved "https://registry.npm.taobao.org/@angular/material/download/@angular/material-8.0.0.tgz#21dd15c318d1e29eb4d1a2dd888ddb027897eb49"
+  integrity sha1-Id0VwxjR4p600aLdiI3bAniX60k=
+  dependencies:
+    tslib "^1.7.1"
 
 "@angular/platform-browser-dynamic@~7.0.0":
   version "7.0.4"
@@ -645,6 +661,11 @@ angular-in-memory-web-api@^0.8.0:
   version "0.8.0"
   resolved "https://registry.npm.taobao.org/angular-in-memory-web-api/download/angular-in-memory-web-api-0.8.0.tgz#6cb63c9e8e22c59383dfcccaf0512791400bf4e1"
   integrity sha1-bLY8no4ixZOD38zK8FEnkUAL9OE=
+
+angular-sanitize@^1.7.8:
+  version "1.7.8"
+  resolved "https://registry.npm.taobao.org/angular-sanitize/download/angular-sanitize-1.7.8.tgz#87d59f754bb18d286dfd9d6ce867299c094c6719"
+  integrity sha1-h9WfdUuxjSht/Z1s6GcpnAlMZxk=
 
 ansi-colors@^3.0.0:
   version "3.2.4"
@@ -4764,10 +4785,10 @@ neo-async@^2.5.0, neo-async@^2.6.0:
   resolved "https://registry.npm.taobao.org/neo-async/download/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha1-rCetpmFn+ohJpq3dg39rGJrSCBw=
 
-ng-zorro-antd@^7.0.3:
-  version "7.3.3"
-  resolved "https://registry.npm.taobao.org/ng-zorro-antd/download/ng-zorro-antd-7.3.3.tgz#4e79a6c3632efc386a3cf9500619365802e64879"
-  integrity sha1-Tnmmw2Mu/DhqPPlQBhk2WALmSHk=
+ng-zorro-antd@^7.4.1:
+  version "7.4.1"
+  resolved "https://registry.npm.taobao.org/ng-zorro-antd/download/ng-zorro-antd-7.4.1.tgz#a87b88119c0a98f7208ed1b32690ce9bcba87df5"
+  integrity sha1-qHuIEZwKmPcgjtGzJpDOm8uoffU=
   dependencies:
     "@angular/cdk" "^7.0.0"
     "@ant-design/icons-angular" "^2.0.2"
