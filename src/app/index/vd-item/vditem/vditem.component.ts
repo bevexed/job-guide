@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Route} from '@angular/router';
+import {HttpService} from '../../../http.service';
 
 declare var window;
 
@@ -14,7 +15,7 @@ export class VditemComponent implements OnInit {
     'padding': 0,
     'background': 'red'
   };
-  @Input() devType = true;
+  @Input() devType = false;
 
   public isIE = false;
 
@@ -24,7 +25,9 @@ export class VditemComponent implements OnInit {
   public profession = false;
 public tuijian = false;
 
-  constructor() {
+  constructor(
+    private httpService: HttpService
+  ) {
   }
 
   ngOnInit() {

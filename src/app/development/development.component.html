@@ -88,9 +88,9 @@
 <!--手机-->
 <!--手机-->
 <ng-container *ngIf="!httpService.devType">
-  <div style="padding-top: 40px;padding-left: 17px;color: #222;text-align: left">
-    <h1 style="font-size: 23px;">发展之路</h1>
-  </div>
+  <!--<div style="padding-top: 40px;padding-left: 17px;color: #222;text-align: left">-->
+    <!--<h1 style="font-size: 23px;">发展之路</h1>-->
+  <!--</div>-->
   <div class="mb-classify-wrapper">
     <ul class="mb-classify vd-classify">
       <li (click)="getCourseByName(item.name)" *ngFor="let item of classifySplit();"
@@ -103,7 +103,7 @@
     </div> -->
   </div>
 
-  <div class="mb-box-wrapper">
+  <div class="mb-box-wrapper" style="padding-top: 0">
     <div class="mb-box-body">
       <nz-list [nzDataSource]="courseList?.currentData" [nzGrid]="{ gutter: 10, xs: 12 }" [nzRenderItem]="item">
         <ng-template #item let-item>

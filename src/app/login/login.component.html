@@ -11,7 +11,7 @@
 
   <div [class]="httpService.devType?'vb-show':'mb-show'">
 
-    <h3 style="height: 60px;text-align: center;line-height: 60px;font-family: MicrosoftYaHei;font-size: 24px;font-weight: normal;font-stretch: normal;">用户注册</h3>
+    <h3 style="text-align: center;font-family: MicrosoftYaHei;font-size: 24px;font-weight: normal;font-stretch: normal;">用户登录</h3>
 
     <form (ngSubmit)="login()" [formGroup]="validateForm" [class]="httpService.devType?'li-form':''" nz-form>
       <nz-form-item>
@@ -34,7 +34,7 @@
       <nz-form-item nz-row style="margin-bottom:8px;">
         <nz-form-control [nzSm]="{ span: 14, offset: 6 }" [nzXs]="{ span: 24, offset: 0 }">
           <div [nzSpan]="24" nz-col>
-            <button [disabled]="validateForm.invalid" [nzType]="'primary'" nz-button nzBlock nzSize="large" style="background: #ccc;color: #fff;border: none">登录</button>
+            <button [disabled]="validateForm.invalid" [nzType]="'primary'" nz-button nzBlock nzSize="large" [style]="!validateForm.invalid?'background:#D10000;color: #fff;border: none':'background: #ccc;color: #fff;border: none'">登录</button>
           </div>
         </nz-form-control>
       </nz-form-item>

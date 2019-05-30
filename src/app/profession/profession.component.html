@@ -74,11 +74,11 @@
 
 
 <ng-container *ngIf="!httpService.devType">
-  <div style="padding-top: 40px;padding-left: 17px;padding-bottom:20px;color: #222;text-align: left">
-    <h1 style="font-size: 23px;">职业菜单</h1>
-  </div>
+  <!--<div style="padding-top: 40px;padding-left: 17px;padding-bottom:20px;color: #222;text-align: left">-->
+    <!--<h1 style="font-size: 23px;">职业菜单</h1>-->
+  <!--</div>-->
   <div class="mb-classify-wrapper">
-    <ul class="mb-classify vd-classify" style="background: #fff;margin: 0 15px;box-shadow:0px 3px 3px 0px rgba(0, 0, 0, 0.1);">
+    <ul class="mb-classify vd-classify" style="background: #fff;margin: 25px 15px 0;box-shadow:0px 3px 3px 0px rgba(0, 0, 0, 0.1);">
       <li *ngFor="let type of classifySplit()" [ngClass]="{'checked': selectedId === type.id}"
         (click)="getCoursesList(type.id)">
         <a>{{type.name}}</a></li>
@@ -90,7 +90,7 @@
     </div> -->
   </div>
   <div class="mb-box-wrapper">
-    <div class="vd-box-header" style="margin-bottom: 20px">
+    <div class="vd-box-header" style="margin-bottom: 20px;margin-top: 20px">
       <ul style="display: flex; justify-content: space-between;padding: 0 15px">
         <li [ngClass]="{'li-select-active':menuSelect === 0}" class="li-select" (click)="changSelect(0)">该专业可从事岗位</li>
         <li [ngClass]="{'li-select-active':menuSelect === 1}" class="li-select" (click)="changSelect(1)">跨专业可从事岗位</li>

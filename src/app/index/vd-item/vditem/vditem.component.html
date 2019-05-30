@@ -1,6 +1,6 @@
 <div [ngClass]="
      {
-       'mb-item': !devType,
+       'mb-item': !httpService.devType,
        'vd-ie': isIE,
        'to-up':data?.moduleCode !== 'home_page_hot',
        'shadow-box':data?.moduleCode !== 'home_page_hot' && index
