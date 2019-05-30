@@ -34,7 +34,8 @@
       <nz-form-item nz-row style="margin-bottom:8px;">
         <nz-form-control [nzSm]="{ span: 14, offset: 6 }" [nzXs]="{ span: 24, offset: 0 }">
           <div [nzSpan]="24" nz-col>
-            <button [nzType]="'primary'" nz-button nzBlock nzSize="large" [style]="validateForm.get('password')?.dirty && validateForm.get('password')?.errors?'background:#ccc;color: #fff;border: none':'background: #D10000;color: #fff;border: none'">登录</button>
+            <button [hidden]="!validateForm.invalid" [disabled]="validateForm.invalid" [nzType]="'primary'" nz-button nzBlock nzSize="large" style="background: #ccc;color: #fff;border: none">登录</button>
+            <button [hidden]="validateForm.invalid" [disabled]="validateForm.invalid" [nzType]="'primary'" nz-button nzBlock nzSize="large" style="background: #D10000;color: #fff;border: none">登录</button>
           </div>
         </nz-form-control>
       </nz-form-item>

@@ -46,7 +46,8 @@
     <nz-form-item nz-row style="margin-bottom:8px;">
       <nz-form-control [nzSm]="{ span: 14, offset: 6 }" [nzXs]="{ span: 24, offset: 0 }">
         <div [nzSpan]="24" nz-col>
-          <button [disabled]="validateForm.invalid" nz-button nzBlock nzType="primary" style="background: #ccc;color: #fff;">确定</button>
+          <button [nzType]="'primary'" [hidden]="!validateForm.invalid" [disabled]="validateForm.invalid" nz-button nzSize="large" nzBlock style="background: #ccc;color: #fff;">确定</button>
+          <button [nzType]="'primary'" [hidden]="validateForm.invalid" [disabled]="validateForm.invalid" nz-button nzSize="large" nzBlock style="background: #D10000;color: #fff;">确定</button>
         </div>
       </nz-form-control>
     </nz-form-item>
