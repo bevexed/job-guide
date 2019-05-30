@@ -22,6 +22,12 @@ export class IndexComponent implements OnInit, OnDestroy {
   public zixunlist: any[] = [];
   public dotIndex: any[] = [];
   public dotN: any[] = [];
+  public guanggao = {
+    ggHotList: [],
+    ggDevelopList: [],
+    ggProfessionList: [],
+    ggZiXunList: []
+  }
   public hots: videos = {
     data: [],
     current: 1,
@@ -85,6 +91,12 @@ export class IndexComponent implements OnInit, OnDestroy {
       res = await this.httpService.getMobileIndex();
     }
     this.bannerlist = res.data.bannerList;
+    this.guanggao = {
+      ggHotList: res.data.ggHotList,
+      ggDevelopList: res.data.ggDevelopList,
+      ggProfessionList: res.data.ggProfessionList,
+      ggZiXunList: res.data.ggZiXunList
+    }
 
     // 二开 底部
     res.data.hotList.forEach(item => item.hot = true);

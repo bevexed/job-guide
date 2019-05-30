@@ -253,6 +253,17 @@ export class HttpService {
       });
     }
   }
+  // 发展之路广告
+  public development() {
+    const url = this.baseUrl + '/advertisement/developAdvertisementList';
+    return this.httpGet(url);
+  }
+
+  // 职业菜单广告
+  public profession() {
+    const url = this.baseUrl + '/advertisement/professionAdvertisementList';
+    return this.httpGet(url);
+  }
 
   public coursePlay(id: number) {
     const url = this.baseUrl + '/course/play';

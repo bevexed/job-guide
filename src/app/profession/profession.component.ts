@@ -45,6 +45,7 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
   public rowCount = 6;
   @ViewChild('vdwrapper', {static: true}) wrapper;
   private observer: any;
+  public professionAdList: any[] = [];
 
   constructor(
     public httpService: HttpService
@@ -68,6 +69,7 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getProfessionList();
     this.getBanner();
+    this.getProguanggao();
   }
 
   ngAfterViewInit(): void {
@@ -92,6 +94,12 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
     if (this.observer) {
       this.observer.unsubscribe();
     }
+  }
+
+  public async getProguanggao() {
+    const res = await this.httpService.profession();
+    console.log(res);
+    this.professionAdList = res.data.records;
   }
 
   public async getProfessionList() {

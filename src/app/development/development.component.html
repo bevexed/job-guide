@@ -71,8 +71,8 @@
     <!--广告位-->
     <!--广告位-->
 
-    <div class="vd-box" style="background: none">
-      <img alt="" class="li-ad-img shadow-box" src="../../assets/广告位.png">
+    <div class="vd-box" style="background: none" *ngIf="developBan.length>0">
+      <img alt="" class="li-ad-img shadow-box" [src]="developBan[0]?.imageUrl">
     </div>
 
   </div>
@@ -123,7 +123,7 @@
   </div>
 
   <div class="mb-box-wrapper" style="padding-top: 0">
-    <div class="mb-box-body">
+    <div class="mb-box-body" style="padding: 0 10px">
       <nz-list [nzDataSource]="courseList?.currentData" [nzGrid]="{ gutter: 10, xs: 12 }" [nzRenderItem]="item">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">
@@ -138,6 +138,8 @@
                 *ngIf="courseList?.currentData.length < courseList.data.length" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多
         </button>
       </div>
+      <!--广告-->
+      <img *ngIf="developBan.length>0" style="width: 100%;height: 50px;margin: 30px 0" [src]="developBan[0]?.imageUrl" alt="">
       <!--<button nz-button (click)="mbPagination()" style="margin: 30px 0;background: #D10000;color: #fff;" *ngIf="courseList?.currentData.length < courseList.data.length">加载更多</button>-->
       <div style="height: 40px"></div>
     </div>

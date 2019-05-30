@@ -3,11 +3,12 @@
        'mb-item': !httpService.devType,
        'vd-ie': isIE,
        'to-up':data?.moduleCode !== 'home_page_hot',
-       'shadow-box':data?.moduleCode !== 'home_page_hot' && index
+       'shadow-box':data?.moduleCode !== 'home_page_hot' && index,
+       'mbTT': !httpService.devType
      }"
      (click)="to('#/vd/'+data?.courseId)"
      [style.background-color]="data?.moduleCode !== 'home_page_hot'? 'none' :'white'"
-     class="vd-item">
+     class="vd-item mb">
   <div *ngIf="!vipTag(data)" class="vd-tags">
     <nz-tag [nzColor]="'#D10000'">VIP</nz-tag>
   </div>
