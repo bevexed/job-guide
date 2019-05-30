@@ -10,7 +10,7 @@
       <span>{{infoMsg?.gmtCreate}}</span>
     </p>
   </div>
-  <p style="padding: 25px 15px;border-bottom: 1px #DBDBDB solid">{{infoMsg?.articleContent}}</p>
+  <p style="padding: 25px 15px;border-bottom: 1px #DBDBDB solid" [innerHTML]="infoMsg?.articleContent"></p>
   <div style="font-size: 14px;color: #404040;padding: 39px 15px 15px;font-family: SourceHanSansCN-Bold;font-weight: bold">
     <p style="margin-bottom: 25px" *ngIf="infoMsg?.upid !== null && infoMsg?.upid !== 'null'">
       <span>上一篇：</span>

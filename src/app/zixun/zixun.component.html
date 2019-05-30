@@ -1,5 +1,5 @@
-<nz-carousel [nzEffect]="effect" [nzDots]="banner.length>1" [nzAutoPlay]="true" [nzAutoPlaySpeed]="7000"
-             *ngIf="banner.length">
+<nz-carousel [nzEffect]="effect" [nzDots]="false" [nzAutoPlay]="true" [nzAutoPlaySpeed]="3000"
+             *ngIf="banner.length" (nzBeforeChange)="changeZ($event)">
   <div nz-carousel-content *ngFor="let index of banner"
        style="cursor: pointer;">
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
@@ -13,6 +13,10 @@
     </div>
   </div>
 </nz-carousel>
+
+<div *ngIf="banner.length>1" class="dots_box" style="margin-top: -20px;position: absolute;z-index: 100;width: 100%;text-align: center">
+  <p *ngFor="let item of banner; let i = index" [class]="dotZ==i?'activeP':''"></p>
+</div>
 
 <div style="background: #fff;min-height: 40vh">
   <div class="tabsTf">
@@ -37,7 +41,7 @@
               <p><span>来源：{{item.source}}</span><span>{{item.gmtCreate}}</span></p>
             </div>
           </div>
-          <div class="list-vertical-nav">
+          <div class="list-vertical-nav" *ngIf="!(item.thumbnail !== null && item.thumbnail !== 'null' && item.thumbnail !=='' && item.thumbnail !== '{}')">
           <p>{{item.title}}</p>
           <p><span>来源：{{item.source}}</span><span>{{item.gmtCreate}}</span></p>
           </div>

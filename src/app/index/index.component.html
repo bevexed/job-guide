@@ -1,24 +1,27 @@
 <nz-carousel *ngIf="bannerlist.length"
-             [nzAutoPlaySpeed]="7000"
+             [nzAutoPlaySpeed]="3000"
              [nzAutoPlay]="true"
-             [nzDots]="bannerlist.length>1"
+             [nzDots]="false"
              [nzEffect]="effect"
-             [nzEnableSwipe]="true">
+             [nzEnableSwipe]="true" (nzBeforeChange)="changeNew($event)">
   <div *ngFor="let index of bannerlist"
        nz-carousel-content
-       style="cursor: pointer;height: 21vw"
-  >
+       style="cursor: pointer;" [style]="httpService.devType?'height:21vw':'height:175px'">
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
-      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+      <img [src]="index.imageUrl" style="display: block;width: 100vw;">
     </div>
     <a *ngIf="!index.courseId && index.link" [href]="index.link" style="display: block;">
-      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+      <img [src]="index.imageUrl" style="display: block;width: 100vw;">
     </a>
     <div *ngIf="!index.courseId && !index.link">
-      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+      <img [src]="index.imageUrl" style="display: block;width: 100vw;">
     </div>
   </div>
 </nz-carousel>
+
+<div *ngIf="bannerlist.length>1" class="dots_box" style="margin-top: -20px;position: absolute;z-index: 100;width: 100%;text-align: center">
+  <p *ngFor="let item of bannerlist; let i = index" [class]="dotN==i?'activeP':''"></p>
+</div>
 
 <style>
   .hover-red:hover {
@@ -268,7 +271,7 @@
       <!--</nz-list>-->
      <div style="min-height: 350px;background: #F6F6F6">
        <nz-carousel *ngIf="gaokaozixun.length"
-                    [nzAutoPlaySpeed]="7000"
+                    [nzAutoPlaySpeed]="3000"
                     [nzAutoPlay]="false"
                     [nzEffect]="effect"
                     [nzEnableSwipe]="true"
@@ -289,7 +292,7 @@
          </div>
        </nz-carousel>
      </div>
-      <div class="dots_box">
+      <div class="dots_box" style="margin-top: 25px;">
         <p  *ngFor="let item of gaokaozixun; let i = index" [class]="dotIndex==i?'activeP':''"></p>
       </div>
 
@@ -302,24 +305,3 @@
   </div>
 </ng-container>
 
-<style>
-  .dots_box {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .dots_box>p {
-    width:10px;
-    height:10px;
-    background:#F2F2F2;
-    border-radius:50%;
-    margin-left: 5px;
-  }
-  .dots_box>p:nth-child(1){
-    margin-left: 0;
-  }
-  .activeP {
-    background:rgba(234,0,20,1)!important;
-  }
-</style>

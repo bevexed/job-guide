@@ -5,8 +5,7 @@
         <h1>{{content?.title}}</h1>
         <h6>来源：{{content?.source}} &nbsp; &nbsp; &nbsp; {{content?.gmtCreate}} </h6>
 
-        <section>
-         {{content?.articleContent}}
+        <section [innerHTML]="content?.articleContent">
         </section>
       </article>
 

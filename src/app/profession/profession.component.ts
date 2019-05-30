@@ -5,7 +5,7 @@ import {videos} from '../index/index.component';
 @Component({
   selector: 'app-profession',
   templateUrl: './profession.component.html',
-  styleUrls: ['../development/development.component.less', '../index/index.component.less']
+  styleUrls: ['../development/development.component.less', '../index/index.component.less', '../app.component.less']
 })
 export class ProfessionComponent implements OnInit, AfterViewInit {
   effect = 'scrollx';
@@ -14,6 +14,7 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
   public banner: any[] = [];
   public showData: any;
   public menuSelect = 0;
+  public dotP: any[] = [];
   public professionList: videos = {
     data: [],
     current: 1,
@@ -50,7 +51,9 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
   ) {
   }
 
-
+  public changePro(e) {
+    this.dotP = e.to;
+  }
   public changSelect(num: number): void {
     this.menuSelect = num;
     if (num === 0) {
@@ -169,7 +172,6 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
       return this.typeList;
     }
   }
-
   public getTotalSize(total: number, size: number): number {
     return Math.ceil(total / size);
   }

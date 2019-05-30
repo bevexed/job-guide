@@ -100,6 +100,11 @@
         >
           职业菜单
         </li>
+        <li
+          routerLink="/gaokao"
+        >
+          高考资讯
+        </li>
         <!--<li>-->
           <!--活动中心-->
         <!--</li>-->
@@ -121,7 +126,7 @@
 <ng-container *ngIf="!httpService.devType">
   <nz-layout class="layout" style="position: relative;min-height: 100vh;left: 0;top: 0;">
     <nz-header class="vd-header mb-header" style="position:fixed; width:100%;z-index: 100;box-shadow:0 3px 3px 0 rgba(0, 0, 0, 0.1);padding: 0 16px;display: flex;align-items: center;justify-content: space-between">
-      <div class="logo mb-logo"></div>
+      <div class="logo mb-logo" routerLink="/index" style="outline: none"></div>
       <!--<ul class="vd-userarea mb-headerCollapse" nz-popover nzTitle="" style="padding: 16px 0;" [nzContent]="contentTemplate"-->
       <!--[(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">-->
       <!--<i nz-icon nzType="bars" nzTheme="outline"></i>-->
@@ -146,6 +151,8 @@
         <span routerLink="/development" (click)="popoverHiding()">发展之路</span>
         <span>|</span>
         <span routerLink="/profession" (click)="popoverHiding()">职业菜单</span>
+        <span>|</span>
+        <span routerLink="/zixun" (click)="popoverHiding()">高考资讯</span>
         <span *ngIf="httpService.user">|</span>
         <span *ngIf="httpService.user" routerLink="/usercenter" (click)="popoverHiding()">个人中心</span>
       </div>
@@ -219,6 +226,8 @@
        style="border-bottom: 1px solid #eee;"><a>发展之路</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/profession" (click)="popoverHiding()"
        style="border-bottom: 1px solid #eee;"><a>职业菜单</a></p>
+    <p class="vd-popoveritem mb-navlist" routerLink="/zixun" (click)="popoverHiding()"
+       style="border-bottom: 1px solid #eee;"><a>高考资讯</a></p>
   </ng-container>
   <ng-container *ngIf="httpService.user">
     <p class="vd-popoveritem" [ngClass]="{'mb-navlist': !httpService.devType}" (click)="popoverHiding()"

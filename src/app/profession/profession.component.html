@@ -1,5 +1,5 @@
-<nz-carousel [nzEffect]="effect" [nzDots]="banner.length>1" [nzAutoPlay]="true" [nzAutoPlaySpeed]="7000"
-  *ngIf="banner.length">
+<nz-carousel [nzEffect]="effect" [nzDots]="false" [nzAutoPlay]="true" [nzAutoPlaySpeed]="3000"
+  *ngIf="banner.length" (nzBeforeChange)="changePro">
   <div nz-carousel-content *ngFor="let index of banner"
     style="cursor: pointer;">
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
@@ -13,6 +13,11 @@
     </div>
   </div>
 </nz-carousel>
+
+<div *ngIf="banner.length>1" class="dots_box" style="margin-top: -20px;position: absolute;z-index: 100;width: 100%;text-align: center">
+  <p *ngFor="let item of banner; let i = index" [class]="dotP==i?'activeP':''"></p>
+</div>
+
 <ng-container *ngIf="httpService.devType">
   <div class="vd-wrapper" style="background: #f2f2f2">
     <div class="vd-classify-wrapper" >
@@ -22,7 +27,7 @@
         class="vd-classify"
         style="padding: 12px 31px;background: white ;border-radius: 3px"
       >
-        <span (click)="getCoursesList(type.id)" *ngFor="let type of classifySplit()"
+        <span (click)="getCoursesList(type.id)" *ngFor="let type of typeList"
               [attr.title]="type.name" [ngClass]="{'checked': selectedId === type.id}">{{type.name}}</span>
       </div>
     </div>
@@ -70,7 +75,7 @@
 
 <ng-container *ngIf="!httpService.devType">
   <div style="padding-top: 40px;padding-left: 17px;padding-bottom:20px;color: #222;text-align: left">
-    <h1 style="font-size: 23px;">发展之路</h1>
+    <h1 style="font-size: 23px;">职业菜单</h1>
   </div>
   <div class="mb-classify-wrapper">
     <ul class="mb-classify vd-classify" style="background: #fff;margin: 0 15px;box-shadow:0px 3px 3px 0px rgba(0, 0, 0, 0.1);">
@@ -84,12 +89,17 @@
           nzTheme="outline"></i></a>
     </div> -->
   </div>
-  <div class="mb-box-wrapper" style="margin-top: 15px;">
-    <!--<div class="mb-box-header">-->
-      <!--<h1 class="vd-box-title" style="background-image: url('../../assets/jobs.png')">该专业可从事岗位</h1>-->
-    <!--</div>-->
-    <div  style="padding: 0 15px">
-      <nz-list [nzDataSource]="professionList?.currentData" [nzRenderItem]="item"
+  <div class="mb-box-wrapper">
+    <div class="vd-box-header" style="margin-bottom: 20px">
+      <ul style="display: flex; justify-content: space-between;padding: 0 15px">
+        <li [ngClass]="{'li-select-active':menuSelect === 0}" class="li-select" (click)="changSelect(0)">该专业可从事岗位</li>
+        <li [ngClass]="{'li-select-active':menuSelect === 1}" class="li-select" (click)="changSelect(1)">跨专业可从事岗位</li>
+        <li [ngClass]="{'li-select-active':menuSelect === 2}" class="li-select" (click)="changSelect(2)">不限专业可从事岗位</li>
+      </ul>
+
+    </div>
+    <div style="padding: 0 15px">
+      <nz-list [nzDataSource]="showData?.currentData" [nzRenderItem]="item"
         [nzGrid]="{ gutter: 10, xs: 12 }">
         <ng-template #item let-item>
           <nz-list-item [nzContent]="nzContent">

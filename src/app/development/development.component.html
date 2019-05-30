@@ -1,20 +1,22 @@
-<nz-carousel *ngIf="banner.length" [nzAutoPlaySpeed]="7000" [nzAutoPlay]="true" [nzDots]="banner.length>1"
-             [nzEffect]="effect">
+<nz-carousel *ngIf="banner.length" [nzAutoPlaySpeed]="3000" [nzAutoPlay]="true" [nzDots]="false"
+             [nzEffect]="effect" (nzBeforeChange)="changeDev($event)">
   <div *ngFor="let index of banner" nz-carousel-content
-       style="cursor: pointer;height: 21vw"
+       style="cursor: pointer;" [style]="httpService.devType?'height:21vw':'height:175px'"
   >
     <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
-      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+      <img [src]="index.imageUrl" style="display: block;width: 100vw;">
     </div>
     <a *ngIf="!index.courseId && index.link" [href]="index.link" style="display: block;">
-      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+      <img [src]="index.imageUrl" style="display: block;width: 100vw;">
     </a>
     <div *ngIf="!index.courseId && !index.link">
-      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+      <img [src]="index.imageUrl" style="display: block;width: 100vw;">
     </div>
   </div>
 </nz-carousel>
-
+<div *ngIf="banner.length>1" class="dots_box" style="margin-top: -20px;position: absolute;z-index: 100;width: 100%;text-align: center">
+  <p *ngFor="let item of banner; let i = index" [class]="dotD==i?'activeP':''"></p>
+</div>
 
 <ng-container *ngIf="httpService.devType">
 

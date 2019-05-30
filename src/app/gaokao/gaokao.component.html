@@ -28,8 +28,8 @@
                 {{i.title}}
               </h1>
 
-              <article>
-                {{i.articleContent}}
+              <article [innerHTML]="i.articleContent">
+                <!--{{i.articleContent}}-->
               </article>
 
               <footer>
@@ -46,7 +46,7 @@
       <div class="content">
         <ul>
           <li
-            (click)="router.navigateByUrl('/gaokao-detail/'+ i?.id)"
+            (click)="router.navigateByUrl('/gaokao-detail?id='+ i.id + '&type=' + i.type)"
             *ngFor="let i of hot"
           >{{i?.title}}</li>
         </ul>

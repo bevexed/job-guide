@@ -4,7 +4,7 @@ import {BANNER_TYPELIST, HttpService} from '../http.service';
 @Component({
   selector: 'app-zixun',
   templateUrl: './zixun.component.html',
-  styleUrls: ['./zixun.component.less', '../development/development.component.less']
+  styleUrls: ['./zixun.component.less', '../development/development.component.less', '../app.component.less']
 })
 export class ZixunComponent implements OnInit, AfterViewInit {
   constructor(
@@ -22,6 +22,7 @@ export class ZixunComponent implements OnInit, AfterViewInit {
   public type = 0;
   public current = 1;
   public size = 14;
+  public dotZ: any[] = [];
 
   ngOnInit() {
     this.getBanner();
@@ -47,6 +48,9 @@ export class ZixunComponent implements OnInit, AfterViewInit {
     this.rowCount = Math.floor(width / 140);
   }
 
+  public changeZ(e) {
+    this.dotZ = e.to;
+  }
   public async getBanner() {
     const type = this.httpService.devType ? BANNER_TYPELIST[1] : BANNER_TYPELIST[3];
     const res = await this.httpService.getBannerByType(type);

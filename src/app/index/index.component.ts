@@ -14,13 +14,14 @@ export interface videos {
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
-  styleUrls: ['./index.component.less']
+  styleUrls: ['./index.component.less', '../app.component.less']
 })
 export class IndexComponent implements OnInit, OnDestroy {
   effect = 'scrollx';
   public bannerlist: any[] = [];
   public zixunlist: any[] = [];
   public dotIndex: any[] = [];
+  public dotN: any[] = [];
   public hots: videos = {
     data: [],
     current: 1,
@@ -133,6 +134,9 @@ export class IndexComponent implements OnInit, OnDestroy {
     response = await this.httpService.getZixun();
     console.log(response);
     // this.zixunlist = res.+
+  }
+  public changeNew(e) {
+    this.dotN = e.to;
   }
   public changeCarousel(e) {
     this.dotIndex = e.to;

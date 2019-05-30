@@ -5,7 +5,7 @@ import { videos } from '../index/index.component';
 @Component({
   selector: 'app-development',
   templateUrl: './development.component.html',
-  styleUrls: ['./development.component.less', '../index/index.component.less']
+  styleUrls: ['./development.component.less', '../index/index.component.less', '../app.component.less']
 })
 export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
   effect = 'scrollx';
@@ -24,6 +24,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
   public isSpinning = true;
   @ViewChild('vdwrapper') wrapper;
   private observer: any;
+  public dotD: any[] = [];
 
   constructor(
     public httpService: HttpService,
@@ -55,7 +56,9 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
       currentData: []
     };
   }
-
+  public changeDev(e) {
+    this.dotD = e.to;
+  }
   private setRowCount() {
     let width = this.wrapper.nativeElement.clientWidth;
     this.rowCount = Math.floor(width/140);
