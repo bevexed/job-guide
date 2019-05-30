@@ -1,5 +1,21 @@
+<nz-carousel [nzEffect]="effect" [nzDots]="banner.length>1" [nzAutoPlay]="true" [nzAutoPlaySpeed]="3000"
+             *ngIf="banner.length">
+  <div nz-carousel-content *ngFor="let index of banner"
+       style="cursor: pointer;">
+    <div *ngIf="index.courseId" [routerLink]="'../vd/'+index.courseId">
+      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+    </div>
+    <a *ngIf="!index.courseId && index.link" [href]="index.link" style="display: block;">
+      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+    </a>
+    <div *ngIf="!index.courseId && !index.link">
+      <img [src]="index.imageUrl" style="display: block;width: 100%;">
+    </div>
+  </div>
+</nz-carousel>
+
+
 <div class="vd-box gaokao">
-  <img alt="" class="head-img" src="https://zcsn-public-prod.oss-cn-hangzhou.aliyuncs.com/banner/e2e16f5fcc144e52a5cd5ef11424a9be.png?x-oss-process=image/quality,Q_30/resize,h_540/interlace,1">
   <div class="wrap">
     <div class="left">
 

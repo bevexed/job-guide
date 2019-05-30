@@ -145,6 +145,10 @@ export class HttpService {
     return this.httpGet(url);
   }
 
+  public getListZixunBanner(): Promise<any> {
+    const url = this.baseUrl + '/home/page/ziXunModule';
+    return this.httpGet(url);
+  }
   public getDevelop(): Promise<any> {
     const url = this.baseUrl + '/course/category/develop/list';
     return this.httpGet(url);

@@ -25,7 +25,8 @@ export class ZixunComponent implements OnInit, AfterViewInit {
   public dotZ: any[] = [];
 
   ngOnInit() {
-    this.getBanner();
+    // this.getBanner();
+    this.getListZixun();
     this.getList(this.type, this.current, this.size, (res: any) => {
       this.data = res.data.records;
       this.list = res.data.records;
@@ -56,6 +57,14 @@ export class ZixunComponent implements OnInit, AfterViewInit {
     const res = await this.httpService.getBannerByType(type);
     if (res.code === 200) {
       this.banner = res.data;
+    }
+  }
+
+  public async getListZixun() {
+    const res = await this.httpService.getListZixunBanner();
+    // console.log(res);
+    if (res.code === 200) {
+      this.banner = res.data.zixunList;
     }
   }
   // 切换动态

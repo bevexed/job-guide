@@ -22,6 +22,7 @@ export class GaokaoComponent implements OnInit {
   public total = 0;
 
   public hot = [];
+  public banner = [];
 
   constructor(
     public router: Router,
@@ -31,7 +32,7 @@ export class GaokaoComponent implements OnInit {
 
   ngOnInit() {
     this.getHot();
-
+    this.getListZixun();
     this.Http.reqHomeInformationMore(this.activeTab, this.current, this.size).then(
       res => {
         console.log(res);
@@ -74,7 +75,14 @@ export class GaokaoComponent implements OnInit {
         }
       }
     );
-  };
+  }
+  public async getListZixun() {
+    const res = await this.Http.getListZixunBanner();
+    // console.log(res);
+    if (res.code === 200) {
+      this.banner = res.data.zixunList;
+    }
+  }
 
   public getHot = () => {
     this.Http.reqHotInformation().then(
