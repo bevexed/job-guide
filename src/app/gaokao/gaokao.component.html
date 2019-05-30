@@ -28,9 +28,11 @@
                 {{i.title}}
               </h1>
 
-              <article [innerHTML]="i.articleContent">
-                <!--{{i.articleContent}}-->
-              </article>
+              <div class="eclips">
+                <article [innerHTML]="i.articleContent">
+                  <!--{{i.articleContent}}-->
+                </article>
+              </div>
 
               <footer>
                 来源：{{i.source}} &nbsp;&nbsp;{{i.gmtCreate}}
