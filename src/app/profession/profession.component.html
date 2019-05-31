@@ -19,7 +19,7 @@
 
   <div class="vd-wrapper" style="background: #f2f2f2">
     <div class="vd-classify-wrapper" >
-      <h1>发展之路</h1>
+      <h1>职业菜单</h1>
       <div
         #vdwrapper
         class="vd-classify"
@@ -33,7 +33,7 @@
 
     <div class="vd-box" style="background: #f2f2f2;padding-top: 2vw !important;">
       <div class="vd-box-header" style="margin-bottom: 20px">
-        <ul style="display: flex; justify-content: space-between; width: 350px">
+        <ul style="display: flex; justify-content: space-between; width: 450px;font-size: 16px">
           <li [ngClass]="{'li-select-active':menuSelect === 0}" class="li-select" (click)="changSelect(0)">该专业可从事岗位</li>
           <li [ngClass]="{'li-select-active':menuSelect === 1}" class="li-select" (click)="changSelect(1)">跨专业可从事岗位</li>
           <li [ngClass]="{'li-select-active':menuSelect === 2}" class="li-select" (click)="changSelect(2)">不限专业可从事岗位</li>
@@ -52,10 +52,10 @@
       </nz-list>
     </div>
 
-    <div class="li-loading-more">
+    <!--<div class="li-loading-more">-->
 
-      <button nz-button nzSize="large" nzType="primary">暂无更多</button>
-    </div>
+      <!--<button nz-button nzSize="large" nzType="primary">暂无更多</button>-->
+    <!--</div>-->
 
   </div>
 
@@ -64,9 +64,9 @@
   <!--广告位-->
   <!--广告位-->
 
-  <div class="vd-box" style="background: #f2f2f2" *ngIf="professionAdList.length>0">
-    <img alt="" class="li-ad-img shadow-box" [src]="professionAdList[0].imageUrl">
-  </div>
+  <a class="vd-box" style="background: #f2f2f2" *ngIf="professionAdList.length>0" [href]="professionAdList[0]?.link" target="_blank">
+    <img alt="" class="li-ad-img shadow-box" [src]="professionAdList[0]?.imageUrl">
+  </a>
 
 </ng-container>
 
@@ -131,8 +131,9 @@
                  style="margin: 30px 0;background: #D10000;color: #fff;">加载更多
         </button>
       </div>
-
-      <img *ngIf="professionAdList.length>0" style="width: 100%;height: 50px;margin: 30px 0" [src]="professionAdList[0]?.imageUrl" alt="">
+      <a [href]="professionAdList[0]?.link" target="_blank">
+        <img *ngIf="professionAdList.length>0" style="width: 100%;height: 50px;margin: 30px 0" [src]="professionAdList[0]?.imageUrl" alt="">
+      </a>
     </div>
   </div>
 

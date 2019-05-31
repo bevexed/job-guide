@@ -11,7 +11,7 @@
       style="position:relative;
              width:100%;
              z-index: 100;
-             padding: 0 18.75vw"
+             padding: 0 12.75vw"
     >
 
       <div (click)="open()" class="logo"></div>
@@ -68,25 +68,25 @@
         nz-menu
         [nzTheme]=""
         [nzMode]="'horizontal'"
-        style="line-height: 64px;">
+        style="line-height: 64px;display: flex;justify-content: space-between;width: 35vw;font-size: 16px">
         <li nz-menu-item
             routerLink="/index"
-            style="outline: none;width: 140px;"
+            style="outline: none;width: 68px;padding: 0!important;"
             [nzSelected]="activeUrl==='/index'"
             routerlinkactive="ant-menu-item-selected">首页</li>
         <li nz-menu-item
             routerLink="/development"
-            style="outline: none;width: 140px;"
+            style="outline: none;width: 68px;padding: 0!important;"
             [nzSelected]="activeUrl==='/development'"
             routerlinkactive="ant-menu-item-selected">发展之路</li>
         <li nz-menu-item
             routerLink="/profession"
-            style="outline: none;width: 140px;"
+            style="outline: none;width: 68px;padding: 0!important;"
             [nzSelected]="activeUrl==='/profession'"
             routerlinkactive="ant-menu-item-selected">职业菜单</li>
         <li nz-menu-item
             routerLink="/gaokao"
-            style="outline: none;width: 140px;"
+            style="outline: none;width: 68px;padding: 0!important;"
             [nzSelected]="activeUrl==='/gaokao'"
             routerlinkactive="ant-menu-item-selected">高考资讯</li>
       </ul>
@@ -99,15 +99,15 @@
 
 
     <!--广告位-->
-    <ng-container>
-      <div class="vd-wrapper">
-        <div class="vd-box">
-          <div class="vd-box-header li-ad-padding">
+    <!--<ng-container>-->
+      <!--<div class="vd-wrapper">-->
+        <!--<div class="vd-box">-->
+          <!--<div class="vd-box-header li-ad-padding">-->
 
-          </div>
-        </div>
-      </div>
-    </ng-container>
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</ng-container>-->
 
     <div class="li-footer">
       <ul class="nav">

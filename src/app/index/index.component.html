@@ -1,4 +1,10 @@
 <style>
+  .hover-red{
+    width: 18em;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+  }
   .hover-red:hover {
     color: #D10000 !important;
     cursor: pointer;
@@ -31,7 +37,7 @@
 
   <!--  热门视频    -->
   <div class="vd-wrapper">
-    <div class="vd-box">
+    <div class="vd-box" style="padding-bottom: 40px!important;">
       <div class="vd-box-header mrB">
         <h1 class="vd-box-title">热门视频</h1>
         <div class="vd-pagination">
@@ -58,11 +64,11 @@
     <!--  广告位 -->
     <ng-container *ngIf="guanggao.ggHotList.length>0">
       <div class="vd-wrapper">
-        <div class="vd-box">
+        <a class="vd-box" [href]="guanggao.ggHotList[0]?.link" target="_blank">
           <div class="vd-box-header">
-            <img alt="" class="li-ad-img" [src]="guanggao.ggHotList[0].imageUrl">
+            <img alt="" class="li-ad-img" [src]="guanggao.ggHotList[0]?.imageUrl">
           </div>
-        </div>
+        </a>
       </div>
     </ng-container>
 
@@ -87,11 +93,11 @@
 
     <ng-container *ngIf="guanggao.ggDevelopList.length>0">
       <div class="vd-wrapper">
-        <div class="vd-box">
+        <a class="vd-box" [href]="guanggao.ggDevelopList[0]?.link" target="_blank">
           <div class="vd-box-header">
-            <img alt="" class="li-ad-img" [src]="guanggao.ggDevelopList[0].imageUrl">
+            <img alt="" class="li-ad-img" [src]="guanggao.ggDevelopList[0]?.imageUrl">
           </div>
-        </div>
+        </a>
       </div>
     </ng-container>
 
@@ -121,11 +127,11 @@
 
     <ng-container *ngIf="guanggao.ggProfessionList.length>0">
       <div class="vd-wrapper">
-        <div class="vd-box">
+        <a class="vd-box" [href]="guanggao.ggProfessionList[0]?.link" target="_blank">
           <div class="vd-box-header">
-            <img alt="" class="li-ad-img" [src]="guanggao.ggProfessionList[0].imageUrl">
+            <img alt="" class="li-ad-img" [src]="guanggao.ggProfessionList[0]?.imageUrl">
           </div>
-        </div>
+        </a>
       </div>
     </ng-container>
 
@@ -193,24 +199,24 @@
 
     <ng-container *ngIf="guanggao.ggZiXunList.length>0">
       <div class="vd-wrapper">
-        <div class="vd-box">
+        <a class="vd-box" [href]="guanggao.ggZiXunList[0]?.link" target="_blank">
           <div class="vd-box-header">
-            <img alt="" class="li-ad-img" [src]="guanggao.ggZiXunList[0].imageUrl">
+            <img alt="" class="li-ad-img" [src]="guanggao.ggZiXunList[0]?.imageUrl">
           </div>
-        </div>
+        </a>
       </div>
     </ng-container>
 
     <!--    共用底部-->
-    <div class="vd-slogan-wrapper">
-      <div class="vd-slogan">
-        <p>现在就去注册，为自己的职业发展做选择</p>
-        <span>职场司南，专注于大学生及毕业五年内群体的职业发展</span>
-        <br>
-        <button nz-button nzSize="large" nzType="primary">专业的指导意见</button>
-      </div>
+    <!--<div class="vd-slogan-wrapper">-->
+      <!--<div class="vd-slogan">-->
+        <!--<p>现在就去注册，为自己的职业发展做选择</p>-->
+        <!--<span>职场司南，专注于大学生及毕业五年内群体的职业发展</span>-->
+        <!--<br>-->
+        <!--<button (click)="router.navigateByUrl('/development')" nz-button nzSize="large" nzType="primary">专业的指导意见</button>-->
+      <!--</div>-->
 
-    </div>
+    <!--</div>-->
   </div>
 </ng-container>
 
@@ -261,7 +267,9 @@
       <div style="text-align: center" *ngIf="hots.data.length>6 && hots.currentData.length<=6">
         <button (click)="mbPagination()" nz-button nzType="default" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
       </div>
-      <img *ngIf="guanggao.ggHotList.length>0" style="width: 100%;height: 50px;margin: 30px 0" [src]="guanggao.ggHotList[0]?.imageUrl" alt="">
+      <a [href]="guanggao.ggHotList[0]?.link" target="_blank">
+        <img *ngIf="guanggao.ggHotList.length>0" style="width: 100%;height: 50px;margin: 30px 0" [src]="guanggao.ggHotList[0]?.imageUrl" alt="">
+      </a>
     </div>
   </div>
   <div class="mb-box-wrapper">
@@ -282,7 +290,9 @@
       <div style="text-align: center">
         <button nz-button nzType="default" routerLink="../development" style="margin-top: 30px;background: #D10000;color: #fff;">加载更多</button>
       </div>
-      <img *ngIf="guanggao.ggDevelopList.length>0" style="width: 100%;height: 50px;margin: 30px 0" [src]="guanggao.ggDevelopList[0]?.imageUrl" alt="">
+      <a [href]="guanggao.ggDevelopList[0]?.link" target="_blank">
+        <img *ngIf="guanggao.ggDevelopList.length>0" style="width: 100%;height: 50px;margin: 30px 0" [src]="guanggao.ggDevelopList[0]?.imageUrl" alt="">
+      </a>
     </div>
   </div>
   <div class="mb-box-wrapper">
@@ -303,7 +313,9 @@
       <div style="text-align: center">
         <button nz-button nzType="default" routerLink="../profession" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
       </div>
-      <img *ngIf="guanggao.ggProfessionList.length>0" style="width: 100%;height: 50px;margin: 30px 0" [src]="guanggao.ggProfessionList[0]?.imageUrl" alt="">
+      <a [href]="guanggao.ggProfessionList[0]?.link" target="_blank">
+        <img *ngIf="guanggao.ggProfessionList.length>0" style="width: 100%;height: 50px;margin: 30px 0" [src]="guanggao.ggProfessionList[0]?.imageUrl" alt="">
+      </a>
     </div>
   </div>
   <div class="mb-box-wrapper bgColor">
@@ -347,14 +359,14 @@
       <div class="dots_box" style="margin-top: 25px;">
         <p  *ngFor="let item of gaokaozixun; let i = index" [class]="dotIndex==i?'activeP':''"></p>
       </div>
-
-      <img *ngIf="guanggao.ggZiXunList.length>0" style="width: 100%;height: 50px;margin: 30px 0" [src]="guanggao.ggZiXunList[0]?.imageUrl" alt="">
-
-      <p class="promptRegister">现在就去注册，为自己的职业发展做选择</p>
-      <p style="text-align: center">职场司南，专注于大学生及毕业五年内群体的职业发展</p>
-      <div style="text-align: center">
-        <button nz-button nzType="default" style="width: 150px;height: 41px;border-radius: 3px;font-size: 16px;margin: 8px 0 30px;background: #D10000;color: #fff;">专业的指导意见</button>
-      </div>
+      <a [href]="guanggao.ggZiXunList[0]?.link" target="_blank">
+        <img *ngIf="guanggao.ggZiXunList.length>0" style="width: 100%;height: 50px;margin: 30px 0" [src]="guanggao.ggZiXunList[0]?.imageUrl" alt="">
+      </a>
+      <!--<p class="promptRegister">现在就去注册，为自己的职业发展做选择</p>-->
+      <!--<p style="text-align: center">职场司南，专注于大学生及毕业五年内群体的职业发展</p>-->
+      <!--<div style="text-align: center">-->
+        <!--<button (click)="router.navigateByUrl('/development')" nz-button style="width: 150px;height: 41px;border-radius: 3px;font-size: 16px;margin: 8px 0 30px;background: #D10000;color: #fff;">专业的指导意见</button>-->
+      <!--</div>-->
     </div>
   </div>
 </ng-container>

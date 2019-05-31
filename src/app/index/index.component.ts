@@ -1,6 +1,6 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {HttpService} from '../http.service';
-import {ActivatedRoute,Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 
 export interface videos {
@@ -100,15 +100,25 @@ export class IndexComponent implements OnInit, OnDestroy {
 
     // 二开 底部
     res.data.hotList.forEach(item => item.hot = true);
-    this.hots = {
-      data: res.data.hotList,
-      current: 1,
-      size: 6,
-      currentData: [],
-    };
-
-    this.developList = res.data.developList.slice(0, 6);
-    this.professionList = res.data.professionList.slice(0, 6);
+    if (this.httpService.devType) {
+      this.hots = {
+        data: res.data.hotList,
+        current: 1,
+        size: 8,
+        currentData: [],
+      };
+      this.developList = res.data.developList.slice(0, 8);
+      this.professionList = res.data.professionList.slice(0, 8);
+    } else {
+      this.hots = {
+        data: res.data.hotList,
+        current: 1,
+        size: 6,
+        currentData: [],
+      };
+      this.developList = res.data.developList.slice(0, 6);
+      this.professionList = res.data.professionList.slice(0, 6);
+    }
 
     for (const key in this.blockType) {
       this.listFilter(this.blockType[key]);
@@ -141,6 +151,9 @@ export class IndexComponent implements OnInit, OnDestroy {
     }
   }
 
+  public goDevelop() {
+    this.router.navigateByUrl('/development');
+  }
   public async zixunList() {
     let response: any;
     response = await this.httpService.getZixun();

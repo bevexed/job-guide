@@ -2,8 +2,8 @@
   <div *ngIf="httpService.devType" style="margin-bottom: 25px;display: flex;justify-content: space-between;align-items: baseline">
     <img alt="" src="../../assets/logo.png" width="324">
     <div style="">
-      <span>已有账号？</span>
-      <span (click)="router.navigateByUrl('/login')" style="color: #D10000;font-size: 14px">去登录</span>
+      <span>没有账号？</span>
+      <span (click)="router.navigateByUrl('/register')" style="color: #D10000;font-size: 14px">去注册</span>
       <span>&nbsp;|&nbsp;</span>
       <span (click)="router.navigateByUrl('/index')" style="color: #D10000;font-size: 14px">返回职场司南</span>
     </div>
@@ -11,7 +11,7 @@
 
   <div [class]="httpService.devType?'vb-show':'mb-show'">
 
-    <h3 style="text-align: center;font-family: MicrosoftYaHei;font-size: 24px;font-weight: normal;font-stretch: normal;">用户登录</h3>
+    <h3 style="text-align: center;font-family: MicrosoftYaHei;font-size: 24px;font-weight: normal;font-stretch: normal;height: 60px;line-height: 60px">用户登录</h3>
 
     <form (ngSubmit)="login()" [formGroup]="validateForm" [class]="httpService.devType?'li-form':''" nz-form>
       <nz-form-item>
@@ -37,6 +37,7 @@
             <button [hidden]="!validateForm.invalid" [disabled]="validateForm.invalid" [nzType]="'primary'" nz-button nzBlock nzSize="large" style="background: #ccc;color: #fff;border: none">登录</button>
             <button [hidden]="validateForm.invalid" [disabled]="validateForm.invalid" [nzType]="'primary'" nz-button nzBlock nzSize="large" style="background: #D10000;color: #fff;border: none">登录</button>
           </div>
+          <a routerLink="/passport" style="font-size: 14px;color: #666;margin-top: 20px">忘记密码?</a>
         </nz-form-control>
       </nz-form-item>
     </form>
