@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Route} from '@angular/router';
 import {HttpService} from '../../../http.service';
 
 declare var window;
@@ -23,10 +22,10 @@ export class VditemComponent implements OnInit {
   public index = false;
   public development = false;
   public profession = false;
-public tuijian = false;
+  public tuijian = false;
 
   constructor(
-    private httpService: HttpService
+    public httpService: HttpService
   ) {
   }
 
