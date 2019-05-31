@@ -26,7 +26,7 @@
           <li routerLink="register" style="color: #333">注册</li>
         </ng-container>
         <ng-template #logined>
-          <li style="color: #333" routerLink="/usercenter">
+          <li style="color: #333" (click)="router.navigateByUrl('/usercenter')">
 
             用户名：{{httpService.user?.mobile}}</li>
         </ng-template>
@@ -86,29 +86,32 @@
     <div class="li-footer">
       <ul class="nav">
         <li
-          routerLink="/index"
+          (click)="router.navigateByUrl('/index')"
         >
           首页
         </li>
         <li
-          routerLink="/development"
+          (click)="router.navigateByUrl('/development')"
         >
           发展之路
         </li>
         <li
-          routerLink="/profession"
+          (click)="router.navigateByUrl('/profession')"
         >
           职业菜单
         </li>
         <li
-          routerLink="/gaokao"
+          (click)="router.navigateByUrl('/gaokao')"
         >
           高考资讯
         </li>
         <!--<li>-->
           <!--活动中心-->
         <!--</li>-->
-        <li *ngIf="httpService.user" routerLink="/usercenter">
+        <li
+          *ngIf="httpService.user"
+          (click)="router.navigateByUrl('/usercenter')"
+        >
           个人中心
         </li>
       </ul>
