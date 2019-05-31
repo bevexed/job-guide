@@ -45,7 +45,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
       this.setRowCount();
       window.addEventListener('resize', () => {
         this.setRowCount();
-      })
+      });
     }
   }
 
@@ -62,8 +62,8 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
     this.dotD = e.to;
   }
   private setRowCount() {
-    let width = this.wrapper.nativeElement.clientWidth;
-    this.rowCount = Math.floor(width/140);
+    const width = this.wrapper.nativeElement.clientWidth;
+    this.rowCount = Math.floor(width / 140);
   }
   public async getGuanggao() {
     const res = await this.httpService.development();
@@ -72,7 +72,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public async getDevelopList() {
-    let res = await this.httpService.getDevelop();
+    const res = await this.httpService.getDevelop();
     this.developmentlist = res.data;
     if (this.developmentlist.length) {
       this.getCourseByName(this.developmentlist[0].name);
@@ -90,7 +90,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
           this.mbPagination(this.httpService.pageCache.develope.current);
         }
         setTimeout(() => {
-          window.scrollTo(0,this.httpService.pageCache.develope.top);
+          window.scrollTo(0, this.httpService.pageCache.develope.top);
         }, 0);
       }
     })
@@ -114,7 +114,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public getCourseByName(name: string) {
     this.selectedCourseName = name;
-    let filter = this.developmentlist.find((ele: any) => ele.name === name);
+    const filter = this.developmentlist.find((ele: any) => ele.name === name);
     if (filter) {
       this.courseList = {
         data: filter.courseList,
@@ -134,7 +134,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
   public mbPagination(pageNumber?: number) {
     if (pageNumber === undefined) {
       this.courseList.current  = this.courseList.current + 1;
-      let sliceData = this.courseList.data.slice((this.courseList.current - 1) * this.courseList.size, this.courseList.current * this.courseList.size);
+      const sliceData = this.courseList.data.slice((this.courseList.current - 1) * this.courseList.size, this.courseList.current * this.courseList.size);
       this.courseList.currentData = this.courseList.currentData.concat(sliceData);
     } else {
       this.courseList.current = pageNumber;

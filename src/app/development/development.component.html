@@ -19,13 +19,12 @@
   </nz-carousel>
   <!--  导航列表-->
   <!--todo  后台修改 返回数据-->
-  <div class="vd-wrapper">
+  <div class="vd-wrapper" style="background: #f2f2f2">
     <div class="vd-classify-wrapper">
       <h1>发展之路</h1>
       <div
         #vdwrapper
         class="vd-classify"
-        style="background: white"
       >
         <span
           (click)="getCourseByName(item.name)"
@@ -37,7 +36,7 @@
     </div>
 
 
-    <div class="vd-box" style="padding-top: 1vw !important;">
+    <div class="vd-box" style="padding-top: 1vw !important;background: #f2f2f2">
       <!--<div class="vd-box-header">-->
         <!--<div *ngIf="courseList?.data.length > courseList?.size" class="vd-pagination">-->
           <!--<nz-pagination (nzPageIndexChange)="listFilter()" [(nzPageIndex)]="courseList.current"-->
