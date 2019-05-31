@@ -26,10 +26,36 @@
           <li routerLink="register" style="color: #333">注册</li>
         </ng-container>
         <ng-template #logined>
-          <li style="color: #333" nz-popover nzTitle="" [nzContent]="contentTemplate" nzTrigger="hover">
+          <li (click)="router.navigateByUrl('/usercenter')"
+              (mouseover)="showtab = true"
+              style="color: #333"
+          >
 
-            用户名：{{httpService.user?.mobile}}</li>
+            用户名：{{httpService.user?.mobile}}
+          </li>
+
+          <ng-container
+            (click)="showtab=false"
+            (mouseleave)="showtab=false"
+            (mouseover)="showtab=true"
+            *ngIf="httpService.user && showtab"
+            style="background: white;position: relative">
+            <div style="background: #fff;position: relative;top: -60px;"
+                 (click)="showtab=false"
+                 (mouseleave)="showtab=false"
+                 (mouseover)="showtab=true"
+            >
+              <p (click)="showtab=false" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"
+                 style="border-bottom: 1px solid #eee;"><a routerLink="/usercenter">个人中心</a></p>
+              <p (click)="showtab=false" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"
+                 style="border-bottom: 1px solid #eee;"><a routerLink="/passport">修改密码</a></p>
+              <p (click)="showtab=false" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"><a
+                (click)="logout()">退出登录</a></p>
+            </div>
+
+          </ng-container>
         </ng-template>
+
       </ul>
 
       <!-- 导航 -->
@@ -86,29 +112,32 @@
     <div class="li-footer">
       <ul class="nav">
         <li
-          routerLink="/index"
+          (click)="router.navigateByUrl('/index')"
         >
           首页
         </li>
         <li
-          routerLink="/development"
+          (click)="router.navigateByUrl('/development')"
         >
           发展之路
         </li>
         <li
-          routerLink="/profession"
+          (click)="router.navigateByUrl('/profession')"
         >
           职业菜单
         </li>
         <li
-          routerLink="/gaokao"
+          (click)="router.navigateByUrl('/gaokao')"
         >
           高考资讯
         </li>
         <!--<li>-->
           <!--活动中心-->
         <!--</li>-->
-        <li *ngIf="httpService.user" routerLink="/usercenter">
+        <li
+          *ngIf="httpService.user"
+          (click)="router.navigateByUrl('/usercenter')"
+        >
           个人中心
         </li>
       </ul>
@@ -131,7 +160,12 @@
       <!--[(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">-->
       <!--<i nz-icon nzType="bars" nzTheme="outline"></i>-->
       <!--</ul>-->
-      <img class="daohangIcon" src="../assets/daohang.png" alt="图标" [nzContent]="contentTemplate" nz-popover [(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">
+      <img
+        (click)="caidan = true"
+        alt="图标"
+        class="daohangIcon"
+        src="../assets/daohang.png"
+      />
     </nz-header>
     <nz-content style="margin-top:64px;background: #f2f2f2">
       <!-- <nz-carousel [nzEffect]="effect" [nzAutoPlay]="true">
@@ -218,7 +252,8 @@
 <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
 <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
 <!-- 个人中心 -->
-<ng-template #contentTemplate>
+<!--<ng-template #contentTemplate>-->
+<div (click)="caidan = false" *ngIf="!httpService.devType && caidan" style="position: fixed;right: 20px;top: 50px; background: white;z-index: 99999999;border: 1px solid #f2f2f2">
   <ng-container *ngIf="!httpService.devType">
     <p class="vd-popoveritem mb-navlist" routerLink="/index" (click)="popoverHiding()"
        style="border-bottom: 1px solid #eee;"><a>首页</a></p>
@@ -245,7 +280,8 @@
     <p class="vd-popoveritem mb-navlist" routerLink="/register" (click)="popoverHiding()"><a
       routerLink="/passport">注册</a></p>
   </ng-container>
-</ng-template>
+</div>
+<!--</ng-template>-->
 
 
 <!-- 充值弹窗 -->
@@ -342,6 +378,24 @@
           (nzOnCancel)="httpService.weixinShow = false">
   <img id="qrcode" [src]="httpService.weixinImgUrl" alt="">
   <p style="text-align: center;">扫码支付</p>
+  <!-- </div> -->
+</nz-modal>
+
+<nz-modal (nzOnCancel)="httpService.quanxian = false"
+          [(nzVisible)]="httpService.quanxian"
+          [nzBodyStyle]="{padding: '30px'}" [nzFooter]="null"
+          [nzStyle]="{'margin': '0 auto'}"
+          [nzTitle]=""
+          [nzWidth]="305"
+          nzClassName="loginModal">
+
+  <h3 style="text-align: center;">权限不足</h3>
+
+  <div style="width:80px;margin: 15px auto">
+
+    <button (click)="httpService.gotoLogi()" nz-button nzType="primary" style="margin: 0 auto">去登录</button>
+  </div>
+
   <!-- </div> -->
 </nz-modal>
 

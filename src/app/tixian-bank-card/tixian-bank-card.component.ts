@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NzModalService,NzMessageService } from 'ng-zorro-antd';
 import { HttpService } from '../http.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {composeAsyncValidators} from '@angular/forms/src/directives/shared';
 
 @Component({
   selector: 'app-tixian-bank-card',

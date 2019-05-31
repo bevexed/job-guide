@@ -32,6 +32,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   // li 二开
   public payType = '微信';
+  public caidan = false;
+  public showtab = false;
 
   constructor(
     private fb: FormBuilder,
@@ -44,6 +46,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     private modalService: NzModalService
   ) {
     this.isWel = httpService.isWel;
+    console.log(this.showtab);
   }
 
   popoverHiding() {
@@ -153,20 +156,22 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public logout() {
+    this.showtab = false
     this.httpService.logout();
   }
 
   public async call() {
     if (!this.httpService.user) {
-      this.modalService.error({
-        nzTitle: '权限不足',
-        nzContent: '请您先进行登录',
-        nzOnOk: () => {
-          // this.httpService.vipModal = false;
-          // this.httpService.loginModal = true;
-          this.router.navigateByUrl('/login');
-        }
-      });
+      this.httpService.quanxian = true;
+      // this.modalService.error({
+      //   nzTitle: '权限不足',
+      //   nzContent: '请您先进行登录',
+      //   nzOnOk: () => {
+      //     // this.httpService.vipModal = false;
+      //     // this.httpService.loginModal = true;
+      //     this.router.navigateByUrl('/login');
+      //   }
+      // });
       return;
     }
     const u = navigator.appVersion;

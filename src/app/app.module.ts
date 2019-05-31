@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgZorroAntdModule, NZ_I18N, zh_CN } from 'ng-zorro-antd';
+import { NgZorroAntdModule, NZ_I18N, zh_CN, NZ_MODAL_CONFIG } from 'ng-zorro-antd';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -76,13 +76,22 @@ registerLocaleData(zh);
     HttpClientModule,
     BrowserAnimationsModule,
     VdItemModule,
-    IconModule,
     StoreModule.forRoot({bannerlist: counterReducer})
     // environment.production? [] : HttpClientInMemoryWebApiModule.forRoot(
     //   InMemoryDataService, { dataEncapsulation: false }
     // )
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }, HttpService, AuthService],
+  providers: [
+    {
+      provide: NZ_I18N, useValue: zh_CN
+    },
+    {
+      provide: NZ_MODAL_CONFIG, useValue:
+        {
+          nzMask: true, // 是否展示遮罩
+          nzMaskClosable: true, // 点击蒙层是否允许关闭
+       }
+    } , HttpService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
