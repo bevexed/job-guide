@@ -290,6 +290,10 @@ export class HttpService {
     const url = this.baseUrl + '/user/coupon/list';
     return this.httpGet(url);
   }
+  public async payMoney(): Promise<any> {
+    const url = this.baseUrl + '/order/create/wechat';
+    return this.httpGet(url);
+  }
 
   public getCouponByShare(): Promise<any> {
     const url = this.baseUrl + '/user/coupon/generate/share';
@@ -367,6 +371,16 @@ export class HttpService {
 
     // 支付分路口
     switch (payType) {
+      case 'mobile': {
+        try {
+          const res = await this.payMoney();
+          console.log(res);
+          window.location.href = res.data.wechatPay.mwebUrl + '&redirect_url=' +  this.baseUrl;
+        } catch (e) {
+
+        }
+        break;
+      }
       case '微信': {
         try {
           let url = this.baseUrl + '/wxpay/qrcode';
