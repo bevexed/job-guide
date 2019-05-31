@@ -267,12 +267,16 @@
         <span>支付宝</span>
       </div>
 
-      <div [hidden]="!httpService.devType" class="pay-way" [ngClass]="{'selected':payType === '微信'}" (click)="changePayType('微信')">
+      <div *ngIf="httpService.devType" class="pay-way" [ngClass]="{'selected':payType === '微信'}" (click)="changePayType('微信')">
+        <img src="../assets/微信.svg" alt="">
+        <span>微信</span>
+      </div>
+      <div *ngIf="!httpService.devType && !isWel" class="pay-way" [ngClass]="{'selected':payType === '微信'}" (click)="changePayType('微信')">
         <img src="../assets/微信.svg" alt="">
         <span>微信</span>
       </div>
 
-      <div [hidden]="httpService.devType" class="pay-way" [ngClass]="{'selected':payType === 'wechat'}" (click)="changePayType('wechat')">
+      <div *ngIf="!httpService.devType && isWel" class="pay-way" [ngClass]="{'selected':payType === 'wechat'}" (click)="changePayType('wechat')">
         <img src="../assets/微信.svg" alt="">
         <span>微信</span>
       </div>

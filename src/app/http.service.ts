@@ -39,7 +39,7 @@ export class HttpService {
   };
   public coupon: any;
   public ishistoryback: ReplaySubject<any> = new ReplaySubject<any>();
-  public isWel = false;
+  public isWel: Boolean;
   /** 是否是通过历史记录进入页面的 */
 
     // li
@@ -63,7 +63,6 @@ export class HttpService {
     }
     this.browserRedirect();
   }
-
   public init() {
     if (this.token) {
       this.headers = new HttpHeaders({
@@ -72,7 +71,15 @@ export class HttpService {
       });
     }
   }
-
+  // public isWeixin() {
+  //     const ua = window.navigator.userAgent.toLowerCase();
+  //     // @ts-ignore
+  //   if (ua.match(/MicroMessenger/i) == 'micromessenger') {
+  //       return true;
+  //     } else {
+  //       return false;
+  //     }
+  // }
   /** 浏览器检测 */
   public browserRedirect() {
     const sUserAgent = navigator.userAgent.toLowerCase();
@@ -85,10 +92,10 @@ export class HttpService {
     const bIsCE = sUserAgent.match(/windows ce/i);
     const bIsWM = sUserAgent.match(/windows mobile/i);
     const isWechatF = sUserAgent.match(/MicroMessenger/i);
-    if (isWechatF && isWechatF[0] === 'micromessenger') {
-      this.isWel = true;
-    } else {
+    if (!(isWechatF && isWechatF[0] === 'micromessenger')) {
       this.isWel = false;
+    } else {
+      this.isWel = true;
     }
     if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) { // 移动设备
       this.devType = false;

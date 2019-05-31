@@ -114,8 +114,8 @@
 
 
 <h3 style="margin: 40px 0 25px 16px;font-size: 14px;color: #999;">相关课程推荐</h3>
-<div style="width: 100vw;padding: 0 15px">
-  <nz-list [nzDataSource]="tuijian" [nzItemLayout]="'vertical'" [nzGrid]="{ gutter: 10, xs: 12 }" [nzRenderItem]="item">
+<div style="width: 100vw;padding: 0 10px">
+  <nz-list [nzDataSource]="courseList.data" [nzItemLayout]="'vertical'" [nzGrid]="{ gutter: 10, xs: 12 }" [nzRenderItem]="item">
     <ng-template #item let-item>
       <nz-list-item [nzContent]="nzContent">
         <ng-template #nzContent>
@@ -124,7 +124,7 @@
       </nz-list-item>
     </ng-template>
   </nz-list>
-  <div style="text-align: center">
+  <div *ngIf="courseList?.data.length>6 && courseList?.currentData.length<=6" style="text-align: center">
     <button nz-button  nzType="default"
             style="margin: 30px 0;background: #D10000;color: #fff;">加载更多
     </button>

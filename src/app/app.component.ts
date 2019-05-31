@@ -28,6 +28,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   public promoCode = '';
   public promoCodePrice = 0;
   public paybtn = true;
+  public isWel: Boolean;
 
   // li 二开
   public payType = '微信';
@@ -42,6 +43,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     private route: ActivatedRoute,
     private modalService: NzModalService
   ) {
+    this.isWel = httpService.isWel;
   }
 
   popoverHiding() {

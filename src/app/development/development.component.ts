@@ -119,7 +119,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
       this.courseList = {
         data: filter.courseList,
         current: 1,
-        size: 12,
+        size: 1000,
         currentData: []
       };
       this.listFilter();

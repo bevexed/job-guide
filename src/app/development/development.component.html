@@ -1,5 +1,3 @@
-
-
 <ng-container *ngIf="httpService.devType">
 
 
@@ -40,12 +38,12 @@
 
 
     <div class="vd-box" style="padding-top: 1vw !important;">
-      <div class="vd-box-header">
-        <div *ngIf="courseList?.data.length > courseList?.size" class="vd-pagination">
-          <nz-pagination (nzPageIndexChange)="listFilter()" [(nzPageIndex)]="courseList.current"
-                         [nzPageSize]="courseList.size" [nzTotal]="courseList.data.length" nzSimple></nz-pagination>
-        </div>
-      </div>
+      <!--<div class="vd-box-header">-->
+        <!--<div *ngIf="courseList?.data.length > courseList?.size" class="vd-pagination">-->
+          <!--<nz-pagination (nzPageIndexChange)="listFilter()" [(nzPageIndex)]="courseList.current"-->
+                         <!--[nzPageSize]="courseList.size" [nzTotal]="courseList.data.length" nzSimple></nz-pagination>-->
+        <!--</div>-->
+      <!--</div>-->
 
 
       <nz-list [nzDataSource]="courseList?.currentData" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }"
@@ -61,7 +59,7 @@
 
       <div class="li-loading-more">
 
-        <button nz-button nzSize="large" nzType="primary">加载更多</button>
+        <button nz-button nzSize="large" nzType="primary">暂无更多</button>
       </div>
 
     </div>

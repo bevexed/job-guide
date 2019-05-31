@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {HttpService} from '../http.service';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {fromEvent} from 'rxjs';
+import {videos} from '../index/index.component';
 
 
 @Component({
@@ -16,7 +17,13 @@ export class VideoDetialComponent implements OnInit {
   public courseId: number;
 
   public tuijian: any;
-
+  public currentData: any[] = [];
+  public courseList: videos = {
+    data: [],
+    current: 1,
+    size: 10000,
+    currentData: []
+  };
   constructor(
     private route: ActivatedRoute,
     public httpService: HttpService,
@@ -43,8 +50,9 @@ export class VideoDetialComponent implements OnInit {
       res => {
         console.log(res);
         if (res.code === 200) {
-          this.tuijian = res.data.records;
-          this.tuijian.forEach(
+          this.courseList.data = res.data.records;
+          this.courseList.currentData = res.data.records.slice(0, 6);
+          this.courseList.data.forEach(
             item => {
               item.courseId = item.id;
               item.coverUrl = 'https://zcsn-public-prod.oss-cn-hangzhou.aliyuncs.com/' + item.cover;
@@ -53,6 +61,17 @@ export class VideoDetialComponent implements OnInit {
         }
       }
     );
+  }
+
+  public mbPagination(pageNumber?: number) {
+    if (pageNumber === undefined) {
+      this.courseList.current  = this.courseList.current + 1;
+      let sliceData = this.courseList.data.slice((this.courseList.current - 1) * this.courseList.size, this.courseList.current * this.courseList.size);
+      this.courseList.currentData = this.courseList.currentData.concat(sliceData);
+    } else {
+      this.courseList.current = pageNumber;
+      this.courseList.currentData = this.courseList.currentData.slice(0, this.courseList.current * this.courseList.size);
+    }
   }
 
   public async getCourseDetail(id: number) {
