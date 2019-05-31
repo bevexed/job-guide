@@ -26,10 +26,36 @@
           <li routerLink="register" style="color: #333">注册</li>
         </ng-container>
         <ng-template #logined>
-          <li style="color: #333" (click)="router.navigateByUrl('/usercenter')">
+          <li (click)="router.navigateByUrl('/usercenter')"
+              (mouseover)="showtab = true"
+              style="color: #333"
+          >
 
-            用户名：{{httpService.user?.mobile}}</li>
+            用户名：{{httpService.user?.mobile}}
+          </li>
+
+          <ng-container
+            (click)="showtab=false"
+            (mouseleave)="showtab=false"
+            (mouseover)="showtab=true"
+            *ngIf="httpService.user && showtab"
+            style="background: white;position: relative">
+            <div style="background: #fff;position: relative;top: -60px;"
+                 (click)="showtab=false"
+                 (mouseleave)="showtab=false"
+                 (mouseover)="showtab=true"
+            >
+              <p (click)="showtab=false" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"
+                 style="border-bottom: 1px solid #eee;"><a routerLink="/usercenter">个人中心</a></p>
+              <p (click)="showtab=false" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"
+                 style="border-bottom: 1px solid #eee;"><a routerLink="/passport">修改密码</a></p>
+              <p (click)="showtab=false" [ngClass]="{'mb-navlist': !httpService.devType}" class="vd-popoveritem"><a
+                (click)="logout()">退出登录</a></p>
+            </div>
+
+          </ng-container>
         </ng-template>
+
       </ul>
 
       <!-- 导航 -->
@@ -363,7 +389,7 @@
           [nzWidth]="305"
           nzClassName="loginModal">
 
-  <p style="text-align: center;">权限不足</p>
+  <h3 style="text-align: center;">权限不足</h3>
 
   <div style="width:80px;margin: 15px auto">
 

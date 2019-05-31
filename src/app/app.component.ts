@@ -33,6 +33,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   // li 二开
   public payType = '微信';
   public caidan = false;
+  public showtab = false;
 
   constructor(
     private fb: FormBuilder,
@@ -45,6 +46,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     private modalService: NzModalService
   ) {
     this.isWel = httpService.isWel;
+    console.log(this.showtab);
   }
 
   popoverHiding() {
@@ -154,6 +156,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public logout() {
+    this.showtab = false
     this.httpService.logout();
   }
 
