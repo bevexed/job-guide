@@ -45,6 +45,9 @@ export class HttpService {
     // li
   public weixinImgUrl: string;
   public weixinShow = false;
+  public quanxian = false;
+
+
   public timer;
   /** 设备类型，true：PC， false：移动端 */
   private headers: HttpHeaders = new HttpHeaders({
@@ -239,6 +242,12 @@ export class HttpService {
     return this.httpGet(url);
   }
 
+  //quanxian
+  public gotoLogi = () => {
+    this.quanxian = false;
+    this.router.navigateByUrl('/login');
+  };
+
   /** 打开支付弹窗 */
   public async openPayModal() {
     this.getPrice();
@@ -249,15 +258,16 @@ export class HttpService {
       }
       this.vipModal = true;
     } else {
-      this.modalService.error({
-        nzTitle: '权限不足',
-        nzContent: '请您先进行登录',
-        nzOnOk: () => {
-          // this.vipModal = false;
-          // this.loginModal = true;
-          this.router.navigateByUrl('/login');
-        }
-      });
+      this.quanxian = true;
+      // this.modalService.error({
+      //   nzTitle: '权限不足',
+      //   nzContent: '请您先进行登录',
+      //   nzOnOk: () => {
+      //     // this.vipModal = false;
+      //     // this.loginModal = true;
+      //     this.router.navigateByUrl('/login');
+      //   }
+      // });
     }
   }
   // 发展之路广告
@@ -340,15 +350,16 @@ export class HttpService {
   /** 支付 */
   public async pay(payType: string, promoCode?: string, userCouponId?: any) {
     if (!this.user) {
-      this.modalService.error({
-        nzTitle: '权限不足',
-        nzContent: '请您先进行登录',
-        nzOnOk: () => {
-          // this.vipModal = false;
-          // this.loginModal = true;
-          this.router.navigateByUrl('/login');
-        }
-      });
+      this.quanxian = true;
+      // this.modalService.error({
+      //   nzTitle: '权限不足',
+      //   nzContent: '请您先进行登录',
+      //   nzOnOk: () => {
+      //     // this.vipModal = false;
+      //     // this.loginModal = true;
+      //     this.router.navigateByUrl('/login');
+      //   }
+      // });
       return;
     }
     const results = await this.tokenValidate();
