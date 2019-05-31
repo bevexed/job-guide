@@ -33,7 +33,7 @@
   >
     <ng-template #item let-item>
       <nz-list-item>
-        <div routerLink="/zixunDetail" [queryParams]="{id: item.id,type: item.type}">
+        <div (click)="router.navigateByUrl('/zixunDetail?id='+item?.id+'&type='+item?.type )">
           <div class="list-nav" *ngIf="item.thumbnail !== null && item.thumbnail !== 'null' && item.thumbnail !=='' && item.thumbnail !== '{}'">
             <img [src]="item.thumbnail" alt="">
             <div>

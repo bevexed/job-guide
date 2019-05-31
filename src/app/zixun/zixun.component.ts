@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {BANNER_TYPELIST, HttpService} from '../http.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-zixun',
@@ -9,6 +10,7 @@ import {BANNER_TYPELIST, HttpService} from '../http.service';
 export class ZixunComponent implements OnInit, AfterViewInit {
   constructor(
     public httpService: HttpService,
+    public router:Router
   ) { }
   effect = 'scrollx';
   public banner: any[] = [];
