@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpUrlEncodingCodec} from '@angular/common/http';
 import {timeout} from 'rxjs/operators';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {environment} from '../environments/environment';
@@ -300,10 +300,6 @@ export class HttpService {
     const url = this.baseUrl + '/user/coupon/list';
     return this.httpGet(url);
   }
-  public async payMoney(): Promise<any> {
-    const url = this.baseUrl + '/order/create/wechat';
-    return this.httpGet(url);
-  }
 
   public getCouponByShare(): Promise<any> {
     const url = this.baseUrl + '/user/coupon/generate/share';
@@ -384,9 +380,23 @@ export class HttpService {
     switch (payType) {
       case 'mobile': {
         try {
-          const res = await this.payMoney();
-          console.log(res);
-          window.location.href = res.data.wechatPay.mwebUrl + '&redirect_url=' +  this.baseUrl;
+          let url = this.baseUrl + '/order/create/wechat';
+          if (promoCode) {
+            if (url.indexOf('?') === -1) {
+              url = url + '?promoCode=' + promoCode;
+            } else {
+              url = url + '&promoCode=' + promoCode;
+            }
+          }
+          if (userCouponId) {
+            if (url.indexOf('?') === -1) {
+              url = url + '?userCouponId=' + userCouponId.id;
+            } else {
+              url = url + '&userCouponId=' + userCouponId.id;
+            }
+          }
+          const res = await this.payMoney(url);
+          window.location.href = res.data.wechatPay.mwebUrl + '&redirect_url=http%3a%2f%2fwww.zhichangsinan.com';
         } catch (e) {
 
         }
@@ -560,7 +570,10 @@ export class HttpService {
     const url = 'http://api.zhichangsinan.com/order/isorderpay?orderno=' + orderno;
     return this.httpGet(url);
   }
-
+  // 手机端支付微信
+  public payMoney(url: string) {
+    return this.httpGet(url);
+  }
   // 1.首页资讯列表
   // http://api.zhichangsinan.com/information/homeListPage
   //   请求方式:GET
