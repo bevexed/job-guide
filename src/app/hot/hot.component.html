@@ -17,12 +17,12 @@
   <div class="vd-wrapper">
 
     <div class="vd-box" style="margin-top: 30px;padding-bottom: 40px!important;">
-      <div class="vd-box-header">
-        <h1 class="vd-box-title" >热门课程</h1>
-        <div class="vd-pagination" *ngIf="courseList?.data.length > courseList?.size">
-          <nz-pagination [(nzPageIndex)]="courseList.current" [nzPageSize]="courseList.size"
-            [nzTotal]="courseList.data.length" (nzPageIndexChange)="listFilter()" nzSimple></nz-pagination>
-        </div>
+      <div class="vd-box-header" style="margin-bottom: 20px">
+        <h1 class="vd-box-title">热门课程</h1>
+        <!--<div class="vd-pagination" *ngIf="courseList?.data.length > courseList?.size">-->
+          <!--<nz-pagination [(nzPageIndex)]="courseList.current" [nzPageSize]="courseList.size"-->
+            <!--[nzTotal]="courseList.data.length" (nzPageIndexChange)="listFilter()" nzSimple></nz-pagination>-->
+        <!--</div>-->
       </div>
       <nz-list [nzDataSource]="courseList?.currentData" [nzRenderItem]="item"
         [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }">

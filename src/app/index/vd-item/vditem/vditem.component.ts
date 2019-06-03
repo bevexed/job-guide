@@ -23,6 +23,7 @@ export class VditemComponent implements OnInit {
   public development = false;
   public profession = false;
   public tuijian = false;
+  public hot = false;
 
   constructor(
     public httpService: HttpService
@@ -35,6 +36,7 @@ export class VditemComponent implements OnInit {
     this.development = window.location.hash.includes('development');
     this.profession = window.location.hash.includes('profession');
     this.tuijian = window.location.hash.includes('vd');
+    this.hot = window.location.hash.includes('hot');
 
   }
 

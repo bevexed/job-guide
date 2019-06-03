@@ -3,9 +3,9 @@
     <img alt="" src="../../assets/logo.png" width="324">
     <div style="">
       <span>没有账号？</span>
-      <span (click)="router.navigateByUrl('/register')" style="color: #D10000;font-size: 14px">去注册</span>
+      <span (click)="router.navigateByUrl('/register')" style="color: #D10000;font-size: 14px;cursor: pointer">去注册</span>
       <span>&nbsp;|&nbsp;</span>
-      <span (click)="router.navigateByUrl('/index')" style="color: #D10000;font-size: 14px">返回职场司南</span>
+      <span (click)="router.navigateByUrl('/index')" style="color: #D10000;font-size: 14px;cursor: pointer">返回职场司南</span>
     </div>
   </div>
 
@@ -42,6 +42,11 @@
       </nz-form-item>
     </form>
 
+  </div>
+
+  <div *ngIf="!httpService.devType" style="text-align: center;margin-top: 20px">
+    <span style="color: #999;">没有账号?去</span>
+    <span style="color: #d10000;cursor: pointer" routerLink="/register">注册</span>
   </div>
   <footer *ngIf="httpService.devType" style="padding-top: 40px">
     Copyright © 2018-2019 职场司南 浙ICP备18039212号 <i nz-icon nzTheme="outline" nzType="phone"></i> 0571-85383155

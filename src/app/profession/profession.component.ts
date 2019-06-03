@@ -144,6 +144,7 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
 
   public async getCoursesList(id: number) {
     this.selectedId = id;
+    this.menuSelect = 0;
     const res = await this.httpService.getProfessionById(id);
     this.professionList = {
       data: res.data.canList,

@@ -3,9 +3,9 @@
     <img alt="" src="../../assets/logo.png" width="324">
     <div style="">
       <span>已有账号？</span>
-      <span style="color: #D10000;font-size: 14px" (click)="router.navigateByUrl('/login')">去登录</span>
+      <span style="color: #D10000;font-size: 14px;cursor: pointer" (click)="router.navigateByUrl('/login')">去登录</span>
       <span>&nbsp;|&nbsp;</span>
-      <span style="color: #D10000;font-size: 14px" (click)="router.navigateByUrl('/index')">返回职场司南</span>
+      <span style="color: #D10000;font-size: 14px;cursor: pointer" (click)="router.navigateByUrl('/index')">返回职场司南</span>
     </div>
   </div>
 
@@ -73,6 +73,11 @@
         </nz-form-control>
       </nz-form-item>
     </form>
+  </div>
+
+  <div *ngIf="!httpService.devType" style="text-align: center;margin-top: 20px">
+    <span style="color: #999;">已有账号?去</span>
+    <span style="color: #d10000;cursor: pointer" routerLink="/login">登录</span>
   </div>
 
   <footer *ngIf="httpService.devType" style="padding-top: 40px">

@@ -37,6 +37,7 @@ export class VideoDetialComponent implements OnInit {
     this.route.params.subscribe((res: any) => {
       this.courseId = +res.id;
       this.getCourseDetail(this.courseId);
+      window.scrollTo(0, 0);
     });
     if (!this.httpService.devType) {
       fromEvent(document.body, 'click').subscribe(() => {
@@ -89,7 +90,9 @@ export class VideoDetialComponent implements OnInit {
       }, 2000);
     }
   }
-
+  public shareT() {
+    this.httpService.shareModal = true;
+  }
   public play(event?: MouseEvent) {
     if (event) {
       event.stopPropagation();
@@ -104,17 +107,24 @@ export class VideoDetialComponent implements OnInit {
       this.isplay = true;
       this.httpService.coursePlay(this.courseId);
     } else {
-      this.modalService.error({
-        nzTitle: '权限不足',
-        nzContent: !this.httpService.user ? '请您先进行登录' : '该视频只有VIP用户才可以进行观看',
-        nzOnOk: () => {
-          if (!this.httpService.user) {
-            this.httpService.loginModal = true;
-          } else {
-            this.httpService.openPayModal();
-          }
-        }
-      });
+      if (!this.httpService.user) {
+        // this.httpService.loginModal = true;
+        this.router.navigateByUrl('/login');
+      } else {
+        this.httpService.openPayModal();
+      }
+      // this.modalService.error({
+      //   nzTitle: '权限不足',
+      //   nzContent: !this.httpService.user ? '请您先进行登录' : '该视频只有VIP用户才可以进行观看',
+      //   nzOnOk: () => {
+      //     if (!this.httpService.user) {
+      //       // this.httpService.loginModal = true;
+      //       this.router.navigateByUrl('/login');
+      //     } else {
+      //       this.httpService.openPayModal();
+      //     }
+      //   }
+      // });
     }
   }
 }

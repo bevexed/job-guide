@@ -46,6 +46,7 @@ export class HttpService {
   public weixinImgUrl: string;
   public weixinShow = false;
   public quanxian = false;
+  public shareModal = false;
 
 
   public timer;

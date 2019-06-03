@@ -94,7 +94,7 @@ export class HotComponent implements OnInit, AfterViewInit, OnDestroy {
       this.courseList = {
         data: filter.courseList,
         current: 1,
-        size: 16,
+        size: 1000,
         currentData: []
       };
       this.listFilter();
@@ -103,7 +103,7 @@ export class HotComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public listFilter() {
-    this.courseList.currentData = this.courseList.data.slice((this.courseList.current - 1) * this.courseList.size, this.courseList.current * this.courseList.size);
+    this.courseList.currentData = this.courseList.data;
   }
 
   public mbPagination(pageNumber?: number) {

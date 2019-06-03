@@ -1,4 +1,71 @@
+<!---->
+<a *ngIf="httpService.devType" [href]="('#/vd/'+data?.courseId)" target="_blank">
 <div [ngClass]="
+     {
+       'mb-item': !httpService.devType,
+       'vd-ie': isIE,
+       'to-up':data?.moduleCode !== 'home_page_hot',
+       'shadow-box':data?.moduleCode !== 'home_page_hot' && index,
+       'mbTT': !httpService.devType
+     }"
+     [style.background-color]="data?.moduleCode !== 'home_page_hot'? 'none' :'white'"
+     class="vd-item mb">
+
+    <div *ngIf="!vipTag(data)" class="vd-tags">
+      <nz-tag [nzColor]="'#D10000'">VIP</nz-tag>
+    </div>
+    <div [ngStyle]="{'background-image': 'url('+ (data?.coverUrl ? data?.coverUrl : data?.imageUrl) +')'}" class="vd-imgbox"></div>
+    <!-- <img src="data?.coverUrl ? data?.coverUrl : data?.imageUrl" alt=""> -->
+    <div class="vd-desc">
+      <!--    首页-->
+      <div *ngIf="index">
+        <h3 [hidden]="data?.moduleCode == 'home_page_hot' " class="li-gray">{{data?.title}}</h3>
+
+        <!--&lt;!&ndash; fixme： 数据不对&ndash;&gt;-->
+        <h3 [hidden]="data?.moduleCode !== 'home_page_hot'" class="red">{{data?.intro}}</h3>
+      </div>
+
+      <!--    发展之路-->
+      <div *ngIf="development && httpService.devType">
+        <h3>{{data?.title}}</h3>
+      </div>
+
+      <div style="height: 4em!important;" *ngIf="development && !httpService.devType">
+        <h3>{{data?.title}}</h3>
+      </div>
+      <!--{{data|json}}-->
+
+      <div *ngIf="data?.hot" class="li-hot-desc red" style="margin: 0">
+      <span>
+        {{data?.videoTime}}
+      </span>
+        <span *ngIf="data.courseFreeFlag === false">收费</span>
+        <span *ngIf="data.courseFreeFlag === true">免费</span>
+      </div>
+      <!--<p [hidden]="data?.intro">{{data?.intro}}</p>-->
+
+      <!--    职业菜单-->
+      <div *ngIf="profession">
+        <h3>{{data?.title}}</h3>
+      </div>
+
+
+      <!--    推荐-->
+      <div *ngIf="tuijian">
+        <h3>{{data?.title}}</h3>
+      </div>
+
+
+      <!--热门-->
+      <div *ngIf="hot">
+        <h3>{{data?.title}}</h3>
+      </div>
+    </div>
+</div>
+</a>
+
+
+<div *ngIf="!httpService.devType" [ngClass]="
      {
        'mb-item': !httpService.devType,
        'vd-ie': isIE,
@@ -9,6 +76,7 @@
      (click)="to('#/vd/'+data?.courseId)"
      [style.background-color]="data?.moduleCode !== 'home_page_hot'? 'none' :'white'"
      class="vd-item mb">
+
   <div *ngIf="!vipTag(data)" class="vd-tags">
     <nz-tag [nzColor]="'#D10000'">VIP</nz-tag>
   </div>
@@ -24,10 +92,15 @@
     </div>
 
     <!--    发展之路-->
-    <div *ngIf="development">
+    <div *ngIf="development && httpService.devType">
       <h3>{{data?.title}}</h3>
     </div>
-<!--{{data|json}}-->
+
+    <div style="height: 4em!important;" *ngIf="development && !httpService.devType">
+      <h3>{{data?.title}}</h3>
+    </div>
+
+    <!--{{data|json}}-->
 
     <div *ngIf="data?.hot" class="li-hot-desc red" style="margin: 0">
       <span>
@@ -45,12 +118,14 @@
 
 
     <!--    推荐-->
-    <div *ngIf="tuijian">
+    <div *ngIf="tuijian" style="height: 4em!important;">
       <h3>{{data?.title}}</h3>
     </div>
 
 
+    <!--热门-->
+    <div *ngIf="hot">
+      <h3>{{data?.title}}</h3>
+    </div>
   </div>
-
-
 </div>

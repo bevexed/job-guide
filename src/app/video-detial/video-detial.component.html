@@ -4,7 +4,9 @@
        style="padding-top: 3vw !important;padding-bottom: 2.4vw !important;"
   >
     <div *ngIf="!isplay" class="album-head-info clearfix">
-      <div class="info-img">
+      <div class="info-img" style="position: relative">
+        <p *ngIf="!courseInfo?.freeFlag" style="position: absolute;top: 5px;left: 5px;border-radius: 3px;color: #fff;background: #D10000;width:40px;
+height:22px;font-size: 12px;text-align: center;line-height: 22px">VIP</p>
         <a (click)="play()">
           <img [src]="courseInfo?.coverUrl" id="j-album-img" itemprop="image">
         </a>
@@ -39,7 +41,7 @@
         <!-- 播放按钮 -->
         <div class="intro-btns clearfix" style="padding-top: 1.3vw">
           <button (click)="play()" nz-button nzSize="large" nzType="primary">&nbsp;&nbsp;&nbsp; 立即播放 &nbsp;&nbsp;&nbsp;</button>
-          <a class="albumPlayBtn"><i nz-icon nzTheme="outline" nzType="share-alt"></i>分享</a>
+          <a (click)="shareT()" class="albumPlayBtn"><i nz-icon nzTheme="outline" nzType="share-alt"></i>分享</a>
         </div>
 
       </div>
@@ -58,7 +60,7 @@
   <div class="white-space">
     <h3>相关课程推荐</h3>
 
-    <nz-list [nzDataSource]="tuijian" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }"
+    <nz-list [nzDataSource]="courseList.data" [nzGrid]="{ gutter: 16, sm: 12, md: 8, lg: 6 }"
              [nzRenderItem]="item">
       <ng-template #item let-item>
         <nz-list-item [nzContent]="nzContent">
@@ -76,7 +78,7 @@
   <!--广告位-->
 
   <div class="vd-box" style="background: #f2f2f2">
-    <img alt="" class="li-ad-img shadow-box" src="../../assets/广告位.png">
+    <img alt="" class="shadow-box" src="../../assets/广告位.png" style="margin-bottom: 70px">
   </div>
 
 
@@ -102,7 +104,7 @@
     <div (click)="play($event)" *ngIf="!isplay" class="mb-box-preview">
       <img [src]="courseInfo?.coverUrl">
     </div>
-    <video *ngIf="isplay" controls id="videos" style="display: block;width: 100%;outline: none;position: relative;z-index: 1;">
+    <video autoplay *ngIf="isplay" controls id="videos" style="display: block;width: 100%;outline: none;position: relative;z-index: 1;">
       <source [src]="courseInfo?.videoUrl">
     </video>
   </div>

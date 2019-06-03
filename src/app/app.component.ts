@@ -22,7 +22,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   public nativeShare: any;
   public bannerlist: any[] = [];
   public popoverVisible = false;
-  public shareModal = false;
   public qrcode: any;
   private observer: any;
   public promoCode = '';
@@ -132,7 +131,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   closeShareModal() {
-    this.shareModal = false;
+    this.httpService.shareModal = false;
   }
 
   public async login() {
@@ -198,11 +197,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         this.nativeShare.call();
       } catch (err) {
         this.qrcode = this.httpService.user.qrCodeImageUrl;
-        this.shareModal = true;
+        this.httpService.shareModal = true;
       }
     } else {
       this.qrcode = this.httpService.user.qrCodeImageUrl;
-      this.shareModal = true;
+      this.httpService.shareModal = true;
     }
     const res = await this.httpService.getCouponByShare();
     if (res.code === 200) {

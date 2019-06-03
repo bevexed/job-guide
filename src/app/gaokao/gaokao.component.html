@@ -25,6 +25,7 @@
           *ngFor="let tab of Tabs; let tabIndex = index"
           [ngClass]="{active:tabIndex === activeTab}"
           class="tab"
+          style="cursor:pointer;"
         >{{tab}}</div>
       </div>
 
@@ -32,7 +33,7 @@
         <ul class="list">
           <li (click)="router.navigateByUrl('/gaokao-detail?id='+ i.id + '&type=' + i.type)"
               *ngFor="let i of dataList"
-              class="item"
+              class="item" style="cursor: pointer"
           >
             <img
               [hidden]="!i.thumbnail || i.thumbnail==='' || i.thumbnail ==='{}' || i.thumbnail === null"
@@ -40,7 +41,7 @@
               alt=""
               class="">
             <section>
-              <h1>
+              <h1 style="font-size: 20px;">
                 {{i.title}}
               </h1>
 
@@ -50,7 +51,7 @@
                 </article>
               </div>
 
-              <footer>
+              <footer style="color: #999;">
                 来源：{{i.source}} &nbsp;&nbsp;{{i.gmtCreate}}
               </footer>
             </section>

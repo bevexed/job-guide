@@ -68,7 +68,7 @@
         nz-menu
         [nzTheme]=""
         [nzMode]="'horizontal'"
-        style="line-height: 64px;display: flex;justify-content: space-between;width: 35vw;font-size: 16px">
+        style="line-height: 64px;display: flex;justify-content: space-between;width: 35vw;font-size: 16px;border-width: 0">
         <li nz-menu-item
             routerLink="/index"
             style="outline: none;width: 68px;padding: 0!important;"
@@ -160,11 +160,16 @@
       <!--[(nzVisible)]="popoverVisible" nzTrigger="click" nzPlacement="bottomRight">-->
       <!--<i nz-icon nzType="bars" nzTheme="outline"></i>-->
       <!--</ul>-->
-      <img
+      <img *ngIf="!caidan"
         (click)="caidan = true"
         alt="图标"
         class="daohangIcon"
-        src="../assets/daohang.png"
+        src="../assets/daohang.png" style="cursor: pointer"
+      />
+      <img *ngIf="caidan"
+        (click)="caidan = false"
+        alt="图标"
+        src="../assets/close.png" style="cursor: pointer;width: 18px;height: 18px"
       />
     </nz-header>
     <nz-content style="margin-top:64px;background: #f2f2f2">
@@ -253,6 +258,7 @@
 <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
 <!-- 个人中心 -->
 <!--<ng-template #contentTemplate>-->
+<!--菜单弹框-->
 <div (click)="caidan = false" *ngIf="!httpService.devType && caidan" style="position: fixed;right: 20px;top: 50px; background: white;z-index: 99999999;border: 1px solid #f2f2f2">
   <ng-container *ngIf="!httpService.devType">
     <p class="vd-popoveritem mb-navlist" routerLink="/index" (click)="popoverHiding()"
@@ -348,7 +354,7 @@
 <!-- <nz-modal [(nzVisible)]="shareModal" [nzStyle]="{ top: '50%', 'left': '50%', 'margin': '0', 'transform': 'translate(-50% -50%)', 'padding': '0' }" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320" -->
 
 <!--// 分享 弹窗-->
-<nz-modal [(nzVisible)]="shareModal"
+<nz-modal [(nzVisible)]="httpService.shareModal"
           [nzStyle]="{'margin': '0 auto'}"
           [nzTitle]="" [nzFooter]="null"
           nzClassName="loginModal"
@@ -361,8 +367,8 @@
     <div class="download_btn"></div>
     保存到相册
   </a> -->
-  <img id="qrcode" [src]="qrcode" alt="">
-  <p style="text-align: center;">邀请好友成功，即可获得现金奖励</p>
+  <img id="qrcode" [src]="httpService.user?.qrCodeImageUrl" alt="">
+  <!--<p style="text-align: center;">邀请好友成功，即可获得现金奖励</p>-->
   <button id="load_btn" (click)="loadSharePic()" nz-button nzType="default" nzShape="round">保存二维码</button>
   <!-- </div> -->
 </nz-modal>
