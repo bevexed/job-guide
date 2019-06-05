@@ -675,4 +675,11 @@ export class HttpService {
     return this.httpGet(url);
   }
 
+
+  public prevent(e: MouseEvent, path: string | null) {
+    if (!path) {
+      e.preventDefault();
+    }
+  }
+
 }
