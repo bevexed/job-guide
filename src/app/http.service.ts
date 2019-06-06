@@ -271,7 +271,7 @@ export class HttpService {
       // });
     }
   }
-  // 发展之路广告
+  // 志愿填报广告
   public development() {
     const url = this.baseUrl + '/advertisement/developAdvertisementList';
     return this.httpGet(url);
@@ -632,7 +632,7 @@ export class HttpService {
   }
 
 
-  // 6.发展之路-课程分类列表
+  // 6.志愿填报-课程分类列表
   // http://api.zhichangsinan.com/course/category/develop/typeList
   //   请求方式:GET
   // 参数:
@@ -640,7 +640,7 @@ export class HttpService {
   // size--每页大小                                                        不必填
 
 
-  // 7.发展之路-分类的课程列表
+  // 7.志愿填报-分类的课程列表
   // http://api.zhichangsinan.com/course/category/develop/courseList
   //   请求方式:GET
   // 参数:

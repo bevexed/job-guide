@@ -72,7 +72,7 @@
       </div>
     </ng-container>
 
-    <!--    发展之路    -->
+    <!--    志愿填报    -->
     <div class="vd-box li-fa-zan-zhi-lu" style="padding-top: 30px">
       <div class="vd-box-header mrB">
         <h1 class="vd-box-title">职业发展</h1>
@@ -260,10 +260,10 @@
       <div style="text-align: center" *ngIf="hots.data.length>6 && hots.currentData.length<=6">
         <button (click)="mbPagination()" nz-button nzType="default" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
       </div>
-      <div *ngIf="guanggao.ggHotList[0]?.link===null">
+      <div *ngIf="guanggao.ggHotList[0]?.link===null || guanggao.ggHotList[0]?.link==='null'">
         <img *ngIf="guanggao.ggHotList.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="guanggao.ggHotList[0]?.imageUrl" alt="">
       </div>
-      <a *ngIf="guanggao.ggHotList[0]?.link!==null" [href]="guanggao.ggHotList[0]?.link" target="_blank">
+      <a *ngIf="guanggao.ggHotList[0]?.link!==null || guanggao.ggHotList[0]?.link==='null'" [href]="guanggao.ggHotList[0]?.link" target="_blank">
         <img *ngIf="guanggao.ggHotList.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="guanggao.ggHotList[0]?.imageUrl" alt="">
       </a>
     </div>
@@ -286,10 +286,10 @@
       <div style="text-align: center">
         <button nz-button nzType="default" routerLink="../development" style="margin-top: 30px;background: #D10000;color: #fff;">加载更多</button>
       </div>
-      <div *ngIf="guanggao.ggDevelopList[0]?.link===null">
+      <div *ngIf="guanggao.ggDevelopList[0]?.link===null || guanggao.ggDevelopList[0]?.link==='null'">
         <img *ngIf="guanggao.ggDevelopList.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="guanggao.ggDevelopList[0]?.imageUrl" alt="">
       </div>
-      <a *ngIf="guanggao.ggDevelopList[0]?.link!==null" [href]="guanggao.ggDevelopList[0]?.link" target="_blank">
+      <a *ngIf="guanggao.ggDevelopList[0]?.link!==null || guanggao.ggDevelopList[0]?.link==='null'" [href]="guanggao.ggDevelopList[0]?.link" target="_blank">
         <img *ngIf="guanggao.ggDevelopList.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="guanggao.ggDevelopList[0]?.imageUrl" alt="">
       </a>
     </div>
@@ -312,10 +312,10 @@
       <div style="text-align: center">
         <button nz-button nzType="default" routerLink="../profession" style="margin: 30px 0;background: #D10000;color: #fff;">加载更多</button>
       </div>
-      <div *ngIf="guanggao.ggProfessionList[0]?.link===null">
+      <div *ngIf="guanggao.ggProfessionList[0]?.link===null || guanggao.ggProfessionList[0]?.link==='null'">
         <img *ngIf="guanggao.ggProfessionList.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="guanggao.ggProfessionList[0]?.imageUrl" alt="">
       </div>
-      <a *ngIf="guanggao.ggProfessionList[0]?.link!==null" [href]="guanggao.ggProfessionList[0]?.link" target="_blank">
+      <a *ngIf="guanggao.ggProfessionList[0]?.link!==null || guanggao.ggProfessionList[0]?.link==='null'" [href]="guanggao.ggProfessionList[0]?.link" target="_blank">
         <img *ngIf="guanggao.ggProfessionList.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="guanggao.ggProfessionList[0]?.imageUrl" alt="">
       </a>
     </div>
@@ -361,11 +361,12 @@
       <div class="dots_box" style="margin-top: 25px;">
         <p  *ngFor="let item of gaokaozixun; let i = index" [class]="dotIndex==i?'activeP':''"></p>
       </div>
-      <div *ngIf="guanggao.ggZiXunList[0]?.link===null">
-        <img *ngIf="guanggao.ggZiXunList.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="guanggao.ggZiXunList[0]?.imageUrl" alt="">
+
+      <div *ngIf="guanggao.ggZiXunList[0]?.link===null || guanggao.ggZiXunList[0]?.link==='null'">
+        <img *ngIf="guanggao.ggZiXunList.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="guanggao.ggZiXunList[0]?.imageUrl" alt="图片">
       </div>
-      <a *ngIf="guanggao.ggZiXunList[0]?.link!==null" [href]="guanggao.ggZiXunList[0]?.link" target="_blank">
-        <img *ngIf="guanggao.ggZiXunList.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="guanggao.ggZiXunList[0]?.imageUrl" alt="">
+      <a *ngIf="guanggao.ggZiXunList[0]?.link!==null || guanggao.ggZiXunList[0]?.link==='null'" [href]="guanggao.ggZiXunList[0]?.link" target="_blank">
+        <img *ngIf="guanggao.ggZiXunList.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="guanggao.ggZiXunList[0]?.imageUrl" alt="图片">
       </a>
       <!--<p class="promptRegister">现在就去注册，为自己的职业发展做选择</p>-->
       <!--<p style="text-align: center">职场司南，专注于大学生及毕业五年内群体的职业发展</p>-->

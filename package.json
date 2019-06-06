@@ -4,7 +4,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --open",
+    "start": "ng serve --open --host=0.0.0.0",
     "build": "ng build",
     "build2": "ng build --prod --aot",
     "test": "ng test",

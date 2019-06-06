@@ -45,7 +45,7 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
   public rowCount = 6;
   @ViewChild('vdwrapper', {static: true}) wrapper;
   private observer: any;
-  public professionAdList: any[] = [];
+  public professionAdList = [];
 
   constructor(
     public httpService: HttpService

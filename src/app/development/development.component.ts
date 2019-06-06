@@ -25,7 +25,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('vdwrapper', {static: true}) wrapper;
   private observer: any;
   public dotD: any[] = [];
-  public developBan: any[] = [];
+  public developBan = [];
 
   constructor(
     public httpService: HttpService,

@@ -78,7 +78,7 @@
             routerLink="/development"
             style="outline: none;width: 68px;padding: 0!important;"
             [nzSelected]="activeUrl==='/development'"
-            routerlinkactive="ant-menu-item-selected">发展之路</li>
+            routerlinkactive="ant-menu-item-selected">志愿填报</li>
         <li nz-menu-item
             routerLink="/profession"
             style="outline: none;width: 68px;padding: 0!important;"
@@ -119,7 +119,7 @@
         <li
           (click)="router.navigateByUrl('/development')"
         >
-          发展之路
+          志愿填报
         </li>
         <li
           (click)="router.navigateByUrl('/profession')"
@@ -145,7 +145,7 @@
         Copyright © 2018-2019 职场司南 浙ICP备18039212号 &nbsp; &nbsp; <i nz-icon nzType="phone" nzTheme="outline"></i>&nbsp;0571-85383155
       </p>
 
-      <img src="../assets/嘻嘻.png" alt="">
+      <img src="../assets/xixi.png" alt="">
     </div>
   </nz-layout>
 </ng-container>
@@ -187,7 +187,7 @@
       <div class="mb-menu">
         <span routerLink="/index" (click)="popoverHiding()">首页</span>
         <span>|</span>
-        <span routerLink="/development" (click)="popoverHiding()">发展之路</span>
+        <span routerLink="/development" (click)="popoverHiding()">志愿填报</span>
         <span>|</span>
         <span routerLink="/profession" (click)="popoverHiding()">职业菜单</span>
         <span>|</span>
@@ -264,7 +264,7 @@
     <p class="vd-popoveritem mb-navlist" routerLink="/index" (click)="popoverHiding()"
        style="border-bottom: 1px solid #eee;"><a>首页</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/development" (click)="popoverHiding()"
-       style="border-bottom: 1px solid #eee;"><a>发展之路</a></p>
+       style="border-bottom: 1px solid #eee;"><a>志愿填报</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/profession" (click)="popoverHiding()"
        style="border-bottom: 1px solid #eee;"><a>职业菜单</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/zixun" (click)="popoverHiding()"
@@ -305,21 +305,21 @@
 
     <div class="pay-ways">
       <div class="pay-way" [ngClass]="{'selected':payType === '支付宝'}" (click)="changePayType('支付宝')">
-        <img src="../assets/支付宝.svg" alt="">
+        <img src="../assets/alipay.svg" alt="">
         <span>支付宝</span>
       </div>
 
       <div *ngIf="httpService.devType" class="pay-way" [ngClass]="{'selected':payType === '微信'}" (click)="changePayType('微信')">
-        <img src="../assets/微信.svg" alt="">
+        <img src="../assets/wx.svg" alt="">
         <span>微信</span>
       </div>
       <div *ngIf="!httpService.devType && !isWel" class="pay-way" [ngClass]="{'selected':payType === 'mobile'}" (click)="changePayType('mobile')">
-        <img src="../assets/微信.svg" alt="">
+        <img src="../assets/wx.svg" alt="">
         <span>微信</span>
       </div>
 
       <div *ngIf="!httpService.devType && isWel" class="pay-way" [ngClass]="{'selected':payType === 'wechat'}" (click)="changePayType('wechat')">
-        <img src="../assets/微信.svg" alt="">
+        <img src="../assets/wx.svg" alt="">
         <span>微信</span>
       </div>
     </div>

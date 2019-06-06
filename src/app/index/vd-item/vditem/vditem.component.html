@@ -25,7 +25,7 @@
         <h3 [hidden]="data?.moduleCode !== 'home_page_hot'" class="red">{{data?.intro}}</h3>
       </div>
 
-      <!--    发展之路-->
+      <!--    志愿填报-->
       <div *ngIf="development && httpService.devType">
         <h3>{{data?.title}}</h3>
       </div>
@@ -91,7 +91,7 @@
       <h3 [hidden]="data?.moduleCode !== 'home_page_hot'" class="red">{{data?.intro}}</h3>
     </div>
 
-    <!--    发展之路-->
+    <!--    志愿填报-->
     <div *ngIf="development && httpService.devType">
       <h3>{{data?.title}}</h3>
     </div>

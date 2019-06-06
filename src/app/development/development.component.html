@@ -21,7 +21,7 @@
   <!--todo  后台修改 返回数据-->
   <div class="vd-wrapper" style="background: #f2f2f2">
     <div class="vd-classify-wrapper">
-      <h1>发展之路</h1>
+      <h1>志愿填报</h1>
       <div
         #vdwrapper
         class="vd-classify"
@@ -105,7 +105,7 @@
     <p *ngFor="let item of banner; let i = index" [class]="dotD==i?'activeP':''"></p>
   </div>
   <!--<div style="padding-top: 40px;padding-left: 17px;color: #222;text-align: left">-->
-    <!--<h1 style="font-size: 23px;">发展之路</h1>-->
+    <!--<h1 style="font-size: 23px;">志愿填报</h1>-->
   <!--</div>-->
   <div class="mb-classify-wrapper">
     <ul class="mb-classify vd-classify">
@@ -136,14 +136,14 @@
         </button>
       </div>
       <!--广告-->
-      <div *ngIf="developBan[0]?.link===null">
-        <img *ngIf="developBan.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="developBan[0]?.imageUrl" alt="">
+      <div *ngIf="developBan[0]?.link===null || developBan[0]?.link==='null'">
+        <img *ngIf="developBan.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="developBan[0]?.imageUrl" alt="图片">
       </div>
-      <a *ngIf="developBan[0]?.link!==null" [href]="developBan[0]?.link" target="_blank" style="overflow-x: scroll;display: block">
-        <img *ngIf="developBan.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="developBan[0]?.imageUrl" alt="">
+      <a *ngIf="developBan[0]?.link!==null || developBan[0]?.link==='null'" [href]="developBan[0]?.link" target="_blank" style="overflow-x: scroll;display: block">
+        <img *ngIf="developBan.length>0" style="width: 100%;height: 70px;margin: 30px 0" [src]="developBan[0]?.imageUrl" alt="图片">
       </a>
       <!--<button nz-button (click)="mbPagination()" style="margin: 30px 0;background: #D10000;color: #fff;" *ngIf="courseList?.currentData.length < courseList.data.length">加载更多</button>-->
-      <div style="height: 40px"></div>
+      <!--<div style="height: 40px"></div>-->
     </div>
   </div>
   <div *ngIf="visible" class="mb-fxied">
