@@ -35,7 +35,6 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.getDevelopList();
     this.getBanner();
-    this.getGuanggao();
   }
 
   ngAfterViewInit(): void {
@@ -64,11 +63,6 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
   private setRowCount() {
     const width = this.wrapper.nativeElement.clientWidth;
     this.rowCount = Math.floor(width / 140);
-  }
-  public async getGuanggao() {
-    const res = await this.httpService.development();
-    console.log(res);
-    this.developBan = res.data.records;
   }
 
   public async getDevelopList() {
@@ -123,6 +117,7 @@ export class DevelopmentComponent implements OnInit, AfterViewInit, OnDestroy {
         currentData: []
       };
       this.listFilter();
+      this.developBan = filter.temp;
     }
     this.close();
   }

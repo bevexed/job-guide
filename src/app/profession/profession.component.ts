@@ -1,13 +1,14 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import {BANNER_TYPELIST, HttpService} from '../http.service';
 import {videos} from '../index/index.component';
+import {any} from 'codelyzer/util/function';
 
 @Component({
   selector: 'app-profession',
   templateUrl: './profession.component.html',
   styleUrls: ['../development/development.component.less', '../index/index.component.less', '../app.component.less']
 })
-export class ProfessionComponent implements OnInit, AfterViewInit {
+export class ProfessionComponent implements OnInit, AfterViewInit, OnDestroy {
   effect = 'scrollx';
   public classifySlice = true;
   public visible = false;
@@ -69,7 +70,6 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getProfessionList();
     this.getBanner();
-    this.getProguanggao();
   }
 
   ngAfterViewInit(): void {
@@ -96,11 +96,6 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
     }
   }
 
-  public async getProguanggao() {
-    const res = await this.httpService.profession();
-    console.log(res);
-    this.professionAdList = res.data.records;
-  }
 
   public async getProfessionList() {
     const res = await this.httpService.getProfrssionTypeList();
@@ -153,6 +148,7 @@ export class ProfessionComponent implements OnInit, AfterViewInit {
       currentData: []
     };
     this.showData = this.professionList;
+    this.professionAdList = res.data.temp;
     this.crossList = {
       data: res.data.crossList,
       current: 1,

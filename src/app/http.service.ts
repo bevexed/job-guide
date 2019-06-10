@@ -243,11 +243,11 @@ export class HttpService {
     return this.httpGet(url);
   }
 
-  //quanxian
+  // quanxian
   public gotoLogi = () => {
     this.quanxian = false;
     this.router.navigateByUrl('/login');
-  };
+  }
 
   /** 打开支付弹窗 */
   public async openPayModal() {
@@ -272,13 +272,13 @@ export class HttpService {
     }
   }
   // 志愿填报广告
-  public development() {
+  public development(): Promise<any> {
     const url = this.baseUrl + '/advertisement/developAdvertisementList';
     return this.httpGet(url);
   }
 
   // 职业菜单广告
-  public profession() {
+  public profession(): Promise<any> {
     const url = this.baseUrl + '/advertisement/professionAdvertisementList';
     return this.httpGet(url);
   }
