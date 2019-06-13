@@ -41,8 +41,8 @@
               <p><span>来源：{{item.source}}</span><span>{{item.gmtCreate}}</span></p>
             </div>
           </div>
-          <div class="list-vertical-nav" *ngIf="!(item.thumbnail !== null && item.thumbnail !== 'null' && item.thumbnail !=='' && item.thumbnail !== '{}')">
-          <p>{{item.title}}</p>
+          <div style="width: 100vw;overflow: hidden;box-sizing: border-box" class="list-vertical-nav" *ngIf="!(item.thumbnail !== null && item.thumbnail !== 'null' && item.thumbnail !=='' && item.thumbnail !== '{}')">
+          <p style="width: 100%;overflow: hidden;text-overflow: ellipsis">{{item.title}}</p>
           <p><span>来源：{{item.source}}</span><span>{{item.gmtCreate}}</span></p>
           </div>
         </div>
