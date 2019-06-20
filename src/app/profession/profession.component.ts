@@ -144,7 +144,7 @@ export class ProfessionComponent implements OnInit, AfterViewInit, OnDestroy {
     this.professionList = {
       data: res.data.canList,
       current: 1,
-      size: 12,
+      size: 10000,
       currentData: []
     };
     this.showData = this.professionList;

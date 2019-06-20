@@ -277,7 +277,7 @@ export class HttpService {
     return this.httpGet(url);
   }
 
-  // 职业菜单广告
+  // 专业前景广告
   public profession(): Promise<any> {
     const url = this.baseUrl + '/advertisement/professionAdvertisementList';
     return this.httpGet(url);
