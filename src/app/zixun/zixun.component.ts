@@ -23,7 +23,7 @@ export class ZixunComponent implements OnInit, AfterViewInit {
   public count = 5;
   public type = 0;
   public current = 1;
-  public size = 14;
+  public size = 100000;
   public dotZ: any[] = [];
 
   ngOnInit() {

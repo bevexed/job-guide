@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {HttpService} from '../http.service';
 
 const Tabs = [
-  '招考政策', '高校动态', '志愿指南'
+  '问题答疑', '一分一段', '高考资讯'
 ];
 
 @Component({
@@ -40,6 +40,7 @@ export class GaokaoComponent implements OnInit {
           this.current++;
           this.dataList = res.data.records;
           this.current = res.data.current;
+          this.total = res.data.total;
         }
       }
     );
@@ -58,6 +59,7 @@ export class GaokaoComponent implements OnInit {
           this.current++;
           this.dataList = res.data.records;
           this.current = res.data.current;
+          this.total = res.data.total;
         }
       }
     );
@@ -72,6 +74,7 @@ export class GaokaoComponent implements OnInit {
           this.current++;
           this.dataList = res.data.records;
           this.current = res.data.current;
+          this.total = res.data.total;
         }
       }
     );

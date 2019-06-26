@@ -69,11 +69,11 @@
         [nzTheme]=""
         [nzMode]="'horizontal'"
         style="line-height: 64px;display: flex;justify-content: space-between;width: 35vw;font-size: 16px;border-width: 0">
-        <li nz-menu-item
-            routerLink="/index"
-            style="outline: none;width: 68px;padding: 0!important;"
-            [nzSelected]="activeUrl==='/index'"
-            routerlinkactive="ant-menu-item-selected">首页</li>
+        <!--<li nz-menu-item-->
+            <!--routerLink="/index"-->
+            <!--style="outline: none;width: 68px;padding: 0!important;"-->
+            <!--[nzSelected]="activeUrl==='/index'"-->
+            <!--routerlinkactive="ant-menu-item-selected">首页</li>-->
         <li nz-menu-item
             routerLink="/development"
             style="outline: none;width: 68px;padding: 0!important;"
@@ -88,7 +88,7 @@
             routerLink="/gaokao"
             style="outline: none;width: 68px;padding: 0!important;"
             [nzSelected]="activeUrl==='/gaokao'"
-            routerlinkactive="ant-menu-item-selected">高考资讯</li>
+            routerlinkactive="ant-menu-item-selected">问题答疑</li>
       </ul>
     </nz-header>
 
@@ -111,11 +111,11 @@
 
     <div class="li-footer">
       <ul class="nav">
-        <li
-          (click)="router.navigateByUrl('/index')"
-        >
-          首页
-        </li>
+        <!--<li-->
+          <!--(click)="router.navigateByUrl('/index')"-->
+        <!--&gt;-->
+          <!--首页-->
+        <!--</li>-->
         <li
           (click)="router.navigateByUrl('/development')"
         >
@@ -129,7 +129,7 @@
         <li
           (click)="router.navigateByUrl('/gaokao')"
         >
-          高考资讯
+          问题答疑
         </li>
         <!--<li>-->
           <!--活动中心-->
@@ -185,13 +185,13 @@
     <!--移动端底部-->
     <nz-footer class="mb-footer">
       <div class="mb-menu">
-        <span routerLink="/index" (click)="popoverHiding()">首页</span>
-        <span>|</span>
+        <!--<span routerLink="/index" (click)="popoverHiding()">首页</span>-->
+        <!--<span>|</span>-->
         <span routerLink="/development" (click)="popoverHiding()">志愿填报</span>
         <span>|</span>
         <span routerLink="/profession" (click)="popoverHiding()">专业前景</span>
         <span>|</span>
-        <span routerLink="/zixun" (click)="popoverHiding()">高考资讯</span>
+        <span routerLink="/zixun" (click)="popoverHiding()">问题答疑</span>
         <span *ngIf="httpService.user">|</span>
         <span *ngIf="httpService.user" routerLink="/usercenter" (click)="popoverHiding()">个人中心</span>
       </div>
@@ -218,42 +218,42 @@
   </li>
 </ul>
 <!-- 登录弹窗 -->
-<nz-modal [(nzVisible)]="httpService.loginModal" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320"
-          [nzBodyStyle]="{padding: 0}" (nzOnCancel)="closeModal()">
-  <div class="vd-login">
-    <h1>登录</h1>
-    <br/>
-    <form nz-form [formGroup]="validateForm" class="login-form" style="margin: 0 auto;" (ngSubmit)="login()">
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group [nzPrefix]="prefixUser">
-            <input type="text" nz-input formControlName="username" placeholder="请输入您的手机号"/>
-          </nz-input-group>
-          <nz-form-explain *ngIf="validateForm.get('username')?.dirty && validateForm.get('username')?.errors">
-            请输入您的手机号!
-          </nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item>
-        <nz-form-control>
-          <nz-input-group [nzPrefix]="prefixLock">
-            <input type="password" nz-input formControlName="password" placeholder="请输入您的密码"/>
-          </nz-input-group>
-          <nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors">
-            请输入您的密码
-          </nz-form-explain>
-        </nz-form-control>
-      </nz-form-item>
-      <nz-form-item style="padding-bottom: 0;">
-        <nz-form-control>
-          <button nz-button class="login-form-button" [nzType]="'primary'" [disabled]="validateForm.invalid">登录</button>
-          <a routerLink="/register" (click)="closeModal()">去注册</a>
-          <a class="login-form-forgot" routerLink="/passport" (click)="closeModal()">忘记密码</a>
-        </nz-form-control>
-      </nz-form-item>
-    </form>
-  </div>
-</nz-modal>
+<!--<nz-modal [(nzVisible)]="httpService.loginModal" [nzTitle]="" [nzFooter]="null" nzClassName="loginModal" [nzWidth]="320"-->
+          <!--[nzBodyStyle]="{padding: 0}" (nzOnCancel)="closeModal()">-->
+  <!--<div class="vd-login">-->
+    <!--<h1>登录</h1>-->
+    <!--<br/>-->
+    <!--<form nz-form [formGroup]="validateForm" class="login-form" style="margin: 0 auto;" (ngSubmit)="login()">-->
+      <!--<nz-form-item>-->
+        <!--<nz-form-control>-->
+          <!--<nz-input-group [nzPrefix]="prefixUser">-->
+            <!--<input type="text" nz-input formControlName="username" placeholder="请输入您的手机号"/>-->
+          <!--</nz-input-group>-->
+          <!--<nz-form-explain *ngIf="validateForm.get('username')?.dirty && validateForm.get('username')?.errors">-->
+            <!--请输入您的手机号!-->
+          <!--</nz-form-explain>-->
+        <!--</nz-form-control>-->
+      <!--</nz-form-item>-->
+      <!--<nz-form-item>-->
+        <!--<nz-form-control>-->
+          <!--<nz-input-group [nzPrefix]="prefixLock">-->
+            <!--<input type="password" nz-input formControlName="password" placeholder="请输入您的密码"/>-->
+          <!--</nz-input-group>-->
+          <!--<nz-form-explain *ngIf="validateForm.get('password')?.dirty && validateForm.get('password')?.errors">-->
+            <!--请输入您的密码-->
+          <!--</nz-form-explain>-->
+        <!--</nz-form-control>-->
+      <!--</nz-form-item>-->
+      <!--<nz-form-item style="padding-bottom: 0;">-->
+        <!--<nz-form-control>-->
+          <!--<button nz-button class="login-form-button" [nzType]="'primary'" [disabled]="validateForm.invalid">登录</button>-->
+          <!--<a routerLink="/register" (click)="closeModal()">去注册</a>-->
+          <!--<a class="login-form-forgot" routerLink="/passport" (click)="closeModal()">忘记密码</a>-->
+        <!--</nz-form-control>-->
+      <!--</nz-form-item>-->
+    <!--</form>-->
+  <!--</div>-->
+<!--</nz-modal>-->
 <ng-template #prefixUser><i nz-icon type="user"></i></ng-template>
 <ng-template #prefixLock><i nz-icon type="lock"></i></ng-template>
 <!-- 个人中心 -->
@@ -261,14 +261,14 @@
 <!--菜单弹框-->
 <div (click)="caidan = false" *ngIf="!httpService.devType && caidan" style="position: fixed;right: 20px;top: 50px; background: white;z-index: 99999999;border: 1px solid #f2f2f2">
   <ng-container *ngIf="!httpService.devType">
-    <p class="vd-popoveritem mb-navlist" routerLink="/index" (click)="popoverHiding()"
-       style="border-bottom: 1px solid #eee;"><a>首页</a></p>
+    <!--<p class="vd-popoveritem mb-navlist" routerLink="/index" (click)="popoverHiding()"-->
+       <!--style="border-bottom: 1px solid #eee;"><a>首页</a></p>-->
     <p class="vd-popoveritem mb-navlist" routerLink="/development" (click)="popoverHiding()"
        style="border-bottom: 1px solid #eee;"><a>志愿填报</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/profession" (click)="popoverHiding()"
        style="border-bottom: 1px solid #eee;"><a>专业前景</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/zixun" (click)="popoverHiding()"
-       style="border-bottom: 1px solid #eee;"><a>高考资讯</a></p>
+       style="border-bottom: 1px solid #eee;"><a>问题答疑</a></p>
   </ng-container>
   <ng-container *ngIf="httpService.user">
     <p class="vd-popoveritem" [ngClass]="{'mb-navlist': !httpService.devType}" (click)="popoverHiding()"

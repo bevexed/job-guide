@@ -56,7 +56,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.validateForm = this.fb.group({
       username: [null, [Validators.required]],
-      password: [null, [Validators.required]],
+      password: '123456',
     });
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd)

@@ -24,22 +24,22 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      password: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]],
-      checkPassword: [null, [Validators.required, this.confirmationValidator]],
+      // password: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]],
+      // checkPassword: [null, [Validators.required, this.confirmationValidator]],
       // nickname: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]],
       phoneNumber: [null, [Validators.required, Validators.pattern('^[0-9]{11}$')]],
       captcha: [null, [Validators.required]],
     });
   }
 
-  public confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
-    if (!control.value) {
-      return { required: true };
-    } else if (control.value !== this.validateForm.controls.password.value) {
-      return { confirm: true, error: true };
-    }
-    return {};
-  };
+  // public confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
+  //   if (!control.value) {
+  //     return { required: true };
+  //   } else if (control.value !== this.validateForm.controls.password.value) {
+  //     return { confirm: true, error: true };
+  //   }
+  //   return {};
+  // };
 
   getBtnText() {
     if (!this.btn_clicked) {
@@ -78,7 +78,7 @@ export class RegisterComponent implements OnInit {
     }
     let data: any = {
       mobile: this.validateForm.value.phoneNumber,
-      password: this.validateForm.value.password,
+      password: '123456',
       captcha: this.validateForm.value.captcha
     };
     if (this.httpService.inviterId) {

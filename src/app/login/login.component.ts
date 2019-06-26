@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   validateForm: FormGroup;
+  public btn_clicked: boolean = false;
+  public time: number = 60;
 
   constructor(
     private fb: FormBuilder,
@@ -22,10 +24,41 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      password: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]],
+      password: '123456',
       // nickname: [null, [Validators.required, Validators.pattern('^[a-zA-Z0-9]{4,16}$')]],
       username: [null, [Validators.required, Validators.pattern('^[0-9]{11}$')]],
+      captcha: [null, [Validators.required]]
     });
+  }
+
+  public async getCaptcha(e: MouseEvent) {
+    e.preventDefault();
+    if (this.validateForm.get('username').errors) {
+      return this.message.create('error', '请输入正确的电话号码');
+    }
+    let res = await this.httpService.getCaptcha(this.validateForm.get('username').value);
+    if (res.code === 200) {
+      this.btn_clicked = true;
+      let timer = setInterval(() => {
+        if (this.time === 0) {
+          this.btn_clicked = false;
+          this.time = 60;
+          clearInterval(timer);
+        } else {
+          this.time -= 1;
+        }
+      }, 1000);
+      this.message.create('success', '请注意查收验证码');
+    } else {
+      this.message.create('error', res.message);
+    }
+  }
+  getBtnText() {
+    if (!this.btn_clicked) {
+      return '获取短信验证码';
+    } else {
+      return '倒计时'+ this.time +'s';
+    }
   }
 
   public async login() {
@@ -37,7 +70,7 @@ export class LoginComponent implements OnInit {
         this.httpService.user = res.data.user;
         this.httpService.init();
         this.message.create('success', '登录成功');
-        this.router.navigate(['../index']);
+        this.router.navigate(['../development']);
       } else {
         this.message.create('error', res.message);
       }
