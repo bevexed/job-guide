@@ -69,11 +69,11 @@
         [nzTheme]=""
         [nzMode]="'horizontal'"
         style="line-height: 64px;display: flex;justify-content: space-between;width: 35vw;font-size: 16px;border-width: 0">
-        <!--<li nz-menu-item-->
-            <!--routerLink="/index"-->
-            <!--style="outline: none;width: 68px;padding: 0!important;"-->
-            <!--[nzSelected]="activeUrl==='/index'"-->
-            <!--routerlinkactive="ant-menu-item-selected">首页</li>-->
+        <li nz-menu-item
+            routerLink="/index"
+            style="outline: none;width: 68px;padding: 0!important;"
+            [nzSelected]="activeUrl==='/index'"
+            routerlinkactive="ant-menu-item-selected">首页</li>
         <li nz-menu-item
             routerLink="/development"
             style="outline: none;width: 68px;padding: 0!important;"
@@ -111,11 +111,11 @@
 
     <div class="li-footer">
       <ul class="nav">
-        <!--<li-->
-          <!--(click)="router.navigateByUrl('/index')"-->
-        <!--&gt;-->
-          <!--首页-->
-        <!--</li>-->
+        <li
+          (click)="router.navigateByUrl('/index')"
+        >
+          首页
+        </li>
         <li
           (click)="router.navigateByUrl('/development')"
         >
@@ -185,8 +185,8 @@
     <!--移动端底部-->
     <nz-footer class="mb-footer">
       <div class="mb-menu">
-        <!--<span routerLink="/index" (click)="popoverHiding()">首页</span>-->
-        <!--<span>|</span>-->
+        <span routerLink="/index" (click)="popoverHiding()">首页</span>
+        <span>|</span>
         <span routerLink="/development" (click)="popoverHiding()">志愿填报</span>
         <span>|</span>
         <span routerLink="/profession" (click)="popoverHiding()">专业前景</span>
@@ -261,8 +261,8 @@
 <!--菜单弹框-->
 <div (click)="caidan = false" *ngIf="!httpService.devType && caidan" style="position: fixed;right: 20px;top: 50px; background: white;z-index: 99999999;border: 1px solid #f2f2f2">
   <ng-container *ngIf="!httpService.devType">
-    <!--<p class="vd-popoveritem mb-navlist" routerLink="/index" (click)="popoverHiding()"-->
-       <!--style="border-bottom: 1px solid #eee;"><a>首页</a></p>-->
+    <p class="vd-popoveritem mb-navlist" routerLink="/index" (click)="popoverHiding()"
+       style="border-bottom: 1px solid #eee;"><a>首页</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/development" (click)="popoverHiding()"
        style="border-bottom: 1px solid #eee;"><a>志愿填报</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/profession" (click)="popoverHiding()"
