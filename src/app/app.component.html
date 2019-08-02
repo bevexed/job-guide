@@ -78,17 +78,17 @@
             routerLink="/development"
             style="outline: none;width: 68px;padding: 0!important;"
             [nzSelected]="activeUrl==='/development'"
-            routerlinkactive="ant-menu-item-selected">志愿填报</li>
+            routerlinkactive="ant-menu-item-selected">系列课程</li>
         <li nz-menu-item
             routerLink="/profession"
             style="outline: none;width: 68px;padding: 0!important;"
             [nzSelected]="activeUrl==='/profession'"
-            routerlinkactive="ant-menu-item-selected">专业前景</li>
+            routerlinkactive="ant-menu-item-selected">职业菜单</li>
         <li nz-menu-item
             routerLink="/gaokao"
             style="outline: none;width: 68px;padding: 0!important;"
             [nzSelected]="activeUrl==='/gaokao'"
-            routerlinkactive="ant-menu-item-selected">问题答疑</li>
+            routerlinkactive="ant-menu-item-selected">求职实习</li>
       </ul>
     </nz-header>
 
@@ -119,17 +119,17 @@
         <li
           (click)="router.navigateByUrl('/development')"
         >
-          志愿填报
+          系列课程
         </li>
         <li
           (click)="router.navigateByUrl('/profession')"
         >
-          专业前景
+          职业菜单
         </li>
         <li
           (click)="router.navigateByUrl('/gaokao')"
         >
-          问题答疑
+          求职实习
         </li>
         <!--<li>-->
           <!--活动中心-->
@@ -187,11 +187,11 @@
       <div class="mb-menu">
         <span routerLink="/index" (click)="popoverHiding()">首页</span>
         <span>|</span>
-        <span routerLink="/development" (click)="popoverHiding()">志愿填报</span>
+        <span routerLink="/development" (click)="popoverHiding()">系列课程</span>
         <span>|</span>
-        <span routerLink="/profession" (click)="popoverHiding()">专业前景</span>
+        <span routerLink="/profession" (click)="popoverHiding()">职业菜单</span>
         <span>|</span>
-        <span routerLink="/zixun" (click)="popoverHiding()">问题答疑</span>
+        <span routerLink="/zixun" (click)="popoverHiding()">求职实习</span>
         <span *ngIf="httpService.user">|</span>
         <span *ngIf="httpService.user" routerLink="/usercenter" (click)="popoverHiding()">个人中心</span>
       </div>
@@ -264,11 +264,11 @@
     <p class="vd-popoveritem mb-navlist" routerLink="/index" (click)="popoverHiding()"
        style="border-bottom: 1px solid #eee;"><a>首页</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/development" (click)="popoverHiding()"
-       style="border-bottom: 1px solid #eee;"><a>志愿填报</a></p>
+       style="border-bottom: 1px solid #eee;"><a>系列课程</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/profession" (click)="popoverHiding()"
-       style="border-bottom: 1px solid #eee;"><a>专业前景</a></p>
+       style="border-bottom: 1px solid #eee;"><a>职业菜单</a></p>
     <p class="vd-popoveritem mb-navlist" routerLink="/zixun" (click)="popoverHiding()"
-       style="border-bottom: 1px solid #eee;"><a>问题答疑</a></p>
+       style="border-bottom: 1px solid #eee;"><a>求职实习</a></p>
   </ng-container>
   <ng-container *ngIf="httpService.user">
     <p class="vd-popoveritem" [ngClass]="{'mb-navlist': !httpService.devType}" (click)="popoverHiding()"

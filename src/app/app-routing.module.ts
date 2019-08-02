@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'development'
+    redirectTo: 'index'
   },
   {
     path: 'index',

@@ -25,7 +25,7 @@
         <h3 [hidden]="data?.moduleCode !== 'home_page_hot'" class="red">{{data?.intro}}</h3>
       </div>
 
-      <!--    志愿填报-->
+      <!--    系列课程-->
       <div *ngIf="development && httpService.devType">
         <h3>{{data?.title}}</h3>
       </div>
@@ -44,7 +44,7 @@
       </div>
       <!--<p [hidden]="data?.intro">{{data?.intro}}</p>-->
 
-      <!--    专业前景-->
+      <!--    职业菜单-->
       <div *ngIf="profession">
         <h3>{{data?.title}}</h3>
       </div>
@@ -91,7 +91,7 @@
       <h3 [hidden]="data?.moduleCode !== 'home_page_hot'" class="red">{{data?.intro}}</h3>
     </div>
 
-    <!--    志愿填报-->
+    <!--    系列课程-->
     <div *ngIf="development && httpService.devType">
       <h3>{{data?.title}}</h3>
     </div>
@@ -111,7 +111,7 @@
     </div>
     <!--<p [hidden]="data?.intro">{{data?.intro}}</p>-->
 
-    <!--    专业前景-->
+    <!--    职业菜单-->
     <div *ngIf="profession">
       <h3>{{data?.title}}</h3>
     </div>

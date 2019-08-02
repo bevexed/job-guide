@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {HttpService} from '../http.service';
 
 const Tabs = [
-  '问题答疑', '一分一段', '高考资讯'
+  '找工作', '找兼职', '找实习'
 ];
 
 @Component({

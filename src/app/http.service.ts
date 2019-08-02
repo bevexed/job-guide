@@ -271,13 +271,13 @@ export class HttpService {
       // });
     }
   }
-  // 志愿填报广告
+  // 系列课程广告
   public development(): Promise<any> {
     const url = this.baseUrl + '/advertisement/developAdvertisementList';
     return this.httpGet(url);
   }
 
-  // 专业前景广告
+  // 职业菜单广告
   public profession(): Promise<any> {
     const url = this.baseUrl + '/advertisement/professionAdvertisementList';
     return this.httpGet(url);
@@ -632,7 +632,7 @@ export class HttpService {
   }
 
 
-  // 6.志愿填报-课程分类列表
+  // 6.系列课程-课程分类列表
   // http://api.zhichangsinan.com/course/category/develop/typeList
   //   请求方式:GET
   // 参数:
@@ -640,7 +640,7 @@ export class HttpService {
   // size--每页大小                                                        不必填
 
 
-  // 7.志愿填报-分类的课程列表
+  // 7.系列课程-分类的课程列表
   // http://api.zhichangsinan.com/course/category/develop/courseList
   //   请求方式:GET
   // 参数:
