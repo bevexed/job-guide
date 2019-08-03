@@ -149,7 +149,7 @@
           <img alt="" src="../../assets/gk.png">
 
           <div class="content">
-            <h6>招考政策</h6>
+            <h6>找工作</h6>
 
             <ul>
               <li class="hover-red" (click)="router.navigateByUrl('/gaokao-detail?id='+ item.id + '&type=' + item.type)"  *ngFor="let item of gaokaozixun1[0]?.iPage1"><span></span> {{item.title}}</li>
@@ -161,7 +161,7 @@
           <img alt="" src="../../assets/gk2.png">
 
           <div class="content">
-            <h6>高校动态</h6>
+            <h6>找兼职</h6>
 
             <ul>
               <li class="hover-red" (click)="router.navigateByUrl('/gaokao-detail?id='+ item.id + '&type=' + item.type)"  *ngFor="let item of gaokaozixun1[0]?.iPage2"><span></span> {{item.title}}</li>
@@ -173,7 +173,7 @@
           <img alt="" src="../../assets/gk3.png">
 
           <div class="content">
-            <h6>志愿指南</h6>
+            <h6>找实习</h6>
             <ul>
               <li class="hover-red" (click)="router.navigateByUrl('/gaokao-detail?id='+ item.id + '&type=' + item.type)"  *ngFor="let item of gaokaozixun1[0]?.iPage3"><span></span> {{item.title}}</li>
             </ul>
@@ -349,7 +349,7 @@
          >
            <img class="gkImage" [src]="index.src" alt="图片">
            <div style="background: #F6F6F6;padding: 26px 4px 31px 16px">
-             <p style="color: #D10000;font-size: 18px;margin-bottom: 0">{{index.pageM == 'iPage1'?'招考政策':index.pageM == 'iPage2'?'高校动态':index.pageM == 'iPage3'?'志愿指南':''}}</p>
+             <p style="color: #D10000;font-size: 18px;margin-bottom: 0">{{index.pageM == 'iPage1'?'找工作':index.pageM == 'iPage2'?'找兼职':index.pageM == 'iPage3'?'找实习':''}}</p>
              <div *ngFor="let v of index" style="display: flex;line-height:29px;align-items: center;color: #404040;font-size: 14px" routerLink="/zixunDetail" [queryParams]="{id: v.id,type: v.type}">
                <span style="width: 4px;height: 4px;background: #d10000;border-radius: 50%;display: inline-block;margin-right: 10px"></span>
                <p style="margin-bottom: 0">{{v.title}}</p>

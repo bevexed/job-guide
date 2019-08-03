@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
         this.httpService.user = res.data.user;
         this.httpService.init();
         this.message.create('success', '登录成功');
-        this.router.navigate(['../index']);
+        this.router.navigate(['../profession']);
       } else {
         this.message.create('error', res.message);
       }
